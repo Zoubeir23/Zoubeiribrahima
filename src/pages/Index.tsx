@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
 import SkillsSection from "@/components/SkillsSection";
 import CertificationsSection from "@/components/CertificationsSection";
@@ -15,9 +16,15 @@ const Index = () => {
           <AchievementsSection />
         </div>
         
-        <footer className="mt-12 text-center text-sm text-muted-foreground">
+        <motion.footer 
+          className="mt-12 text-center text-sm text-muted-foreground"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
           <p>© 2026 Zoubeir Ibrahima. Tous droits réservés.</p>
-        </footer>
+        </motion.footer>
       </div>
     </div>
   );

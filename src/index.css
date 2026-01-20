@@ -112,7 +112,7 @@
   }
 
   .skill-badge {
-    @apply inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-secondary text-muted-foreground border border-border transition-colors;
+    @apply inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-medium bg-secondary text-muted-foreground border border-border transition-all duration-200;
   }
 
   .skill-badge:hover {
@@ -143,5 +143,23 @@
 
   .cert-logo {
     @apply w-10 h-10 rounded-lg bg-background flex items-center justify-center text-xs font-bold text-primary shrink-0;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--secondary));
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
   }
 }
