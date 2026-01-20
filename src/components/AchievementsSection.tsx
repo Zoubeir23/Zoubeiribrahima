@@ -5,22 +5,50 @@ import AnimatedSection from "./AnimatedSection";
 const achievements = [
   {
     title: "CS50x Completion",
-    description: "Terminé le cours CS50x de Harvard sur edX",
+    description: "Terminé le cours CS50x de Harvard sur edX - Introduction à l'informatique",
     year: "2024",
   },
   {
     title: "CS50p Completion",
-    description: "Terminé le cours CS50 Python de Harvard",
+    description: "Terminé le cours CS50 Python de Harvard - Programmation Python avancée",
     year: "2024",
+  },
+  {
+    title: "Python Essentials 1",
+    description: "Certification Cisco Networking Academy - Fondamentaux Python",
+    year: "2025",
+  },
+  {
+    title: "Introduction to Cybersecurity",
+    description: "Certification Cisco - Bases de la cybersécurité",
+    year: "2025",
   },
 ];
 
 const education = [
   {
-    title: "Formation Développeur",
-    subtitle: "En cours",
+    title: "Lycée Marie de Champagne",
+    subtitle: "Baccalauréat général",
+    year: "2022-2025",
+    badge: "Terminale",
+  },
+  {
+    title: "Formation Autodidacte",
+    subtitle: "Développement logiciel et web",
+    year: "2023-Présent",
+    badge: "Python, Java, Django, Web",
+  },
+  {
+    title: "CS50 - Harvard University",
+    subtitle: "Introduction à l'informatique",
+    year: "2024",
+    badge: "CS50x, CS50p",
+  },
+  {
+    title: "Certifications en ligne",
+    subtitle: "20+ certifications obtenues",
     year: "2024-2026",
-    badge: "Python, Java, Web",
+    badge: "Microsoft, Cisco, LinkedIn, Udemy",
   },
 ];
 
@@ -65,7 +93,7 @@ const AchievementsSection = () => {
             <GraduationCap className="section-icon" />
             Formation
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {education.map((edu, index) => (
               <motion.div 
                 key={index} 
@@ -75,7 +103,7 @@ const AchievementsSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
-                <div>
+                <div className="flex-1">
                   <h3 className="font-medium text-foreground">{edu.title}</h3>
                   <p className="text-sm text-muted-foreground">{edu.subtitle}</p>
                   {edu.badge && (
