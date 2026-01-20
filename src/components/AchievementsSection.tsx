@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { Trophy, GraduationCap } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 const achievements = [
   {
@@ -25,50 +27,77 @@ const education = [
 const AchievementsSection = () => {
   return (
     <div className="space-y-4">
-      <div className="section-card">
-        <h2 className="section-title">
-          <Trophy className="section-icon" />
-          Réalisations
-        </h2>
-        <div className="space-y-4">
-          {achievements.map((achievement, index) => (
-            <div key={index} className="flex justify-between items-start">
-              <div>
-                <h3 className="font-medium text-foreground">{achievement.title}</h3>
-                <p className="text-sm text-muted-foreground">{achievement.description}</p>
-              </div>
-              <span className="text-sm text-primary font-medium shrink-0 ml-4">
-                {achievement.year}
-              </span>
-            </div>
-          ))}
+      <AnimatedSection delay={0.1}>
+        <div className="section-card">
+          <h2 className="section-title">
+            <Trophy className="section-icon" />
+            Réalisations
+          </h2>
+          <div className="space-y-4">
+            {achievements.map((achievement, index) => (
+              <motion.div 
+                key={index} 
+                className="flex justify-between items-start"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <div>
+                  <h3 className="font-medium text-foreground">{achievement.title}</h3>
+                  <p className="text-sm text-muted-foreground">{achievement.description}</p>
+                </div>
+                <motion.span 
+                  className="text-sm text-primary font-medium shrink-0 ml-4"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {achievement.year}
+                </motion.span>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </AnimatedSection>
 
-      <div className="section-card">
-        <h2 className="section-title">
-          <GraduationCap className="section-icon" />
-          Formation
-        </h2>
-        <div className="space-y-4">
-          {education.map((edu, index) => (
-            <div key={index} className="flex justify-between items-start">
-              <div>
-                <h3 className="font-medium text-foreground">{edu.title}</h3>
-                <p className="text-sm text-muted-foreground">{edu.subtitle}</p>
-                {edu.badge && (
-                  <span className="inline-block mt-2 text-xs px-2 py-0.5 rounded bg-secondary border border-border text-muted-foreground">
-                    {edu.badge}
-                  </span>
-                )}
-              </div>
-              <span className="text-sm text-primary font-medium shrink-0 ml-4">
-                {edu.year}
-              </span>
-            </div>
-          ))}
+      <AnimatedSection delay={0.2}>
+        <div className="section-card">
+          <h2 className="section-title">
+            <GraduationCap className="section-icon" />
+            Formation
+          </h2>
+          <div className="space-y-4">
+            {education.map((edu, index) => (
+              <motion.div 
+                key={index} 
+                className="flex justify-between items-start"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <div>
+                  <h3 className="font-medium text-foreground">{edu.title}</h3>
+                  <p className="text-sm text-muted-foreground">{edu.subtitle}</p>
+                  {edu.badge && (
+                    <motion.span 
+                      className="inline-block mt-2 text-xs px-2 py-0.5 rounded bg-secondary border border-border text-muted-foreground"
+                      whileHover={{ borderColor: "hsl(var(--primary) / 0.5)" }}
+                    >
+                      {edu.badge}
+                    </motion.span>
+                  )}
+                </div>
+                <motion.span 
+                  className="text-sm text-primary font-medium shrink-0 ml-4"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {edu.year}
+                </motion.span>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      </AnimatedSection>
     </div>
   );
 };

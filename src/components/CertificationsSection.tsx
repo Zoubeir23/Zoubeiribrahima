@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { Award, ExternalLink } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 interface Certification {
   title: string;
@@ -152,45 +154,58 @@ const certifications: Certification[] = [
 
 const CertificationsSection = () => {
   return (
-    <div className="section-card">
-      <h2 className="section-title">
-        <Award className="section-icon" />
-        Licences et Certifications
-      </h2>
-      
-      <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 scrollbar-thin">
-        {certifications.map((cert, index) => (
-          <div key={index} className="cert-card group">
-            <div className="cert-logo">
-              {cert.logo}
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                {cert.title}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                {cert.issuer} • {cert.date}
-              </p>
-              {cert.skills && cert.skills.length > 0 && (
-                <div className="flex flex-wrap gap-1 mt-2">
-                  {cert.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary/80"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+    <AnimatedSection delay={0.1}>
+      <div className="section-card">
+        <h2 className="section-title">
+          <Award className="section-icon" />
+          Licences et Certifications
+          <span className="ml-auto text-xs text-muted-foreground font-normal">
+            {certifications.length} certifications
+          </span>
+        </h2>
+        
+        <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
+          {certifications.map((cert, index) => (
+            <motion.div 
+              key={index} 
+              className="cert-card group"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.4, delay: index * 0.03 }}
+              whileHover={{ x: 4 }}
+            >
+              <div className="cert-logo">
+                {cert.logo}
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
+                  {cert.title}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  {cert.issuer} • {cert.date}
+                </p>
+                {cert.skills && cert.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mt-2">
+                    {cert.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary/80"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              {cert.certId && (
+                <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0" />
               )}
-            </div>
-            {cert.certId && (
-              <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-            )}
-          </div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
-    </div>
+    </AnimatedSection>
   );
 };
 
