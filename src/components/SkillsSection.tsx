@@ -58,14 +58,16 @@ const SkillCard = ({ icon: Icon, title, skills, delay = 0 }: SkillCardProps) => 
 );
 
 const SkillsSection = () => {
-  const skills = ["Développement Web", "Développement Logiciel", "Python", "Django", "Java"];
-  const programmingLanguages = ["Python", "Java", "HTML5", "CSS", "JavaScript"];
-  const learning = ["Cybersécurité", "GitHub Copilot", "Intelligence Artificielle"];
+  const skills = ["Développement Web", "Développement Logiciel", "Automatisation", "API REST"];
+  const programmingLanguages = ["Python", "Java", "JavaScript", "HTML5", "CSS", "SQL"];
+  const frameworks = ["Django", "Flask", "React", "WordPress"];
+  const learning = ["Cybersécurité", "GitHub Copilot", "Claude AI", "Cloud Computing"];
 
   return (
     <div className="space-y-4">
       <SkillCard icon={Sparkles} title="Compétences" skills={skills} delay={0} />
       <SkillCard icon={Code2} title="Langages de Programmation" skills={programmingLanguages} delay={0.1} />
+      <SkillCard icon={Code2} title="Frameworks & Outils" skills={frameworks} delay={0.15} />
       <SkillCard icon={BookOpen} title="En cours d'apprentissage" skills={learning} delay={0.2} />
     </div>
   );

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import HeroSection from "@/components/HeroSection";
+import QuickFactsSection from "@/components/QuickFactsSection";
+import LanguagesSection from "@/components/LanguagesSection";
 import SkillsSection from "@/components/SkillsSection";
 import CertificationsSection from "@/components/CertificationsSection";
 import AchievementsSection from "@/components/AchievementsSection";
@@ -11,6 +13,8 @@ const Index = () => {
         <HeroSection />
         
         <div className="space-y-4">
+          <QuickFactsSection />
+          <LanguagesSection />
           <SkillsSection />
           <CertificationsSection />
           <AchievementsSection />
