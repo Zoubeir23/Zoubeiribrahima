@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
+import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -26,32 +27,53 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container max-w-2xl mx-auto px-4 pb-16">
+    <div className="min-h-screen bg-background relative">
+      {/* Background gradient effect */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
+      </div>
+
+      {/* Navbar */}
+      <Navbar />
+
+      <div className="container max-w-2xl mx-auto px-4 pb-16 pt-16 relative z-10">
         {/* Hero - Première impression */}
         <HeroSection />
 
         <div className="space-y-4">
           {/* About - Storytelling et proposition de valeur */}
-          <AboutSection />
+          <section id="about">
+            <AboutSection />
+          </section>
 
           {/* Projets - La preuve par l'action (Snapfolioo + SamaWeb) */}
-          <ProjectsSection />
+          <section id="projects">
+            <ProjectsSection />
+          </section>
 
           {/* Compétences techniques - Stack complet */}
-          <SkillsSection />
+          <section id="skills">
+            <SkillsSection />
+          </section>
 
           {/* Expérience & Formation */}
-          <AchievementsSection />
+          <section id="experience">
+            <AchievementsSection />
+          </section>
 
           {/* Certifications - Crédibilité (Harvard, Microsoft, Cisco) */}
-          <CertificationsSection />
+          <section id="certifications">
+            <CertificationsSection />
+          </section>
 
           {/* Langues */}
           <LanguagesSection />
 
           {/* Contact - Call to action final */}
-          <ContactSection />
+          <section id="contact">
+            <ContactSection />
+          </section>
         </div>
 
         {/* Footer */}
