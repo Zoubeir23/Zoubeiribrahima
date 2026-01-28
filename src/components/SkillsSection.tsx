@@ -37,9 +37,9 @@ const skillCategories: SkillCategory[] = [
     color: "from-blue-500 to-cyan-400",
     skills: [
       { name: "React.js", iconUrl: "https://cdn.svgporn.com/logos/react.svg" },
+      { name: "Angular", iconUrl: "https://cdn.svgporn.com/logos/angular-icon.svg" },
       { name: "TailwindCSS", iconUrl: "https://cdn.svgporn.com/logos/tailwindcss-icon.svg" },
       { name: "TypeScript", iconUrl: "https://cdn.svgporn.com/logos/typescript-icon.svg" },
-      { name: "Framer Motion", iconUrl: "https://cdn.svgporn.com/logos/framer.svg" },
     ],
   },
   {
@@ -50,7 +50,7 @@ const skillCategories: SkillCategory[] = [
       { name: "Django", iconUrl: "https://cdn.svgporn.com/logos/django-icon.svg" },
       { name: "Python", iconUrl: "https://cdn.svgporn.com/logos/python.svg" },
       { name: "Node.js", iconUrl: "https://cdn.svgporn.com/logos/nodejs-icon.svg" },
-      { name: "Express.js", iconUrl: "https://cdn.svgporn.com/logos/express.svg" },
+      { name: "Laravel", iconUrl: "https://cdn.svgporn.com/logos/laravel.svg" },
     ],
   },
   {
@@ -59,6 +59,7 @@ const skillCategories: SkillCategory[] = [
     color: "from-purple-500 to-violet-400",
     skills: [
       { name: "PostgreSQL", iconUrl: "https://cdn.svgporn.com/logos/postgresql.svg" },
+      { name: "MongoDB", iconUrl: "https://cdn.svgporn.com/logos/mongodb-icon.svg" },
       { name: "Supabase", iconUrl: "https://cdn.svgporn.com/logos/supabase-icon.svg" },
       { name: "MySQL", iconUrl: "https://cdn.svgporn.com/logos/mysql-icon.svg" },
     ],
@@ -70,6 +71,7 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Git", iconUrl: "https://cdn.svgporn.com/logos/git-icon.svg" },
       { name: "GitHub", iconUrl: "https://cdn.svgporn.com/logos/github-icon.svg" },
+      { name: "CI/CD", iconUrl: "https://cdn.svgporn.com/logos/github-actions.svg" },
       { name: "Claude Code", iconUrl: "https://cdn.svgporn.com/logos/anthropic-icon.svg" },
       { name: "VS Code", iconUrl: "https://cdn.svgporn.com/logos/visual-studio-code.svg" },
       { name: "Vercel", iconUrl: "https://cdn.svgporn.com/logos/vercel-icon.svg" },
