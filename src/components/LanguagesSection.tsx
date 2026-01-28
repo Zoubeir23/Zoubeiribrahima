@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Globe } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -14,27 +15,30 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: { duration: 0.3 }
+    transition: { duration: 0.3 },
   },
 };
 
 const languages = [
   { name: "Français", level: "Natif" },
+  { name: "Arabe", level: "Courant" },
   { name: "Anglais", level: "Intermédiaire (B1)" },
 ];
 
 const LanguagesSection = () => {
+  const { t } = useLanguage();
+
   return (
     <AnimatedSection delay={0.05}>
       <div className="section-card">
         <h2 className="section-title">
           <Globe className="section-icon" />
-          Langues
+          {t("languages.title")}
         </h2>
-        <motion.div 
+        <motion.div
           className="flex flex-wrap gap-3"
           variants={containerVariants}
           initial="hidden"
@@ -42,8 +46,8 @@ const LanguagesSection = () => {
           viewport={{ once: true }}
         >
           {languages.map((lang) => (
-            <motion.div 
-              key={lang.name} 
+            <motion.div
+              key={lang.name}
               className="skill-badge flex items-center gap-2"
               variants={itemVariants}
               whileHover={{ scale: 1.05, borderColor: "hsl(var(--primary))" }}

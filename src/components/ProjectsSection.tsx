@@ -1,256 +1,209 @@
 import { motion } from "framer-motion";
-import {
-  Rocket,
-  ExternalLink,
-  Github,
-  Users,
-  FileText,
-  Palette,
-  Globe,
-  Code2,
-  Database,
-  Shield
-} from "lucide-react";
-import AnimatedSection from "./AnimatedSection";
-
-interface Project {
-  title: string;
-  subtitle: string;
-  description: string;
-  features: string[];
-  stack: string[];
-  url?: string;
-  github?: string;
-  metrics?: { label: string; value: string }[];
-  status: "production" | "development" | "completed";
-  featured?: boolean;
-}
-
-const projects: Project[] = [
-  {
-    title: "Snapfolioo",
-    subtitle: "Plateforme SaaS",
-    description: "Plateforme complète permettant de créer des portfolios professionnels, CV et bannières LinkedIn avec un éditeur visuel en temps réel.",
-    features: [
-      "+18 templates professionnels responsive",
-      "Éditeur visuel drag & drop en temps réel",
-      "Export multi-formats (HTML, PDF, PNG)",
-      "Authentification sécurisée (Google OAuth, Row Level Security)",
-      "Architecture scalable avec auto-sauvegarde",
-      "Gestion multi-projets par utilisateur"
-    ],
-    stack: ["React", "TypeScript", "TailwindCSS", "Supabase", "PostgreSQL", "Vite"],
-    url: "https://snapfolioo.com",
-    metrics: [
-      { label: "Templates", value: "18+" },
-      { label: "Formats export", value: "3" },
-      { label: "Stack", value: "React/Supabase" }
-    ],
-    status: "production",
-    featured: true
-  },
-  {
-    title: "SamaWeb Africa",
-    subtitle: "Agence Digitale",
-    description: "Co-fondation d'une agence digitale dédiée à la création de sites web et applications mobiles pour entreprises africaines. Accompagnement dans la transformation digitale.",
-    features: [
-      "Développement de solutions numériques accessibles",
-      "Sites web et applications mobiles sur mesure",
-      "Gestion de projets clients et coordination d'équipe",
-      "Transformation digitale pour entreprises africaines"
-    ],
-    stack: ["React", "Node.js", "Django", "PostgreSQL", "TailwindCSS"],
-    status: "production",
-    featured: true
-  },
-  {
-    title: "Système de Gestion d'Employés",
-    subtitle: "Application Web Django",
-    description: "Application web complète de gestion des employés avec authentification, CRUD et interface responsive.",
-    features: [
-      "Authentification et gestion des sessions",
-      "Interface d'administration complète",
-      "API REST pour intégrations",
-      "Base de données relationnelle"
-    ],
-    stack: ["Django", "Python", "JavaScript", "PostgreSQL"],
-    github: "https://github.com/Zoubeir23/Gestion_Employer-Django-",
-    status: "completed"
-  },
-  {
-    title: "LongHor Voyage",
-    subtitle: "Plateforme de Voyage",
-    description: "Application web TypeScript pour la gestion et réservation de voyages.",
-    features: [
-      "Interface utilisateur moderne",
-      "Système de réservation",
-      "Gestion des itinéraires"
-    ],
-    stack: ["TypeScript", "React", "TailwindCSS"],
-    github: "https://github.com/Zoubeir23/longhorvoyage",
-    status: "completed"
-  }
-];
-
-const statusConfig = {
-  production: { label: "En production", color: "bg-green-500/10 text-green-400 border-green-500/30" },
-  development: { label: "En développement", color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30" },
-  completed: { label: "Terminé", color: "bg-blue-500/10 text-blue-400 border-blue-500/30" }
-};
-
-const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
-  const status = statusConfig[project.status];
-
-  return (
-    <motion.div
-      className={`section-card relative overflow-hidden ${project.featured ? 'border-primary/30' : ''}`}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-    >
-      {project.featured && (
-        <div className="absolute top-0 right-0 px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-bl-lg">
-          Projet phare
-        </div>
-      )}
-
-      <div className="flex flex-col h-full">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-              <span className={`text-xs px-2 py-0.5 rounded-full border ${status.color}`}>
-                {status.label}
-              </span>
-            </div>
-            <p className="text-sm text-primary font-medium">{project.subtitle}</p>
-          </div>
-          <div className="flex gap-2">
-            {project.url && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                aria-label={`Visiter ${project.title}`}
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-secondary/50 hover:bg-secondary transition-all duration-300"
-                aria-label={`GitHub ${project.title}`}
-              >
-                <Github className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-          {project.description}
-        </p>
-
-        {/* Metrics (for featured projects) */}
-        {project.metrics && (
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            {project.metrics.map((metric, i) => (
-              <div key={i} className="text-center p-2 rounded-lg bg-secondary/30">
-                <p className="text-lg font-bold text-primary">{metric.value}</p>
-                <p className="text-xs text-muted-foreground">{metric.label}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Features */}
-        <div className="mb-4">
-          <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-2">
-            Fonctionnalités clés
-          </h4>
-          <ul className="space-y-1.5">
-            {project.features.slice(0, project.featured ? 6 : 4).map((feature, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                <span className="text-primary mt-1">•</span>
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Stack */}
-        <div className="mt-auto pt-4 border-t border-border/50">
-          <div className="flex flex-wrap gap-1.5">
-            {project.stack.map((tech) => (
-              <span
-                key={tech}
-                className="text-xs px-2 py-1 rounded bg-secondary text-muted-foreground border border-border/50"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+import { ExternalLink, Github, Rocket, Briefcase, Users, Plane } from "lucide-react";
 
 const ProjectsSection = () => {
-  const featuredProjects = projects.filter(p => p.featured);
-  const otherProjects = projects.filter(p => !p.featured);
-
   return (
-    <AnimatedSection delay={0.1}>
-      <div className="section-card">
-        <h2 className="section-title">
-          <Rocket className="section-icon" />
-          Projets & Réalisations
-          <span className="ml-auto text-xs text-muted-foreground font-normal">
-            {projects.length} projets
-          </span>
-        </h2>
-
-        {/* Featured Projects */}
-        <div className="space-y-4 mb-6">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
-          ))}
-        </div>
-
-        {/* Other Projects */}
-        {otherProjects.length > 0 && (
-          <>
-            <h3 className="text-sm font-medium text-muted-foreground mb-4">Autres projets</h3>
-            <div className="grid gap-4">
-              {otherProjects.map((project, index) => (
-                <ProjectCard key={project.title} project={project} index={index + featuredProjects.length} />
-              ))}
-            </div>
-          </>
-        )}
-
-        {/* GitHub CTA */}
+    <section id="projects" className="py-28 px-4 max-w-6xl mx-auto">
+      <div className="flex items-end justify-between mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-3xl font-display font-bold text-white">Créations Digitales</h2>
+          <p className="text-slate-400 mt-2">
+            Des produits que j'ai conçus, développés et déployés.
+          </p>
+        </motion.div>
         <motion.a
           href="https://github.com/Zoubeir23"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 mt-6 py-3 rounded-lg border border-border bg-secondary/30 hover:bg-secondary hover:border-primary/50 transition-all duration-300 text-sm text-muted-foreground hover:text-foreground"
-          whileHover={{ scale: 1.01 }}
+          className="hidden md:flex items-center gap-2 text-sm text-slate-400 hover:text-white transition"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Github className="w-4 h-4" />
-          Voir tous mes projets sur GitHub
-          <ExternalLink className="w-3 h-3" />
+          Voir tout GitHub <ExternalLink className="w-4 h-4" />
         </motion.a>
       </div>
-    </AnimatedSection>
+
+      {/* Featured Project - Snapfolioo */}
+      <motion.div
+        className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden mb-8 grid md:grid-cols-2 group hover:border-primary/50 transition duration-500"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <div className="p-8 md:p-12 flex flex-col justify-center order-2 md:order-1">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/20">
+              EN PRODUCTION
+            </span>
+            <span className="text-slate-500 text-sm">SaaS Platform</span>
+          </div>
+          <h3 className="text-3xl font-bold text-white mb-4">Snapfolioo</h3>
+
+          <div className="space-y-4 mb-6">
+            <div>
+              <h4 className="text-sm font-bold text-primary mb-1">🎯 Problème</h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Les freelances et créateurs ont du mal à créer un portfolio professionnel rapidement
+                sans compétences techniques.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-primary mb-1">🛠️ Solution</h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Plateforme SaaS no-code avec éditeur visuel temps réel, templates pro et
+                authentification sécurisée.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-primary mb-1">🚀 Résultat</h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Portfolio créé en 5 min, +50 templates disponibles, architecture scalable sur
+                Supabase.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-primary mb-1">👨‍💻 Mon rôle</h4>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Fullstack Developer — Conception, développement et déploiement complet (React,
+                Supabase, PostgreSQL).
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-6">
+            <span className="px-3 py-1 bg-slate-800 rounded text-xs text-slate-300">React</span>
+            <span className="px-3 py-1 bg-slate-800 rounded text-xs text-slate-300">Supabase</span>
+            <span className="px-3 py-1 bg-slate-800 rounded text-xs text-slate-300">Tailwind</span>
+            <span className="px-3 py-1 bg-slate-800 rounded text-xs text-slate-300">
+              PostgreSQL
+            </span>
+          </div>
+          <div className="flex gap-4">
+            <a
+              href="https://snapfolioo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition flex items-center gap-2"
+            >
+              <Rocket className="w-4 h-4" /> Voir le site
+            </a>
+          </div>
+        </div>
+        <div className="bg-slate-800 order-1 md:order-2 relative overflow-hidden h-64 md:h-auto">
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 group-hover:scale-105 transition duration-700">
+            <div className="w-3/4 h-3/4 bg-slate-950 rounded-xl border border-slate-700 shadow-2xl flex items-center justify-center">
+              <span className="text-slate-600 font-display text-2xl font-bold">UI Snapfolioo</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Other Projects Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* SamaWeb Africa */}
+        <motion.div
+          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:-translate-y-1 transition duration-300"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="flex justify-between items-start mb-4">
+            <div className="h-10 w-10 rounded bg-blue-900/30 flex items-center justify-center text-blue-400">
+              <Briefcase className="w-5 h-5" />
+            </div>
+            <a
+              href="https://github.com/Zoubeir23"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-white cursor-pointer"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+          <h4 className="text-xl font-bold text-white mb-2">SamaWeb Africa</h4>
+          <p className="text-sm text-slate-400 mb-4 line-clamp-3">
+            Agence digitale co-fondée. Développement de solutions numériques, sites web et
+            applications mobiles sur mesure pour entreprises africaines.
+          </p>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className="text-xs text-blue-400">#Django</span>
+            <span className="text-xs text-blue-400">#React</span>
+          </div>
+        </motion.div>
+
+        {/* Gestion Employés */}
+        <motion.div
+          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:-translate-y-1 transition duration-300"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <div className="flex justify-between items-start mb-4">
+            <div className="h-10 w-10 rounded bg-indigo-900/30 flex items-center justify-center text-indigo-400">
+              <Users className="w-5 h-5" />
+            </div>
+            <a
+              href="https://github.com/Zoubeir23/Gestion_Employer-Django-"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-white cursor-pointer"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+          <h4 className="text-xl font-bold text-white mb-2">Gestion Employés</h4>
+          <p className="text-sm text-slate-400 mb-4 line-clamp-3">
+            Application CRUD complète avec Authentification, Admin Interface et API REST.
+          </p>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className="text-xs text-indigo-400">#Python</span>
+            <span className="text-xs text-indigo-400">#PostgreSQL</span>
+          </div>
+        </motion.div>
+
+        {/* LongHor Voyage */}
+        <motion.div
+          className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:-translate-y-1 transition duration-300"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <div className="flex justify-between items-start mb-4">
+            <div className="h-10 w-10 rounded bg-orange-900/30 flex items-center justify-center text-orange-400">
+              <Plane className="w-5 h-5" />
+            </div>
+            <a
+              href="https://github.com/Zoubeir23/longhorvoyage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-500 hover:text-white cursor-pointer"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+          <h4 className="text-xl font-bold text-white mb-2">LongHor Voyage</h4>
+          <p className="text-sm text-slate-400 mb-4 line-clamp-3">
+            App de réservation de voyages avec TypeScript. Gestion d'itinéraires et interface
+            utilisateur moderne.
+          </p>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            <span className="text-xs text-orange-400">#TypeScript</span>
+            <span className="text-xs text-orange-400">#React</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

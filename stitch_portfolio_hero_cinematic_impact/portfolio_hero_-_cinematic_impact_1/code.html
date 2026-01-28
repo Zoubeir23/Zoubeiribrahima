@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zoubeir Ibrahima Amed - FullStack Developer</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@300;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6", // Electric Blue
+                        "background-light": "#f8fafc", // Slate-50
+                        "background-dark": "#020617", // Slate-950/Deep Space
+                        "glass-light": "rgba(255, 255, 255, 0.7)",
+                        "glass-dark": "rgba(2, 6, 23, 0.6)",
+                    },
+                    fontFamily: {
+                        display: ["'Space Grotesk'", "sans-serif"],
+                        body: ["'Inter'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'float-fast': 'float 4s ease-in-out 1s infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'pulse-glow': 'pulse-glow 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '1', boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)' },
+                            '50%': { opacity: '0.6', boxShadow: '0 0 25px rgba(59, 130, 246, 0.8)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+<style>.text-3d {
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15)
+    }.dark .text-3d {
+    text-shadow: 0 1px 0 #1e293b, 0 2px 0 #1e293b, 0 3px 0 #0f172a, 0 4px 0 #0f172a, 0 5px 0 #020617, 0 6px 1px rgba(0, 0, 0, 0.5), 0 0 5px rgba(59, 130, 246, 0.2), 0 1px 3px rgba(0, 0, 0, 0.5), 0 3px 5px rgba(0, 0, 0, 0.4), 0 5px 10px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.3), 0 20px 20px rgba(0, 0, 0, 0.3)
+    }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.05;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAhRMoNGIPpCrGMTYQiXWnlhYeHMBi8CJ-CWxGRC9TaBt2o4zwHsLZ0ECxs-L3SWvv2I7vAQioq3pWot2tqHv1vCMgM6O3qyiTufC62ZVybwf9NZ7q7WLVGFJnI1NrwNRzKb42aFh6jMdQHqzE8KETx4YGtNywxeRwfG9SkQBxch_Xyxutsy9byT0TBEF44jDMr3Q3eJPgus0wwx6LPquBXGVopHGG0xvcwQatJ3ljCi6hgNkCd5aUIZHhz-NU9Zn7K5AWc_9DFVQ)
+    }.cursor-blink {
+    display: inline-block;
+    width: 3px;
+    background-color: #3b82f6;
+    animation: blink 1s step-end infinite
+    }
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+        } 50% {
+        opacity: 0;
+        }
+    }.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px)
+    }.mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6
+    }
+.dark .mesh-blob {
+    opacity: 0.4
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-body transition-colors duration-300 overflow-x-hidden">
+<div class="grain-overlay"></div>
+<button class="fixed z-50 top-6 right-6 p-3 rounded-full bg-white dark:bg-slate-800 shadow-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-primary transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-xl block dark:hidden">dark_mode</span>
+<span class="material-icons text-xl hidden dark:block">light_mode</span>
+</button>
+<nav class="fixed top-0 left-0 w-full z-40 border-b border-slate-200 dark:border-white/10 glass-panel bg-glass-light dark:bg-glass-dark">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<a class="text-2xl font-display font-bold tracking-tighter hover:text-primary transition-colors" href="#">
+                Z<span class="text-primary">.</span>A
+            </a>
+<div class="hidden md:flex items-center space-x-8 font-display text-sm uppercase tracking-widest font-medium text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#hero">Home</a>
+<a class="hover:text-primary transition-colors" href="#about">About</a>
+<a class="hover:text-primary transition-colors" href="#work">Projects</a>
+<a class="hover:text-primary transition-colors" href="#contact">Contact</a>
+</div>
+<button class="md:hidden text-slate-800 dark:text-white">
+<span class="material-icons">menu</span>
+</button>
+</div>
+</nav>
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="hero">
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+<div class="mesh-blob bg-blue-500 w-[500px] h-[500px] top-[-100px] left-[-100px] animate-float"></div>
+<div class="mesh-blob bg-purple-600 w-[600px] h-[600px] bottom-[-100px] right-[-100px] animate-float-delayed"></div>
+<div class="mesh-blob bg-cyan-500 w-[300px] h-[300px] top-[40%] left-[60%] opacity-30 animate-float-fast"></div>
+</div>
+<div class="relative z-20 max-w-7xl mx-auto px-6 w-full flex flex-col items-center text-center">
+<div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-300 dark:border-white/10 bg-white/30 dark:bg-white/5 backdrop-blur-md mb-8 shadow-lg hover:border-primary/50 transition-colors cursor-default animate-float">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</span>
+<span class="text-xs font-display font-bold tracking-widest uppercase text-slate-700 dark:text-slate-300">
+                    Dakar, Sénégal <span class="ml-1">🇸🇳</span>
+</span>
+</div>
+<div class="absolute inset-0 pointer-events-none hidden lg:block">
+<div class="absolute top-[25%] left-[15%] animate-float p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-white/10 shadow-xl backdrop-blur-sm">
+<i class="fa-brands fa-react text-4xl text-[#61DAFB]"></i>
+</div>
+<div class="absolute bottom-[30%] right-[15%] animate-float-delayed p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-white/10 shadow-xl backdrop-blur-sm">
+<i class="fa-brands fa-node-js text-4xl text-[#339933]"></i>
+</div>
+<div class="absolute top-[20%] right-[20%] animate-float-fast p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-white/10 shadow-xl backdrop-blur-sm">
+<i class="fa-brands fa-python text-4xl text-[#3776AB]"></i>
+</div>
+<div class="absolute bottom-[20%] left-[20%] animate-float p-4 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-white/10 shadow-xl backdrop-blur-sm">
+<i class="fa-solid fa-database text-4xl text-primary"></i>
+</div>
+</div>
+<h1 class="font-display font-black text-6xl md:text-8xl lg:text-9xl tracking-tighter leading-[0.9] mb-6 text-slate-900 dark:text-white text-3d select-none">
+                ZOUBEIR<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">IBRAHIMA</span><br/>
+                AMED
+            </h1>
+<div class="h-10 text-xl md:text-2xl font-mono text-slate-600 dark:text-slate-300 mb-12 flex items-center justify-center">
+<span class="text-primary mr-3">&gt;</span>
+<span id="typewriter"></span>
+<span class="cursor-blink h-6 ml-1"></span>
+</div>
+<div class="flex flex-col md:flex-row gap-4 z-30">
+<a class="px-8 py-4 bg-primary text-white rounded-full font-display font-bold tracking-wide hover:bg-blue-600 hover:scale-105 transition-all shadow-[0_0_20px_rgba(59,130,246,0.5)]" href="#work">
+                    View Projects
+                </a>
+<a class="px-8 py-4 bg-white dark:bg-transparent border border-slate-300 dark:border-white/20 text-slate-900 dark:text-white rounded-full font-display font-bold tracking-wide hover:bg-slate-50 dark:hover:bg-white/10 transition-all backdrop-blur-sm" href="#contact">
+                    Contact Me
+                </a>
+</div>
+<a class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors group cursor-pointer" href="#about">
+<span class="text-xs uppercase tracking-[0.3em]">Scroll to Explore</span>
+<div class="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1 opacity-70 group-hover:opacity-100">
+<div class="w-1 h-2 bg-current rounded-full animate-bounce"></div>
+</div>
+</a>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark relative" id="about">
+<div class="max-w-6xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<div>
+<h2 class="font-display text-4xl font-bold mb-8 text-slate-900 dark:text-white">
+<span class="text-primary">01.</span> About
+                    </h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Développeur FullStack avec expertise en <strong class="text-slate-900 dark:text-white">React, Node.js, Python/Django et PostgreSQL</strong>. Expérience concrète dans la conception de plateformes SaaS et d'applications web évolutives.
+                    </p>
+<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+                        Certifié Harvard CS50. Je recherche activement un <strong class="text-primary">stage, emploi ou mission freelance</strong> pour contribuer à des projets innovants.
+                    </p>
+<h3 class="font-display text-2xl font-bold mb-4 mt-8 text-slate-900 dark:text-white">Stack Technique</h3>
+<div class="flex flex-wrap gap-3">
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">JavaScript / TS</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">React.js / Next</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">Python / Django</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">Node.js</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">TailwindCSS</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">PostgreSQL</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-sm font-mono border border-slate-300 dark:border-slate-700">Docker</span>
+</div>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-purple-600/10 blur-3xl rounded-full -z-10"></div>
+<h2 class="font-display text-4xl font-bold mb-8 text-slate-900 dark:text-white">
+<span class="text-primary">02.</span> Experience
+                    </h2>
+<div class="space-y-8">
+<div class="relative pl-8 border-l border-slate-300 dark:border-slate-700">
+<div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-white dark:ring-slate-900"></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">SamaWeb Africa — Agence Digitale</h3>
+<div class="flex justify-between items-center text-sm text-slate-500 mb-2 font-mono">
+<span>Co-fondateur</span>
+<span>Juin 2025 – Présent</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400">Co-fondation d'une agence digitale dédiée à la création de sites web et applications mobiles pour entreprises africaines.</p>
+</div>
+<div class="relative pl-8 border-l border-slate-300 dark:border-slate-700">
+<div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-600 ring-4 ring-white dark:ring-slate-900"></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Snapfolioo — Plateforme SaaS</h3>
+<div class="flex justify-between items-center text-sm text-slate-500 mb-2 font-mono">
+<span>Fondateur &amp; Développeur</span>
+<span>Janv. 2025 – Présent</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400">Développement de +18 templates professionnels responsive. Architecture scalable (Google OAuth, RLS, Supabase).</p>
+</div>
+</div>
+<div class="mt-12 p-6 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-lg">
+<h4 class="font-display font-bold text-lg mb-4 text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-primary">verified</span> Top Certifications
+                        </h4>
+<ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+<li class="flex justify-between border-b border-dashed border-slate-200 dark:border-slate-700 pb-1">
+<span>Harvard CS50x &amp; CS50P</span>
+<span class="font-mono text-slate-400">2024</span>
+</li>
+<li class="flex justify-between border-b border-dashed border-slate-200 dark:border-slate-700 pb-1">
+<span>HackerRank - Python (Base)</span>
+<span class="font-mono text-slate-400">2026</span>
+</li>
+<li class="flex justify-between">
+<span>GitHub Copilot Certified</span>
+<span class="font-mono text-slate-400">2025</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="py-12 border-t border-slate-200 dark:border-white/10 bg-white dark:bg-background-dark text-center">
+<p class="text-slate-500 font-display text-sm">
+            © 2025 Zoubeir Ibrahima Amed. Built with <span class="text-primary">Tailwind CSS</span>.
+        </p>
+<div class="flex justify-center space-x-6 mt-4">
+<a class="text-slate-400 hover:text-primary transition-colors text-2xl" href="mailto:Zoubeiribrahima@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+<a class="text-slate-400 hover:text-primary transition-colors text-2xl" href="https://github.com/Zoubeir23"><i class="fa-brands fa-github"></i></a>
+<a class="text-slate-400 hover:text-primary transition-colors text-2xl" href="https://linkedin.com/in/zoubeir-ibrahima"><i class="fa-brands fa-linkedin"></i></a>
+</div>
+</footer>
+<script>
+        const words = ["FullStack Developer", "SaaS Builder", "Digital Creator", "Python Expert"];
+        let i = 0;
+        let timer;
+        function typeWriter() {
+            const heading = document.getElementById("typewriter");
+            const word = words[i];
+            const current = heading.textContent;
+            if (current.length < word.length) {
+                heading.textContent = word.substring(0, current.length + 1);
+                timer = setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(deleteWriter, 2000);
+            }
+        }
+        function deleteWriter() {
+            const heading = document.getElementById("typewriter");
+            const current = heading.textContent;
+            if (current.length > 0) {
+                heading.textContent = current.substring(0, current.length - 1);
+                timer = setTimeout(deleteWriter, 50);
+            } else {
+                i = (i + 1) % words.length;
+                timer = setTimeout(typeWriter, 500);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            // Start typewriter
+            typeWriter();
+            // Set dark mode by default if user hasn't set preference
+            if (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+        });
+    </script>
+
+</body></html>

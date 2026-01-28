@@ -163,11 +163,11 @@ const CertificationsSection = () => {
             {certifications.length} certifications
           </span>
         </h2>
-        
+
         <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
           {certifications.map((cert, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               className="cert-card group"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -175,9 +175,7 @@ const CertificationsSection = () => {
               transition={{ duration: 0.4, delay: index * 0.03 }}
               whileHover={{ x: 4 }}
             >
-              <div className="cert-logo">
-                {cert.logo}
-              </div>
+              <div className="cert-logo">{cert.logo}</div>
               <div className="flex-1 min-w-0">
                 <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
                   {cert.title}

@@ -33,9 +33,9 @@ const experiences: Experience[] = [
     description: [
       "Co-fondation d'une agence digitale dédiée aux entreprises africaines",
       "Développement de solutions numériques accessibles et performantes",
-      "Gestion de projets clients et coordination d'équipe de développeurs"
+      "Gestion de projets clients et coordination d'équipe de développeurs",
     ],
-    skills: ["React", "Node.js", "Django", "PostgreSQL"]
+    skills: ["React", "Node.js", "Django", "PostgreSQL"],
   },
   {
     title: "Fondateur & Développeur Principal",
@@ -48,10 +48,10 @@ const experiences: Experience[] = [
       "Conception et développement d'une plateforme SaaS (portfolios, CV, bannières)",
       "Développement de +18 templates professionnels avec éditeur visuel temps réel",
       "Implémentation d'authentification sécurisée (Google OAuth, Row Level Security)",
-      "Architecture scalable avec auto-sauvegarde et export multi-formats"
+      "Architecture scalable avec auto-sauvegarde et export multi-formats",
     ],
-    skills: ["React", "TypeScript", "TailwindCSS", "Supabase", "PostgreSQL"]
-  }
+    skills: ["React", "TypeScript", "TailwindCSS", "Supabase", "PostgreSQL"],
+  },
 ];
 
 const educations: Education[] = [
@@ -61,20 +61,20 @@ const educations: Education[] = [
     location: "Dakar, Sénégal",
     period: "2023 - 2026",
     current: true,
-    description: "Informatique Appliquée à la Gestion des Entreprises"
+    description: "Informatique Appliquée à la Gestion des Entreprises",
   },
   {
     title: "BTS Informatique de Gestion",
     institution: "ISI",
     location: "Dakar, Sénégal",
-    period: "2023 - 2025"
+    period: "2023 - 2025",
   },
   {
     title: "Baccalauréat Série C",
     institution: "École Communautaire Arabo-Islamique",
     location: "Mitsoudjé, Comores",
-    period: "2023"
-  }
+    period: "2023",
+  },
 ];
 
 const AchievementsSection = () => {
@@ -98,11 +98,13 @@ const AchievementsSection = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
                 {/* Timeline dot */}
-                <div className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${
-                  exp.current
-                    ? 'bg-primary border-primary animate-pulse'
-                    : 'bg-background border-border'
-                }`} />
+                <div
+                  className={`absolute -left-[9px] top-0 w-4 h-4 rounded-full border-2 ${
+                    exp.current
+                      ? "bg-primary border-primary animate-pulse"
+                      : "bg-background border-border"
+                  }`}
+                />
 
                 <div className="space-y-2">
                   {/* Header */}
@@ -110,7 +112,8 @@ const AchievementsSection = () => {
                     <div>
                       <h3 className="font-semibold text-foreground">{exp.title}</h3>
                       <p className="text-sm text-primary font-medium">
-                        {exp.company} — <span className="text-muted-foreground font-normal">{exp.type}</span>
+                        {exp.company} —{" "}
+                        <span className="text-muted-foreground font-normal">{exp.type}</span>
                       </p>
                     </div>
                     {exp.current && (
@@ -190,9 +193,7 @@ const AchievementsSection = () => {
                     </div>
                     <div className="text-right shrink-0">
                       <span className="text-sm text-primary font-medium">{edu.period}</span>
-                      {edu.current && (
-                        <p className="text-xs text-green-400">(en cours)</p>
-                      )}
+                      {edu.current && <p className="text-xs text-green-400">(en cours)</p>}
                     </div>
                   </div>
                   {edu.description && (

@@ -1,13 +1,12 @@
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
+import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
-import AchievementsSection from "@/components/AchievementsSection";
-import CertificationsSection from "@/components/CertificationsSection";
-import LanguagesSection from "@/components/LanguagesSection";
+import ProjectsBentoSection from "@/components/ProjectsBentoSection";
+import CertificationsWallOfFame from "@/components/CertificationsWallOfFame";
 import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
@@ -26,59 +25,47 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container max-w-2xl mx-auto px-4 pb-16">
-        {/* Hero - Première impression */}
-        <HeroSection />
+    <div className="min-h-screen bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-primary selection:text-white relative">
+      {/* Grain Overlay */}
+      <div className="grain-overlay"></div>
 
-        <div className="space-y-4">
-          {/* About - Storytelling et proposition de valeur */}
-          <AboutSection />
+      {/* Navbar flottante */}
+      <Navbar />
 
-          {/* Projets - La preuve par l'action (Snapfolioo + SamaWeb) */}
-          <ProjectsSection />
+      {/* Hero Section - Full screen */}
+      <HeroSection />
 
-          {/* Compétences techniques - Stack complet */}
-          <SkillsSection />
-
-          {/* Expérience & Formation */}
-          <AchievementsSection />
-
-          {/* Certifications - Crédibilité (Harvard, Microsoft, Cisco) */}
-          <CertificationsSection />
-
-          {/* Langues */}
-          <LanguagesSection />
-
-          {/* Contact - Call to action final */}
-          <ContactSection />
-        </div>
-
-        {/* Footer */}
-        <motion.footer
-          className="mt-12 pt-8 border-t border-border/50 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <p className="text-sm text-muted-foreground mb-2">
-            Conçu et développé avec React, TypeScript & TailwindCSS
-          </p>
-          <p className="text-xs text-muted-foreground/60">
-            © 2026 Zoubeir Ibrahima. Tous droits réservés.
-          </p>
-        </motion.footer>
+      {/* About Section - Bento grid */}
+      <div className="py-8 md:py-14">
+        <AboutSection />
       </div>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-8 md:py-14 px-4 max-w-5xl mx-auto">
+        <SkillsSection />
+      </section>
+
+      {/* Projects & Experience Section - Bento Grid */}
+      <div className="py-8 md:py-14">
+        <ProjectsBentoSection />
+      </div>
+
+      {/* Certifications */}
+      <div className="py-8 md:py-14">
+        <CertificationsWallOfFame />
+      </div>
+
+      {/* Contact + Footer */}
+      <ContactSection />
 
       {/* Scroll to top button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 p-3 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all duration-300 z-50"
+        className="fixed bottom-6 right-6 p-3 rounded-full bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-lg shadow-white/10 hover:bg-primary hover:text-white transition-all duration-300 z-50"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: showScrollTop ? 1 : 0,
-          scale: showScrollTop ? 1 : 0
+          scale: showScrollTop ? 1 : 0,
         }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
