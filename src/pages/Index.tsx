@@ -7,7 +7,6 @@ import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
 import CertificationsWallOfFame from "@/components/CertificationsWallOfFame";
-import ContactSection from "@/components/ContactSection";
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -54,9 +53,6 @@ const Index = () => {
       <div className="py-8 md:py-14">
         <CertificationsWallOfFame />
       </div>
-
-      {/* Contact + Footer */}
-      <ContactSection />
 
       {/* Scroll to top button */}
       <motion.button
