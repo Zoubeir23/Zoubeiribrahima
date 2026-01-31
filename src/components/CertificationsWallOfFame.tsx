@@ -31,7 +31,7 @@ interface Certification {
 
 const certifications: Certification[] = [
   {
-    title: "Licence IAGE - Ingénierie des Affaires et Gestion d'Entreprise",
+    title: "Licence IAGE - informatique appliquée à la Gestion des Entreprises",
     issuer: "Institut Supérieur d'Informatique (ISI), Dakar, Sénégal",
     date: "2023–2026 (en cours)",
     icon: <GraduationCap className="w-6 h-6" />,
