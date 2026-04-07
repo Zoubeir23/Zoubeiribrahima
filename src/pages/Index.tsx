@@ -30,23 +30,23 @@ const MarqueeSection = () => {
     "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
   ];
   return (
-    <div className="bg-[#FFFFFF] border-y-4 border-[#143DFF] py-5 overflow-hidden">
+    <div className="bg-[#FFFFFF] border-y-4 border-[#143DFF] py-3 sm:py-5 overflow-hidden">
       <div className={`flex whitespace-nowrap ${shouldReduceMotion ? "" : "animate-marquee"}`}>
         {items.map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-6 mx-0">
+          <span key={i} className="inline-flex items-center gap-4 sm:gap-6 mx-0">
             {i % 2 === 0 ? (
-              <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#143DFF] tracking-tight">
+              <span className="font-display font-black text-xl sm:text-2xl md:text-5xl uppercase text-[#143DFF] tracking-tight">
                 {item}
               </span>
             ) : (
               <span
-                className="font-display font-black text-3xl md:text-5xl uppercase tracking-tight"
+                className="font-display font-black text-xl sm:text-2xl md:text-5xl uppercase tracking-tight"
                 style={{ WebkitTextStroke: "1.5px #143DFF", color: "transparent" }}
               >
                 {item}
               </span>
             )}
-            <span className="w-3 h-3 bg-[#143DFF] rotate-45 shrink-0 mx-6" />
+            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#143DFF] rotate-45 shrink-0 mx-4 sm:mx-6" />
           </span>
         ))}
       </div>
@@ -59,10 +59,10 @@ const CtaBand = () => {
   const shouldReduceMotion = useReducedMotion();
   const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
   return (
-    <div className="bg-[#FFFFFF] border-y-8 border-[#143DFF] py-6 overflow-hidden">
+    <div className="bg-[#FFFFFF] border-y-8 border-[#143DFF] py-4 sm:py-6 overflow-hidden">
       <div className={`flex whitespace-nowrap ${shouldReduceMotion ? "" : "animate-marquee"}`}>
         {[text, text].map((t, i) => (
-          <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#143DFF] tracking-tight shrink-0">
+          <span key={i} className="font-display font-black text-lg sm:text-xl md:text-4xl uppercase text-[#143DFF] tracking-tight shrink-0">
             {t}
           </span>
         ))}
@@ -73,8 +73,8 @@ const CtaBand = () => {
 
 /* ── Footer ───────────────────────────────────────────────────── */
 const Footer = () => (
-  <footer className="bg-[#143DFF] border-t-8 border-[#FFFFFF] py-12 px-6">
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+  <footer className="bg-[#143DFF] border-t-8 border-[#FFFFFF] py-10 sm:py-12 px-4 sm:px-6">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
       <img
           src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
           alt="Scale avec Zoubeir"
@@ -82,10 +82,10 @@ const Footer = () => (
           width={420}
           height={96}
         />
-      <p className="font-body text-[10px] font-black uppercase tracking-[0.25em] text-[#FFFFFF]/60 text-center">
+      <p className="font-body text-[10px] font-black uppercase tracking-[0.16em] sm:tracking-[0.25em] text-[#FFFFFF]/60 text-center">
         © 2025 Zoubeir Ibrahima Amed — Tous droits réservés
       </p>
-      <div className="flex gap-8">
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
         {[
           { label: "GitHub", href: "https://github.com/Zoubeir23" },
           { label: "LinkedIn", href: "https://linkedin.com/in/zoubeir-ibrahima" },
@@ -96,7 +96,7 @@ const Footer = () => (
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#FFFFFF] transition-all duration-200 pb-0.5"
+            className="font-display font-black text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#FFFFFF] transition-all duration-200 pb-0.5"
           >
             {link.label}
           </a>
@@ -192,7 +192,7 @@ const Index = () => {
       {/* Scroll to top */}
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-6 p-4 bg-[#FFFFFF] text-[#143DFF] border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs"
+        className="fixed right-4 sm:right-6 bottom-[max(env(safe-area-inset-bottom),1rem)] sm:bottom-6 p-3 sm:p-4 min-h-11 min-w-11 bg-[#FFFFFF] text-[#143DFF] border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs shadow-lg"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
         whileTap={{ scale: 0.95 }}

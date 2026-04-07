@@ -61,7 +61,7 @@ const Navbar = () => {
           : "bg-[#143DFF]/80 backdrop-blur-sm"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         {/* Logo */}
         <motion.a
           href="#hero"
@@ -71,7 +71,7 @@ const Navbar = () => {
           <img
             src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
             alt="Scale avec Zoubeir"
-            className="h-14 md:h-16 w-auto object-contain"
+            className="h-12 sm:h-14 md:h-16 w-auto object-contain"
             width={320}
             height={64}
           />
@@ -106,7 +106,7 @@ const Navbar = () => {
 
           <motion.button
             ref={menuButtonRef}
-            className="md:hidden p-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#143DFF]"
+            className="md:hidden min-h-11 min-w-11 p-2.5 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#143DFF]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -128,19 +128,19 @@ const Navbar = () => {
           <motion.div
             id="mobile-nav-menu"
             ref={mobileMenuRef}
-            className="md:hidden bg-[#143DFF] border-t-4 border-[#FFFFFF]"
+            className="md:hidden bg-[#143DFF] border-t-4 border-[#FFFFFF] max-h-[calc(100svh-3.5rem)] overflow-y-auto"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            <div className="flex flex-col p-6 gap-2">
+            <div className="flex flex-col p-4 sm:p-6 gap-2">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block py-3 px-4 font-display font-black text-lg uppercase text-[#FFFFFF] border-2 border-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150"
+                  className="block py-3.5 px-4 font-display font-black text-base uppercase text-[#FFFFFF] border-2 border-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 leading-tight"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -151,7 +151,7 @@ const Navbar = () => {
               <motion.a
                 href="#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="mt-2 py-3 px-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black text-lg uppercase text-center border-2 border-[#FFFFFF]"
+                className="mt-2 py-3.5 px-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black text-base uppercase text-center border-2 border-[#FFFFFF] leading-tight"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}

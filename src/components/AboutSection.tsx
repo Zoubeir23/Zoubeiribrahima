@@ -41,12 +41,12 @@ const education = [
 
 const AboutSection = () => {
   return (
-    <section id="experience" className="bg-[#143DFF] py-28 px-6">
+    <section id="experience" className="bg-[#143DFF] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* ── Header ── */}
         <motion.div
-          className="mb-20 flex flex-col md:flex-row md:items-end gap-8"
+          className="mb-10 sm:mb-16 md:mb-20 flex flex-col md:flex-row md:items-end gap-6 sm:gap-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -56,13 +56,13 @@ const AboutSection = () => {
             <p className="font-display font-bold text-[#FFFFFF]/50 text-sm uppercase tracking-[0.3em] mb-3">
               — Parcours
             </p>
-            <h2 className="font-display font-black text-[#FFFFFF] text-5xl md:text-8xl uppercase leading-tight">
+            <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-8xl uppercase leading-tight">
               Expériences<br />
               <span className="text-[#FFFFFF]/30">&amp; Formation</span>
             </h2>
           </div>
           {/* Portrait illustration */}
-          <div className="border-4 border-[#FFFFFF] bg-[#143DFF] w-36 h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
+          <div className="border-4 border-[#FFFFFF] bg-[#143DFF] w-28 h-36 sm:w-36 sm:h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
             <img
               src="/Sans_titre-removebg-preview.png"
               alt="Portrait Zoubeir"
@@ -75,11 +75,11 @@ const AboutSection = () => {
 
           {/* ── Experiences column ── */}
           <div className="border-r-0 lg:border-r-8 border-b-8 lg:border-b-0 border-[#FFFFFF] pr-0 lg:pr-12 pb-12 lg:pb-0">
-            <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#FFFFFF]/50 mb-10">
+            <p className="font-display font-black text-xs uppercase tracking-[0.22em] sm:tracking-[0.3em] text-[#FFFFFF]/50 mb-8 sm:mb-10">
               Expérience professionnelle
             </p>
 
-            <div className="relative border-l-8 border-[#FFFFFF] pl-8 space-y-16">
+            <div className="relative border-l-8 border-[#FFFFFF] pl-6 sm:pl-8 space-y-10 sm:space-y-16">
               {experiences.map((exp, i) => (
                 <motion.div
                   key={exp.company}
@@ -91,17 +91,17 @@ const AboutSection = () => {
                 >
                   {/* Square dot */}
                   <div
-                    className={`absolute -left-[2.625rem] top-1 w-5 h-5 border-4 border-[#FFFFFF] ${
+                    className={`absolute -left-[2.125rem] sm:-left-[2.625rem] top-1 w-5 h-5 border-4 border-[#FFFFFF] ${
                       exp.active ? "bg-[#FFFFFF]" : "bg-[#143DFF]"
                     }`}
                   />
 
                   <div className="flex flex-col gap-1 mb-3">
                     <div className="flex flex-wrap items-start justify-between gap-2">
-                      <h3 className="font-display font-black text-2xl md:text-3xl text-[#FFFFFF] uppercase tracking-tight leading-none">
+                      <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl text-[#FFFFFF] uppercase tracking-tight leading-none">
                         {exp.company}
                       </h3>
-                      <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 bg-[#FFFFFF]/10 px-3 py-1 border-2 border-[#FFFFFF]/20">
+                      <span className="font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider text-[#FFFFFF]/50 bg-[#FFFFFF]/10 px-2.5 sm:px-3 py-1 border-2 border-[#FFFFFF]/20">
                         {exp.period}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ const AboutSection = () => {
                     </p>
                   </div>
 
-                  <p className="font-body text-[#FFFFFF]/80 leading-relaxed mb-5">
+                  <p className="font-body text-sm sm:text-base text-[#FFFFFF]/80 leading-relaxed mb-5">
                     {exp.desc}
                   </p>
 
@@ -134,7 +134,7 @@ const AboutSection = () => {
 
           {/* ── Education column ── */}
           <div className="pt-12 lg:pt-0 lg:pl-12">
-            <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#FFFFFF]/50 mb-10">
+            <p className="font-display font-black text-xs uppercase tracking-[0.22em] sm:tracking-[0.3em] text-[#FFFFFF]/50 mb-8 sm:mb-10">
               Formation académique
             </p>
 
@@ -142,7 +142,7 @@ const AboutSection = () => {
               {education.map((edu, i) => (
                 <motion.div
                   key={edu.degree}
-                  className="border-b-4 border-[#FFFFFF] py-8 group hover:bg-[#FFFFFF] hover:px-4 transition-all duration-200"
+                  className="border-b-4 border-[#FFFFFF] py-6 sm:py-8 group hover:bg-[#FFFFFF] sm:hover:px-4 transition-all duration-200"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -152,7 +152,7 @@ const AboutSection = () => {
                     <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 group-hover:text-[#143DFF]/60 transition-colors">
                       {edu.period}
                     </span>
-                    <h4 className="font-display font-black text-xl uppercase text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors leading-tight">
+                    <h4 className="font-display font-black text-lg sm:text-xl uppercase text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors leading-tight">
                       {edu.degree}
                     </h4>
                     <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#143DFF]/70 transition-colors">
@@ -165,7 +165,7 @@ const AboutSection = () => {
 
             {/* Languages */}
             <motion.div
-              className="mt-12 border-4 border-[#FFFFFF] p-8"
+              className="mt-10 sm:mt-12 border-4 border-[#FFFFFF] p-6 sm:p-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

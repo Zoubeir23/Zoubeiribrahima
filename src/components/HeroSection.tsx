@@ -7,13 +7,13 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen bg-[#143DFF] pt-16 flex items-center overflow-hidden"
+      className="min-h-[100svh] bg-[#143DFF] pt-20 sm:pt-16 flex items-center overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 w-full py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full py-10 sm:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
 
           {/* Left: Text content - 7 cols */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
 
             {/* Location + Status badge */}
             <motion.div
@@ -41,7 +41,7 @@ const HeroSection = () => {
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <motion.span
-                  className="block text-[clamp(4rem,10vw,8rem)]"
+                  className="block text-[clamp(2.25rem,12vw,5.5rem)]"
                   initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -49,7 +49,7 @@ const HeroSection = () => {
                   ZOUBEIR
                 </motion.span>
                 <motion.span
-                  className="block text-[clamp(2.5rem,6vw,5rem)]"
+                  className="block text-[clamp(1.75rem,8vw,3.75rem)]"
                   initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -57,7 +57,7 @@ const HeroSection = () => {
                   IBRAHIMA
                 </motion.span>
                 <motion.span
-                  className="block text-[clamp(3rem,7vw,6rem)] bg-[#FFFFFF] text-[#143DFF] px-2 inline-block"
+                  className="block text-[clamp(2rem,9vw,4.5rem)] bg-[#FFFFFF] text-[#143DFF] px-2 inline-block"
                   initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -76,7 +76,7 @@ const HeroSection = () => {
               <img
                 src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
                 alt="Scale avec Zoubeir"
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
                 width={320}
                 height={80}
                 fetchPriority="high"
@@ -85,7 +85,7 @@ const HeroSection = () => {
 
             {/* Tagline */}
             <motion.p
-              className="font-body text-lg md:text-xl font-semibold text-[#FFFFFF] max-w-lg leading-relaxed border-l-8 border-[#FFFFFF] pl-4"
+              className="font-body text-base sm:text-lg md:text-xl font-semibold text-[#FFFFFF] max-w-lg leading-relaxed border-l-8 border-[#FFFFFF] pl-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
@@ -95,14 +95,14 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-3 sm:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.85 }}
             >
               <motion.a
                 href="#projects"
-                className="group flex items-center gap-3 px-8 py-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150"
+                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black uppercase text-xs sm:text-sm tracking-wide border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 min-h-11"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -111,7 +111,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#FFFFFF] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150"
+                className="flex items-center justify-center gap-3 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-transparent text-[#FFFFFF] font-display font-black uppercase text-xs sm:text-sm tracking-wide border-4 border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 min-h-11"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -121,7 +121,7 @@ const HeroSection = () => {
 
             {/* Stats row */}
             <motion.div
-              className="flex flex-wrap gap-0 border-t-4 border-[#FFFFFF] pt-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-4 border-[#FFFFFF] pt-6 sm:pt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
@@ -131,7 +131,7 @@ const HeroSection = () => {
                 { number: "10+", label: "Certifications" },
                 { number: "1", label: "SaaS fondé" },
               ].map((stat, i) => (
-                <div key={i} className="pr-8 mr-8 border-r-4 border-[#FFFFFF] last:border-0 last:mr-0">
+                <div key={i} className="pr-0 sm:pr-8 sm:mr-8 border-r-0 sm:border-r-4 border-[#FFFFFF] last:border-0 last:mr-0">
                   <p className="font-display font-black text-4xl text-[#FFFFFF]">{stat.number}</p>
                   <p className="font-body text-sm font-semibold text-[#FFFFFF]/70 uppercase tracking-wider">{stat.label}</p>
                 </div>
@@ -158,7 +158,7 @@ const HeroSection = () => {
               </motion.div>
 
               {/* Illustration container */}
-              <div className="relative w-72 h-80 md:w-96 md:h-[28rem]">
+              <div className="relative w-64 h-72 sm:w-72 sm:h-80 md:w-96 md:h-[28rem]">
                 {/* Shadow/offset layer */}
                 <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#FFFFFF]" />
                 {/* Image frame - yellow bg shows through transparent illustration */}

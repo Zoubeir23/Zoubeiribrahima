@@ -35,11 +35,11 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#FFFFFF] py-24 px-6">
+    <section id="contact" className="bg-[#FFFFFF] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          className="mb-16"
+          className="mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -48,7 +48,7 @@ const ContactSection = () => {
           <p className="font-display font-bold text-[#143DFF] text-sm uppercase tracking-[0.3em] mb-4">
             — Parlons-en
           </p>
-          <h2 className="font-display font-black text-[#143DFF] text-5xl md:text-8xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#143DFF] text-3xl sm:text-5xl md:text-8xl uppercase leading-tight">
             Travaillons
             <br />
             Ensemble
@@ -58,7 +58,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-4 border-[#143DFF]">
           {/* Form */}
           <motion.div
-            className="p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-[#143DFF]"
+            className="p-6 sm:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-[#143DFF]"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -77,7 +77,7 @@ const ContactSection = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
                 <div>
                   <label htmlFor="contact-name" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#143DFF]/80 mb-3">
                     Nom Complet
@@ -90,7 +90,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Jean Dupont"
-                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20"
+                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20"
                   />
                 </div>
                 <div>
@@ -105,7 +105,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="jean@exemple.com"
-                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20"
+                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20"
                   />
                 </div>
                 <div>
@@ -120,7 +120,7 @@ const ContactSection = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Parlez-moi de votre projet..."
-                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20 resize-none"
+                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20 resize-none"
                   />
                 </div>
                 {submitStatus === "error" && (
@@ -131,7 +131,7 @@ const ContactSection = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#143DFF] text-[#FFFFFF] font-display font-black text-sm uppercase tracking-widest py-5 border-4 border-[#143DFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#143DFF] text-[#FFFFFF] font-display font-black text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest py-4 sm:py-5 border-4 border-[#143DFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed min-h-11"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
@@ -150,7 +150,7 @@ const ContactSection = () => {
 
           {/* Info */}
           <motion.div
-            className="p-10 flex flex-col justify-between gap-10"
+            className="p-6 sm:p-10 flex flex-col justify-between gap-8 sm:gap-10"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -208,12 +208,12 @@ const ContactSection = () => {
               <p className="font-display font-bold text-[#143DFF]/80 text-xs uppercase tracking-[0.2em]">
                 Réseaux Sociaux
               </p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 <a
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#143DFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-wider hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150"
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#143DFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-wide hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 min-h-11"
                 >
                   <Github className="w-4 h-4" />
                   GitHub
@@ -222,18 +222,18 @@ const ContactSection = () => {
                   href="https://linkedin.com/in/zoubeir-ibrahima"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#143DFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-wider hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150"
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#143DFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-wide hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 min-h-11"
                 >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
                 </a>
               </div>
               {/* CV Downloads */}
-              <div className="flex gap-3 pt-4">
+              <div className="flex flex-wrap gap-3 pt-4">
                 <a
                   href="/CV.pdf"
                   download="Zoubeir-Ibrahima-Amed-CV.pdf"
-                  className="px-5 py-3 bg-[#143DFF] text-[#FFFFFF] font-display font-black text-xs uppercase tracking-wider border-4 border-[#143DFF] hover:bg-transparent hover:text-[#143DFF] transition-all duration-150"
+                  className="w-full sm:w-auto text-center px-5 py-3 bg-[#143DFF] text-[#FFFFFF] font-display font-black text-xs uppercase tracking-wide border-4 border-[#143DFF] hover:bg-transparent hover:text-[#143DFF] transition-all duration-150 min-h-11"
                 >
                   CV PDF →
                 </a>

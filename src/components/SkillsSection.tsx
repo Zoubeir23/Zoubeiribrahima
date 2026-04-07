@@ -33,11 +33,11 @@ const skillCards: SkillCard[] = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="bg-[#FFFFFF] py-24 px-6">
+    <section id="skills" className="bg-[#FFFFFF] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
-          className="mb-16"
+          className="mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -46,7 +46,7 @@ const SkillsSection = () => {
           <p className="font-display font-bold text-[#143DFF] text-sm uppercase tracking-[0.3em] mb-3">
             — Technologies
           </p>
-          <h2 className="font-display font-black text-[#143DFF] text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#143DFF] text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
             My Tech
             <br />
             <span className="text-[#143DFF]">Stack</span>
@@ -58,7 +58,7 @@ const SkillsSection = () => {
           {skillCards.map((card, index) => (
             <motion.div
               key={card.title}
-              className="group border-r-4 border-[#143DFF] last:border-r-0 p-6 md:p-7 bg-[#FFFFFF] hover:bg-[#143DFF] transition-all duration-200 cursor-default"
+              className="group border-b-4 md:border-b-0 md:border-r-4 border-[#143DFF] last:border-b-0 md:last:border-r-0 p-5 sm:p-6 md:p-7 bg-[#FFFFFF] hover:bg-[#143DFF] transition-all duration-200 cursor-default"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -72,7 +72,7 @@ const SkillsSection = () => {
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-black text-xl uppercase text-[#143DFF] group-hover:text-[#FFFFFF] mb-6 transition-colors duration-200">
+              <h3 className="font-display font-black text-lg sm:text-xl uppercase text-[#143DFF] group-hover:text-[#FFFFFF] mb-6 transition-colors duration-200">
                 {card.title}
               </h3>
 
@@ -81,7 +81,7 @@ const SkillsSection = () => {
                 {card.techs.map((tech) => (
                   <li
                     key={tech}
-                    className="flex items-center gap-3 font-body font-semibold text-sm text-[#143DFF]/80 group-hover:text-[#FFFFFF]/80 transition-colors duration-200"
+                    className="flex min-w-0 items-center gap-3 font-body font-semibold text-xs sm:text-sm text-[#143DFF]/80 group-hover:text-[#FFFFFF]/80 transition-colors duration-200"
                   >
                     {getTechLogoUrl(tech) ? (
                       <img
@@ -117,11 +117,11 @@ const SkillsSection = () => {
           <p className="font-display font-bold text-[#143DFF] text-xs uppercase tracking-[0.3em] mb-4">
             Langages & Outils maîtrisés
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {["JavaScript", "Python", "PHP", "Java", "SQL", "React.js", "TailwindCSS", "PostgreSQL", "MySQL", "Docker", "GitHub", "Claude Code"].map((tech) => (
               <span
                 key={tech}
-                className="inline-flex items-center gap-2 font-body font-bold text-xs uppercase tracking-wider border-2 border-[#143DFF] text-[#143DFF] px-3 py-1.5 hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 cursor-default"
+                className="inline-flex items-center gap-2 font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider border-2 border-[#143DFF] text-[#143DFF] px-3 py-1.5 hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 cursor-default"
               >
                 {getTechLogoUrl(tech) && (
                   <img

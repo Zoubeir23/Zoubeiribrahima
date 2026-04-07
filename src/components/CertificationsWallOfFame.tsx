@@ -12,11 +12,11 @@ const getYear = (date: string) => {
 
 const CertificationsWallOfFame = () => {
   return (
-    <section id="certifications" className="bg-[#143DFF] py-24 px-6">
+    <section id="certifications" className="bg-[#143DFF] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          className="mb-16"
+          className="mb-10 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -25,7 +25,7 @@ const CertificationsWallOfFame = () => {
           <p className="font-display font-bold text-[#FFFFFF]/50 text-sm uppercase tracking-[0.3em] mb-3">
             — Reconnaissances
           </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
             Certifi
             <span className="bg-[#FFFFFF] text-[#143DFF] px-2">cations</span>
           </h2>
@@ -55,7 +55,7 @@ const CertificationsWallOfFame = () => {
               >
                 <Tag
                   {...linkProps}
-                  className={`group p-6 md:p-7 bg-[#143DFF] hover:bg-[#FFFFFF] transition-all duration-200 flex flex-col gap-4 h-full ${cert.certUrl ? "cursor-pointer" : "cursor-default"}`}
+                  className={`group p-5 sm:p-6 md:p-7 bg-[#143DFF] hover:bg-[#FFFFFF] transition-all duration-200 flex flex-col gap-4 h-full ${cert.certUrl ? "cursor-pointer" : "cursor-default"}`}
                 >
                   {/* Icon + ExternalLink row */}
                   <div className="flex items-start justify-between">
@@ -81,7 +81,7 @@ const CertificationsWallOfFame = () => {
                     <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-[#FFFFFF]/40 group-hover:text-[#143DFF]/50 transition-colors duration-200">
                       {(cert.category ?? "Certification")} · {getYear(cert.date)}
                     </span>
-                    <h3 className="font-display font-black text-base uppercase leading-tight text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors duration-200">
+                    <h3 className="font-display font-black text-sm sm:text-base uppercase leading-tight text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors duration-200">
                       {cert.featuredTitle ?? cert.title}
                     </h3>
                     <p className="font-body font-semibold text-xs text-[#FFFFFF]/60 group-hover:text-[#143DFF]/60 uppercase tracking-wider transition-colors duration-200">
@@ -101,7 +101,7 @@ const CertificationsWallOfFame = () => {
 
         {/* Counter strip */}
         <motion.div
-          className="mt-8 border-4 border-[#FFFFFF] p-6 md:p-7 flex flex-wrap gap-8 items-center"
+          className="mt-8 border-4 border-[#FFFFFF] p-5 sm:p-6 md:p-7 flex flex-wrap gap-5 sm:gap-8 items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -113,20 +113,20 @@ const CertificationsWallOfFame = () => {
               Certifications obtenues
             </p>
           </div>
-          <div className="border-l-4 border-[#FFFFFF] pl-8">
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">{certificationIssuerCount}</p>
+          <div className="border-t-4 sm:border-t-0 sm:border-l-4 border-[#FFFFFF] pt-5 sm:pt-0 sm:pl-8 w-full sm:w-auto">
+            <p className="font-display font-black text-4xl sm:text-5xl text-[#FFFFFF]">{certificationIssuerCount}</p>
             <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
               Organismes reconnus
             </p>
           </div>
-          <div className="border-l-4 border-[#FFFFFF] pl-8">
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">2+</p>
+          <div className="border-t-4 sm:border-t-0 sm:border-l-4 border-[#FFFFFF] pt-5 sm:pt-0 sm:pl-8 w-full sm:w-auto">
+            <p className="font-display font-black text-4xl sm:text-5xl text-[#FFFFFF]">2+</p>
             <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
               Années de formation continue
             </p>
           </div>
-          <div className="ml-auto">
-            <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/40">
+          <div className="sm:ml-auto w-full sm:w-auto border-t-4 sm:border-t-0 border-[#FFFFFF] pt-5 sm:pt-0">
+            <p className="font-display font-black text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#FFFFFF]/40">
               Harvard · Anthropic · Cisco · Microsoft
               <br />
               HackerRank · Udemy · LinkedIn · Coursera
