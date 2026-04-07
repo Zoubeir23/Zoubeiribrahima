@@ -14,11 +14,11 @@ import ContactSection from "@/components/ContactSection";
 const MarqueeSection = () => {
   const items = [
     "Django", "Python", "React.js", "Spring Boot",
-    "PostgreSQL", "Node.js", "LangChain", "Docker",
-    "Supabase", "FastAPI", "TypeScript", "Claude API",
+    "PostgreSQL", "Node.js", "Docker", "Supabase",
+    "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
     "Django", "Python", "React.js", "Spring Boot",
-    "PostgreSQL", "Node.js", "LangChain", "Docker",
-    "Supabase", "FastAPI", "TypeScript", "Claude API",
+    "PostgreSQL", "Node.js", "Docker", "Supabase",
+    "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
   ];
   return (
     <div className="bg-[#FFFFFF] border-y-4 border-[#F5C400] py-5 overflow-hidden">

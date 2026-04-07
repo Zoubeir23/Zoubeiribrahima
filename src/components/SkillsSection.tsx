@@ -19,7 +19,7 @@ const skillCards: SkillCard[] = [
   {
     icon: Brain,
     title: "AI & Intelligence",
-    techs: ["LLMs", "LangChain", "RAG", "OpenAI SDK", "Claude API", "Embeddings"],
+    techs: ["LLMs", "OpenAI SDK", "Claude API", "Prompt Engineering"],
     emoji: "🧠",
   },
   {
