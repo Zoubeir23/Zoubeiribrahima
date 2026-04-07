@@ -1,17 +1,26 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
-import AboutSection from "@/components/AboutSection";
-import CertificationsWallOfFame from "@/components/CertificationsWallOfFame";
-import CertificationsSection from "@/components/CertificationsSection";
-import ContactSection from "@/components/ContactSection";
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const CertificationsWallOfFame = lazy(() => import("@/components/CertificationsWallOfFame"));
+const CertificationsSection = lazy(() => import("@/components/CertificationsSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+
+const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => (
+  <div
+    className="w-full border-y-4 border-[#FFFFFF]/20 bg-[#143DFF]/50"
+    style={{ minHeight }}
+    aria-hidden="true"
+  />
+);
 
 /* ── Marquee ticker ───────────────────────────────────────────── */
 const MarqueeSection = () => {
+  const shouldReduceMotion = useReducedMotion();
   const items = [
     "Django", "Python", "React.js", "Spring Boot",
     "PostgreSQL", "Node.js", "Docker", "Supabase",
@@ -21,23 +30,23 @@ const MarqueeSection = () => {
     "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
   ];
   return (
-    <div className="bg-[#FFFFFF] border-y-4 border-[#F5C400] py-5 overflow-hidden">
-      <div className="flex animate-marquee whitespace-nowrap">
+    <div className="bg-[#FFFFFF] border-y-4 border-[#143DFF] py-5 overflow-hidden">
+      <div className={`flex whitespace-nowrap ${shouldReduceMotion ? "" : "animate-marquee"}`}>
         {items.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-6 mx-0">
             {i % 2 === 0 ? (
-              <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#F5C400] tracking-tight">
+              <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#143DFF] tracking-tight">
                 {item}
               </span>
             ) : (
               <span
                 className="font-display font-black text-3xl md:text-5xl uppercase tracking-tight"
-                style={{ WebkitTextStroke: "1.5px #F5C400", color: "transparent" }}
+                style={{ WebkitTextStroke: "1.5px #143DFF", color: "transparent" }}
               >
                 {item}
               </span>
             )}
-            <span className="w-3 h-3 bg-[#F5C400] rotate-45 shrink-0 mx-6" />
+            <span className="w-3 h-3 bg-[#143DFF] rotate-45 shrink-0 mx-6" />
           </span>
         ))}
       </div>
@@ -47,12 +56,13 @@ const MarqueeSection = () => {
 
 /* ── CTA Band ─────────────────────────────────────────────────── */
 const CtaBand = () => {
+  const shouldReduceMotion = useReducedMotion();
   const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
   return (
-    <div className="bg-[#FFFFFF] border-y-8 border-[#F5C400] py-6 overflow-hidden">
-      <div className="flex animate-marquee whitespace-nowrap">
+    <div className="bg-[#FFFFFF] border-y-8 border-[#143DFF] py-6 overflow-hidden">
+      <div className={`flex whitespace-nowrap ${shouldReduceMotion ? "" : "animate-marquee"}`}>
         {[text, text].map((t, i) => (
-          <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#F5C400] tracking-tight shrink-0">
+          <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#143DFF] tracking-tight shrink-0">
             {t}
           </span>
         ))}
@@ -63,12 +73,14 @@ const CtaBand = () => {
 
 /* ── Footer ───────────────────────────────────────────────────── */
 const Footer = () => (
-  <footer className="bg-[#F5C400] border-t-8 border-[#FFFFFF] py-12 px-6">
+  <footer className="bg-[#143DFF] border-t-8 border-[#FFFFFF] py-12 px-6">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
       <img
           src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
           alt="Scale avec Zoubeir"
-          className="h-12 w-auto object-contain"
+          className="h-16 max-[390px]:h-14 sm:h-20 md:h-24 w-auto object-contain"
+          width={420}
+          height={96}
         />
       <p className="font-body text-[10px] font-black uppercase tracking-[0.25em] text-[#FFFFFF]/60 text-center">
         © 2025 Zoubeir Ibrahima Amed — Tous droits réservés
@@ -97,6 +109,8 @@ const Footer = () => (
 /* ── Page ─────────────────────────────────────────────────────── */
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [deferDeepSections, setDeferDeepSections] = useState(false);
+  const deepSectionsTriggerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 500);
@@ -104,24 +118,81 @@ const Index = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!("IntersectionObserver" in window)) {
+      setDeferDeepSections(true);
+      return;
+    }
+
+    const triggerNode = deepSectionsTriggerRef.current;
+    if (!triggerNode || deferDeepSections) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setDeferDeepSections(true);
+          observer.disconnect();
+        }
+      },
+      {
+        root: null,
+        rootMargin: "900px 0px",
+        threshold: 0,
+      }
+    );
+
+    observer.observe(triggerNode);
+    return () => observer.disconnect();
+  }, [deferDeepSections]);
+
   return (
-    <div className="min-h-screen bg-[#F5C400] text-[#FFFFFF] font-body antialiased">
+    <div className="min-h-screen bg-[#143DFF] text-[#FFFFFF] font-body antialiased">
       <Navbar />
       <HeroSection />
       <MarqueeSection />
       <SkillsSection />
       <ProjectsBentoSection />
       <CtaBand />
-      <AboutSection />
-      <CertificationsWallOfFame />
-      <CertificationsSection />
-      <ContactSection />
+      <div ref={deepSectionsTriggerRef} aria-hidden="true" className="h-px w-full" />
+      {deferDeepSections ? (
+        <>
+          <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
+            <AboutSection />
+          </Suspense>
+          <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
+            <CertificationsWallOfFame />
+          </Suspense>
+          <Suspense fallback={<SectionPlaceholder minHeight="420px" />}>
+            <CertificationsSection />
+          </Suspense>
+          <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
+            <ContactSection />
+          </Suspense>
+        </>
+      ) : (
+        <>
+          <section id="experience" aria-label="Chargement de la section experience">
+            <SectionPlaceholder minHeight="520px" />
+          </section>
+          <section id="certifications" aria-label="Chargement de la section certifications">
+            <SectionPlaceholder minHeight="520px" />
+          </section>
+          <section aria-label="Chargement de la liste complete des certifications">
+            <SectionPlaceholder minHeight="420px" />
+          </section>
+          <section id="contact" aria-label="Chargement de la section contact">
+            <SectionPlaceholder minHeight="520px" />
+          </section>
+        </>
+      )}
       <Footer />
 
       {/* Scroll to top */}
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-6 p-4 bg-[#FFFFFF] text-[#F5C400] border-4 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs"
+        className="fixed bottom-6 right-6 p-4 bg-[#FFFFFF] text-[#143DFF] border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
         whileTap={{ scale: 0.95 }}

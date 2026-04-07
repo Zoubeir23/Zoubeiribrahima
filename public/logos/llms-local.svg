@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0D2FD1" stroke="#FFFFFF" stroke-width="4"/>
+  <circle cx="32" cy="22" r="9" fill="#68F0FF"/>
+  <path d="M20 43C20 36.3726 25.3726 31 32 31C38.6274 31 44 36.3726 44 43V46H20V43Z" fill="#FFFFFF"/>
+  <text x="32" y="57" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-weight="700" font-size="8" fill="#68F0FF">LLMS</text>
+</svg>

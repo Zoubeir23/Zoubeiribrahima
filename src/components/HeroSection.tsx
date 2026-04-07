@@ -1,11 +1,13 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 
 const HeroSection = () => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="hero"
-      className="min-h-screen bg-[#F5C400] pt-16 flex items-center overflow-hidden"
+      className="min-h-screen bg-[#143DFF] pt-16 flex items-center overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6 w-full py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -16,12 +18,12 @@ const HeroSection = () => {
             {/* Location + Status badge */}
             <motion.div
               className="flex flex-wrap items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="flex items-center gap-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#F5C400] px-4 py-1.5 font-display font-bold text-xs uppercase tracking-widest">
-                <span className="w-2 h-2 bg-[#F5C400] animate-pulse inline-block" />
+              <div className="flex items-center gap-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#143DFF] px-4 py-1.5 font-display font-bold text-xs uppercase tracking-widest">
+                <span className="w-2 h-2 bg-[#143DFF] animate-pulse inline-block" />
                 Disponible pour missions
               </div>
               <div className="flex items-center gap-1.5 font-body text-sm font-semibold text-[#FFFFFF]">
@@ -40,7 +42,7 @@ const HeroSection = () => {
               >
                 <motion.span
                   className="block text-[clamp(4rem,10vw,8rem)]"
-                  initial={{ y: 120 }}
+                  initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 >
@@ -48,15 +50,15 @@ const HeroSection = () => {
                 </motion.span>
                 <motion.span
                   className="block text-[clamp(2.5rem,6vw,5rem)]"
-                  initial={{ y: 120 }}
+                  initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 >
                   IBRAHIMA
                 </motion.span>
                 <motion.span
-                  className="block text-[clamp(3rem,7vw,6rem)] bg-[#FFFFFF] text-[#F5C400] px-2 inline-block"
-                  initial={{ y: 120 }}
+                  className="block text-[clamp(3rem,7vw,6rem)] bg-[#FFFFFF] text-[#143DFF] px-2 inline-block"
+                  initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
@@ -75,6 +77,9 @@ const HeroSection = () => {
                 src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
                 alt="Scale avec Zoubeir"
                 className="h-16 md:h-20 w-auto object-contain"
+                width={320}
+                height={80}
+                fetchPriority="high"
               />
             </motion.div>
 
@@ -97,7 +102,7 @@ const HeroSection = () => {
             >
               <motion.a
                 href="#projects"
-                className="group flex items-center gap-3 px-8 py-4 bg-[#FFFFFF] text-[#F5C400] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
+                className="group flex items-center gap-3 px-8 py-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -106,7 +111,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#FFFFFF] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150"
+                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#FFFFFF] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -144,10 +149,10 @@ const HeroSection = () => {
             >
               {/* AVAILABLE FOR HIRE badge - rotated */}
               <motion.div
-                className="absolute -top-6 -right-6 z-20 bg-[#FFFFFF] text-[#F5C400] font-display font-black text-xs uppercase tracking-widest px-4 py-2 border-4 border-[#FFFFFF]"
+                className="absolute -top-6 -right-6 z-20 bg-[#FFFFFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-widest px-4 py-2 border-4 border-[#FFFFFF]"
                 style={{ rotate: "12deg" }}
-                animate={{ rotate: [12, 15, 12, 9, 12] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                animate={shouldReduceMotion ? { rotate: 12 } : { rotate: [12, 15, 12, 9, 12] }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
                 ★ Available for Hire ★
               </motion.div>
@@ -157,17 +162,20 @@ const HeroSection = () => {
                 {/* Shadow/offset layer */}
                 <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#FFFFFF]" />
                 {/* Image frame - yellow bg shows through transparent illustration */}
-                <div className="relative border-4 border-[#FFFFFF] overflow-hidden w-full h-full bg-[#F5C400] flex items-end justify-center">
+                <div className="relative border-4 border-[#FFFFFF] overflow-hidden w-full h-full bg-[#143DFF] flex items-end justify-center">
                   <img
                     src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
                     alt="Zoubeir Ibrahima Amed"
                     className="w-full h-full object-contain object-bottom"
+                    width={768}
+                    height={896}
+                    fetchPriority="high"
                   />
                 </div>
               </div>
 
               {/* Tech label */}
-              <div className="absolute -bottom-4 -left-4 bg-[#F5C400] border-4 border-[#FFFFFF] px-4 py-2 z-20">
+              <div className="absolute -bottom-4 -left-4 bg-[#143DFF] border-4 border-[#FFFFFF] px-4 py-2 z-20">
                 <p className="font-display font-black text-xs uppercase tracking-wider text-[#FFFFFF]">
                   Django · Python · AI
                 </p>

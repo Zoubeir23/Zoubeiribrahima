@@ -25,15 +25,15 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Manrope", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
-        grotesk: ["Space Grotesk", "sans-serif"],
-        manrope: ["Manrope", "sans-serif"],
+        sans: ["IBM Plex Sans", "system-ui", "sans-serif"],
+        display: ["Bebas Neue", "sans-serif"],
+        grotesk: ["Bebas Neue", "sans-serif"],
+        manrope: ["IBM Plex Sans", "sans-serif"],
       },
       colors: {
         yellow: {
-          brand: "#F5C400",
-          DEFAULT: "#F5C400",
+          brand: "#143DFF",
+          DEFAULT: "#143DFF",
         },
         black: {
           brand: "#FFFFFF",
@@ -44,23 +44,23 @@ export default {
         },
         border: "#FFFFFF",
         input: "#FFFFFF",
-        ring: "#F5C400",
-        background: "#F5C400",
+        ring: "#143DFF",
+        background: "#143DFF",
         foreground: "#FFFFFF",
         primary: {
-          DEFAULT: "#F5C400",
+          DEFAULT: "#143DFF",
           foreground: "#FFFFFF",
         },
         secondary: {
           DEFAULT: "#FFFFFF",
-          foreground: "#F5C400",
+          foreground: "#143DFF",
         },
         muted: {
-          DEFAULT: "#F5C400",
+          DEFAULT: "#143DFF",
           foreground: "#FFFFFF",
         },
         accent: {
-          DEFAULT: "#F5C400",
+          DEFAULT: "#143DFF",
           foreground: "#FFFFFF",
         },
       },

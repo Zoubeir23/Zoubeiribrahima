@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +19,26 @@ const Navbar = () => {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
+      const firstLink = mobileMenuRef.current?.querySelector<HTMLAnchorElement>("a");
+      firstLink?.focus();
     } else {
       document.body.style.overflow = "unset";
+      menuButtonRef.current?.focus();
     }
     return () => {
       document.body.style.overflow = "unset";
     };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [isMenuOpen]);
 
   const navLinks = [
@@ -41,8 +57,8 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#F5C400]/95 backdrop-blur-md border-b-4 border-[#FFFFFF]"
-          : "bg-[#F5C400]/80 backdrop-blur-sm"
+          ? "bg-[#143DFF]/95 backdrop-blur-md border-b-4 border-[#FFFFFF]"
+          : "bg-[#143DFF]/80 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -55,7 +71,9 @@ const Navbar = () => {
           <img
             src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
             alt="Scale avec Zoubeir"
-            className="h-10 w-auto object-contain"
+            className="h-14 md:h-16 w-auto object-contain"
+            width={320}
+            height={64}
           />
         </motion.a>
 
@@ -65,7 +83,7 @@ const Navbar = () => {
             <motion.a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150 border-2 border-transparent hover:border-[#FFFFFF]"
+              className="px-4 py-2 text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 border-2 border-transparent hover:border-[#FFFFFF]"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -79,7 +97,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <motion.a
             href="#contact"
-            className="hidden md:block px-5 py-2 bg-[#FFFFFF] text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-2 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
+            className="hidden md:block px-5 py-2 bg-[#FFFFFF] text-[#143DFF] font-display font-black text-sm uppercase tracking-wider border-2 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -87,9 +105,12 @@ const Navbar = () => {
           </motion.a>
 
           <motion.button
-            className="md:hidden p-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#F5C400]"
+            ref={menuButtonRef}
+            className="md:hidden p-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#143DFF]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-nav-menu"
             whileTap={{ scale: 0.95 }}
           >
             {isMenuOpen ? (
@@ -105,7 +126,9 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden bg-[#F5C400] border-t-4 border-[#FFFFFF]"
+            id="mobile-nav-menu"
+            ref={mobileMenuRef}
+            className="md:hidden bg-[#143DFF] border-t-4 border-[#FFFFFF]"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -117,7 +140,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block py-3 px-4 font-display font-black text-lg uppercase text-[#FFFFFF] border-2 border-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150"
+                  className="block py-3 px-4 font-display font-black text-lg uppercase text-[#FFFFFF] border-2 border-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -128,7 +151,7 @@ const Navbar = () => {
               <motion.a
                 href="#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="mt-2 py-3 px-4 bg-[#FFFFFF] text-[#F5C400] font-display font-black text-lg uppercase text-center border-2 border-[#FFFFFF]"
+                className="mt-2 py-3 px-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black text-lg uppercase text-center border-2 border-[#FFFFFF]"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}

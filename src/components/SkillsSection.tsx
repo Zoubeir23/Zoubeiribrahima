@@ -1,6 +1,7 @@
 import type { ElementType } from "react";
 import { motion } from "framer-motion";
 import { Server, Brain, Cloud } from "lucide-react";
+import { getTechLogoUrl } from "@/lib/brandLogos";
 
 interface SkillCard {
   icon: ElementType;
@@ -42,22 +43,22 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-display font-bold text-[#F5C400] text-sm uppercase tracking-[0.3em] mb-3">
+          <p className="font-display font-bold text-[#143DFF] text-sm uppercase tracking-[0.3em] mb-3">
             — Technologies
           </p>
-          <h2 className="font-display font-black text-[#F5C400] text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#143DFF] text-5xl md:text-7xl uppercase leading-tight">
             My Tech
             <br />
-            <span className="text-[#F5C400]">Stack</span>
+            <span className="text-[#143DFF]">Stack</span>
           </h2>
         </motion.div>
 
         {/* 3 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-4 border-[#F5C400]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-4 border-[#143DFF]">
           {skillCards.map((card, index) => (
             <motion.div
               key={card.title}
-              className="group border-r-4 border-[#F5C400] last:border-r-0 p-8 bg-[#FFFFFF] hover:bg-[#F5C400] transition-all duration-200 cursor-default"
+              className="group border-r-4 border-[#143DFF] last:border-r-0 p-6 md:p-7 bg-[#FFFFFF] hover:bg-[#143DFF] transition-all duration-200 cursor-default"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -65,13 +66,13 @@ const SkillsSection = () => {
             >
               {/* Icon */}
               <div className="mb-6">
-                <div className="w-14 h-14 border-4 border-[#F5C400] group-hover:border-[#FFFFFF] flex items-center justify-center bg-[#F5C400] group-hover:bg-[#FFFFFF] transition-all duration-200">
-                  <card.icon className="w-6 h-6 text-[#FFFFFF] group-hover:text-[#F5C400] transition-colors duration-200" />
+                <div className="w-14 h-14 border-4 border-[#143DFF] group-hover:border-[#FFFFFF] flex items-center justify-center bg-[#143DFF] group-hover:bg-[#FFFFFF] transition-all duration-200">
+                  <card.icon className="w-6 h-6 text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors duration-200" />
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-black text-xl uppercase text-[#F5C400] group-hover:text-[#FFFFFF] mb-6 transition-colors duration-200">
+              <h3 className="font-display font-black text-xl uppercase text-[#143DFF] group-hover:text-[#FFFFFF] mb-6 transition-colors duration-200">
                 {card.title}
               </h3>
 
@@ -80,9 +81,23 @@ const SkillsSection = () => {
                 {card.techs.map((tech) => (
                   <li
                     key={tech}
-                    className="flex items-center gap-3 font-body font-semibold text-sm text-[#F5C400]/80 group-hover:text-[#FFFFFF]/80 transition-colors duration-200"
+                    className="flex items-center gap-3 font-body font-semibold text-sm text-[#143DFF]/80 group-hover:text-[#FFFFFF]/80 transition-colors duration-200"
                   >
-                    <span className="w-2 h-2 bg-[#F5C400] group-hover:bg-[#FFFFFF] shrink-0 transition-colors duration-200" />
+                    {getTechLogoUrl(tech) ? (
+                      <img
+                        src={getTechLogoUrl(tech)!}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-4 h-4 md:w-5 md:h-5 object-contain shrink-0"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <span className="w-2 h-2 bg-[#143DFF] group-hover:bg-[#FFFFFF] shrink-0 transition-colors duration-200" />
+                    )}
                     {tech}
                   </li>
                 ))}
@@ -93,21 +108,34 @@ const SkillsSection = () => {
 
         {/* Full stack tags row */}
         <motion.div
-          className="mt-12 border-t-4 border-[#F5C400] pt-8"
+          className="mt-12 border-t-4 border-[#143DFF] pt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <p className="font-display font-bold text-[#F5C400] text-xs uppercase tracking-[0.3em] mb-4">
+          <p className="font-display font-bold text-[#143DFF] text-xs uppercase tracking-[0.3em] mb-4">
             Langages & Outils maîtrisés
           </p>
           <div className="flex flex-wrap gap-3">
             {["JavaScript", "Python", "PHP", "Java", "SQL", "React.js", "TailwindCSS", "PostgreSQL", "MySQL", "Docker", "GitHub", "Claude Code"].map((tech) => (
               <span
                 key={tech}
-                className="font-body font-bold text-xs uppercase tracking-wider border-2 border-[#F5C400] text-[#F5C400] px-3 py-1 hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150 cursor-default"
+                className="inline-flex items-center gap-2 font-body font-bold text-xs uppercase tracking-wider border-2 border-[#143DFF] text-[#143DFF] px-3 py-1.5 hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 cursor-default"
               >
+                {getTechLogoUrl(tech) && (
+                  <img
+                    src={getTechLogoUrl(tech)!}
+                    alt=""
+                    aria-hidden="true"
+                    className="w-4 h-4 md:w-5 md:h-5 object-contain shrink-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                )}
                 {tech}
               </span>
             ))}

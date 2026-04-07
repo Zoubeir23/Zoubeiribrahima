@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,10 @@
 
 @layer base {
   :root {
-    --background: #F5C400;
+    --background: #143DFF;
     --foreground: #FFFFFF;
+    --accent: #68F0FF;
+    --ink-soft: rgba(255, 255, 255, 0.72);
     --radius: 0px;
   }
 
@@ -21,31 +23,64 @@
   }
 
   body {
-    background-color: #F5C400;
+    background-color: #143DFF;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(104, 240, 255, 0.28), transparent 28%),
+      radial-gradient(circle at 88% 7%, rgba(255, 255, 255, 0.1), transparent 30%),
+      linear-gradient(135deg, #1032d8 0%, #143DFF 48%, #0f2bc4 100%);
+    background-attachment: fixed;
     color: #FFFFFF;
-    font-family: "Manrope", system-ui, sans-serif;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.26;
+    z-index: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.35) 0.6px, transparent 0.6px);
+    background-size: 10px 10px;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    body {
+      background-attachment: scroll;
+      background-image: linear-gradient(135deg, #1032d8 0%, #143DFF 48%, #0f2bc4 100%);
+    }
+
+    body::before {
+      opacity: 0.12;
+      background-size: 14px 14px;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Bebas Neue", sans-serif;
     font-weight: 800;
   }
 
   ::selection {
     background-color: #FFFFFF;
-    color: #F5C400;
+    color: #143DFF;
   }
 }
 
 @layer components {
   .font-display {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Bebas Neue", sans-serif;
   }
 
   .font-body {
-    font-family: "Manrope", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -57,7 +92,7 @@
     scrollbar-width: none;
   }
 
-  /* Custom scrollbar - yellow themed */
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -67,11 +102,11 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #F5C400;
+    background: #143DFF;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #d4a800;
+    background: #0D2FD1;
   }
 }
 
@@ -115,6 +150,14 @@
 
   .animate-blink {
     animation: blink 1s step-end infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-fade-up,
+    .animate-blink {
+      animation: none !important;
+    }
   }
 
   /* Brutalist hover lift */

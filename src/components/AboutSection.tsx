@@ -41,7 +41,7 @@ const education = [
 
 const AboutSection = () => {
   return (
-    <section id="experience" className="bg-[#F5C400] py-28 px-6">
+    <section id="experience" className="bg-[#143DFF] py-28 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* ── Header ── */}
@@ -62,7 +62,7 @@ const AboutSection = () => {
             </h2>
           </div>
           {/* Portrait illustration */}
-          <div className="border-4 border-[#FFFFFF] bg-[#F5C400] w-36 h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
+          <div className="border-4 border-[#FFFFFF] bg-[#143DFF] w-36 h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
             <img
               src="/Sans_titre-removebg-preview.png"
               alt="Portrait Zoubeir"
@@ -92,7 +92,7 @@ const AboutSection = () => {
                   {/* Square dot */}
                   <div
                     className={`absolute -left-[2.625rem] top-1 w-5 h-5 border-4 border-[#FFFFFF] ${
-                      exp.active ? "bg-[#FFFFFF]" : "bg-[#F5C400]"
+                      exp.active ? "bg-[#FFFFFF]" : "bg-[#143DFF]"
                     }`}
                   />
 
@@ -121,7 +121,7 @@ const AboutSection = () => {
                     {exp.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-body font-bold text-xs uppercase tracking-wider bg-[#FFFFFF] text-[#F5C400] px-3 py-1"
+                        className="font-body font-bold text-xs uppercase tracking-wider bg-[#FFFFFF] text-[#143DFF] px-3 py-1"
                       >
                         {tag}
                       </span>
@@ -149,13 +149,13 @@ const AboutSection = () => {
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
                   <div className="flex flex-col gap-1">
-                    <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 group-hover:text-[#F5C400]/60 transition-colors">
+                    <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 group-hover:text-[#143DFF]/60 transition-colors">
                       {edu.period}
                     </span>
-                    <h4 className="font-display font-black text-xl uppercase text-[#FFFFFF] group-hover:text-[#F5C400] transition-colors leading-tight">
+                    <h4 className="font-display font-black text-xl uppercase text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors leading-tight">
                       {edu.degree}
                     </h4>
-                    <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#F5C400]/70 transition-colors">
+                    <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#143DFF]/70 transition-colors">
                       {edu.school}
                     </p>
                   </div>
