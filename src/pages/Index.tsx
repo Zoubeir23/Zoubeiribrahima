@@ -7,6 +7,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
 import AboutSection from "@/components/AboutSection";
 import CertificationsWallOfFame from "@/components/CertificationsWallOfFame";
+import CertificationsSection from "@/components/CertificationsSection";
 import ContactSection from "@/components/ContactSection";
 
 /* ── Marquee ticker ───────────────────────────────────────────── */
@@ -113,6 +114,7 @@ const Index = () => {
       <CtaBand />
       <AboutSection />
       <CertificationsWallOfFame />
+      <CertificationsSection />
       <ContactSection />
       <Footer />
 
