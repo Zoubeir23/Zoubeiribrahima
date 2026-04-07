@@ -21,7 +21,7 @@ const MarqueeSection = () => {
     "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
   ];
   return (
-    <div className="bg-[#FFFFFF] border-y-4 border-[#F5C400] py-5 overflow-hidden">
+    <div className="bg-[#E5E5E5] border-y-4 border-[#F5C400] py-5 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         {items.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-6 mx-0">
@@ -49,7 +49,7 @@ const MarqueeSection = () => {
 const CtaBand = () => {
   const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
   return (
-    <div className="bg-[#FFFFFF] border-y-8 border-[#F5C400] py-6 overflow-hidden">
+    <div className="bg-[#E5E5E5] border-y-8 border-[#F5C400] py-6 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         {[text, text].map((t, i) => (
           <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#F5C400] tracking-tight shrink-0">
@@ -63,14 +63,14 @@ const CtaBand = () => {
 
 /* ── Footer ───────────────────────────────────────────────────── */
 const Footer = () => (
-  <footer className="bg-[#F5C400] border-t-8 border-[#FFFFFF] py-12 px-6">
+  <footer className="bg-[#F5C400] border-t-8 border-[#E5E5E5] py-12 px-6">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
       <img
           src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
           alt="Scale avec Zoubeir"
           className="h-12 w-auto object-contain"
         />
-      <p className="font-body text-[10px] font-black uppercase tracking-[0.25em] text-[#FFFFFF]/60 text-center">
+      <p className="font-body text-[10px] font-black uppercase tracking-[0.25em] text-[#E5E5E5]/60 text-center">
         © 2025 Zoubeir Ibrahima Amed — Tous droits réservés
       </p>
       <div className="flex gap-8">
@@ -84,7 +84,7 @@ const Footer = () => (
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#FFFFFF] transition-all duration-200 pb-0.5"
+            className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#E5E5E5]/50 hover:text-[#E5E5E5] border-b-2 border-transparent hover:border-[#E5E5E5] transition-all duration-200 pb-0.5"
           >
             {link.label}
           </a>
@@ -105,7 +105,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5C400] text-[#FFFFFF] font-body antialiased">
+    <div className="min-h-screen bg-[#F5C400] text-[#E5E5E5] font-body antialiased">
       <Navbar />
       <HeroSection />
       <MarqueeSection />
@@ -121,7 +121,7 @@ const Index = () => {
       {/* Scroll to top */}
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-6 p-4 bg-[#FFFFFF] text-[#F5C400] border-4 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs"
+        className="fixed bottom-6 right-6 p-4 bg-[#E5E5E5] text-[#F5C400] border-4 border-[#E5E5E5] hover:bg-[#F5C400] hover:text-[#E5E5E5] transition-all duration-150 z-50 font-display font-black text-xs"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
         whileTap={{ scale: 0.95 }}

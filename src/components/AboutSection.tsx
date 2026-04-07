@@ -53,16 +53,16 @@ const AboutSection = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="flex-1">
-            <p className="font-display font-bold text-[#FFFFFF]/50 text-sm uppercase tracking-[0.3em] mb-3">
+            <p className="font-display font-bold text-[#E5E5E5]/50 text-sm uppercase tracking-[0.3em] mb-3">
               — Parcours
             </p>
-            <h2 className="font-display font-black text-[#FFFFFF] text-5xl md:text-8xl uppercase leading-tight">
+            <h2 className="font-display font-black text-[#E5E5E5] text-5xl md:text-8xl uppercase leading-tight">
               Expériences<br />
-              <span className="text-[#FFFFFF]/30">&amp; Formation</span>
+              <span className="text-[#E5E5E5]/30">&amp; Formation</span>
             </h2>
           </div>
           {/* Portrait illustration */}
-          <div className="border-4 border-[#FFFFFF] bg-[#F5C400] w-36 h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
+          <div className="border-4 border-[#E5E5E5] bg-[#F5C400] w-36 h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
             <img
               src="/Sans_titre-removebg-preview.png"
               alt="Portrait Zoubeir"
@@ -74,12 +74,12 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
           {/* ── Experiences column ── */}
-          <div className="border-r-0 lg:border-r-8 border-b-8 lg:border-b-0 border-[#FFFFFF] pr-0 lg:pr-12 pb-12 lg:pb-0">
-            <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#FFFFFF]/50 mb-10">
+          <div className="border-r-0 lg:border-r-8 border-b-8 lg:border-b-0 border-[#E5E5E5] pr-0 lg:pr-12 pb-12 lg:pb-0">
+            <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#E5E5E5]/50 mb-10">
               Expérience professionnelle
             </p>
 
-            <div className="relative border-l-8 border-[#FFFFFF] pl-8 space-y-16">
+            <div className="relative border-l-8 border-[#E5E5E5] pl-8 space-y-16">
               {experiences.map((exp, i) => (
                 <motion.div
                   key={exp.company}
@@ -91,29 +91,29 @@ const AboutSection = () => {
                 >
                   {/* Square dot */}
                   <div
-                    className={`absolute -left-[2.625rem] top-1 w-5 h-5 border-4 border-[#FFFFFF] ${
-                      exp.active ? "bg-[#FFFFFF]" : "bg-[#F5C400]"
+                    className={`absolute -left-[2.625rem] top-1 w-5 h-5 border-4 border-[#E5E5E5] ${
+                      exp.active ? "bg-[#E5E5E5]" : "bg-[#F5C400]"
                     }`}
                   />
 
                   <div className="flex flex-col gap-1 mb-3">
                     <div className="flex flex-wrap items-start justify-between gap-2">
-                      <h3 className="font-display font-black text-2xl md:text-3xl text-[#FFFFFF] uppercase tracking-tight leading-none">
+                      <h3 className="font-display font-black text-2xl md:text-3xl text-[#E5E5E5] uppercase tracking-tight leading-none">
                         {exp.company}
                       </h3>
-                      <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 bg-[#FFFFFF]/10 px-3 py-1 border-2 border-[#FFFFFF]/20">
+                      <span className="font-body font-bold text-xs uppercase tracking-wider text-[#E5E5E5]/50 bg-[#E5E5E5]/10 px-3 py-1 border-2 border-[#E5E5E5]/20">
                         {exp.period}
                       </span>
                     </div>
-                    <p className="font-display font-bold text-base text-[#FFFFFF]/70 uppercase tracking-wide">
+                    <p className="font-display font-bold text-base text-[#E5E5E5]/70 uppercase tracking-wide">
                       {exp.role}
                     </p>
-                    <p className="font-body text-xs font-semibold text-[#FFFFFF]/50 uppercase tracking-wider">
+                    <p className="font-body text-xs font-semibold text-[#E5E5E5]/50 uppercase tracking-wider">
                       {exp.location}
                     </p>
                   </div>
 
-                  <p className="font-body text-[#FFFFFF]/80 leading-relaxed mb-5">
+                  <p className="font-body text-[#E5E5E5]/80 leading-relaxed mb-5">
                     {exp.desc}
                   </p>
 
@@ -121,7 +121,7 @@ const AboutSection = () => {
                     {exp.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-body font-bold text-xs uppercase tracking-wider bg-[#FFFFFF] text-[#F5C400] px-3 py-1"
+                        className="font-body font-bold text-xs uppercase tracking-wider bg-[#E5E5E5] text-[#F5C400] px-3 py-1"
                       >
                         {tag}
                       </span>
@@ -134,7 +134,7 @@ const AboutSection = () => {
 
           {/* ── Education column ── */}
           <div className="pt-12 lg:pt-0 lg:pl-12">
-            <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#FFFFFF]/50 mb-10">
+            <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#E5E5E5]/50 mb-10">
               Formation académique
             </p>
 
@@ -142,20 +142,20 @@ const AboutSection = () => {
               {education.map((edu, i) => (
                 <motion.div
                   key={edu.degree}
-                  className="border-b-4 border-[#FFFFFF] py-8 group hover:bg-[#FFFFFF] hover:px-4 transition-all duration-200"
+                  className="border-b-4 border-[#E5E5E5] py-8 group hover:bg-[#E5E5E5] hover:px-4 transition-all duration-200"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
                   <div className="flex flex-col gap-1">
-                    <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 group-hover:text-[#F5C400]/60 transition-colors">
+                    <span className="font-body font-bold text-xs uppercase tracking-wider text-[#E5E5E5]/50 group-hover:text-[#F5C400]/60 transition-colors">
                       {edu.period}
                     </span>
-                    <h4 className="font-display font-black text-xl uppercase text-[#FFFFFF] group-hover:text-[#F5C400] transition-colors leading-tight">
+                    <h4 className="font-display font-black text-xl uppercase text-[#E5E5E5] group-hover:text-[#F5C400] transition-colors leading-tight">
                       {edu.degree}
                     </h4>
-                    <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#F5C400]/70 transition-colors">
+                    <p className="font-body text-sm text-[#E5E5E5]/70 group-hover:text-[#F5C400]/70 transition-colors">
                       {edu.school}
                     </p>
                   </div>
@@ -165,13 +165,13 @@ const AboutSection = () => {
 
             {/* Languages */}
             <motion.div
-              className="mt-12 border-4 border-[#FFFFFF] p-8"
+              className="mt-12 border-4 border-[#E5E5E5] p-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.3 }}
             >
-              <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#FFFFFF]/50 mb-6">
+              <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-[#E5E5E5]/50 mb-6">
                 Langues
               </p>
               <div className="space-y-4">
@@ -182,12 +182,12 @@ const AboutSection = () => {
                 ].map((l) => (
                   <div key={l.lang}>
                     <div className="flex justify-between mb-1">
-                      <span className="font-display font-black text-sm uppercase text-[#FFFFFF]">{l.lang}</span>
-                      <span className="font-body font-bold text-xs uppercase text-[#FFFFFF]/60">{l.level}</span>
+                      <span className="font-display font-black text-sm uppercase text-[#E5E5E5]">{l.lang}</span>
+                      <span className="font-body font-bold text-xs uppercase text-[#E5E5E5]/60">{l.level}</span>
                     </div>
-                    <div className="h-2 bg-[#FFFFFF]/10 border-2 border-[#FFFFFF]">
+                    <div className="h-2 bg-[#E5E5E5]/10 border-2 border-[#E5E5E5]">
                       <div
-                        className="h-full bg-[#FFFFFF]"
+                        className="h-full bg-[#E5E5E5]"
                         style={{ width: `${l.pct}%` }}
                       />
                     </div>

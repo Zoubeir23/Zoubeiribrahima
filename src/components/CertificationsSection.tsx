@@ -206,20 +206,20 @@ const CertificationsSection = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="flex items-center gap-3 mb-2">
-            <Award className="w-5 h-5 text-[#FFFFFF]" />
-            <p className="font-display font-bold text-[#FFFFFF]/60 text-xs uppercase tracking-[0.3em]">
+            <Award className="w-5 h-5 text-[#E5E5E5]" />
+            <p className="font-display font-bold text-[#E5E5E5]/60 text-xs uppercase tracking-[0.3em]">
               Liste complète
             </p>
           </div>
-          <h3 className="font-display font-black text-[#FFFFFF] text-2xl uppercase">
+          <h3 className="font-display font-black text-[#E5E5E5] text-2xl uppercase">
             Toutes mes Certifications
-            <span className="ml-3 text-sm font-bold text-[#FFFFFF]/40">
+            <span className="ml-3 text-sm font-bold text-[#E5E5E5]/40">
               ({certifications.length})
             </span>
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-4 border-[#FFFFFF]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-4 border-[#E5E5E5]">
           {certifications.map((cert, index) => {
             const Card = cert.certUrl ? "a" : "div";
             const cardProps = cert.certUrl
@@ -236,25 +236,25 @@ const CertificationsSection = () => {
               >
                 <Card
                   {...cardProps}
-                  className={`group flex items-start gap-4 p-5 border-r-4 border-b-4 border-[#FFFFFF] bg-[#F5C400] transition-all duration-200 h-full ${
+                  className={`group flex items-start gap-4 p-5 border-r-4 border-b-4 border-[#E5E5E5] bg-[#F5C400] transition-all duration-200 h-full ${
                     cert.certUrl
-                      ? "hover:bg-[#FFFFFF] cursor-pointer"
-                      : "hover:bg-[#FFFFFF]/10"
+                      ? "hover:bg-[#E5E5E5] cursor-pointer"
+                      : "hover:bg-[#E5E5E5]/10"
                   }`}
                 >
                   {/* Logo badge */}
-                  <div className="w-10 h-10 shrink-0 border-2 border-[#FFFFFF] bg-[#FFFFFF] flex items-center justify-center group-hover:bg-[#F5C400] group-hover:border-[#F5C400] transition-all duration-200">
-                    <span className="font-display font-black text-[10px] text-[#F5C400] group-hover:text-[#FFFFFF]">
+                  <div className="w-10 h-10 shrink-0 border-2 border-[#E5E5E5] bg-[#E5E5E5] flex items-center justify-center group-hover:bg-[#F5C400] group-hover:border-[#F5C400] transition-all duration-200">
+                    <span className="font-display font-black text-[10px] text-[#F5C400] group-hover:text-[#E5E5E5]">
                       {cert.logo}
                     </span>
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-display font-black text-sm uppercase leading-tight text-[#FFFFFF] group-hover:text-[#F5C400] transition-colors duration-200 line-clamp-2">
+                    <h4 className="font-display font-black text-sm uppercase leading-tight text-[#E5E5E5] group-hover:text-[#F5C400] transition-colors duration-200 line-clamp-2">
                       {cert.title}
                     </h4>
-                    <p className="font-body text-xs font-semibold text-[#FFFFFF]/60 group-hover:text-[#F5C400]/60 uppercase tracking-wider mt-1 transition-colors duration-200">
+                    <p className="font-body text-xs font-semibold text-[#E5E5E5]/60 group-hover:text-[#F5C400]/60 uppercase tracking-wider mt-1 transition-colors duration-200">
                       {cert.issuer} · {cert.date}
                     </p>
                     {cert.skills && cert.skills.length > 0 && (
@@ -262,7 +262,7 @@ const CertificationsSection = () => {
                         {cert.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="text-[10px] px-2 py-0.5 border border-[#FFFFFF]/30 group-hover:border-[#F5C400]/30 text-[#FFFFFF]/70 group-hover:text-[#F5C400]/70 uppercase tracking-wide transition-colors duration-200"
+                            className="text-[10px] px-2 py-0.5 border border-[#E5E5E5]/30 group-hover:border-[#F5C400]/30 text-[#E5E5E5]/70 group-hover:text-[#F5C400]/70 uppercase tracking-wide transition-colors duration-200"
                           >
                             {skill}
                           </span>
@@ -273,7 +273,7 @@ const CertificationsSection = () => {
 
                   {/* Link icon */}
                   {cert.certUrl && (
-                    <ExternalLink className="w-4 h-4 shrink-0 text-[#FFFFFF]/40 group-hover:text-[#F5C400] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
+                    <ExternalLink className="w-4 h-4 shrink-0 text-[#E5E5E5]/40 group-hover:text-[#F5C400] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
                   )}
                 </Card>
               </motion.div>

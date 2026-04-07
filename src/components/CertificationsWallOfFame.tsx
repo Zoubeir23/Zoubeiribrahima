@@ -80,17 +80,17 @@ const CertificationsWallOfFame = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-display font-bold text-[#FFFFFF]/50 text-sm uppercase tracking-[0.3em] mb-3">
+          <p className="font-display font-bold text-[#E5E5E5]/50 text-sm uppercase tracking-[0.3em] mb-3">
             — Reconnaissances
           </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#E5E5E5] text-5xl md:text-7xl uppercase leading-tight">
             Certifi
-            <span className="bg-[#FFFFFF] text-[#F5C400] px-2">cations</span>
+            <span className="bg-[#E5E5E5] text-[#F5C400] px-2">cations</span>
           </h2>
         </motion.div>
 
         {/* Grid 2x4 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-4 border-[#FFFFFF]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-4 border-[#E5E5E5]">
           {certifications.map((cert, index) => {
             const lastRowStart = Math.floor((certifications.length - 1) / 4) * 4;
             const Tag = cert.certUrl ? "a" : "div";
@@ -109,35 +109,35 @@ const CertificationsWallOfFame = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="border-r-4 border-b-4 border-[#FFFFFF]"
+                className="border-r-4 border-b-4 border-[#E5E5E5]"
               >
                 <Tag
                   {...linkProps}
-                  className={`group p-8 bg-[#F5C400] hover:bg-[#FFFFFF] transition-all duration-200 flex flex-col gap-4 h-full ${cert.certUrl ? "cursor-pointer" : "cursor-default"}`}
+                  className={`group p-8 bg-[#F5C400] hover:bg-[#E5E5E5] transition-all duration-200 flex flex-col gap-4 h-full ${cert.certUrl ? "cursor-pointer" : "cursor-default"}`}
                 >
                   {/* Icon + ExternalLink row */}
                   <div className="flex items-start justify-between">
-                    <div className="w-12 h-12 border-4 border-[#FFFFFF] group-hover:border-[#F5C400] bg-[#FFFFFF] group-hover:bg-[#F5C400] flex items-center justify-center transition-all duration-200 shrink-0">
-                      <cert.icon className="w-5 h-5 text-[#F5C400] group-hover:text-[#FFFFFF] transition-colors duration-200" />
+                    <div className="w-12 h-12 border-4 border-[#E5E5E5] group-hover:border-[#F5C400] bg-[#E5E5E5] group-hover:bg-[#F5C400] flex items-center justify-center transition-all duration-200 shrink-0">
+                      <cert.icon className="w-5 h-5 text-[#F5C400] group-hover:text-[#E5E5E5] transition-colors duration-200" />
                     </div>
                     {cert.certUrl && (
-                      <ExternalLink className="w-4 h-4 text-[#FFFFFF]/30 group-hover:text-[#F5C400] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
+                      <ExternalLink className="w-4 h-4 text-[#E5E5E5]/30 group-hover:text-[#F5C400] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
                     )}
                   </div>
 
                   {/* Content */}
                   <div className="flex flex-col gap-1 flex-1">
-                    <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-[#FFFFFF]/40 group-hover:text-[#F5C400]/50 transition-colors duration-200">
+                    <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-[#E5E5E5]/40 group-hover:text-[#F5C400]/50 transition-colors duration-200">
                       {cert.category} · {cert.year}
                     </span>
-                    <h3 className="font-display font-black text-base uppercase leading-tight text-[#FFFFFF] group-hover:text-[#F5C400] transition-colors duration-200">
+                    <h3 className="font-display font-black text-base uppercase leading-tight text-[#E5E5E5] group-hover:text-[#F5C400] transition-colors duration-200">
                       {cert.title}
                     </h3>
-                    <p className="font-body font-semibold text-xs text-[#FFFFFF]/60 group-hover:text-[#F5C400]/60 uppercase tracking-wider transition-colors duration-200">
+                    <p className="font-body font-semibold text-xs text-[#E5E5E5]/60 group-hover:text-[#F5C400]/60 uppercase tracking-wider transition-colors duration-200">
                       {cert.issuer}
                     </p>
                     {cert.certUrl && (
-                      <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-[#FFFFFF]/30 group-hover:text-[#F5C400]/60 transition-colors duration-200">
+                      <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-[#E5E5E5]/30 group-hover:text-[#F5C400]/60 transition-colors duration-200">
                         Voir le diplôme →
                       </span>
                     )}
@@ -150,32 +150,32 @@ const CertificationsWallOfFame = () => {
 
         {/* Counter strip */}
         <motion.div
-          className="mt-8 border-4 border-[#FFFFFF] p-6 flex flex-wrap gap-8 items-center"
+          className="mt-8 border-4 border-[#E5E5E5] p-6 flex flex-wrap gap-8 items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div>
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">23</p>
-            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
+            <p className="font-display font-black text-5xl text-[#E5E5E5]">23</p>
+            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#E5E5E5]/50 mt-1">
               Certifications obtenues
             </p>
           </div>
-          <div className="border-l-4 border-[#FFFFFF] pl-8">
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">9</p>
-            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
+          <div className="border-l-4 border-[#E5E5E5] pl-8">
+            <p className="font-display font-black text-5xl text-[#E5E5E5]">9</p>
+            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#E5E5E5]/50 mt-1">
               Organismes reconnus
             </p>
           </div>
-          <div className="border-l-4 border-[#FFFFFF] pl-8">
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">2+</p>
-            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
+          <div className="border-l-4 border-[#E5E5E5] pl-8">
+            <p className="font-display font-black text-5xl text-[#E5E5E5]">2+</p>
+            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#E5E5E5]/50 mt-1">
               Années de formation continue
             </p>
           </div>
           <div className="ml-auto">
-            <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/40">
+            <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#E5E5E5]/40">
               Harvard · Anthropic · Cisco · Microsoft
               <br />
               HackerRank · Udemy · LinkedIn · Coursera

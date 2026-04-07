@@ -13,19 +13,19 @@ const ProjectsBentoSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-display font-bold text-[#FFFFFF]/50 text-sm uppercase tracking-[0.3em] mb-3">
+          <p className="font-display font-bold text-[#E5E5E5]/50 text-sm uppercase tracking-[0.3em] mb-3">
             — Portfolio
           </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#E5E5E5] text-5xl md:text-7xl uppercase leading-tight">
             Mes
             <br />
-            <span className="bg-[#FFFFFF] text-[#F5C400] px-3 inline-block">Projets</span>
+            <span className="bg-[#E5E5E5] text-[#F5C400] px-3 inline-block">Projets</span>
           </h2>
         </motion.div>
 
         {/* Featured Project - Snapfolioo */}
         <motion.div
-          className="mb-4 border-4 border-[#FFFFFF] bg-[#FFFFFF] group hover:bg-[#FFFFFF] transition-all duration-200"
+          className="mb-4 border-4 border-[#E5E5E5] bg-[#E5E5E5] group hover:bg-[#E5E5E5] transition-all duration-200"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,7 +36,7 @@ const ProjectsBentoSection = () => {
             <div className="p-10 md:p-14 flex flex-col justify-between gap-10">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="font-display font-black text-xs uppercase tracking-widest bg-[#F5C400] text-[#FFFFFF] px-4 py-2">
+                  <span className="font-display font-black text-xs uppercase tracking-widest bg-[#F5C400] text-[#E5E5E5] px-4 py-2">
                     ★ Projet Vedette
                   </span>
                   <span className="font-display font-black text-xs uppercase tracking-widest border-2 border-[#F5C400]/30 text-[#F5C400] px-4 py-2">
@@ -53,7 +53,7 @@ const ProjectsBentoSection = () => {
                   {["Django", "OpenAI SDK", "React", "Supabase", "PostgreSQL"].map((tag) => (
                     <span
                       key={tag}
-                      className="font-display font-bold text-xs uppercase tracking-wider border-2 border-[#F5C400]/40 text-[#F5C400] px-3 py-1 hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
+                      className="font-display font-bold text-xs uppercase tracking-wider border-2 border-[#F5C400]/40 text-[#F5C400] px-3 py-1 hover:bg-[#F5C400] hover:text-[#E5E5E5] transition-all duration-150"
                     >
                       {tag}
                     </span>
@@ -65,7 +65,7 @@ const ProjectsBentoSection = () => {
                   href="https://snapfolioo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-[#F5C400] text-[#FFFFFF] font-display font-black text-sm uppercase tracking-wider border-4 border-[#F5C400] hover:bg-transparent hover:text-[#F5C400] transition-all duration-150"
+                  className="flex items-center gap-2 px-8 py-4 bg-[#F5C400] text-[#E5E5E5] font-display font-black text-sm uppercase tracking-wider border-4 border-[#F5C400] hover:bg-transparent hover:text-[#F5C400] transition-all duration-150"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Explorer le Projet
@@ -74,7 +74,7 @@ const ProjectsBentoSection = () => {
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-transparent text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-4 border-[#F5C400] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
+                  className="flex items-center gap-2 px-8 py-4 bg-transparent text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-4 border-[#F5C400] hover:bg-[#F5C400] hover:text-[#E5E5E5] transition-all duration-150"
                 >
                   GitHub →
                 </a>
@@ -130,28 +130,28 @@ const ProjectsBentoSection = () => {
           ].map((project, index) => (
             <motion.div
               key={project.title}
-              className="border-4 border-[#FFFFFF] p-8 bg-[#F5C400] group hover:bg-[#FFFFFF] transition-all duration-200"
+              className="border-4 border-[#E5E5E5] p-8 bg-[#F5C400] group hover:bg-[#E5E5E5] transition-all duration-200"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="flex items-start justify-between mb-6">
-                <h3 className="font-display font-black text-2xl uppercase text-[#FFFFFF] group-hover:text-[#F5C400] transition-colors duration-200 leading-tight">
+                <h3 className="font-display font-black text-2xl uppercase text-[#E5E5E5] group-hover:text-[#F5C400] transition-colors duration-200 leading-tight">
                   {project.title}
                 </h3>
-                <span className="font-display font-black text-xs uppercase tracking-widest bg-[#FFFFFF] group-hover:bg-[#F5C400] text-[#F5C400] group-hover:text-[#FFFFFF] px-3 py-1.5 shrink-0 ml-4 transition-all duration-200">
+                <span className="font-display font-black text-xs uppercase tracking-widest bg-[#E5E5E5] group-hover:bg-[#F5C400] text-[#F5C400] group-hover:text-[#E5E5E5] px-3 py-1.5 shrink-0 ml-4 transition-all duration-200">
                   {project.status}
                 </span>
               </div>
-              <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#F5C400]/70 leading-relaxed mb-6 transition-colors duration-200">
+              <p className="font-body text-sm text-[#E5E5E5]/70 group-hover:text-[#F5C400]/70 leading-relaxed mb-6 transition-colors duration-200">
                 {project.desc}
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-body font-bold text-xs uppercase tracking-wider border-2 border-[#FFFFFF] group-hover:border-[#F5C400] text-[#FFFFFF] group-hover:text-[#F5C400] px-3 py-1 transition-all duration-200"
+                    className="font-body font-bold text-xs uppercase tracking-wider border-2 border-[#E5E5E5] group-hover:border-[#F5C400] text-[#E5E5E5] group-hover:text-[#F5C400] px-3 py-1 transition-all duration-200"
                   >
                     {tag}
                   </span>
@@ -173,7 +173,7 @@ const ProjectsBentoSection = () => {
             href="https://github.com/Zoubeir23"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 font-display font-black text-sm uppercase tracking-widest text-[#FFFFFF] border-b-4 border-[#FFFFFF] pb-1 hover:border-transparent transition-all duration-150 group"
+            className="inline-flex items-center gap-3 font-display font-black text-sm uppercase tracking-widest text-[#E5E5E5] border-b-4 border-[#E5E5E5] pb-1 hover:border-transparent transition-all duration-150 group"
           >
             Voir tous mes projets sur GitHub
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
