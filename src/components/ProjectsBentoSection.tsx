@@ -122,10 +122,10 @@ const ProjectsBentoSection = () => {
               status: "Coming Soon",
             },
             {
-              title: "SpringEdge Banking",
-              desc: "API bancaire sécurisée avec Spring Boot, JWT et architecture microservices.",
-              tags: ["Spring Boot", "Java", "PostgreSQL", "Docker"],
-              status: "Coming Soon",
+              title: "Tchokos SARL — B2B",
+              desc: "Plateforme e-commerce B2B sur mesure pour un grossiste mode à Douala. Catalogue centralisé, portail revendeurs, gestion des demandes d'importation et back-office admin.",
+              tags: ["Django", "Python", "PostgreSQL", "TailwindCSS"],
+              status: "En cours",
             },
           ].map((project, index) => (
             <motion.div
