@@ -26,7 +26,7 @@ const HeroSection = () => {
               </div>
               <div className="flex items-center gap-1.5 font-body text-sm font-semibold text-[#FFFFFF]">
                 <MapPin className="w-4 h-4" />
-                Grand-Dakar, Sénégal
+                Sénégal
               </div>
             </motion.div>
 

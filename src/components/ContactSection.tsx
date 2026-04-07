@@ -188,7 +188,7 @@ const ContactSection = () => {
                     Localisation
                   </p>
                   <p className="font-body font-semibold text-[#F5C400] text-base">
-                    Grand-Dakar, Dakar, Sénégal
+                    Sénégal
                   </p>
                 </div>
               </div>
