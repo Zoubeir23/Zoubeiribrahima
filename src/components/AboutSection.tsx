@@ -177,8 +177,8 @@ const AboutSection = () => {
               <div className="space-y-4">
                 {[
                   { lang: "Français", level: "Natif", pct: 100 },
-                  { lang: "Anglais", level: "Technique", pct: 70 },
-                  { lang: "Arabe", level: "Lecture & Écriture", pct: 60 },
+                  { lang: "Anglais", level: "Technique", pct: 30 },
+                  { lang: "Arabe", level: "Lecture & Écriture", pct: 50 },
                 ].map((l) => (
                   <div key={l.lang}>
                     <div className="flex justify-between mb-1">

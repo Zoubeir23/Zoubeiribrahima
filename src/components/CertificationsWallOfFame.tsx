@@ -8,7 +8,7 @@ const certifications = [
     year: "2024",
     icon: BookOpen,
     category: "Programme",
-    certUrl: "https://cs50.harvard.edu/certificates/0658cdae-622d-4ed8-a03e-2bd1b28f16a4",
+    certUrl: "https://certificates.cs50.io/0658cdae-622d-4ed8-a03e-2bd1b28f16a4.pdf?size=letter",
   },
   {
     title: "Python Certificate",
@@ -16,7 +16,7 @@ const certifications = [
     year: "2026",
     icon: Award,
     category: "Certification",
-    certUrl: null,
+    certUrl: "https://www.hackerrank.com/certificates/78268c2cd679",
   },
   {
     title: "Claude Code in Action",
@@ -32,7 +32,7 @@ const certifications = [
     year: "2025",
     icon: Code,
     category: "Certification",
-    certUrl: null,
+    certUrl: "https://learn.microsoft.com/api/achievements/share/fr-fr/ZoubeirIbrahima-6909/XQ8L8JNY?sharingId=F508886EEF61DEDF",
   },
   {
     title: "Python Essentials 1",
@@ -40,7 +40,7 @@ const certifications = [
     year: "2025",
     icon: Shield,
     category: "Certification",
-    certUrl: null,
+    certUrl: "https://www.credly.com/badges/c180d96a-ff75-4893-b020-56c8da6cf7a4/public_url",
   },
   {
     title: "Intro to Cybersecurity",
@@ -56,7 +56,7 @@ const certifications = [
     year: "2025",
     icon: Award,
     category: "Certification",
-    certUrl: null,
+    certUrl: "https://www.linkedin.com/learning/certificates/239c191adba7873e208b1dcf52498d5b30f42cd1ae6d43cd07256f824cabc39e/",
   },
   {
     title: "Python, Java Mastery",
@@ -64,7 +64,7 @@ const certifications = [
     year: "2025",
     icon: Award,
     category: "Certification",
-    certUrl: null,
+    certUrl: "http://ude.my/UC-06dba729-151d-40d1-96ce-161bafb952aa",
   },
 ];
 

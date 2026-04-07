@@ -17,6 +17,7 @@ const certifications: Certification[] = [
     date: "janv. 2026",
     skills: ["Python"],
     logo: "HR",
+    certUrl: "https://www.hackerrank.com/certificates/78268c2cd679",
   },
   {
     title: "Claude Code in Action",
@@ -30,6 +31,7 @@ const certifications: Certification[] = [
     issuer: "Microsoft",
     date: "sept. 2025",
     logo: "MS",
+    certUrl: "https://learn.microsoft.com/api/achievements/share/fr-fr/ZoubeirIbrahima-6909/XQ8L8JNY?sharingId=F508886EEF61DEDF",
   },
   {
     title: "Développer des fonctionnalités de code avec GitHub Copilot",
@@ -37,6 +39,7 @@ const certifications: Certification[] = [
     date: "sept. 2025",
     skills: ["GitHub Copilot"],
     logo: "MS",
+    certUrl: "https://learn.microsoft.com/api/achievements/share/fr-fr/ZoubeirIbrahima-6909/W2UTHXQN?sharingId=F508886EEF61DEDF",
   },
   {
     title: "Développer des tests unitaires avec GitHub Copilot",
@@ -44,6 +47,7 @@ const certifications: Certification[] = [
     date: "sept. 2025",
     skills: ["Tests unitaires"],
     logo: "MS",
+    certUrl: "https://learn.microsoft.com/api/achievements/share/fr-fr/ZoubeirIbrahima-6909/D9PAK7PJ?sharingId=F508886EEF61DEDF",
   },
   {
     title: "Générer une documentation avec GitHub Copilot",
@@ -51,6 +55,7 @@ const certifications: Certification[] = [
     date: "sept. 2025",
     skills: ["Documentation"],
     logo: "MS",
+    certUrl: "https://learn.microsoft.com/api/achievements/share/fr-fr/ZoubeirIbrahima-6909/7KX9YKHZ?sharingId=F508886EEF61DEDF",
   },
   {
     title: "Python Essentials 1",
@@ -58,6 +63,7 @@ const certifications: Certification[] = [
     date: "août 2025",
     skills: ["Python"],
     logo: "C",
+    certUrl: "https://www.credly.com/badges/c180d96a-ff75-4893-b020-56c8da6cf7a4/public_url",
   },
   {
     title: "Dépannage de Microsoft Teams",
@@ -65,6 +71,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["Microsoft Teams"],
     logo: "MS",
+    certUrl: "https://learn.microsoft.com/api/achievements/share/fr-fr/IbrahimaZoubeir-1840/PLTV32Q4?sharingId=DB9CFDBAF590C1D5",
   },
   {
     title: "L'essentiel de Django",
@@ -72,6 +79,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["Django"],
     logo: "in",
+    certUrl: "https://www.linkedin.com/learning/certificates/239c191adba7873e208b1dcf52498d5b30f42cd1ae6d43cd07256f824cabc39e/",
   },
   {
     title: "Les fondements de la programmation",
@@ -79,6 +87,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["GitHub", "HTML5", "Git"],
     logo: "in",
+    certUrl: "https://www.linkedin.com/learning/certificates/e16c36c3b2b1911f030954d048ca1761e28aea204f582ee23b0286b780a3cc4a/",
   },
   {
     title: "Les fondements de la programmation : Les algorithmes",
@@ -86,6 +95,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["Programmation"],
     logo: "in",
+    certUrl: "https://www.linkedin.com/learning/certificates/fdd3e4275c89466c1c885e7bfc3d2cd056788960f136cbfebc30ed28783be918/",
   },
   {
     title: "Python : L'automatisation des tâches",
@@ -93,6 +103,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["Automatisation"],
     logo: "in",
+    certUrl: "https://www.linkedin.com/learning/certificates/f8a414fa3937fecc8d984eebcb0de5256b5eb9fe2afcda4d940e7f9afa780b76/",
   },
   {
     title: "Se préparer au métier de développeur",
@@ -100,6 +111,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["Développement logiciel", "HTML5"],
     logo: "MS",
+    certUrl: "https://www.linkedin.com/learning/certificates/0ddcd541de053618b401e9d3b1c52f661196c42876a58a2988fc7ef1520f7929/",
   },
   {
     title: "Optimiser son profil LinkedIn",
@@ -107,6 +119,7 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["LinkedIn"],
     logo: "in",
+    certUrl: "https://www.linkedin.com/learning/certificates/d9783cc55bb8da4e309f10a7d614277df5eb34a67dd3d6aeafb1ad6b032451c2/",
   },
   {
     title: "Préparer votre carrière dans le développement logiciel",
@@ -114,12 +127,14 @@ const certifications: Certification[] = [
     date: "avr. 2025",
     skills: ["GitHub", "HTML5"],
     logo: "in",
+    certUrl: "https://www.linkedin.com/learning/certificates/6c0824d09c81697f6903962b7db9f5f57ec189f0f79221befb8650c7c14488ab/",
   },
   {
     title: "Java Fundamentals Pour les débutants",
     issuer: "Udemy",
     date: "mars 2025",
     logo: "U",
+    certUrl: "http://ude.my/UC-f4f591ea-2f9e-48a1-84c8-2fd48ad00be0",
   },
   {
     title: "Introduction to Cybersecurity",
@@ -135,6 +150,7 @@ const certifications: Certification[] = [
     date: "mars 2025",
     skills: ["Java", "Python"],
     logo: "U",
+    certUrl: "http://ude.my/UC-06dba729-151d-40d1-96ce-161bafb952aa",
   },
   {
     title: "CS50x",
@@ -142,7 +158,7 @@ const certifications: Certification[] = [
     date: "déc. 2024",
     skills: ["Informatique", "HTML5"],
     logo: "H",
-    certUrl: "https://cs50.harvard.edu/certificates/0658cdae-622d-4ed8-a03e-2bd1b28f16a4",
+    certUrl: "https://certificates.cs50.io/0658cdae-622d-4ed8-a03e-2bd1b28f16a4.pdf?size=letter",
   },
   {
     title: "CS50p - Python",
@@ -166,6 +182,7 @@ const certifications: Certification[] = [
     date: "nov. 2024",
     skills: ["WordPress"],
     logo: "Cu",
+    certUrl: "https://cursa.app/fr/mon-certificat/cert3454340b35b1fe7caeacb426723f4127/ok",
   },
   {
     title: "Cours Python complet",
@@ -173,6 +190,7 @@ const certifications: Certification[] = [
     date: "2024",
     skills: ["Python"],
     logo: "U",
+    certUrl: "https://www.udemy.com/certificate/UC-54c4e7ae-d165-4ac1-b8ae-fc59bfefcda4/",
   },
 ];
 
