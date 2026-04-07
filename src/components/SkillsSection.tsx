@@ -1,8 +1,9 @@
+import type { ElementType } from "react";
 import { motion } from "framer-motion";
 import { Server, Brain, Cloud } from "lucide-react";
 
 interface SkillCard {
-  icon: React.ElementType;
+  icon: ElementType;
   title: string;
   techs: string[];
   emoji: string;

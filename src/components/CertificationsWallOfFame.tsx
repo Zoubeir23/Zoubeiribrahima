@@ -83,13 +83,15 @@ const CertificationsWallOfFame = () => {
 
         {/* Grid 2x4 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-4 border-[#131313]">
-          {certifications.map((cert, index) => (
+          {certifications.map((cert, index) => {
+            const lastRowStart = Math.floor((certifications.length - 1) / 4) * 4;
+            return (
             <motion.div
               key={cert.title}
-              className="group border-r-4 border-b-4 border-[#131313] last-of-type:border-r-4 p-8 bg-[#F5C400] hover:bg-[#131313] transition-all duration-200 cursor-default flex flex-col gap-4"
+              className="group border-r-4 border-b-4 border-[#131313] p-8 bg-[#F5C400] hover:bg-[#131313] transition-all duration-200 cursor-default flex flex-col gap-4"
               style={{
-                // Remove right border for last in each row
                 borderRight: (index + 1) % 4 === 0 ? "none" : undefined,
+                borderBottom: index >= lastRowStart ? "none" : undefined,
               }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +116,8 @@ const CertificationsWallOfFame = () => {
                 </p>
               </div>
             </motion.div>
-          ))}
+          );
+          })}
         </div>
 
         {/* Counter strip */}
