@@ -21,23 +21,23 @@ const MarqueeSection = () => {
     "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
   ];
   return (
-    <div className="bg-[#E5E5E5] border-y-4 border-[#F5C400] py-5 overflow-hidden">
+    <div className="bg-[#F5C400] border-y-4 border-[#E5E5E5] py-5 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         {items.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-6 mx-0">
             {i % 2 === 0 ? (
-              <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#F5C400] tracking-tight">
+              <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#E5E5E5] tracking-tight">
                 {item}
               </span>
             ) : (
               <span
                 className="font-display font-black text-3xl md:text-5xl uppercase tracking-tight"
-                style={{ WebkitTextStroke: "1.5px #F5C400", color: "transparent" }}
+                style={{ WebkitTextStroke: "1.5px #E5E5E5", color: "transparent" }}
               >
                 {item}
               </span>
             )}
-            <span className="w-3 h-3 bg-[#F5C400] rotate-45 shrink-0 mx-6" />
+            <span className="w-3 h-3 bg-[#E5E5E5] rotate-45 shrink-0 mx-6" />
           </span>
         ))}
       </div>
@@ -49,10 +49,10 @@ const MarqueeSection = () => {
 const CtaBand = () => {
   const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
   return (
-    <div className="bg-[#E5E5E5] border-y-8 border-[#F5C400] py-6 overflow-hidden">
+    <div className="bg-[#F5C400] border-y-8 border-[#E5E5E5] py-6 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         {[text, text].map((t, i) => (
-          <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#F5C400] tracking-tight shrink-0">
+          <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#E5E5E5] tracking-tight shrink-0">
             {t}
           </span>
         ))}

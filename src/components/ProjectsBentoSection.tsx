@@ -25,7 +25,7 @@ const ProjectsBentoSection = () => {
 
         {/* Featured Project - Snapfolioo */}
         <motion.div
-          className="mb-4 border-4 border-[#E5E5E5] bg-[#E5E5E5] group hover:bg-[#E5E5E5] transition-all duration-200"
+          className="mb-4 border-4 border-[#E5E5E5] bg-[#F5C400] transition-all duration-200"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,24 +36,24 @@ const ProjectsBentoSection = () => {
             <div className="p-10 md:p-14 flex flex-col justify-between gap-10">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="font-display font-black text-xs uppercase tracking-widest bg-[#F5C400] text-[#E5E5E5] px-4 py-2">
+                  <span className="font-display font-black text-xs uppercase tracking-widest bg-[#E5E5E5] text-[#F5C400] px-4 py-2">
                     ★ Projet Vedette
                   </span>
-                  <span className="font-display font-black text-xs uppercase tracking-widest border-2 border-[#F5C400]/30 text-[#F5C400] px-4 py-2">
+                  <span className="font-display font-black text-xs uppercase tracking-widest border-2 border-[#E5E5E5]/30 text-[#E5E5E5] px-4 py-2">
                     En Production
                   </span>
                 </div>
-                <h3 className="font-display font-black text-5xl md:text-6xl uppercase text-[#F5C400] leading-none mb-4">
+                <h3 className="font-display font-black text-5xl md:text-6xl uppercase text-[#E5E5E5] leading-none mb-4">
                   Snapfolioo
                 </h3>
-                <p className="font-body text-[#F5C400] text-lg leading-relaxed mb-8">
+                <p className="font-body text-[#E5E5E5] text-lg leading-relaxed mb-8">
                   Plateforme SaaS no-code permettant aux professionnels de créer des portfolios, CV et bannières LinkedIn en quelques minutes. Éditeur visuel temps réel, +18 templates, export multi-formats.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
                   {["Django", "OpenAI SDK", "React", "Supabase", "PostgreSQL"].map((tag) => (
                     <span
                       key={tag}
-                      className="font-display font-bold text-xs uppercase tracking-wider border-2 border-[#F5C400]/40 text-[#F5C400] px-3 py-1 hover:bg-[#F5C400] hover:text-[#E5E5E5] transition-all duration-150"
+                      className="font-display font-bold text-xs uppercase tracking-wider border-2 border-[#E5E5E5]/40 text-[#E5E5E5] px-3 py-1 hover:bg-[#E5E5E5] hover:text-[#F5C400] transition-all duration-150"
                     >
                       {tag}
                     </span>
@@ -65,7 +65,7 @@ const ProjectsBentoSection = () => {
                   href="https://snapfolioo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-[#F5C400] text-[#E5E5E5] font-display font-black text-sm uppercase tracking-wider border-4 border-[#F5C400] hover:bg-transparent hover:text-[#F5C400] transition-all duration-150"
+                  className="flex items-center gap-2 px-8 py-4 bg-[#E5E5E5] text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-4 border-[#E5E5E5] hover:bg-transparent hover:text-[#E5E5E5] transition-all duration-150"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Explorer le Projet
@@ -74,7 +74,7 @@ const ProjectsBentoSection = () => {
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-8 py-4 bg-transparent text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-4 border-[#F5C400] hover:bg-[#F5C400] hover:text-[#E5E5E5] transition-all duration-150"
+                  className="flex items-center gap-2 px-8 py-4 bg-transparent text-[#E5E5E5] font-display font-black text-sm uppercase tracking-wider border-4 border-[#E5E5E5] hover:bg-[#E5E5E5] hover:text-[#F5C400] transition-all duration-150"
                 >
                   GitHub →
                 </a>
@@ -82,7 +82,7 @@ const ProjectsBentoSection = () => {
             </div>
 
             {/* Visual / Stats side */}
-            <div className="border-t-4 lg:border-t-0 lg:border-l-4 border-[#F5C400]/30 p-10 md:p-14 flex flex-col justify-center gap-8">
+            <div className="border-t-4 lg:border-t-0 lg:border-l-4 border-[#E5E5E5]/30 p-10 md:p-14 flex flex-col justify-center gap-8">
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { number: "SaaS", label: "Produit lancé" },
@@ -90,21 +90,21 @@ const ProjectsBentoSection = () => {
                   { number: "Jan 2026", label: "Depuis" },
                   { number: "AI", label: "Powered" },
                 ].map((stat) => (
-                  <div key={stat.label} className="border-4 border-[#F5C400]/20 p-5">
-                    <p className="font-display font-black text-3xl text-[#F5C400] mb-1">
+                  <div key={stat.label} className="border-4 border-[#E5E5E5]/20 p-5">
+                    <p className="font-display font-black text-3xl text-[#E5E5E5] mb-1">
                       {stat.number}
                     </p>
-                    <p className="font-body font-semibold text-xs uppercase tracking-wider text-[#F5C400]/50">
+                    <p className="font-body font-semibold text-xs uppercase tracking-wider text-[#E5E5E5]/50">
                       {stat.label}
                     </p>
                   </div>
                 ))}
               </div>
-              <div className="border-t-4 border-[#F5C400]/20 pt-6">
-                <p className="font-display font-bold text-xs uppercase tracking-[0.2em] text-[#F5C400]/40 mb-3">
+              <div className="border-t-4 border-[#E5E5E5]/20 pt-6">
+                <p className="font-display font-bold text-xs uppercase tracking-[0.2em] text-[#E5E5E5]/40 mb-3">
                   Architecture
                 </p>
-                <p className="font-body text-sm text-[#F5C400]/70 leading-relaxed">
+                <p className="font-body text-sm text-[#E5E5E5]/70 leading-relaxed">
                   Backend Django REST Framework · Frontend React/TypeScript · Auth & DB Supabase · IA via OpenAI SDK · Déployé sur VPS
                 </p>
               </div>
