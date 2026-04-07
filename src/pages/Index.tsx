@@ -24,9 +24,18 @@ const MarqueeSection = () => {
       <div className="flex animate-marquee whitespace-nowrap">
         {items.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-6 mx-0">
-            <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#F5C400] tracking-tight">
-              {item}
-            </span>
+            {i % 2 === 0 ? (
+              <span className="font-display font-black text-3xl md:text-5xl uppercase text-[#F5C400] tracking-tight">
+                {item}
+              </span>
+            ) : (
+              <span
+                className="font-display font-black text-3xl md:text-5xl uppercase tracking-tight"
+                style={{ WebkitTextStroke: "1.5px #F5C400", color: "transparent" }}
+              >
+                {item}
+              </span>
+            )}
             <span className="w-3 h-3 bg-[#F5C400] rotate-45 shrink-0 mx-6" />
           </span>
         ))}

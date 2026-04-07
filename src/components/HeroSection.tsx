@@ -144,14 +144,13 @@ const HeroSection = () => {
                 {/* Shadow/offset layer */}
                 <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#131313]" />
                 {/* Image frame */}
-                <div className="relative border-4 border-[#131313] overflow-hidden w-full h-full">
+                <div className="relative border-4 border-[#131313] overflow-hidden w-full h-full bg-[#F5C400]">
                   <img
                     src="/Zoubeiriprofile.jpeg"
                     alt="Zoubeir Ibrahima Amed"
-                    className="w-full h-full object-cover grayscale contrast-110"
+                    className="w-full h-full object-cover grayscale contrast-[1.8] brightness-110"
+                    style={{ mixBlendMode: "multiply" }}
                   />
-                  {/* Yellow tint overlay */}
-                  <div className="absolute inset-0 bg-[#F5C400]/20 mix-blend-multiply" />
                 </div>
               </div>
 
