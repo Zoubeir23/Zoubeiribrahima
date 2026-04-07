@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "@/lib/static-motion";
 import { useState } from "react";
 import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
@@ -35,7 +35,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#FFFFFF] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
+    <section id="contact" className="bg-[#0303AB] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -45,20 +45,20 @@ const ContactSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-display font-bold text-[#143DFF] text-sm uppercase tracking-[0.3em] mb-4">
+          <p className="font-display font-bold text-[#FFFFFF]/55 text-sm uppercase tracking-[0.3em] mb-4">
             — Parlons-en
           </p>
-          <h2 className="font-display font-black text-[#143DFF] text-3xl sm:text-5xl md:text-8xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-8xl uppercase leading-tight">
             Travaillons
             <br />
-            Ensemble
+            <span className="text-[#FFFFFF]/35">Ensemble</span>
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-4 border-[#143DFF]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-4 border-[#F5C518]">
           {/* Form */}
           <motion.div
-            className="p-6 sm:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-[#143DFF]"
+            className="p-6 sm:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-[#F5C518] bg-[#0303AB]"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -66,20 +66,20 @@ const ContactSection = () => {
           >
             {submitStatus === "success" ? (
               <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                <div className="w-16 h-16 bg-[#143DFF] flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-[#0303AB] flex items-center justify-center mb-6">
                   <span className="font-display font-black text-2xl text-[#FFFFFF]">✓</span>
                 </div>
-                <h3 className="font-display font-black text-2xl text-[#143DFF] uppercase mb-3">
+                  <h3 className="font-display font-black text-2xl text-[#FFFFFF] uppercase mb-3">
                   Message Envoyé !
                 </h3>
-                <p className="font-body text-[#143DFF]/80">
+                  <p className="font-body text-[#FFFFFF]/80">
                   Je vous répondrai dans les plus brefs délais.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
                 <div>
-                  <label htmlFor="contact-name" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#143DFF]/80 mb-3">
+                  <label htmlFor="contact-name" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
                     Nom Complet
                   </label>
                   <input
@@ -90,11 +90,11 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Jean Dupont"
-                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20"
+                    className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30"
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#143DFF]/80 mb-3">
+                  <label htmlFor="contact-email" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
                     Email
                   </label>
                   <input
@@ -105,11 +105,11 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="jean@exemple.com"
-                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20"
+                    className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30"
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-message" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#143DFF]/80 mb-3">
+                  <label htmlFor="contact-message" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
                     Message
                   </label>
                   <textarea
@@ -120,7 +120,7 @@ const ContactSection = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Parlez-moi de votre projet..."
-                    className="w-full bg-transparent border-b-4 border-[#143DFF]/30 focus:border-[#143DFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143DFF] text-[#143DFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#143DFF]/20 resize-none"
+                    className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30 resize-none"
                   />
                 </div>
                 {submitStatus === "error" && (
@@ -131,7 +131,7 @@ const ContactSection = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#143DFF] text-[#FFFFFF] font-display font-black text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest py-4 sm:py-5 border-4 border-[#143DFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed min-h-11"
+                  className="w-full bg-[#F5C518] text-[#020285] font-display font-black text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest py-4 sm:py-5 border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed min-h-11"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
@@ -150,7 +150,7 @@ const ContactSection = () => {
 
           {/* Info */}
           <motion.div
-            className="p-6 sm:p-10 flex flex-col justify-between gap-8 sm:gap-10"
+            className="p-6 sm:p-10 flex flex-col justify-between gap-8 sm:gap-10 bg-[#0303AB]"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -158,54 +158,54 @@ const ContactSection = () => {
           >
             <div className="space-y-8">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border-4 border-[#143DFF] flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4 text-[#143DFF]" />
+                <div className="w-10 h-10 border-4 border-[#F5C518] flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4 text-[#FFFFFF]" />
                 </div>
                 <div>
-                  <p className="font-display font-bold text-[#143DFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
+                  <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
                     Email
                   </p>
                   <a
                     href="mailto:Zoubeiribrahima@gmail.com"
-                    className="font-body font-semibold text-[#143DFF] text-base hover:text-[#143DFF]/70 transition-colors break-all"
+                    className="font-body font-semibold text-[#FFFFFF] text-base hover:text-[#FFFFFF]/70 transition-colors break-all"
                   >
                     Zoubeiribrahima@gmail.com
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border-4 border-[#143DFF] flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 text-[#143DFF]" />
+                <div className="w-10 h-10 border-4 border-[#F5C518] flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4 text-[#FFFFFF]" />
                 </div>
                 <div>
-                  <p className="font-display font-bold text-[#143DFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
+                  <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
                     Téléphone
                   </p>
                   <a
                     href="tel:+221785941071"
-                    className="font-body font-semibold text-[#143DFF] text-base hover:text-[#143DFF]/70 transition-colors"
+                    className="font-body font-semibold text-[#FFFFFF] text-base hover:text-[#FFFFFF]/70 transition-colors"
                   >
                     +221 78 594 10 71
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border-4 border-[#143DFF] flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-[#143DFF]" />
+                <div className="w-10 h-10 border-4 border-[#F5C518] flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-[#FFFFFF]" />
                 </div>
                 <div>
-                  <p className="font-display font-bold text-[#143DFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
+                  <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
                     Localisation
                   </p>
-                  <p className="font-body font-semibold text-[#143DFF] text-base">
+                  <p className="font-body font-semibold text-[#FFFFFF] text-base">
                     Sénégal
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="border-t-4 border-[#143DFF]/20 pt-8 space-y-4">
-              <p className="font-display font-bold text-[#143DFF]/80 text-xs uppercase tracking-[0.2em]">
+            <div className="border-t-4 border-[#F5C518]/20 pt-8 space-y-4">
+              <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em]">
                 Réseaux Sociaux
               </p>
               <div className="flex flex-wrap gap-3 sm:gap-4">
@@ -213,7 +213,7 @@ const ContactSection = () => {
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#143DFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-wide hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 min-h-11"
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#F5C518] bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
                 >
                   <Github className="w-4 h-4" />
                   GitHub
@@ -222,7 +222,7 @@ const ContactSection = () => {
                   href="https://linkedin.com/in/zoubeir-ibrahima"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#143DFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-wide hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 min-h-11"
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#F5C518] bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
                 >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
@@ -233,7 +233,7 @@ const ContactSection = () => {
                 <a
                   href="/CV.pdf"
                   download="Zoubeir-Ibrahima-Amed-CV.pdf"
-                  className="w-full sm:w-auto text-center px-5 py-3 bg-[#143DFF] text-[#FFFFFF] font-display font-black text-xs uppercase tracking-wide border-4 border-[#143DFF] hover:bg-transparent hover:text-[#143DFF] transition-all duration-150 min-h-11"
+                  className="w-full sm:w-auto text-center px-5 py-3 bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
                 >
                   CV PDF →
                 </a>

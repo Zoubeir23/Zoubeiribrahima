@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "@/lib/static-motion";
 
 const experiences = [
   {
@@ -41,7 +41,7 @@ const education = [
 
 const AboutSection = () => {
   return (
-    <section id="experience" className="bg-[#143DFF] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
+    <section id="experience" className="bg-[#0303AB] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* ── Header ── */}
@@ -62,7 +62,7 @@ const AboutSection = () => {
             </h2>
           </div>
           {/* Portrait illustration */}
-          <div className="border-4 border-[#FFFFFF] bg-[#143DFF] w-28 h-36 sm:w-36 sm:h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
+          <div className="border-4 border-[#F5C518] bg-[#0303AB] w-28 h-36 sm:w-36 sm:h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
             <img
               src="/Sans_titre-removebg-preview.png"
               alt="Portrait Zoubeir"
@@ -74,12 +74,12 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
           {/* ── Experiences column ── */}
-          <div className="border-r-0 lg:border-r-8 border-b-8 lg:border-b-0 border-[#FFFFFF] pr-0 lg:pr-12 pb-12 lg:pb-0">
+          <div className="border-r-0 lg:border-r-8 border-b-8 lg:border-b-0 border-[#F5C518] pr-0 lg:pr-12 pb-12 lg:pb-0">
             <p className="font-display font-black text-xs uppercase tracking-[0.22em] sm:tracking-[0.3em] text-[#FFFFFF]/50 mb-8 sm:mb-10">
               Expérience professionnelle
             </p>
 
-            <div className="relative border-l-8 border-[#FFFFFF] pl-6 sm:pl-8 space-y-10 sm:space-y-16">
+            <div className="relative border-l-8 border-[#F5C518] pl-6 sm:pl-8 space-y-10 sm:space-y-16">
               {experiences.map((exp, i) => (
                 <motion.div
                   key={exp.company}
@@ -91,8 +91,8 @@ const AboutSection = () => {
                 >
                   {/* Square dot */}
                   <div
-                    className={`absolute -left-[2.125rem] sm:-left-[2.625rem] top-1 w-5 h-5 border-4 border-[#FFFFFF] ${
-                      exp.active ? "bg-[#FFFFFF]" : "bg-[#143DFF]"
+                    className={`absolute -left-[2.125rem] sm:-left-[2.625rem] top-1 w-5 h-5 border-4 border-[#F5C518] ${
+                      exp.active ? "bg-[#FFFFFF]" : "bg-[#0303AB]"
                     }`}
                   />
 
@@ -101,7 +101,7 @@ const AboutSection = () => {
                       <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl text-[#FFFFFF] uppercase tracking-tight leading-none">
                         {exp.company}
                       </h3>
-                      <span className="font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider text-[#FFFFFF]/50 bg-[#FFFFFF]/10 px-2.5 sm:px-3 py-1 border-2 border-[#FFFFFF]/20">
+                      <span className="font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider text-[#FFFFFF]/50 bg-[#FFFFFF]/10 px-2.5 sm:px-3 py-1 border-2 border-[#F5C518]/20">
                         {exp.period}
                       </span>
                     </div>
@@ -121,7 +121,7 @@ const AboutSection = () => {
                     {exp.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-body font-bold text-xs uppercase tracking-wider bg-[#FFFFFF] text-[#143DFF] px-3 py-1"
+                        className="font-body font-bold text-xs uppercase tracking-wider bg-[#FFFFFF] text-[#0303AB] px-3 py-1"
                       >
                         {tag}
                       </span>
@@ -142,20 +142,20 @@ const AboutSection = () => {
               {education.map((edu, i) => (
                 <motion.div
                   key={edu.degree}
-                  className="border-b-4 border-[#FFFFFF] py-6 sm:py-8 group hover:bg-[#FFFFFF] sm:hover:px-4 transition-all duration-200"
+                  className="border-b-4 border-[#F5C518] py-6 sm:py-8 group hover:bg-[#FFFFFF] sm:hover:px-4 transition-all duration-200"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
                   <div className="flex flex-col gap-1">
-                    <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 group-hover:text-[#143DFF]/60 transition-colors">
+                    <span className="font-body font-bold text-xs uppercase tracking-wider text-[#FFFFFF]/50 group-hover:text-[#0303AB]/60 transition-colors">
                       {edu.period}
                     </span>
-                    <h4 className="font-display font-black text-lg sm:text-xl uppercase text-[#FFFFFF] group-hover:text-[#143DFF] transition-colors leading-tight">
+                    <h4 className="font-display font-black text-lg sm:text-xl uppercase text-[#FFFFFF] group-hover:text-[#0303AB] transition-colors leading-tight">
                       {edu.degree}
                     </h4>
-                    <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#143DFF]/70 transition-colors">
+                    <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#0303AB]/70 transition-colors">
                       {edu.school}
                     </p>
                   </div>
@@ -165,7 +165,7 @@ const AboutSection = () => {
 
             {/* Languages */}
             <motion.div
-              className="mt-10 sm:mt-12 border-4 border-[#FFFFFF] p-6 sm:p-8"
+              className="mt-10 sm:mt-12 border-4 border-[#F5C518] p-6 sm:p-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -185,7 +185,7 @@ const AboutSection = () => {
                       <span className="font-display font-black text-sm uppercase text-[#FFFFFF]">{l.lang}</span>
                       <span className="font-body font-bold text-xs uppercase text-[#FFFFFF]/60">{l.level}</span>
                     </div>
-                    <div className="h-2 bg-[#FFFFFF]/10 border-2 border-[#FFFFFF]">
+                    <div className="h-2 bg-[#FFFFFF]/10 border-2 border-[#F5C518]">
                       <div
                         className="h-full bg-[#FFFFFF]"
                         style={{ width: `${l.pct}%` }}

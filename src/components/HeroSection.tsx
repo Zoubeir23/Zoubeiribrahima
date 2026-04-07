@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "@/lib/static-motion";
 import { ArrowRight, MapPin } from "lucide-react";
 
 const HeroSection = () => {
@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="min-h-[100svh] bg-[#143DFF] pt-20 sm:pt-16 flex items-center overflow-hidden"
+      className="min-h-[100svh] bg-[#0303AB] pt-20 sm:pt-16 flex items-center overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full py-10 sm:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
@@ -22,8 +22,8 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="flex items-center gap-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#143DFF] px-4 py-1.5 font-display font-bold text-xs uppercase tracking-widest">
-                <span className="w-2 h-2 bg-[#143DFF] animate-pulse inline-block" />
+              <div className="flex items-center gap-2 border-2 border-[#F5C518] bg-[#FFFFFF] text-[#0303AB] px-4 py-1.5 font-display font-bold text-xs uppercase tracking-widest">
+                <span className="w-2 h-2 bg-[#0303AB] animate-pulse inline-block" />
                 Disponible pour missions
               </div>
               <div className="flex items-center gap-1.5 font-body text-sm font-semibold text-[#FFFFFF]">
@@ -57,7 +57,7 @@ const HeroSection = () => {
                   IBRAHIMA
                 </motion.span>
                 <motion.span
-                  className="block text-[clamp(2rem,9vw,4.5rem)] bg-[#FFFFFF] text-[#143DFF] px-2 inline-block"
+                  className="block text-[clamp(2rem,9vw,4.5rem)] bg-[#FFFFFF] text-[#0303AB] px-2 inline-block"
                   initial={shouldReduceMotion ? false : { y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -67,25 +67,9 @@ const HeroSection = () => {
               </motion.h1>
             </div>
 
-            {/* Scale avec Zoubeir branding */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.65 }}
-            >
-              <img
-                src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-                alt="Scale avec Zoubeir"
-                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
-                width={320}
-                height={80}
-                fetchPriority="high"
-              />
-            </motion.div>
-
             {/* Tagline */}
             <motion.p
-              className="font-body text-base sm:text-lg md:text-xl font-semibold text-[#FFFFFF] max-w-lg leading-relaxed border-l-8 border-[#FFFFFF] pl-4"
+              className="font-body text-base sm:text-lg md:text-xl font-semibold text-[#FFFFFF] max-w-lg leading-relaxed border-l-8 border-[#F5C518] pl-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
@@ -102,7 +86,7 @@ const HeroSection = () => {
             >
               <motion.a
                 href="#projects"
-                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-[#FFFFFF] text-[#143DFF] font-display font-black uppercase text-xs sm:text-sm tracking-wide border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 min-h-11"
+                className="group flex items-center justify-center gap-3 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-[#F5C518] text-[#020285] font-display font-black uppercase text-xs sm:text-sm tracking-wide border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -111,7 +95,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="flex items-center justify-center gap-3 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-transparent text-[#FFFFFF] font-display font-black uppercase text-xs sm:text-sm tracking-wide border-4 border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#143DFF] transition-all duration-150 min-h-11"
+                className="flex items-center justify-center gap-3 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-[#F5C518] text-[#020285] font-display font-black uppercase text-xs sm:text-sm tracking-wide border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -121,7 +105,7 @@ const HeroSection = () => {
 
             {/* Stats row */}
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-4 border-[#FFFFFF] pt-6 sm:pt-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t-4 border-[#F5C518] pt-6 sm:pt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
@@ -131,7 +115,7 @@ const HeroSection = () => {
                 { number: "10+", label: "Certifications" },
                 { number: "1", label: "SaaS fondé" },
               ].map((stat, i) => (
-                <div key={i} className="pr-0 sm:pr-8 sm:mr-8 border-r-0 sm:border-r-4 border-[#FFFFFF] last:border-0 last:mr-0">
+                <div key={i} className="pr-0 sm:pr-8 sm:mr-8 border-r-0 sm:border-r-4 border-[#F5C518] last:border-0 last:mr-0">
                   <p className="font-display font-black text-4xl text-[#FFFFFF]">{stat.number}</p>
                   <p className="font-body text-sm font-semibold text-[#FFFFFF]/70 uppercase tracking-wider">{stat.label}</p>
                 </div>
@@ -149,7 +133,7 @@ const HeroSection = () => {
             >
               {/* AVAILABLE FOR HIRE badge - rotated */}
               <motion.div
-                className="absolute -top-6 -right-6 z-20 bg-[#FFFFFF] text-[#143DFF] font-display font-black text-xs uppercase tracking-widest px-4 py-2 border-4 border-[#FFFFFF]"
+                className="absolute -top-6 -right-6 z-20 bg-[#FFFFFF] text-[#0303AB] font-display font-black text-xs uppercase tracking-widest px-4 py-2 border-4 border-[#F5C518]"
                 style={{ rotate: "12deg" }}
                 animate={shouldReduceMotion ? { rotate: 12 } : { rotate: [12, 15, 12, 9, 12] }}
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -162,7 +146,7 @@ const HeroSection = () => {
                 {/* Shadow/offset layer */}
                 <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#FFFFFF]" />
                 {/* Image frame - yellow bg shows through transparent illustration */}
-                <div className="relative border-4 border-[#FFFFFF] overflow-hidden w-full h-full bg-[#143DFF] flex items-end justify-center">
+                <div className="relative border-4 border-[#F5C518] overflow-hidden w-full h-full bg-[#0303AB] flex items-end justify-center">
                   <img
                     src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
                     alt="Zoubeir Ibrahima Amed"
@@ -175,7 +159,7 @@ const HeroSection = () => {
               </div>
 
               {/* Tech label */}
-              <div className="absolute -bottom-4 -left-4 bg-[#143DFF] border-4 border-[#FFFFFF] px-4 py-2 z-20">
+              <div className="absolute -bottom-4 -left-4 bg-[#0303AB] border-4 border-[#F5C518] px-4 py-2 z-20">
                 <p className="font-display font-black text-xs uppercase tracking-wider text-[#FFFFFF]">
                   Django · Python · AI
                 </p>

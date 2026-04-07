@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "@/lib/static-motion";
 import { ArrowUp } from "lucide-react";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
@@ -12,41 +12,28 @@ const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => (
   <div
-    className="w-full border-y-4 border-[#FFFFFF]/20 bg-[#143DFF]/50"
+    className="w-full border-y-4 border-[#F5C518]/20 bg-[#020285]/50"
     style={{ minHeight }}
     aria-hidden="true"
   />
 );
 
-/* ── Marquee ticker ───────────────────────────────────────────── */
+/* ── Static Tech Band ─────────────────────────────────────────── */
 const MarqueeSection = () => {
-  const shouldReduceMotion = useReducedMotion();
   const items = [
     "Django", "Python", "React.js", "Spring Boot",
     "PostgreSQL", "Node.js", "Docker", "Supabase",
-    "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
-    "Django", "Python", "React.js", "Spring Boot",
-    "PostgreSQL", "Node.js", "Docker", "Supabase",
-    "FastAPI", "TypeScript", "Claude API", "OpenAI SDK",
+    "FastAPI", "TypeScript", "Claude API", "OpenAI SDK"
   ];
   return (
-    <div className="bg-[#FFFFFF] border-y-4 border-[#143DFF] py-3 sm:py-5 overflow-hidden">
-      <div className={`flex whitespace-nowrap ${shouldReduceMotion ? "" : "animate-marquee"}`}>
-        {items.map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-4 sm:gap-6 mx-0">
-            {i % 2 === 0 ? (
-              <span className="font-display font-black text-xl sm:text-2xl md:text-5xl uppercase text-[#143DFF] tracking-tight">
-                {item}
-              </span>
-            ) : (
-              <span
-                className="font-display font-black text-xl sm:text-2xl md:text-5xl uppercase tracking-tight"
-                style={{ WebkitTextStroke: "1.5px #143DFF", color: "transparent" }}
-              >
-                {item}
-              </span>
-            )}
-            <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#143DFF] rotate-45 shrink-0 mx-4 sm:mx-6" />
+    <div className="bg-[#0303AB] border-y-4 border-[#F5C518] py-4 sm:py-6 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+        {items.map((item) => (
+          <span
+            key={item}
+            className="font-body font-semibold text-xs sm:text-sm uppercase tracking-wider text-[#FFFFFF] border-2 border-[#F5C518] bg-[#020285] px-3 py-1"
+          >
+            {item}
           </span>
         ))}
       </div>
@@ -54,15 +41,21 @@ const MarqueeSection = () => {
   );
 };
 
-/* ── CTA Band ─────────────────────────────────────────────────── */
+/* ── Static CTA Band ──────────────────────────────────────────── */
 const CtaBand = () => {
-  const shouldReduceMotion = useReducedMotion();
-  const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
+  const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
+
   return (
-    <div className="bg-[#FFFFFF] border-y-8 border-[#143DFF] py-4 sm:py-6 overflow-hidden">
-      <div className={`flex whitespace-nowrap ${shouldReduceMotion ? "" : "animate-marquee"}`}>
-        {[text, text].map((t, i) => (
-          <span key={i} className="font-display font-black text-lg sm:text-xl md:text-4xl uppercase text-[#143DFF] tracking-tight shrink-0">
+    <div className="bg-[#0303AB] border-y-8 border-[#F5C518] py-4 sm:py-6 overflow-hidden">
+      <div
+        className="flex whitespace-nowrap"
+        style={{ animation: "marquee 24s linear infinite" }}
+      >
+        {[text, text, text].map((t, i) => (
+          <span
+            key={i}
+            className="font-display font-black text-sm sm:text-lg md:text-3xl uppercase text-[#FFFFFF] tracking-tight shrink-0"
+          >
             {t}
           </span>
         ))}
@@ -73,7 +66,7 @@ const CtaBand = () => {
 
 /* ── Footer ───────────────────────────────────────────────────── */
 const Footer = () => (
-  <footer className="bg-[#143DFF] border-t-8 border-[#FFFFFF] py-10 sm:py-12 px-4 sm:px-6">
+  <footer className="bg-[#020285] border-t-8 border-[#F5C518] py-10 sm:py-12 px-4 sm:px-6">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
       <img
           src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
@@ -96,7 +89,7 @@ const Footer = () => (
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-display font-black text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#FFFFFF] transition-all duration-200 pb-0.5"
+            className="font-display font-black text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#F5C518] transition-all duration-200 pb-0.5"
           >
             {link.label}
           </a>
@@ -148,7 +141,7 @@ const Index = () => {
   }, [deferDeepSections]);
 
   return (
-    <div className="min-h-screen bg-[#143DFF] text-[#FFFFFF] font-body antialiased">
+    <div className="min-h-screen bg-[#020285] text-[#FFFFFF] font-body antialiased">
       <Navbar />
       <HeroSection />
       <MarqueeSection />
@@ -192,7 +185,7 @@ const Index = () => {
       {/* Scroll to top */}
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed right-4 sm:right-6 bottom-[max(env(safe-area-inset-bottom),1rem)] sm:bottom-6 p-3 sm:p-4 min-h-11 min-w-11 bg-[#FFFFFF] text-[#143DFF] border-4 border-[#FFFFFF] hover:bg-[#143DFF] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs shadow-lg"
+        className="fixed right-4 sm:right-6 bottom-[max(env(safe-area-inset-bottom),1rem)] sm:bottom-6 p-3 sm:p-4 min-h-11 min-w-11 bg-[#F5C518] text-[#020285] border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 z-50 font-display font-black text-xs shadow-lg"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
         whileTap={{ scale: 0.95 }}
