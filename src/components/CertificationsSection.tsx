@@ -103,6 +103,20 @@ const certifications: Certification[] = [
     logo: "MS",
   },
   {
+    title: "Optimiser son profil LinkedIn",
+    issuer: "LinkedIn",
+    date: "avr. 2025",
+    skills: ["LinkedIn"],
+    logo: "in",
+  },
+  {
+    title: "Préparer votre carrière dans le développement logiciel",
+    issuer: "LinkedIn",
+    date: "avr. 2025",
+    skills: ["GitHub", "HTML5"],
+    logo: "in",
+  },
+  {
     title: "Java Fundamentals Pour les débutants",
     issuer: "Udemy",
     date: "mars 2025",
@@ -142,6 +156,14 @@ const certifications: Certification[] = [
     date: "nov. 2024",
     skills: ["WordPress"],
     logo: "Co",
+  },
+  {
+    title: "WordPress",
+    issuer: "Cursa - Cursos Online",
+    date: "nov. 2024",
+    skills: ["WordPress"],
+    logo: "Cu",
+    certId: "u5285246",
   },
   {
     title: "Cours Python complet",

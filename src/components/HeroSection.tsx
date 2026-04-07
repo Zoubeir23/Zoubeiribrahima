@@ -20,11 +20,11 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="flex items-center gap-2 border-2 border-[#131313] bg-[#131313] text-[#F5C400] px-4 py-1.5 font-display font-bold text-xs uppercase tracking-widest">
+              <div className="flex items-center gap-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#F5C400] px-4 py-1.5 font-display font-bold text-xs uppercase tracking-widest">
                 <span className="w-2 h-2 bg-[#F5C400] animate-pulse inline-block" />
                 Disponible pour missions
               </div>
-              <div className="flex items-center gap-1.5 font-body text-sm font-semibold text-[#131313]">
+              <div className="flex items-center gap-1.5 font-body text-sm font-semibold text-[#FFFFFF]">
                 <MapPin className="w-4 h-4" />
                 Grand-Dakar, Sénégal
               </div>
@@ -33,7 +33,7 @@ const HeroSection = () => {
             {/* MASSIVE Headline */}
             <div className="overflow-hidden">
               <motion.h1
-                className="font-display font-black uppercase leading-[0.85] text-[#131313]"
+                className="font-display font-black uppercase leading-[0.85] text-[#FFFFFF]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
@@ -55,7 +55,7 @@ const HeroSection = () => {
                   IBRAHIMA
                 </motion.span>
                 <motion.span
-                  className="block text-[clamp(3rem,7vw,6rem)] bg-[#131313] text-[#F5C400] px-2 inline-block"
+                  className="block text-[clamp(3rem,7vw,6rem)] bg-[#FFFFFF] text-[#F5C400] px-2 inline-block"
                   initial={{ y: 120 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -80,7 +80,7 @@ const HeroSection = () => {
 
             {/* Tagline */}
             <motion.p
-              className="font-body text-lg md:text-xl font-semibold text-[#131313] max-w-lg leading-relaxed border-l-8 border-[#131313] pl-4"
+              className="font-body text-lg md:text-xl font-semibold text-[#FFFFFF] max-w-lg leading-relaxed border-l-8 border-[#FFFFFF] pl-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
@@ -97,7 +97,7 @@ const HeroSection = () => {
             >
               <motion.a
                 href="#projects"
-                className="group flex items-center gap-3 px-8 py-4 bg-[#131313] text-[#F5C400] font-display font-black uppercase text-sm tracking-wider border-4 border-[#131313] hover:bg-[#F5C400] hover:text-[#131313] transition-all duration-150"
+                className="group flex items-center gap-3 px-8 py-4 bg-[#FFFFFF] text-[#F5C400] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -106,7 +106,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#131313] font-display font-black uppercase text-sm tracking-wider border-4 border-[#131313] hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150"
+                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#FFFFFF] font-display font-black uppercase text-sm tracking-wider border-4 border-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -116,7 +116,7 @@ const HeroSection = () => {
 
             {/* Stats row */}
             <motion.div
-              className="flex flex-wrap gap-0 border-t-4 border-[#131313] pt-8"
+              className="flex flex-wrap gap-0 border-t-4 border-[#FFFFFF] pt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
@@ -126,9 +126,9 @@ const HeroSection = () => {
                 { number: "10+", label: "Certifications" },
                 { number: "1", label: "SaaS fondé" },
               ].map((stat, i) => (
-                <div key={i} className="pr-8 mr-8 border-r-4 border-[#131313] last:border-0 last:mr-0">
-                  <p className="font-display font-black text-4xl text-[#131313]">{stat.number}</p>
-                  <p className="font-body text-sm font-semibold text-[#131313]/70 uppercase tracking-wider">{stat.label}</p>
+                <div key={i} className="pr-8 mr-8 border-r-4 border-[#FFFFFF] last:border-0 last:mr-0">
+                  <p className="font-display font-black text-4xl text-[#FFFFFF]">{stat.number}</p>
+                  <p className="font-body text-sm font-semibold text-[#FFFFFF]/70 uppercase tracking-wider">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -144,7 +144,7 @@ const HeroSection = () => {
             >
               {/* AVAILABLE FOR HIRE badge - rotated */}
               <motion.div
-                className="absolute -top-6 -right-6 z-20 bg-[#131313] text-[#F5C400] font-display font-black text-xs uppercase tracking-widest px-4 py-2 border-4 border-[#131313]"
+                className="absolute -top-6 -right-6 z-20 bg-[#FFFFFF] text-[#F5C400] font-display font-black text-xs uppercase tracking-widest px-4 py-2 border-4 border-[#FFFFFF]"
                 style={{ rotate: "12deg" }}
                 animate={{ rotate: [12, 15, 12, 9, 12] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -155,9 +155,9 @@ const HeroSection = () => {
               {/* Illustration container */}
               <div className="relative w-72 h-80 md:w-96 md:h-[28rem]">
                 {/* Shadow/offset layer */}
-                <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#131313]" />
+                <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#FFFFFF]" />
                 {/* Image frame - yellow bg shows through transparent illustration */}
-                <div className="relative border-4 border-[#131313] overflow-hidden w-full h-full bg-[#F5C400] flex items-end justify-center">
+                <div className="relative border-4 border-[#FFFFFF] overflow-hidden w-full h-full bg-[#F5C400] flex items-end justify-center">
                   <img
                     src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
                     alt="Zoubeir Ibrahima Amed"
@@ -167,8 +167,8 @@ const HeroSection = () => {
               </div>
 
               {/* Tech label */}
-              <div className="absolute -bottom-4 -left-4 bg-[#F5C400] border-4 border-[#131313] px-4 py-2 z-20">
-                <p className="font-display font-black text-xs uppercase tracking-wider text-[#131313]">
+              <div className="absolute -bottom-4 -left-4 bg-[#F5C400] border-4 border-[#FFFFFF] px-4 py-2 z-20">
+                <p className="font-display font-black text-xs uppercase tracking-wider text-[#FFFFFF]">
                   Django · Python · AI
                 </p>
               </div>

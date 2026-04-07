@@ -41,7 +41,7 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#F5C400]/95 backdrop-blur-md border-b-4 border-[#131313]"
+          ? "bg-[#F5C400]/95 backdrop-blur-md border-b-4 border-[#FFFFFF]"
           : "bg-[#F5C400]/80 backdrop-blur-sm"
       }`}
     >
@@ -49,11 +49,14 @@ const Navbar = () => {
         {/* Logo */}
         <motion.a
           href="#hero"
-          className="font-display font-black text-2xl text-[#131313] tracking-tight hover:text-[#131313] transition-colors"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          ZIA
+          <img
+            src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+            alt="Scale avec Zoubeir"
+            className="h-10 w-auto object-contain"
+          />
         </motion.a>
 
         {/* Desktop Nav Links */}
@@ -62,7 +65,7 @@ const Navbar = () => {
             <motion.a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-[#131313] hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150 border-2 border-transparent hover:border-[#131313]"
+              className="px-4 py-2 text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150 border-2 border-transparent hover:border-[#FFFFFF]"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -76,7 +79,7 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <motion.a
             href="#contact"
-            className="hidden md:block px-5 py-2 bg-[#131313] text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-2 border-[#131313] hover:bg-[#F5C400] hover:text-[#131313] transition-all duration-150"
+            className="hidden md:block px-5 py-2 bg-[#FFFFFF] text-[#F5C400] font-display font-black text-sm uppercase tracking-wider border-2 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -84,7 +87,7 @@ const Navbar = () => {
           </motion.a>
 
           <motion.button
-            className="md:hidden p-2 border-2 border-[#131313] bg-[#131313] text-[#F5C400]"
+            className="md:hidden p-2 border-2 border-[#FFFFFF] bg-[#FFFFFF] text-[#F5C400]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             whileTap={{ scale: 0.95 }}
@@ -102,7 +105,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden bg-[#F5C400] border-t-4 border-[#131313]"
+            className="md:hidden bg-[#F5C400] border-t-4 border-[#FFFFFF]"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -114,7 +117,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block py-3 px-4 font-display font-black text-lg uppercase text-[#131313] border-2 border-[#131313] text-center hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150"
+                  className="block py-3 px-4 font-display font-black text-lg uppercase text-[#FFFFFF] border-2 border-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -125,7 +128,7 @@ const Navbar = () => {
               <motion.a
                 href="#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="mt-2 py-3 px-4 bg-[#131313] text-[#F5C400] font-display font-black text-lg uppercase text-center border-2 border-[#131313]"
+                className="mt-2 py-3 px-4 bg-[#FFFFFF] text-[#F5C400] font-display font-black text-lg uppercase text-center border-2 border-[#FFFFFF]"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}

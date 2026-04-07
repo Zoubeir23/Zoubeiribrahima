@@ -20,7 +20,7 @@ const MarqueeSection = () => {
     "Supabase", "FastAPI", "TypeScript", "Claude API",
   ];
   return (
-    <div className="bg-[#131313] border-y-4 border-[#F5C400] py-5 overflow-hidden">
+    <div className="bg-[#FFFFFF] border-y-4 border-[#F5C400] py-5 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         {items.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-6 mx-0">
@@ -48,7 +48,7 @@ const MarqueeSection = () => {
 const CtaBand = () => {
   const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
   return (
-    <div className="bg-[#131313] border-y-8 border-[#F5C400] py-6 overflow-hidden">
+    <div className="bg-[#FFFFFF] border-y-8 border-[#F5C400] py-6 overflow-hidden">
       <div className="flex animate-marquee whitespace-nowrap">
         {[text, text].map((t, i) => (
           <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#F5C400] tracking-tight shrink-0">
@@ -62,10 +62,14 @@ const CtaBand = () => {
 
 /* ── Footer ───────────────────────────────────────────────────── */
 const Footer = () => (
-  <footer className="bg-[#F5C400] border-t-8 border-[#131313] py-12 px-6">
+  <footer className="bg-[#F5C400] border-t-8 border-[#FFFFFF] py-12 px-6">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-      <span className="font-display font-black text-3xl text-[#131313] tracking-tight">ZIA</span>
-      <p className="font-body text-[10px] font-black uppercase tracking-[0.25em] text-[#131313]/60 text-center">
+      <img
+          src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+          alt="Scale avec Zoubeir"
+          className="h-12 w-auto object-contain"
+        />
+      <p className="font-body text-[10px] font-black uppercase tracking-[0.25em] text-[#FFFFFF]/60 text-center">
         © 2025 Zoubeir Ibrahima Amed — Tous droits réservés
       </p>
       <div className="flex gap-8">
@@ -79,7 +83,7 @@ const Footer = () => (
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#131313]/50 hover:text-[#131313] border-b-2 border-transparent hover:border-[#131313] transition-all duration-200 pb-0.5"
+            className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#FFFFFF] transition-all duration-200 pb-0.5"
           >
             {link.label}
           </a>
@@ -100,7 +104,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5C400] text-[#131313] font-body antialiased">
+    <div className="min-h-screen bg-[#F5C400] text-[#FFFFFF] font-body antialiased">
       <Navbar />
       <HeroSection />
       <MarqueeSection />
@@ -115,7 +119,7 @@ const Index = () => {
       {/* Scroll to top */}
       <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-6 p-4 bg-[#131313] text-[#F5C400] border-4 border-[#131313] hover:bg-[#F5C400] hover:text-[#131313] transition-all duration-150 z-50 font-display font-black text-xs"
+        className="fixed bottom-6 right-6 p-4 bg-[#FFFFFF] text-[#F5C400] border-4 border-[#FFFFFF] hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150 z-50 font-display font-black text-xs"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
         whileTap={{ scale: 0.95 }}
