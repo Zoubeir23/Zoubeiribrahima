@@ -46,19 +46,29 @@ const AboutSection = () => {
 
         {/* ── Header ── */}
         <motion.div
-          className="mb-20"
+          className="mb-20 flex flex-col md:flex-row md:items-end gap-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-display font-bold text-[#131313]/50 text-sm uppercase tracking-[0.3em] mb-3">
-            — Parcours
-          </p>
-          <h2 className="font-display font-black text-[#131313] text-5xl md:text-8xl uppercase leading-tight">
-            Expériences<br />
-            <span className="text-[#131313]/30">&amp; Formation</span>
-          </h2>
+          <div className="flex-1">
+            <p className="font-display font-bold text-[#131313]/50 text-sm uppercase tracking-[0.3em] mb-3">
+              — Parcours
+            </p>
+            <h2 className="font-display font-black text-[#131313] text-5xl md:text-8xl uppercase leading-tight">
+              Expériences<br />
+              <span className="text-[#131313]/30">&amp; Formation</span>
+            </h2>
+          </div>
+          {/* Portrait illustration */}
+          <div className="border-4 border-[#131313] bg-[#F5C400] w-36 h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center">
+            <img
+              src="/Sans_titre-removebg-preview.png"
+              alt="Portrait Zoubeir"
+              className="w-full h-full object-contain object-bottom"
+            />
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">

@@ -65,6 +65,19 @@ const HeroSection = () => {
               </motion.h1>
             </div>
 
+            {/* Scale avec Zoubeir branding */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.65 }}
+            >
+              <img
+                src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+                alt="Scale avec Zoubeir"
+                className="h-16 md:h-20 w-auto object-contain"
+              />
+            </motion.div>
+
             {/* Tagline */}
             <motion.p
               className="font-body text-lg md:text-xl font-semibold text-[#131313] max-w-lg leading-relaxed border-l-8 border-[#131313] pl-4"
@@ -139,17 +152,16 @@ const HeroSection = () => {
                 ★ Available for Hire ★
               </motion.div>
 
-              {/* Image container - square yellow bg treatment */}
-              <div className="relative w-72 h-72 md:w-96 md:h-96">
+              {/* Illustration container */}
+              <div className="relative w-72 h-80 md:w-96 md:h-[28rem]">
                 {/* Shadow/offset layer */}
                 <div className="absolute inset-0 translate-x-4 translate-y-4 bg-[#131313]" />
-                {/* Image frame */}
-                <div className="relative border-4 border-[#131313] overflow-hidden w-full h-full bg-[#F5C400]">
+                {/* Image frame - yellow bg shows through transparent illustration */}
+                <div className="relative border-4 border-[#131313] overflow-hidden w-full h-full bg-[#F5C400] flex items-end justify-center">
                   <img
-                    src="/Zoubeiriprofile.jpeg"
+                    src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
                     alt="Zoubeir Ibrahima Amed"
-                    className="w-full h-full object-cover grayscale contrast-[1.8] brightness-110"
-                    style={{ mixBlendMode: "multiply" }}
+                    className="w-full h-full object-contain object-bottom"
                   />
                 </div>
               </div>
