@@ -35,6 +35,22 @@ const MarqueeSection = () => {
   );
 };
 
+/* ── CTA Band ─────────────────────────────────────────────────── */
+const CtaBand = () => {
+  const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
+  return (
+    <div className="bg-[#131313] border-y-8 border-[#F5C400] py-6 overflow-hidden">
+      <div className="flex animate-marquee whitespace-nowrap">
+        {[text, text].map((t, i) => (
+          <span key={i} className="font-display font-black text-2xl md:text-4xl uppercase text-[#F5C400] tracking-tight shrink-0">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 /* ── Footer ───────────────────────────────────────────────────── */
 const Footer = () => (
   <footer className="bg-[#F5C400] border-t-8 border-[#131313] py-12 px-6">
@@ -81,6 +97,7 @@ const Index = () => {
       <MarqueeSection />
       <SkillsSection />
       <ProjectsBentoSection />
+      <CtaBand />
       <AboutSection />
       <CertificationsWallOfFame />
       <ContactSection />

@@ -89,7 +89,7 @@ const CertificationsWallOfFame = () => {
               className="group border-r-4 border-b-4 border-[#131313] last-of-type:border-r-4 p-8 bg-[#F5C400] hover:bg-[#131313] transition-all duration-200 cursor-default flex flex-col gap-4"
               style={{
                 // Remove right border for last in each row
-                borderRight: (index + 1) % 4 === 0 ? "0" : undefined,
+                borderRight: (index + 1) % 4 === 0 ? "none" : undefined,
               }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
