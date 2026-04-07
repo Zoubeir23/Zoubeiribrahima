@@ -42,22 +42,22 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-display font-bold text-[#E5E5E5]/60 text-sm uppercase tracking-[0.3em] mb-3">
+          <p className="font-display font-bold text-[#131313]/60 text-sm uppercase tracking-[0.3em] mb-3">
             — Technologies
           </p>
-          <h2 className="font-display font-black text-[#E5E5E5] text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-[#131313] text-5xl md:text-7xl uppercase leading-tight">
             My Tech
             <br />
-            <span className="bg-[#E5E5E5] text-[#F5C400] px-3 inline-block">Stack</span>
+            <span className="bg-[#131313] text-[#F5C400] px-3 inline-block">Stack</span>
           </h2>
         </motion.div>
 
         {/* 3 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-4 border-[#E5E5E5]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-4 border-[#131313]">
           {skillCards.map((card, index) => (
             <motion.div
               key={card.title}
-              className="group border-r-4 border-[#E5E5E5] last:border-r-0 p-8 bg-[#F5C400] hover:bg-[#E5E5E5] transition-all duration-200 cursor-default"
+              className="group border-r-4 border-[#131313] last:border-r-0 p-8 bg-[#F5C400] hover:bg-[#131313] transition-all duration-200 cursor-default"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -65,13 +65,13 @@ const SkillsSection = () => {
             >
               {/* Icon */}
               <div className="mb-6">
-                <div className="w-14 h-14 border-4 border-[#E5E5E5] group-hover:border-[#F5C400] flex items-center justify-center bg-[#E5E5E5] group-hover:bg-[#F5C400] transition-all duration-200">
-                  <card.icon className="w-6 h-6 text-[#F5C400] group-hover:text-[#E5E5E5] transition-colors duration-200" />
+                <div className="w-14 h-14 border-4 border-[#131313] group-hover:border-[#F5C400] flex items-center justify-center bg-[#131313] group-hover:bg-[#F5C400] transition-all duration-200">
+                  <card.icon className="w-6 h-6 text-[#F5C400] group-hover:text-[#131313] transition-colors duration-200" />
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-black text-xl uppercase text-[#E5E5E5] group-hover:text-[#F5C400] mb-6 transition-colors duration-200">
+              <h3 className="font-display font-black text-xl uppercase text-[#131313] group-hover:text-[#F5C400] mb-6 transition-colors duration-200">
                 {card.title}
               </h3>
 
@@ -80,9 +80,9 @@ const SkillsSection = () => {
                 {card.techs.map((tech) => (
                   <li
                     key={tech}
-                    className="flex items-center gap-3 font-body font-semibold text-sm text-[#E5E5E5]/80 group-hover:text-[#F5C400]/80 transition-colors duration-200"
+                    className="flex items-center gap-3 font-body font-semibold text-sm text-[#131313]/80 group-hover:text-[#F5C400]/80 transition-colors duration-200"
                   >
-                    <span className="w-2 h-2 bg-[#E5E5E5] group-hover:bg-[#F5C400] shrink-0 transition-colors duration-200" />
+                    <span className="w-2 h-2 bg-[#131313] group-hover:bg-[#F5C400] shrink-0 transition-colors duration-200" />
                     {tech}
                   </li>
                 ))}
@@ -93,20 +93,20 @@ const SkillsSection = () => {
 
         {/* Full stack tags row */}
         <motion.div
-          className="mt-12 border-t-4 border-[#E5E5E5] pt-8"
+          className="mt-12 border-t-4 border-[#131313] pt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <p className="font-display font-bold text-[#E5E5E5]/60 text-xs uppercase tracking-[0.3em] mb-4">
+          <p className="font-display font-bold text-[#131313]/60 text-xs uppercase tracking-[0.3em] mb-4">
             Langages & Outils maîtrisés
           </p>
           <div className="flex flex-wrap gap-3">
             {["JavaScript", "Python", "PHP", "Java", "SQL", "React.js", "TailwindCSS", "PostgreSQL", "MySQL", "Docker", "GitHub", "Claude Code"].map((tech) => (
               <span
                 key={tech}
-                className="font-body font-bold text-xs uppercase tracking-wider border-2 border-[#E5E5E5] text-[#E5E5E5] px-3 py-1 hover:bg-[#E5E5E5] hover:text-[#F5C400] transition-all duration-150 cursor-default"
+                className="font-body font-bold text-xs uppercase tracking-wider border-2 border-[#131313] text-[#131313] px-3 py-1 hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150 cursor-default"
               >
                 {tech}
               </span>

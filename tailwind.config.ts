@@ -36,32 +36,32 @@ export default {
           DEFAULT: "#F5C400",
         },
         black: {
-          brand: "#E5E5E5",
-          DEFAULT: "#E5E5E5",
+          brand: "#131313",
+          DEFAULT: "#131313",
         },
         white: {
-          DEFAULT: "#E5E5E5",
+          DEFAULT: "#131313",
         },
-        border: "#E5E5E5",
-        input: "#E5E5E5",
+        border: "#131313",
+        input: "#131313",
         ring: "#F5C400",
         background: "#F5C400",
-        foreground: "#E5E5E5",
+        foreground: "#131313",
         primary: {
           DEFAULT: "#F5C400",
-          foreground: "#E5E5E5",
+          foreground: "#131313",
         },
         secondary: {
-          DEFAULT: "#E5E5E5",
+          DEFAULT: "#131313",
           foreground: "#F5C400",
         },
         muted: {
           DEFAULT: "#F5C400",
-          foreground: "#E5E5E5",
+          foreground: "#131313",
         },
         accent: {
           DEFAULT: "#F5C400",
-          foreground: "#E5E5E5",
+          foreground: "#131313",
         },
       },
       keyframes: {
