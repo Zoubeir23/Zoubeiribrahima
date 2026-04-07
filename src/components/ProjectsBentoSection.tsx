@@ -116,9 +116,9 @@ const ProjectsBentoSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             {
-              title: "NeuralFlow Engine",
-              desc: "Moteur de flux IA pour orchestrer des pipelines LangChain avec gestion de contexte avancée.",
-              tags: ["LangChain", "Python", "FastAPI", "Redis"],
+              title: "Smart-HR",
+              desc: "Système de Gestion RH intelligent avec IA intégrée — recrutement automatisé, gestion des congés, paie et analytics avancés.",
+              tags: ["Django", "React", "TypeScript", "PostgreSQL", "Docker"],
               status: "Coming Soon",
             },
             {
