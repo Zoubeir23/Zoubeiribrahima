@@ -157,13 +157,13 @@ const CertificationsWallOfFame = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div>
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">23</p>
+            <p className="font-display font-black text-5xl text-[#FFFFFF]">10+</p>
             <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
               Certifications obtenues
             </p>
           </div>
           <div className="border-l-4 border-[#FFFFFF] pl-8">
-            <p className="font-display font-black text-5xl text-[#FFFFFF]">8</p>
+            <p className="font-display font-black text-5xl text-[#FFFFFF]">5+</p>
             <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/50 mt-1">
               Organismes reconnus
             </p>
