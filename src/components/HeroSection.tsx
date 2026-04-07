@@ -80,7 +80,7 @@ const HeroSection = () => {
 
             {/* Tagline */}
             <motion.p
-              className="font-body text-lg md:text-xl font-semibold text-[#131313] max-w-lg leading-relaxed border-l-8 border-[#131313] pl-4"
+              className="font-body text-lg md:text-xl font-semibold text-[#131313] max-w-lg leading-relaxed border-l-4 border-[#131313]/30 pl-4"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
@@ -97,7 +97,7 @@ const HeroSection = () => {
             >
               <motion.a
                 href="#projects"
-                className="group flex items-center gap-3 px-8 py-4 bg-[#131313] text-[#F5C400] font-display font-black uppercase text-sm tracking-wider border-4 border-[#131313] hover:bg-[#F5C400] hover:text-[#131313] transition-all duration-150"
+                className="group flex items-center gap-3 px-8 py-4 bg-[#131313] text-[#F5C400] font-display font-black uppercase text-sm tracking-wider"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -106,7 +106,7 @@ const HeroSection = () => {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#131313] font-display font-black uppercase text-sm tracking-wider border-4 border-[#131313] hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150"
+                className="flex items-center gap-3 px-8 py-4 bg-transparent text-[#131313] font-display font-black uppercase text-sm tracking-wider border-2 border-[#131313]"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -116,7 +116,7 @@ const HeroSection = () => {
 
             {/* Stats row */}
             <motion.div
-              className="flex flex-wrap gap-0 border-t-4 border-[#131313] pt-8"
+              className="flex flex-wrap gap-0 border-t-2 border-[#131313]/20 pt-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
@@ -126,7 +126,7 @@ const HeroSection = () => {
                 { number: "10+", label: "Certifications" },
                 { number: "1", label: "SaaS fondé" },
               ].map((stat, i) => (
-                <div key={i} className="pr-8 mr-8 border-r-4 border-[#131313] last:border-0 last:mr-0">
+                <div key={i} className="pr-8 mr-8 border-r-2 border-[#131313]/20 last:border-0 last:mr-0">
                   <p className="font-display font-black text-4xl text-[#131313]">{stat.number}</p>
                   <p className="font-body text-sm font-semibold text-[#131313]/70 uppercase tracking-wider">{stat.label}</p>
                 </div>

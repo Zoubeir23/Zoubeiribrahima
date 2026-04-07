@@ -219,7 +219,7 @@ const CertificationsSection = () => {
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-4 border-[#131313]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {certifications.map((cert, index) => {
             const Card = cert.certUrl ? "a" : "div";
             const cardProps = cert.certUrl
@@ -236,25 +236,25 @@ const CertificationsSection = () => {
               >
                 <Card
                   {...cardProps}
-                  className={`group flex items-start gap-4 p-5 border-r-4 border-b-4 border-[#131313] bg-[#F5C400] transition-all duration-200 h-full ${
+                  className={`flex items-start gap-4 p-5 border-2 border-[#131313]/20 bg-[#F5C400] h-full transition-all duration-200 ${
                     cert.certUrl
-                      ? "hover:bg-[#131313] cursor-pointer"
-                      : "hover:bg-[#131313]/10"
+                      ? "cursor-pointer hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_#131313]"
+                      : ""
                   }`}
                 >
                   {/* Logo badge */}
-                  <div className="w-10 h-10 shrink-0 border-2 border-[#131313] bg-[#131313] flex items-center justify-center group-hover:bg-[#F5C400] group-hover:border-[#F5C400] transition-all duration-200">
-                    <span className="font-display font-black text-[10px] text-[#F5C400] group-hover:text-[#131313]">
+                  <div className="w-9 h-9 shrink-0 bg-[#131313] flex items-center justify-center">
+                    <span className="font-display font-black text-[10px] text-[#F5C400]">
                       {cert.logo}
                     </span>
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-display font-black text-sm uppercase leading-tight text-[#131313] group-hover:text-[#F5C400] transition-colors duration-200 line-clamp-2">
+                    <h4 className="font-display font-black text-sm uppercase leading-tight text-[#131313] line-clamp-2">
                       {cert.title}
                     </h4>
-                    <p className="font-body text-xs font-semibold text-[#131313]/60 group-hover:text-[#F5C400]/60 uppercase tracking-wider mt-1 transition-colors duration-200">
+                    <p className="font-body text-xs font-semibold text-[#131313]/50 uppercase tracking-wider mt-1">
                       {cert.issuer} · {cert.date}
                     </p>
                     {cert.skills && cert.skills.length > 0 && (
@@ -262,7 +262,7 @@ const CertificationsSection = () => {
                         {cert.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="text-[10px] px-2 py-0.5 border border-[#131313]/30 group-hover:border-[#F5C400]/30 text-[#131313]/70 group-hover:text-[#F5C400]/70 uppercase tracking-wide transition-colors duration-200"
+                            className="text-[10px] px-2 py-0.5 border border-[#131313]/20 text-[#131313]/50 uppercase tracking-wide"
                           >
                             {skill}
                           </span>
@@ -273,7 +273,7 @@ const CertificationsSection = () => {
 
                   {/* Link icon */}
                   {cert.certUrl && (
-                    <ExternalLink className="w-4 h-4 shrink-0 text-[#131313]/40 group-hover:text-[#F5C400] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
+                    <ExternalLink className="w-3.5 h-3.5 shrink-0 text-[#131313]/30 mt-0.5" />
                   )}
                 </Card>
               </motion.div>

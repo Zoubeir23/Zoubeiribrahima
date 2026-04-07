@@ -128,7 +128,7 @@ const ContactSection = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#131313] text-[#F5C400] font-display font-black text-sm uppercase tracking-widest py-5 border-4 border-[#131313] hover:bg-transparent hover:text-[#131313] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#131313] text-[#F5C400] font-display font-black text-sm uppercase tracking-widest py-5 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
@@ -203,7 +203,7 @@ const ContactSection = () => {
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#131313] text-[#131313] font-display font-black text-xs uppercase tracking-wider hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150"
+                  className="flex items-center gap-2 px-5 py-3 border-2 border-[#131313] text-[#131313] font-display font-black text-xs uppercase tracking-wider hover:opacity-70 transition-opacity duration-150"
                 >
                   <Github className="w-4 h-4" />
                   GitHub
@@ -212,7 +212,7 @@ const ContactSection = () => {
                   href="https://linkedin.com/in/zoubeir-ibrahima"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#131313] text-[#131313] font-display font-black text-xs uppercase tracking-wider hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150"
+                  className="flex items-center gap-2 px-5 py-3 border-2 border-[#131313] text-[#131313] font-display font-black text-xs uppercase tracking-wider hover:opacity-70 transition-opacity duration-150"
                 >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
@@ -223,7 +223,7 @@ const ContactSection = () => {
                 <a
                   href="/CV.pdf"
                   download="Zoubeir-Ibrahima-Amed-CV.pdf"
-                  className="px-5 py-3 bg-[#131313] text-[#F5C400] font-display font-black text-xs uppercase tracking-wider border-4 border-[#131313] hover:bg-transparent hover:text-[#131313] transition-all duration-150"
+                  className="px-5 py-3 bg-[#131313] text-[#F5C400] font-display font-black text-xs uppercase tracking-wider hover:opacity-90 transition-opacity duration-150"
                 >
                   CV PDF →
                 </a>

@@ -90,9 +90,8 @@ const CertificationsWallOfFame = () => {
         </motion.div>
 
         {/* Grid 2x4 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-4 border-[#131313]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {certifications.map((cert, index) => {
-            const lastRowStart = Math.floor((certifications.length - 1) / 4) * 4;
             const Tag = cert.certUrl ? "a" : "div";
             const linkProps = cert.certUrl
               ? { href: cert.certUrl, target: "_blank", rel: "noopener noreferrer" }
@@ -101,43 +100,42 @@ const CertificationsWallOfFame = () => {
             return (
               <motion.div
                 key={cert.title}
-                style={{
-                  borderRight: (index + 1) % 4 === 0 ? "none" : undefined,
-                  borderBottom: index >= lastRowStart ? "none" : undefined,
-                }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="border-r-4 border-b-4 border-[#131313]"
               >
                 <Tag
                   {...linkProps}
-                  className={`group p-8 bg-[#F5C400] hover:bg-[#131313] transition-all duration-200 flex flex-col gap-4 h-full ${cert.certUrl ? "cursor-pointer" : "cursor-default"}`}
+                  className={`p-6 bg-[#F5C400] border-2 border-[#131313]/20 flex flex-col gap-4 h-full transition-all duration-200 ${
+                    cert.certUrl
+                      ? "cursor-pointer hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#131313]"
+                      : "cursor-default"
+                  }`}
                 >
-                  {/* Icon + ExternalLink row */}
+                  {/* Icon + ExternalLink */}
                   <div className="flex items-start justify-between">
-                    <div className="w-12 h-12 border-4 border-[#131313] group-hover:border-[#F5C400] bg-[#131313] group-hover:bg-[#F5C400] flex items-center justify-center transition-all duration-200 shrink-0">
-                      <cert.icon className="w-5 h-5 text-[#F5C400] group-hover:text-[#131313] transition-colors duration-200" />
+                    <div className="w-10 h-10 border-2 border-[#131313] bg-[#131313] flex items-center justify-center shrink-0">
+                      <cert.icon className="w-4 h-4 text-[#F5C400]" />
                     </div>
                     {cert.certUrl && (
-                      <ExternalLink className="w-4 h-4 text-[#131313]/30 group-hover:text-[#F5C400] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
+                      <ExternalLink className="w-3.5 h-3.5 text-[#131313]/30 mt-1" />
                     )}
                   </div>
 
                   {/* Content */}
                   <div className="flex flex-col gap-1 flex-1">
-                    <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-[#131313]/40 group-hover:text-[#F5C400]/50 transition-colors duration-200">
+                    <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-[#131313]/40">
                       {cert.category} · {cert.year}
                     </span>
-                    <h3 className="font-display font-black text-base uppercase leading-tight text-[#131313] group-hover:text-[#F5C400] transition-colors duration-200">
+                    <h3 className="font-display font-black text-sm uppercase leading-tight text-[#131313]">
                       {cert.title}
                     </h3>
-                    <p className="font-body font-semibold text-xs text-[#131313]/60 group-hover:text-[#F5C400]/60 uppercase tracking-wider transition-colors duration-200">
+                    <p className="font-body font-semibold text-xs text-[#131313]/50 uppercase tracking-wider">
                       {cert.issuer}
                     </p>
                     {cert.certUrl && (
-                      <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-[#131313]/30 group-hover:text-[#F5C400]/60 transition-colors duration-200">
+                      <span className="mt-auto pt-3 font-display font-bold text-[10px] uppercase tracking-widest text-[#131313]/30">
                         Voir le diplôme →
                       </span>
                     )}
@@ -150,7 +148,7 @@ const CertificationsWallOfFame = () => {
 
         {/* Counter strip */}
         <motion.div
-          className="mt-8 border-4 border-[#131313] p-6 flex flex-wrap gap-8 items-center"
+          className="mt-8 border-t-2 border-[#131313]/20 pt-8 flex flex-wrap gap-12 items-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -162,20 +160,20 @@ const CertificationsWallOfFame = () => {
               Certifications obtenues
             </p>
           </div>
-          <div className="border-l-4 border-[#131313] pl-8">
+          <div className="border-l-2 border-[#131313]/20 pl-12">
             <p className="font-display font-black text-5xl text-[#131313]">9</p>
             <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#131313]/50 mt-1">
               Organismes reconnus
             </p>
           </div>
-          <div className="border-l-4 border-[#131313] pl-8">
+          <div className="border-l-2 border-[#131313]/20 pl-12">
             <p className="font-display font-black text-5xl text-[#131313]">2+</p>
             <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-[#131313]/50 mt-1">
               Années de formation continue
             </p>
           </div>
           <div className="ml-auto">
-            <p className="font-display font-black text-xs uppercase tracking-[0.2em] text-[#131313]/40">
+            <p className="font-display font-bold text-xs uppercase tracking-[0.2em] text-[#131313]/40">
               Harvard · Anthropic · Cisco · Microsoft
               <br />
               HackerRank · Udemy · LinkedIn · Coursera
