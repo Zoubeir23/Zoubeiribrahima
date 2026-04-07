@@ -35,7 +35,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="bg-[#131313] py-24 px-6">
+    <section id="contact" className="bg-[#FFFFFF] py-24 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -67,7 +67,7 @@ const ContactSection = () => {
             {submitStatus === "success" ? (
               <div className="flex flex-col items-center justify-center h-full py-16 text-center">
                 <div className="w-16 h-16 bg-[#F5C400] flex items-center justify-center mb-6">
-                  <span className="font-display font-black text-2xl text-[#131313]">✓</span>
+                  <span className="font-display font-black text-2xl text-[#FFFFFF]">✓</span>
                 </div>
                 <h3 className="font-display font-black text-2xl text-[#F5C400] uppercase mb-3">
                   Message Envoyé !
@@ -128,7 +128,7 @@ const ContactSection = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F5C400] text-[#131313] font-display font-black text-sm uppercase tracking-widest py-5 border-4 border-[#F5C400] hover:bg-[#131313] hover:text-[#F5C400] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#F5C400] text-[#FFFFFF] font-display font-black text-sm uppercase tracking-widest py-5 border-4 border-[#F5C400] hover:bg-[#FFFFFF] hover:text-[#F5C400] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
                 >
@@ -188,7 +188,7 @@ const ContactSection = () => {
                     Localisation
                   </p>
                   <p className="font-body font-semibold text-[#F5C400] text-base">
-                    Grand-Dakar, Dakar, Sénégal
+                    Sénégal
                   </p>
                 </div>
               </div>
@@ -203,7 +203,7 @@ const ContactSection = () => {
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#F5C400] text-[#F5C400] font-display font-black text-xs uppercase tracking-wider hover:bg-[#F5C400] hover:text-[#131313] transition-all duration-150"
+                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#F5C400] text-[#F5C400] font-display font-black text-xs uppercase tracking-wider hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
                 >
                   <Github className="w-4 h-4" />
                   GitHub
@@ -212,7 +212,7 @@ const ContactSection = () => {
                   href="https://linkedin.com/in/zoubeir-ibrahima"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#F5C400] text-[#F5C400] font-display font-black text-xs uppercase tracking-wider hover:bg-[#F5C400] hover:text-[#131313] transition-all duration-150"
+                  className="flex items-center gap-2 px-5 py-3 border-4 border-[#F5C400] text-[#F5C400] font-display font-black text-xs uppercase tracking-wider hover:bg-[#F5C400] hover:text-[#FFFFFF] transition-all duration-150"
                 >
                   <Linkedin className="w-4 h-4" />
                   LinkedIn
@@ -223,7 +223,7 @@ const ContactSection = () => {
                 <a
                   href="/CV.pdf"
                   download="Zoubeir-Ibrahima-Amed-CV.pdf"
-                  className="px-5 py-3 bg-[#F5C400] text-[#131313] font-display font-black text-xs uppercase tracking-wider border-4 border-[#F5C400] hover:bg-transparent hover:text-[#F5C400] transition-all duration-150"
+                  className="px-5 py-3 bg-[#F5C400] text-[#FFFFFF] font-display font-black text-xs uppercase tracking-wider border-4 border-[#F5C400] hover:bg-transparent hover:text-[#F5C400] transition-all duration-150"
                 >
                   CV PDF →
                 </a>

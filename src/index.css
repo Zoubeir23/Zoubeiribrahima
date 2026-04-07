@@ -7,7 +7,7 @@
 @layer base {
   :root {
     --background: #F5C400;
-    --foreground: #131313;
+    --foreground: #FFFFFF;
     --radius: 0px;
   }
 
@@ -22,7 +22,7 @@
 
   body {
     background-color: #F5C400;
-    color: #131313;
+    color: #FFFFFF;
     font-family: "Manrope", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,7 +34,7 @@
   }
 
   ::selection {
-    background-color: #131313;
+    background-color: #FFFFFF;
     color: #F5C400;
   }
 }
@@ -63,7 +63,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #131313;
+    background: #FFFFFF;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -124,6 +124,6 @@
 
   .brutalist-hover:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 6px 6px 0px #131313;
+    box-shadow: 6px 6px 0px #FFFFFF;
   }
 }
