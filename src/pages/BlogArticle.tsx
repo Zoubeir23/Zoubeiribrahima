@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import { blogPosts } from "@/data/blogPosts";
 import { ArrowLeft, ArrowUp, Check, Copy, List } from "lucide-react";
@@ -89,20 +89,27 @@ function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: s
   return headings;
 }
 
-function useReadingProgress() {
+function useReadingProgress(articleRef: React.RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const update = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
+      const el = articleRef.current;
+      if (!el) return;
+      const { top, height } = el.getBoundingClientRect();
+      const visible = -top;
+      const total = height - window.innerHeight;
+      if (total <= 0) {
+        setProgress(100);
+        return;
+      }
+      setProgress(Math.min(100, Math.max(0, (visible / total) * 100)));
     };
 
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
-  }, []);
+  }, [articleRef]);
 
   return progress;
 }
@@ -128,9 +135,10 @@ function CopyButton({ code }: { code: string }) {
 
 const BlogArticle = () => {
   const renderedHeadingIdCounts = new Map<string, number>();
+  const articleRef = useRef<HTMLElement | null>(null);
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
-  const progress = useReadingProgress();
+  const progress = useReadingProgress(articleRef);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const [activeTocId, setActiveTocId] = useState<string>("");
@@ -260,7 +268,7 @@ const BlogArticle = () => {
 
         <div className="mt-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12 xl:grid-cols-[1fr_330px] xl:gap-16 items-start">
           {/* Main article */}
-          <article>
+          <article ref={articleRef}>
             {/* Cover + header */}
             <div className="border-4 border-[#F5C518] bg-[#0303AB] overflow-hidden">
               <div className="aspect-[16/9] border-b-4 border-[#F5C518]">
