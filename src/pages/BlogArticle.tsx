@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import { blogPosts } from "@/data/blogPosts";
 import { ArrowLeft, ArrowUp, Check, Copy, List } from "lucide-react";
@@ -89,57 +89,20 @@ function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: s
   return headings;
 }
 
-function useReadingProgress(targetRef: React.RefObject<HTMLElement | null>) {
+function useReadingProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const calculateProgress = () => {
+    const update = () => {
       const scrollTop = window.scrollY;
-      const target = targetRef.current;
-
-      // Fallback: if target is missing, keep old document-based behavior.
-      if (!target) {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const newProgress = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
-        setProgress(newProgress);
-        return;
-      }
-
-      const rect = target.getBoundingClientRect();
-      const articleTop = scrollTop + rect.top;
-      const articleHeight = Math.max(target.scrollHeight, rect.height);
-      const viewportOffset = window.innerHeight * 0.35;
-      const start = articleTop - viewportOffset;
-      const end = articleTop + articleHeight - viewportOffset;
-      const distance = Math.max(1, end - start);
-      const rawProgress = ((scrollTop - start) / distance) * 100;
-      const newProgress = Math.min(100, Math.max(0, rawProgress));
-
-      setProgress(newProgress);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
     };
 
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          calculateProgress();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    calculateProgress();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", calculateProgress);
-    window.addEventListener("load", calculateProgress);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", calculateProgress);
-      window.removeEventListener("load", calculateProgress);
-    };
-  }, [targetRef]);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
 
   return progress;
 }
@@ -165,11 +128,9 @@ function CopyButton({ code }: { code: string }) {
 
 const BlogArticle = () => {
   const renderedHeadingIdCounts = new Map<string, number>();
-  const readingTargetRef = useRef<HTMLDivElement | null>(null);
-
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
-  const progress = useReadingProgress(readingTargetRef);
+  const progress = useReadingProgress();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const [activeTocId, setActiveTocId] = useState<string>("");
@@ -387,7 +348,7 @@ const BlogArticle = () => {
             )}
 
             {/* Content sections */}
-            <div ref={readingTargetRef} className="mt-8 space-y-8">
+            <div className="mt-8 space-y-8">
               {post.contentMarkdown && (
                 <section className="border-4 border-[#F5C518] bg-[#0303AB] p-6 sm:p-8">
                   <div className="font-body text-sm sm:text-base text-[#FFFFFF]/88 leading-relaxed">
