@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUp, Check, Copy, List } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
+import { Card } from "@/components/ui/card";
 
 function useReadingProgress() {
   const [progress, setProgress] = useState(0);
@@ -160,35 +161,64 @@ const BlogArticle = () => {
               </div>
             </div>
 
-            {/* Mobile TOC — collapsible */}
+            {/* Mobile TOC — collapsible Card */}
             {toc.length > 0 && (
-              <div className="lg:hidden mt-6 border-4 border-[#F5C518] bg-[#0303AB]">
+              <Card className="lg:hidden mt-8 border-4 border-[#F5C518] bg-[#0303AB] overflow-hidden shadow-lg">
                 <button
                   onClick={() => setTocOpen(!tocOpen)}
-                  className="w-full flex items-center justify-between gap-3 p-4 font-display font-black text-sm uppercase tracking-[0.15em]"
+                  className="w-full flex items-center justify-between gap-3 p-5 font-display font-black text-sm uppercase tracking-[0.15em] hover:bg-[#020285] transition-colors duration-150 border-b-4 border-[#F5C518]"
                   aria-expanded={tocOpen}
                 >
-                  <span className="flex items-center gap-2">
-                    <List className="w-4 h-4 text-[#F5C518]" />
-                    Table des matières
+                  <span className="flex items-center gap-3">
+                    <div className="p-1.5 bg-[#F5C518] rounded">
+                      <List className="w-4 h-4 text-[#020285]" />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-[#FFFFFF]">Table des matières</span>
+                      <span className="block text-[9px] font-body font-normal text-[#FFFFFF]/60 mt-0.5">
+                        {toc.length} sections
+                      </span>
+                    </div>
                   </span>
-                  <span className="text-[#F5C518] text-lg leading-none">{tocOpen ? "−" : "+"}</span>
+                  <span className="text-[#F5C518] text-2xl leading-none font-black">
+                    {tocOpen ? "−" : "+"}
+                  </span>
                 </button>
                 {tocOpen && (
-                  <nav className="border-t-4 border-[#F5C518] p-4 space-y-1">
+                  <nav className="border-t-4 border-[#F5C518] p-5 space-y-2 bg-gradient-to-b from-[#0303AB] to-[#020285]">
                     {toc.map((item) => (
                       <a
                         key={item.id}
                         href={`#${item.id}`}
                         onClick={() => setTocOpen(false)}
-                        className="block font-body text-sm font-semibold text-[#FFFFFF]/82 hover:text-[#FFFFFF] leading-snug py-1.5 border-l-2 border-transparent hover:border-[#F5C518] pl-3 transition-all duration-150"
+                        className="group flex items-start gap-2.5 font-body text-sm font-semibold text-[#FFFFFF]/82 hover:text-[#FFFFFF] leading-snug py-2.5 px-3 border-l-3 border-[#F5C518]/40 hover:border-[#F5C518] hover:bg-[#020285] rounded transition-all duration-150"
+                        title={item.heading}
                       >
-                        {item.heading}
+                        <span className="mt-1 flex-shrink-0 w-1 h-1 bg-[#F5C518] rounded-full group-hover:scale-125 transition-transform" />
+                        <span className="line-clamp-2">{item.heading}</span>
                       </a>
                     ))}
+                    
+                    {/* Mobile progress info */}
+                    <div className="border-t-2 border-[#F5C518]/30 mt-4 pt-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-[#FFFFFF]/80">
+                          Progression
+                        </p>
+                        <p className="font-display font-black text-sm text-[#F5C518]">
+                          {Math.round(progress)}%
+                        </p>
+                      </div>
+                      <div className="h-1.5 bg-[#020285] w-full border border-[#F5C518]/30 rounded overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-[#F5C518] to-[#FFE64D] transition-[width] duration-300"
+                          style={{ width: `${progress}%` }}
+                        />
+                      </div>
+                    </div>
                   </nav>
                 )}
-              </div>
+              </Card>
             )}
 
             {/* Content sections */}
@@ -329,43 +359,61 @@ const BlogArticle = () => {
           {/* Sticky TOC sidebar — desktop only */}
           {toc.length > 0 && (
             <aside className="hidden lg:block">
-              <div className="sticky top-28 border-4 border-[#F5C518] bg-[#0303AB] overflow-hidden">
-                <div className="border-b-4 border-[#F5C518] px-5 py-3 flex items-center gap-2">
-                  <List className="w-3.5 h-3.5 text-[#F5C518] flex-shrink-0" />
-                  <p className="font-display font-black text-[10px] uppercase tracking-[0.25em]">
-                    Table des matières
-                  </p>
+              <Card className="sticky top-28 border-4 border-[#F5C518] bg-[#0303AB] overflow-hidden shadow-lg">
+                {/* Header with icon */}
+                <div className="border-b-4 border-[#F5C518] px-5 py-4 flex items-center gap-3 bg-gradient-to-r from-[#0303AB] to-[#020285]">
+                  <div className="p-1.5 bg-[#F5C518] rounded">
+                    <List className="w-4 h-4 text-[#020285]" />
+                  </div>
+                  <div>
+                    <p className="font-display font-black text-[10px] uppercase tracking-[0.25em] text-[#FFFFFF]">
+                      Table des matières
+                    </p>
+                    <p className="font-body text-[9px] text-[#FFFFFF]/60 mt-0.5">
+                      {toc.length} sections
+                    </p>
+                  </div>
                 </div>
-                <nav className="p-4 space-y-0.5">
-                  {toc.map((item) => (
+
+                {/* TOC Navigation */}
+                <nav className="p-5 space-y-2 max-h-[400px] overflow-y-auto">
+                  {toc.map((item, idx) => (
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className="block font-body text-sm font-semibold text-[#FFFFFF]/78 hover:text-[#FFFFFF] leading-snug py-1.5 border-l-2 border-transparent hover:border-[#F5C518] pl-3 transition-all duration-150"
+                      className="group flex items-start gap-2.5 font-body text-sm font-semibold text-[#FFFFFF]/82 hover:text-[#FFFFFF] leading-snug py-2 px-3 border-l-3 border-[#F5C518]/40 hover:border-[#F5C518] hover:bg-[#020285] rounded transition-all duration-150"
+                      title={item.heading}
                     >
-                      {item.heading}
+                      <span className="mt-1 flex-shrink-0 w-1 h-1 bg-[#F5C518] rounded-full group-hover:scale-125 transition-transform" />
+                      <span className="line-clamp-2">{item.heading}</span>
                     </a>
                   ))}
                 </nav>
 
                 {/* Progress indicator */}
-                <div className="border-t-4 border-[#F5C518] px-5 py-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-[#FFFFFF]/72">
-                      Progression
+                <div className="border-t-4 border-[#F5C518] px-5 py-4 bg-gradient-to-r from-[#020285] to-[#0303AB]">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-[#FFFFFF]/80">
+                      Progression de lecture
                     </p>
-                    <p className="font-display font-black text-[9px] text-[#F5C518]">
+                    <p className="font-display font-black text-sm text-[#F5C518] bg-[#020285] px-2 py-1 rounded">
                       {Math.round(progress)}%
                     </p>
                   </div>
-                  <div className="h-1 bg-[#020285] w-full">
+                  <div className="h-2 bg-[#020285] w-full border border-[#F5C518]/30 rounded overflow-hidden">
                     <div
-                      className="h-full bg-[#F5C518] transition-[width] duration-150"
+                      className="h-full bg-gradient-to-r from-[#F5C518] to-[#FFE64D] transition-[width] duration-300 rounded"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
+                  <p className="mt-2 font-body text-[9px] text-[#FFFFFF]/60 text-center">
+                    {progress < 25 && "Ça commence bien !"}
+                    {progress >= 25 && progress < 50 && "Vous êtes à mi-chemin !"}
+                    {progress >= 50 && progress < 75 && "Continuez, vous y êtes presque !"}
+                    {progress >= 75 && "Fantastique, presque fini !"}
+                  </p>
                 </div>
-              </div>
+              </Card>
             </aside>
           )}
         </div>
