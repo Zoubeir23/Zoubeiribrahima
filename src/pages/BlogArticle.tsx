@@ -186,55 +186,29 @@ const BlogArticle = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  if (!post) {
-    return (
-      <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
-        <Navbar />
-        <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-32 pb-24">
-          <h1 className="font-display font-black text-4xl uppercase">Article introuvable</h1>
-          <p className="mt-4 font-body text-[#FFFFFF]/80">L'article demandé n'existe pas ou a été déplacé.</p>
-          <Link
-            to="/blog"
-            className="mt-8 inline-flex items-center gap-2 border-4 border-[#F5C518] bg-[#F5C518] text-[#020285] px-4 py-2 font-display font-black uppercase tracking-[0.15em]"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Retour au blog
-          </Link>
-        </section>
-      </main>
-    );
-  }
-
-  // Related articles: same category first, then others to fill up to 3
-  const sameCategory = blogPosts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
-  const others = blogPosts
-    .filter((p) => p.slug !== post.slug && p.category !== post.category)
-    .slice(0, 3 - sameCategory.length);
-  const relatedArticles = [...sameCategory, ...others];
-
   const markdownHeadings = useMemo(
-    () => (post.contentMarkdown ? extractHeadingsFromMarkdown(post.contentMarkdown) : []),
-    [post.contentMarkdown]
+    () => (post?.contentMarkdown ? extractHeadingsFromMarkdown(post.contentMarkdown) : []),
+    [post?.contentMarkdown]
   );
 
   const toc = useMemo(() => {
     let computed: { id: string; heading: string }[] = [];
 
-    if (post.sections && post.sections.length > 0) {
+    if (post?.sections && post.sections.length > 0) {
       computed = post.sections
         .map((s, i) => (s.heading ? { id: `manual-section-${i}`, heading: s.heading } : null))
         .filter((item): item is { id: string; heading: string } => Boolean(item));
     }
 
-    if (computed.length === 0 && post.contentMarkdown) {
+    if (computed.length === 0 && post?.contentMarkdown) {
       computed = markdownHeadings;
     }
 
     return computed;
-  }, [post.sections, post.contentMarkdown, markdownHeadings]);
+  }, [post, markdownHeadings]);
 
   useEffect(() => {
-    if (toc.length === 0) {
+    if (!post || toc.length === 0) {
       return;
     }
 
@@ -267,7 +241,39 @@ const BlogArticle = () => {
     setActiveTocId((previousId) => previousId || toc[0]?.id || "");
 
     return () => observer.disconnect();
-  }, [slug, toc]);
+  }, [post, slug, toc]);
+
+  // Related articles: same category first, then others to fill up to 3
+  const relatedArticles = useMemo(() => {
+    if (!post) {
+      return [];
+    }
+
+    const sameCategory = blogPosts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
+    const others = blogPosts
+      .filter((p) => p.slug !== post.slug && p.category !== post.category)
+      .slice(0, 3 - sameCategory.length);
+    return [...sameCategory, ...others];
+  }, [post]);
+
+  if (!post) {
+    return (
+      <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
+        <Navbar />
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-32 pb-24">
+          <h1 className="font-display font-black text-4xl uppercase">Article introuvable</h1>
+          <p className="mt-4 font-body text-[#FFFFFF]/80">L'article demandé n'existe pas ou a été déplacé.</p>
+          <Link
+            to="/blog"
+            className="mt-8 inline-flex items-center gap-2 border-4 border-[#F5C518] bg-[#F5C518] text-[#020285] px-4 py-2 font-display font-black uppercase tracking-[0.15em]"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Retour au blog
+          </Link>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">

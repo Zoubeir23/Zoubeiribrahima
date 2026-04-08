@@ -31,7 +31,7 @@ const stripMotionProps = (props: Record<string, unknown>) => {
 };
 
 const makeStatic = (tag: ElementType) => {
-  return (props: ComponentPropsWithoutRef<any>) => {
+  return (props: ComponentPropsWithoutRef<ElementType>) => {
     const clean = stripMotionProps(props as Record<string, unknown>);
     return createElement(tag, clean);
   };
