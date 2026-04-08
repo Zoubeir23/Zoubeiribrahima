@@ -15,6 +15,10 @@
 **Preface**
 **1. Introduction au controle de version**
 **2. Installation et configuration**
+2.1 Installer Git (Windows, macOS, Linux)
+2.2 Configurer nom et email
+2.3 Creer un compte GitHub
+2.4 Connexion SSH entre Git et GitHub
 **3. Premiers pas avec Git**
 **4. Explorer l'historique**
 **5. Annuler et corriger**
@@ -25,10 +29,9 @@
 **10. Gerer les conflits avances**
 **11. Git avance**
 **12. Bonnes pratiques et messages de commit**
-**13. Securite et cles SSH**
-**14. Git en equipe - commandes utiles**
-**15. Fiche de revision**
-**16. Conclusion**
+**13. Git en equipe - commandes utiles**
+**14. Fiche de revision**
+**15. Conclusion**
 
 ---
 
@@ -96,6 +99,66 @@ git config --list
 ### 2.3 Creer un compte GitHub
 
 Allez sur [github.com](https://github.com), creez un compte, puis validez votre email.
+
+### 2.4 Connexion SSH entre Git et GitHub - configuration recommandee
+
+SSH (Secure Shell) permet d'authentifier votre machine aupres de GitHub sans retaper vos identifiants a chaque `push`.
+
+#### Pourquoi SSH plutot que HTTPS ?
+
+| HTTPS | SSH |
+|-------|-----|
+| Token souvent requis | Configuration unique |
+| Plus simple au debut | Plus pratique au quotidien |
+| Peut demander des prompts frequents | Cle privee locale + cle publique GitHub |
+
+#### Etapes rapides
+
+1. Verifier si une cle existe deja :
+
+```bash
+ls ~/.ssh/id_ed25519.pub
+```
+
+2. Generer une cle :
+
+```bash
+ssh-keygen -t ed25519 -C "votre@email.com"
+```
+
+3. Lancer l'agent et ajouter la cle :
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+4. Copier la cle publique :
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+5. Ajouter la cle dans GitHub -> Settings -> SSH and GPG keys.
+
+6. Tester :
+
+```bash
+ssh -T git@github.com
+```
+
+#### Utiliser SSH sur un depot existant
+
+```bash
+git remote set-url origin git@github.com:utilisateur/mon-projet.git
+git remote -v
+```
+
+#### Depannage
+
+- `Permission denied (publickey)` : verifier cle ajoutee + `ssh-add -l`
+- Agent non demarre : `eval "$(ssh-agent -s)"`
+- Firewall restrictif : fallback HTTPS
 
 ---
 
@@ -438,43 +501,15 @@ Scripts auto (`pre-commit`, `pre-push`) pour lint/test/format.
 
 ---
 
-## 13. Securite et cles SSH
+## 13. Git en equipe - commandes utiles
 
-### 13.1 Generer une cle SSH
-
-```bash
-ssh-keygen -t ed25519 -C "votre@email.com"
-```
-
-### 13.2 Ajouter la cle a GitHub
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-Puis Settings -> SSH and GPG keys -> New SSH key.
-
-### 13.3 Utiliser SSH au lieu de HTTPS
-
-```bash
-git remote set-url origin git@github.com:utilisateur/projet.git
-```
-
----
-
-**Exercice 13** : Generez une cle SSH, ajoutez-la a GitHub, clonez un depot en SSH.
-
----
-
-## 14. Git en equipe - commandes utiles
-
-### 14.1 git blame
+### 13.1 git blame
 
 ```bash
 git blame index.html
 ```
 
-### 14.2 git bisect
+### 13.2 git bisect
 
 ```bash
 git bisect start
@@ -484,7 +519,7 @@ git bisect good <hash-connu-bon>
 git bisect reset
 ```
 
-### 14.3 git reflog
+### 13.3 git reflog
 
 ```bash
 git reflog
@@ -493,13 +528,13 @@ git checkout <hash>
 
 ---
 
-**Exercice 14** : Simulez un `reset --hard` puis recuperez un commit perdu avec `reflog`.
+**Exercice 13** : Simulez un `reset --hard` puis recuperez un commit perdu avec `reflog`.
 
 ---
 
-## 15. Fiche de revision
+## 14. Fiche de revision
 
-### 15.1 Commandes essentielles
+### 14.1 Commandes essentielles
 
 | Commande | Explication |
 |----------|-------------|
@@ -519,7 +554,7 @@ git checkout <hash>
 | `git revert <hash>` | Annuler proprement |
 | `git rebase <branche>` | Rebaser |
 
-### 15.2 Workflow type (feature branch)
+### 14.2 Workflow type (feature branch)
 
 ```bash
 git switch -c feature/nouvelle-fonction
@@ -531,7 +566,7 @@ git pull
 git branch -d feature/nouvelle-fonction
 ```
 
-### 15.3 Erreurs frequentes
+### 14.3 Erreurs frequentes
 
 - `detached HEAD` : `git switch -c ma-branche`
 - `refusing to merge unrelated histories` : `git pull origin main --allow-unrelated-histories`
@@ -539,9 +574,9 @@ git branch -d feature/nouvelle-fonction
 
 ---
 
-## 16. Conclusion
+## 15. Conclusion
 
-### 16.1 Recapitulatif
+### 15.1 Recapitulatif
 
 Vous avez appris :
 - depot, commit, branche, remote,
@@ -550,7 +585,7 @@ Vous avez appris :
 - conflits et workflows,
 - stash/rebase/cherry-pick/reflog.
 
-### 16.2 Projets pour s'entrainer
+### 15.2 Projets pour s'entrainer
 
 1. **Journal de bord** : un commit par jour.
 2. **Mini-projet en equipe** : branches, PR, review.
@@ -558,68 +593,6 @@ Vous avez appris :
 4. **Automatisation** : ajouter un hook `pre-commit`.
 
 > Un bon developpeur ecrit du code. Un grand developpeur ecrit du code et le versionne correctement.
-
----
-
-## Connexion SSH entre Git et GitHub - Explication complete
-
-SSH (Secure Shell) permet d'authentifier votre machine aupres de GitHub sans retaper vos identifiants a chaque `push`.
-
-### Pourquoi SSH plutot que HTTPS ?
-
-| HTTPS | SSH |
-|-------|-----|
-| Token souvent requis | Configuration unique |
-| Plus simple au debut | Plus pratique au quotidien |
-| Peut demander des prompts frequents | Cle privee locale + cle publique GitHub |
-
-### Etapes rapides
-
-1. Verifier si une cle existe deja :
-
-```bash
-ls ~/.ssh/id_ed25519.pub
-```
-
-2. Generer une cle :
-
-```bash
-ssh-keygen -t ed25519 -C "votre@email.com"
-```
-
-3. Lancer l'agent et ajouter la cle :
-
-```bash
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-```
-
-4. Copier la cle publique :
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-5. Ajouter la cle dans GitHub -> Settings -> SSH and GPG keys.
-
-6. Tester :
-
-```bash
-ssh -T git@github.com
-```
-
-### Utiliser SSH sur un depot existant
-
-```bash
-git remote set-url origin git@github.com:utilisateur/mon-projet.git
-git remote -v
-```
-
-### Depannage
-
-- `Permission denied (publickey)` : verifier cle ajoutee + `ssh-add -l`
-- Agent non demarre : `eval "$(ssh-agent -s)"`
-- Firewall restrictif : fallback HTTPS
 
 ---
 
