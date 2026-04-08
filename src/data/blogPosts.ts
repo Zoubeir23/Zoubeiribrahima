@@ -1,4 +1,6 @@
 import vibeCodingArticleMarkdown from "@/data/articles/vibe-coding-et-claude-code-en-2026.md?raw";
+import apprendreDjangoGuideCompletMarkdown from "@/data/articles/apprendre-django-guide-complet.md?raw";
+import dockerComposeArticleMarkdown from "@/data/articles/docker-compose-orchestration-conteneurs.md?raw";
 
 export interface BlogPost {
   slug: string;
@@ -23,6 +25,36 @@ const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
 const avatarAlt = "Photo de profil anime de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "apprendre-django-guide-complet-developpeur",
+    title: "Apprendre Django : DJANGO Guide Complet du Developpeur",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "python",
+    readingTime: "45 minutes",
+    date: "Avril 2026",
+    excerpt:
+      "Un guide structure de A a Z pour apprendre Django: architecture MTV, ORM, admin, templates, formulaires, authentification, DRF, deploiement, securite et performance.",
+    intro:
+      "Ce guide complet Django suit un parcours progressif et pratique: des fondations jusqu'a la production, avec les concepts essentiels, les commandes utiles et les patterns professionnels.",
+    contentMarkdown: apprendreDjangoGuideCompletMarkdown,
+    sections: [],
+  },
+  {
+    slug: "docker-compose-orchestration-conteneurs",
+    title: "Docker Compose : DOCKER COMPOSE Architecture et Concepts",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "devops",
+    readingTime: "50 minutes",
+    date: "Avril 2026",
+    excerpt:
+      "Guide technique complet de Docker Compose: architecture, configuration YAML, orchestration multi-services, gestion des reseaux et volumes, bonnes pratiques et deploiement production.",
+    intro:
+      "Docker Compose revolutionne la gestion d'applications multi-conteneurs. Ce guide couvre tous les aspects: du workflow de base aux cas avances, securite, monitoring et troubleshooting.",
+    contentMarkdown: dockerComposeArticleMarkdown,
+    sections: [],
+  },
   {
     slug: "git-github-workflow-propre-2026",
     title: "Git & GitHub en 2026 : workflow propre pour travailler seul et en équipe",
