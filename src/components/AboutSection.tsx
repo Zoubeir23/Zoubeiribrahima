@@ -16,7 +16,7 @@ const experiences = [
     period: "Janv. 2026 — Présent",
     location: "Dakar, Sénégal",
     desc: "Conception et développement d'une plateforme SaaS permettant de créer portfolios, CV et bannières LinkedIn. Développement de +18 templates professionnels avec éditeur visuel en temps réel. Architecture scalable avec auto-sauvegarde et export multi-formats.",
-    tags: ["React", "TypeScript", "Supabase", "TailwindCSS", "OpenAI SDK"],
+    tags: ["React 18", "TypeScript", "Vite", "Supabase", "TailwindCSS", "Vercel"],
     active: true,
   },
 ];

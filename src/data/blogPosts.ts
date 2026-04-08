@@ -2,6 +2,7 @@ import vibeCodingArticleMarkdown from "@/data/articles/vibe-coding-et-claude-cod
 import apprendreDjangoGuideCompletMarkdown from "@/data/articles/apprendre-django-guide-complet.md?raw";
 import dockerComposeArticleMarkdown from "@/data/articles/docker-compose-orchestration-conteneurs.md?raw";
 import pythonZeroAHerosGuideMarkdown from "@/data/articles/python-de-zero-a-heros-guide-complet.md?raw";
+import htmlCssZeroAHerosGuideMarkdown from "@/data/articles/html-css-de-zero-a-heros-guide-complet.md?raw";
 
 export interface BlogPost {
   slug: string;
@@ -26,6 +27,21 @@ const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
 const avatarAlt = "Photo de profil anime de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "html-css-de-zero-a-heros-guide-complet",
+    title: "HTML & CSS : Guide Complet du Developpeur Web de Zero a Heros",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "frontend",
+    readingTime: "60 minutes",
+    date: "Avril 2026",
+    excerpt:
+      "Cours complet HTML/CSS pour apprendre la structure web, la mise en page moderne, le responsive design, l'accessibilite et les bonnes pratiques front-end.",
+    intro:
+      "Un guide progressif et pratique pour devenir autonome en HTML et CSS: des bases jusqu'aux concepts avances comme Flexbox, Grid, responsive et a11y.",
+    contentMarkdown: htmlCssZeroAHerosGuideMarkdown,
+    sections: [],
+  },
   {
     slug: "python-de-zero-a-heros-guide-complet",
     title: "Python : Guide Complet du Developpeur de Zero a Heros",

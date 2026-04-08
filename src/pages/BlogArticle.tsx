@@ -40,8 +40,21 @@ function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: s
   const lines = markdown.split("\n");
   const headings: { id: string; heading: string }[] = [];
   const idCounts = new Map<string, number>();
+  let inCodeFence = false;
+  let reachedPreface = false;
 
   lines.forEach((line) => {
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith("```")) {
+      inCodeFence = !inCodeFence;
+      return;
+    }
+
+    if (inCodeFence) {
+      return;
+    }
+
     if (!line.startsWith("## ")) {
       return;
     }
@@ -52,6 +65,15 @@ function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: s
     }
 
     const normalizedHeading = slugifyHeading(heading);
+
+    if (normalizedHeading === "preface") {
+      reachedPreface = true;
+    }
+
+    if (!reachedPreface) {
+      return;
+    }
+
     if (normalizedHeading === "table-des-matieres" || normalizedHeading === "sommaire") {
       return;
     }

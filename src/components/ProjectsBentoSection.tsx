@@ -7,7 +7,7 @@ const ProjectsBentoSection = () => {
       title: "Snapfolioo",
       status: "Projet Vedette",
       desc: "Plateforme SaaS no-code permettant aux professionnels de créer des portfolios, CV et bannières LinkedIn en quelques minutes.",
-      tags: ["Django", "OpenAI SDK", "React", "Supabase", "PostgreSQL"],
+      tags: ["React 18", "TypeScript", "Vite", "Supabase", "Tailwind CSS", "Vercel", "Playwright"],
       link: "https://snapfolioo.com",
       cta: "Explorer le Projet",
       featured: true,
@@ -137,10 +137,10 @@ const ProjectsBentoSection = () => {
                   Snapfolioo
                 </h3>
                 <p className="font-body text-[#FFFFFF]/85 text-base sm:text-lg leading-relaxed mb-8">
-                  Plateforme SaaS no-code permettant aux professionnels de créer des portfolios, CV et bannières LinkedIn en quelques minutes. Éditeur visuel temps réel, +18 templates, export multi-formats.
+                  Plateforme SaaS no-code permettant aux professionnels de creer des portfolios, CV et bannieres LinkedIn en quelques minutes. Editeur visuel en temps reel, +18 templates, sauvegarde cloud Supabase et publication instantanee.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-8">
-                  {["Django", "OpenAI SDK", "React", "Supabase", "PostgreSQL"].map((tag) => (
+                  {["React 18", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Vercel", "Playwright"].map((tag) => (
                     <span
                       key={tag}
                       className="font-display font-bold text-xs uppercase tracking-wider border-2 border-[#F5C518]/45 text-[#FFFFFF] px-3 py-1 hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150"
@@ -178,7 +178,7 @@ const ProjectsBentoSection = () => {
                   { number: "SaaS", label: "Produit lancé" },
                   { number: "18+", label: "Templates" },
                   { number: "Jan 2026", label: "Depuis" },
-                  { number: "AI", label: "Powered" },
+                  { number: "Vercel", label: "Deploiement" },
                 ].map((stat) => (
                   <div key={stat.label} className="border-4 border-[#F5C518]/25 p-5">
                     <p className="font-display font-black text-2xl sm:text-3xl text-[#FFFFFF] mb-1">
@@ -195,7 +195,7 @@ const ProjectsBentoSection = () => {
                   Architecture
                 </p>
                 <p className="font-body text-sm text-[#FFFFFF]/85 leading-relaxed">
-                  Backend Django REST Framework · Frontend React/TypeScript · Auth & DB Supabase · IA via OpenAI SDK · Déployé sur VPS
+                  Frontend React 18 + TypeScript + Vite · Styling Tailwind CSS · Backend Supabase (PostgreSQL + Auth) · Tests Playwright · Deploye sur Vercel
                 </p>
               </div>
             </div>

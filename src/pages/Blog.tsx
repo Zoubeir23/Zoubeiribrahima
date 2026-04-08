@@ -8,6 +8,8 @@ const CATEGORY_LABELS: Record<string, string> = {
   all: "Tous",
   outils: "Outils",
   python: "Python",
+  frontend: "Frontend",
+  devops: "DevOps",
   ai: "IA & Agents",
 };
 
