@@ -3,6 +3,7 @@ import apprendreDjangoGuideCompletMarkdown from "@/data/articles/apprendre-djang
 import dockerComposeArticleMarkdown from "@/data/articles/docker-compose-orchestration-conteneurs.md?raw";
 import pythonZeroAHerosGuideMarkdown from "@/data/articles/python-de-zero-a-heros-guide-complet.md?raw";
 import htmlCssZeroAHerosGuideMarkdown from "@/data/articles/html-css-de-zero-a-heros-guide-complet.md?raw";
+import gitGithubZeroAHerosGuideMarkdown from "@/data/articles/git-github-de-zero-a-heros-guide-complet.md?raw";
 
 export interface BlogPost {
   slug: string;
@@ -27,6 +28,21 @@ const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
 const avatarAlt = "Photo de profil anime de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "git-github-de-zero-a-heros-guide-complet",
+    title: "Git & GitHub : Guide Complet du Developpeur de Zero a Heros",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "outils",
+    readingTime: "65 minutes",
+    date: "Avril 2026",
+    excerpt:
+      "Cours complet Git et GitHub pour maitriser le versioning, les branches, les conflits, les workflows d'equipe, la collaboration PR et la securite SSH.",
+    intro:
+      "Un parcours progressif pour apprendre Git et GitHub de A a Z, du premier commit aux workflows collaboratifs modernes et aux commandes avancees.",
+    contentMarkdown: gitGithubZeroAHerosGuideMarkdown,
+    sections: [],
+  },
   {
     slug: "html-css-de-zero-a-heros-guide-complet",
     title: "HTML & CSS : Guide Complet du Developpeur Web de Zero a Heros",
