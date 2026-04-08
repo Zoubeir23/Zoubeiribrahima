@@ -1,6 +1,7 @@
 import { motion } from "@/lib/static-motion";
-import { Award, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { certificationIssuerCount, certifications, featuredCertifications } from "@/data/certifications";
+import IssuerLogo from "@/components/IssuerLogo";
 
 const certificationsForWall = featuredCertifications.slice(0, 8);
 
@@ -50,7 +51,7 @@ const CertificationsWallOfFame = () => {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="w-10 h-10 border-4 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center shrink-0">
-                      <Award className="w-5 h-5 text-[#0303AB]" />
+                      <IssuerLogo issuer={cert.issuer} />
                     </div>
                     {cert.certUrl && <ExternalLink className="w-4 h-4 text-[#FFFFFF]/30 mt-1" />}
                   </div>
@@ -106,7 +107,7 @@ const CertificationsWallOfFame = () => {
                   {/* Icon + ExternalLink row */}
                   <div className="flex items-start justify-between">
                     <div className="w-10 h-10 md:w-11 md:h-11 border-4 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200 shrink-0">
-                      <Award className="w-5 h-5 md:w-6 md:h-6 text-[#0303AB]" />
+                      <IssuerLogo issuer={cert.issuer} />
                     </div>
                     {cert.certUrl && (
                       <ExternalLink className="w-4 h-4 text-[#FFFFFF]/30 group-hover:text-[#0303AB] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />

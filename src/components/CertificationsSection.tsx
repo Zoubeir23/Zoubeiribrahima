@@ -1,6 +1,7 @@
 import { motion } from "@/lib/static-motion";
 import { Award, ExternalLink } from "lucide-react";
 import { certifications } from "@/data/certifications";
+import IssuerLogo from "@/components/IssuerLogo";
 
 const CertificationsSection = () => {
   return (
@@ -51,7 +52,7 @@ const CertificationsSection = () => {
                   }`}
                 >
                   <div className="w-10 h-10 md:w-11 md:h-11 shrink-0 border-2 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200">
-                    <Award className="w-5 h-5 md:w-6 md:h-6 text-[#020285]" />
+                    <IssuerLogo issuer={cert.issuer} />
                   </div>
 
                   {/* Content */}
