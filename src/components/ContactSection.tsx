@@ -1,25 +1,35 @@
 import { motion } from "@/lib/static-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const currentForm = e.currentTarget;
+    const formData = new FormData(currentForm);
+    const payload = {
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
+
     try {
       const response = await fetch("https://formspree.io/f/xaqovjqb", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
+
       if (response.ok) {
         setSubmitStatus("success");
-        setFormData({ name: "", email: "", message: "" });
+        formRef.current?.reset();
       } else {
         setSubmitStatus("error");
       }
@@ -28,10 +38,6 @@ const ContactSection = () => {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -77,7 +83,7 @@ const ContactSection = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
                 <div>
                   <label htmlFor="contact-name" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
                     Nom Complet
@@ -87,8 +93,7 @@ const ContactSection = () => {
                     type="text"
                     name="name"
                     required
-                    value={formData.name}
-                    onChange={handleChange}
+                    autoComplete="name"
                     placeholder="Jean Dupont"
                     className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30"
                   />
@@ -102,8 +107,7 @@ const ContactSection = () => {
                     type="email"
                     name="email"
                     required
-                    value={formData.email}
-                    onChange={handleChange}
+                    autoComplete="email"
                     placeholder="jean@exemple.com"
                     className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30"
                   />
@@ -117,8 +121,6 @@ const ContactSection = () => {
                     name="message"
                     required
                     rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
                     placeholder="Parlez-moi de votre projet..."
                     className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30 resize-none"
                   />

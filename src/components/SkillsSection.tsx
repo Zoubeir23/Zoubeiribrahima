@@ -1,7 +1,6 @@
 import type { ElementType } from "react";
 import { motion } from "@/lib/static-motion";
 import { Server, Brain, Cloud } from "lucide-react";
-import { getTechLogoUrl } from "@/lib/brandLogos";
 
 interface SkillCard {
   icon: ElementType;
@@ -14,19 +13,19 @@ const skillCards: SkillCard[] = [
   {
     icon: Server,
     title: "Backend Architecture",
-    techs: ["Django", "Spring Boot", "FastAPI", "Node.js", "Laravel", "PHP"],
+    techs: ["Architecture backend", "API REST", "Modelisation de donnees", "Integration de services"],
     emoji: "⚙️",
   },
   {
     icon: Brain,
     title: "AI & Intelligence",
-    techs: ["LLMs", "OpenAI SDK", "Claude API", "Prompt Engineering"],
+    techs: ["Automatisation intelligente", "Conception de prompts", "Integration IA", "Analyse de donnees"],
     emoji: "🧠",
   },
   {
     icon: Cloud,
     title: "DevOps & Cloud",
-    techs: ["Docker", "Git", "GitHub", "AWS", "CI/CD", "Supabase"],
+    techs: ["Conteneurisation", "Deploiement continu", "Versioning", "Supervision"],
     emoji: "☁️",
   },
 ];
@@ -83,21 +82,7 @@ const SkillsSection = () => {
                     key={tech}
                     className="flex min-w-0 items-center gap-3 font-body font-semibold text-xs sm:text-sm text-[#FFFFFF]/80 group-hover:text-[#0303AB]/80 transition-colors duration-200"
                   >
-                    {getTechLogoUrl(tech) ? (
-                      <img
-                        src={getTechLogoUrl(tech)!}
-                        alt=""
-                        aria-hidden="true"
-                        className="w-4 h-4 md:w-5 md:h-5 object-contain shrink-0"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none";
-                        }}
-                      />
-                    ) : (
-                      <span className="w-2 h-2 bg-[#FFFFFF] group-hover:bg-[#0303AB] shrink-0 transition-colors duration-200" />
-                    )}
+                    <span className="w-2 h-2 bg-[#FFFFFF] group-hover:bg-[#0303AB] shrink-0 transition-colors duration-200" />
                     {tech}
                   </li>
                 ))}
@@ -115,27 +100,14 @@ const SkillsSection = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <p className="font-display font-bold text-[#FFFFFF]/70 text-xs uppercase tracking-[0.3em] mb-4">
-            Langages & Outils maîtrisés
+            Domaines maitrises
           </p>
           <div className="flex flex-wrap gap-2 sm:gap-3">
-            {["JavaScript", "Python", "PHP", "Java", "SQL", "React.js", "TailwindCSS", "PostgreSQL", "MySQL", "Docker", "GitHub", "Claude Code"].map((tech) => (
+            {["Backend", "APIs", "Data", "Frontend", "Automatisation", "DevOps", "Architecture", "Qualite", "Securite", "Scalabilite"].map((tech) => (
               <span
                 key={tech}
                 className="inline-flex items-center gap-2 font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider border-2 border-[#F5C518] text-[#FFFFFF] px-3 py-1.5 hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 cursor-default"
               >
-                {getTechLogoUrl(tech) && (
-                  <img
-                    src={getTechLogoUrl(tech)!}
-                    alt=""
-                    aria-hidden="true"
-                    className="w-4 h-4 md:w-5 md:h-5 object-contain shrink-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                )}
                 {tech}
               </span>
             ))}

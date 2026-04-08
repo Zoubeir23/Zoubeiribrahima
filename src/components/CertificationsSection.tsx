@@ -1,6 +1,5 @@
 import { motion } from "@/lib/static-motion";
 import { Award, ExternalLink } from "lucide-react";
-import { getIssuerLogoUrl } from "@/lib/brandLogos";
 import { certifications } from "@/data/certifications";
 
 const CertificationsSection = () => {
@@ -51,18 +50,8 @@ const CertificationsSection = () => {
                       : "hover:bg-[#FFFFFF]/10"
                   }`}
                 >
-                  {/* Logo badge */}
-                  <div className="w-10 h-10 md:w-11 md:h-11 shrink-0 border-2 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200 p-1.5">
-                    <img
-                      src={getIssuerLogoUrl(cert.issuer)}
-                      alt={`Logo ${cert.issuer}`}
-                      className="w-5 h-5 md:w-6 md:h-6 object-contain"
-                      loading="lazy"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        e.currentTarget.src = "/logos/cert-default.svg";
-                      }}
-                    />
+                  <div className="w-10 h-10 md:w-11 md:h-11 shrink-0 border-2 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200">
+                    <Award className="w-5 h-5 md:w-6 md:h-6 text-[#020285]" />
                   </div>
 
                   {/* Content */}
@@ -71,7 +60,7 @@ const CertificationsSection = () => {
                       {cert.title}
                     </h4>
                     <p className="font-body text-xs font-semibold text-[#FFFFFF]/60 group-hover:text-[#020285]/60 uppercase tracking-wider mt-1 transition-colors duration-200">
-                      {cert.issuer} · {cert.date}
+                      {cert.date}
                     </p>
                     {cert.skills && cert.skills.length > 0 && (
                       <div className="flex flex-wrap gap-1 mt-2">

@@ -1,6 +1,5 @@
 import { motion } from "@/lib/static-motion";
-import { ExternalLink } from "lucide-react";
-import { getIssuerLogoUrl } from "@/lib/brandLogos";
+import { Award, ExternalLink } from "lucide-react";
 import { certificationIssuerCount, certifications, featuredCertifications } from "@/data/certifications";
 
 const certificationsForWall = featuredCertifications.slice(0, 8);
@@ -50,17 +49,8 @@ const CertificationsWallOfFame = () => {
                   className="snap-start shrink-0 w-[78vw] border-4 border-[#F5C518] bg-[#0303AB] p-5 flex flex-col gap-4"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="w-10 h-10 border-4 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center shrink-0 p-1.5">
-                      <img
-                        src={getIssuerLogoUrl(cert.issuer)}
-                        alt={`Logo ${cert.issuer}`}
-                        className="w-5 h-5 object-contain"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          e.currentTarget.src = "/logos/cert-default.svg";
-                        }}
-                      />
+                    <div className="w-10 h-10 border-4 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center shrink-0">
+                      <Award className="w-5 h-5 text-[#0303AB]" />
                     </div>
                     {cert.certUrl && <ExternalLink className="w-4 h-4 text-[#FFFFFF]/30 mt-1" />}
                   </div>
@@ -72,9 +62,6 @@ const CertificationsWallOfFame = () => {
                     <h3 className="font-display font-black text-sm uppercase leading-tight text-[#FFFFFF]">
                       {cert.featuredTitle ?? cert.title}
                     </h3>
-                    <p className="font-body font-semibold text-xs text-[#FFFFFF]/65 uppercase tracking-wider">
-                      {cert.issuer}
-                    </p>
                     {cert.certUrl && (
                       <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-[#FFFFFF]/45">
                         Voir le diplôme →
@@ -118,17 +105,8 @@ const CertificationsWallOfFame = () => {
                 >
                   {/* Icon + ExternalLink row */}
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 md:w-11 md:h-11 border-4 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200 shrink-0 p-1.5">
-                      <img
-                        src={getIssuerLogoUrl(cert.issuer)}
-                        alt={`Logo ${cert.issuer}`}
-                        className="w-5 h-5 md:w-6 md:h-6 object-contain"
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          e.currentTarget.src = "/logos/cert-default.svg";
-                        }}
-                      />
+                    <div className="w-10 h-10 md:w-11 md:h-11 border-4 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200 shrink-0">
+                      <Award className="w-5 h-5 md:w-6 md:h-6 text-[#0303AB]" />
                     </div>
                     {cert.certUrl && (
                       <ExternalLink className="w-4 h-4 text-[#FFFFFF]/30 group-hover:text-[#0303AB] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
@@ -143,9 +121,6 @@ const CertificationsWallOfFame = () => {
                     <h3 className="font-display font-black text-sm sm:text-base uppercase leading-tight text-[#FFFFFF] group-hover:text-[#0303AB] transition-colors duration-200">
                       {cert.featuredTitle ?? cert.title}
                     </h3>
-                    <p className="font-body font-semibold text-xs text-[#FFFFFF]/60 group-hover:text-[#0303AB]/70 uppercase tracking-wider transition-colors duration-200">
-                      {cert.issuer}
-                    </p>
                     {cert.certUrl && (
                       <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-[#FFFFFF]/30 group-hover:text-[#0303AB]/70 transition-colors duration-200">
                         Voir le diplôme →
@@ -186,9 +161,9 @@ const CertificationsWallOfFame = () => {
           </div>
           <div className="sm:ml-auto w-full sm:w-auto border-t-4 sm:border-t-0 border-[#F5C518] pt-5 sm:pt-0">
             <p className="font-display font-black text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#FFFFFF]/70">
-              Harvard · Anthropic · Cisco · Microsoft
+              Portfolio sans logos ni marques
               <br />
-              HackerRank · Udemy · LinkedIn · Coursera
+              Axé sur les compétences et les réalisations
             </p>
           </div>
         </motion.div>

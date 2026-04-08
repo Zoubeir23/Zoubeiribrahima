@@ -21,9 +21,9 @@ const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => 
 /* ── Static Tech Band ─────────────────────────────────────────── */
 const MarqueeSection = () => {
   const items = [
-    "Django", "Python", "React.js", "Spring Boot",
-    "PostgreSQL", "Node.js", "Docker", "Supabase",
-    "FastAPI", "TypeScript", "Claude API", "OpenAI SDK"
+    "Architecture", "Backend", "Frontend", "APIs",
+    "Bases de donnees", "DevOps", "Automatisation", "Securite",
+    "Performance", "Qualite", "Fiabilite", "Conception"
   ];
   return (
     <div className="bg-[#0303AB] border-y-4 border-[#F5C518] py-4 sm:py-6 px-4 sm:px-6">

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Blog systeme">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B2AC7"/>
+      <stop offset="100%" stop-color="#09106E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g4)"/>
+  <g opacity="0.2" stroke="#F5C518" stroke-width="3">
+    <rect x="110" y="110" width="240" height="140"/>
+    <rect x="410" y="110" width="240" height="140"/>
+    <rect x="710" y="110" width="240" height="140"/>
+    <line x1="350" y1="180" x2="410" y2="180"/>
+    <line x1="650" y1="180" x2="710" y2="180"/>
+  </g>
+  <text x="110" y="370" fill="#FFFFFF" font-size="58" font-family="Arial, sans-serif" font-weight="700">Blog systeme</text>
+  <text x="110" y="438" fill="#F5C518" font-size="34" font-family="Arial, sans-serif" font-weight="700">pas une simple vitrine</text>
+</svg>

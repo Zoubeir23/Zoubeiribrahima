@@ -7,7 +7,7 @@ const experiences = [
     period: "Févr. 2026 — Présent",
     location: "Cameroun · À distance",
     desc: "Participation au développement et à la maintenance des applications backend. Conception et optimisation d'API et de bases de données. Collaboration avec l'équipe technique pour la mise en œuvre de nouvelles fonctionnalités.",
-    tags: ["Spring Boot", "Java", "PostgreSQL", "REST API"],
+    tags: ["Architecture backend", "APIs REST", "Bases de donnees", "Optimisation", "Deploiement"],
     active: true,
   },
   {

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Articles qui convertissent">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0C1190"/>
+      <stop offset="100%" stop-color="#3847D8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g5)"/>
+  <polygon points="0,580 380,390 760,590 1200,420 1200,675 0,675" fill="#F5C518" opacity="0.17"/>
+  <text x="90" y="270" fill="#FFFFFF" font-size="52" font-family="Arial, sans-serif" font-weight="700">Articles qui convertissent</text>
+  <text x="90" y="336" fill="#F5C518" font-size="34" font-family="Arial, sans-serif" font-weight="700">du contenu vers l'action</text>
+</svg>
