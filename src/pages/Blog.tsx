@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, BookOpen, Bot, Rocket, Sparkles, Search, X } from "lucide-react";
+import { ArrowLeft, BookOpen, Bot, Rocket, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/Navbar";
@@ -66,11 +66,7 @@ const Blog = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-20 sm:pb-24 lg:pt-32 lg:pb-28">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-4xl">
-              <div className="inline-flex items-center gap-2 border-2 border-[#F5C518] bg-[#020285] px-3 py-1.5 font-display text-[11px] font-black uppercase tracking-[0.25em] text-[#FFFFFF]">
-                <Sparkles className="w-3.5 h-3.5" />
-                Blog
-              </div>
-              <h1 className="mt-5 font-display font-black text-4xl sm:text-6xl lg:text-8xl uppercase leading-[0.9]">
+              <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-8xl uppercase leading-[0.9]">
                 Des articles
                 <br />
                 <span className="text-[#FFFFFF]/35">qui se lisent comme un système</span>
