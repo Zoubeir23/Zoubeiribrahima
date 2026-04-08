@@ -33,7 +33,7 @@ export const blogPosts: BlogPost[] = [
     title: "Git & GitHub : Guide Complet du Developpeur de Zero a Heros",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
-    category: "outils",
+    category: "devops",
     readingTime: "65 minutes",
     date: "Avril 2026",
     excerpt:
@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
     title: "Git & GitHub en 2026 : workflow propre pour travailler seul et en équipe",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
-    category: "outils",
+    category: "devops",
     readingTime: "35 minutes",
     date: "Avril 2026",
     excerpt:
