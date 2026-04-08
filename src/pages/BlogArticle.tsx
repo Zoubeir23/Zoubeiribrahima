@@ -89,27 +89,24 @@ function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: s
   return headings;
 }
 
-function useReadingProgress(articleRef: React.RefObject<HTMLElement | null>) {
+function useReadingProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const update = () => {
-      const el = articleRef.current;
-      if (!el) return;
-      const { top, height } = el.getBoundingClientRect();
-      const visible = -top;
-      const total = height - window.innerHeight;
-      if (total <= 0) {
+      const scrollTop = window.scrollY;
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight <= 0) {
         setProgress(100);
         return;
       }
-      setProgress(Math.min(100, Math.max(0, (visible / total) * 100)));
+      setProgress((scrollTop / totalHeight) * 100);
     };
 
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
-  }, [articleRef]);
+  }, []);
 
   return progress;
 }
@@ -138,7 +135,7 @@ const BlogArticle = () => {
   const articleRef = useRef<HTMLElement | null>(null);
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
-  const progress = useReadingProgress(articleRef);
+  const progress = useReadingProgress();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const [activeTocId, setActiveTocId] = useState<string>("");
