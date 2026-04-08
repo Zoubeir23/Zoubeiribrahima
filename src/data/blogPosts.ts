@@ -1,6 +1,7 @@
 import vibeCodingArticleMarkdown from "@/data/articles/vibe-coding-et-claude-code-en-2026.md?raw";
 import apprendreDjangoGuideCompletMarkdown from "@/data/articles/apprendre-django-guide-complet.md?raw";
 import dockerComposeArticleMarkdown from "@/data/articles/docker-compose-orchestration-conteneurs.md?raw";
+import pythonZeroAHerosGuideMarkdown from "@/data/articles/python-de-zero-a-heros-guide-complet.md?raw";
 
 export interface BlogPost {
   slug: string;
@@ -25,6 +26,21 @@ const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
 const avatarAlt = "Photo de profil anime de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "python-de-zero-a-heros-guide-complet",
+    title: "Python : Guide Complet du Developpeur de Zero a Heros",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "python",
+    readingTime: "55 minutes",
+    date: "Avril 2026",
+    excerpt:
+      "Cours Python complet et progressif, du premier script aux concepts avances: POO, tests, APIs, concurrence, bases de donnees, packaging et bonnes pratiques.",
+    intro:
+      "Un parcours autonome et pratique pour apprendre Python de A a Z, avec explications techniques, listings de code, exercices et fiche de revision.",
+    contentMarkdown: pythonZeroAHerosGuideMarkdown,
+    sections: [],
+  },
   {
     slug: "apprendre-django-guide-complet-developpeur",
     title: "Apprendre Django : DJANGO Guide Complet du Developpeur",

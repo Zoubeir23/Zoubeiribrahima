@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import { blogPosts } from "@/data/blogPosts";
 import { ArrowLeft, ArrowUp, Check, Copy, List } from "lucide-react";
@@ -7,41 +7,95 @@ import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 
-// Parse markdown to extract h2 headings for TOC
+function slugifyHeading(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function nodeToText(node: unknown): string {
+  if (typeof node === "string") {
+    return node;
+  }
+  if (typeof node === "number") {
+    return String(node);
+  }
+  if (Array.isArray(node)) {
+    return node.map((child) => nodeToText(child)).join("");
+  }
+  if (node && typeof node === "object" && "props" in node) {
+    const maybeProps = node as { props?: { children?: unknown } };
+    return nodeToText(maybeProps.props?.children);
+  }
+  return "";
+}
+
+// Parse markdown to extract h2 headings for TOC with stable ids.
 function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: string }[] {
-  const lines = markdown.split('\n');
+  const lines = markdown.split("\n");
   const headings: { id: string; heading: string }[] = [];
-  let headingIndex = 0;
-  
+  const idCounts = new Map<string, number>();
+
   lines.forEach((line) => {
-    if (line.startsWith('## ')) {
-      const heading = line.replace('## ', '').trim();
-      if (heading) {
-        headings.push({
-          id: `section-${headingIndex}`,
-          heading: heading
-        });
-        headingIndex++;
-      }
+    if (!line.startsWith("## ")) {
+      return;
     }
+
+    const heading = line.replace("## ", "").trim();
+    if (!heading) {
+      return;
+    }
+
+    const normalizedHeading = slugifyHeading(heading);
+    if (normalizedHeading === "table-des-matieres" || normalizedHeading === "sommaire") {
+      return;
+    }
+
+    const baseId = `md-${normalizedHeading || "section"}`;
+    const currentCount = idCounts.get(baseId) ?? 0;
+    idCounts.set(baseId, currentCount + 1);
+    const id = currentCount === 0 ? baseId : `${baseId}-${currentCount + 1}`;
+
+    headings.push({ id, heading });
   });
-  
+
   return headings;
 }
 
-function useReadingProgress() {
+function useReadingProgress(targetRef: React.RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Calculer immédiatement pour le chargement initial
     const calculateProgress = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const newProgress = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+      const target = targetRef.current;
+
+      // Fallback: if target is missing, keep old document-based behavior.
+      if (!target) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const newProgress = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+        setProgress(newProgress);
+        return;
+      }
+
+      const rect = target.getBoundingClientRect();
+      const articleTop = scrollTop + rect.top;
+      const articleHeight = Math.max(target.scrollHeight, rect.height);
+      const viewportOffset = window.innerHeight * 0.35;
+      const start = articleTop - viewportOffset;
+      const end = articleTop + articleHeight - viewportOffset;
+      const distance = Math.max(1, end - start);
+      const rawProgress = ((scrollTop - start) / distance) * 100;
+      const newProgress = Math.min(100, Math.max(0, rawProgress));
+
       setProgress(newProgress);
     };
 
-    // Event listener throttlé pour éviter trop de re-renders
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -53,16 +107,17 @@ function useReadingProgress() {
       }
     };
 
-    // Calculer au montage et sur resize
     calculateProgress();
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", calculateProgress);
+    window.addEventListener("load", calculateProgress);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", calculateProgress);
+      window.removeEventListener("load", calculateProgress);
     };
-  }, []);
+  }, [targetRef]);
 
   return progress;
 }
@@ -87,21 +142,15 @@ function CopyButton({ code }: { code: string }) {
 }
 
 const BlogArticle = () => {
-  // Create a ref to track heading index during markdown rendering
-  const headingIndexRef = { current: 0 };
-  
-  let headingIndexCounter = 0;
-  
-  const getNextHeadingId = () => {
-    const id = `section-${headingIndexCounter}`;
-    headingIndexCounter++;
-    return id;
-  };
+  const renderedHeadingIdCounts = new Map<string, number>();
+  const readingTargetRef = useRef<HTMLDivElement | null>(null);
+
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
-  const progress = useReadingProgress();
+  const progress = useReadingProgress(readingTargetRef);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
+  const [activeTocId, setActiveTocId] = useState<string>("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -141,20 +190,62 @@ const BlogArticle = () => {
     .slice(0, 3 - sameCategory.length);
   const relatedArticles = [...sameCategory, ...others];
 
-  // Build TOC from sections headings or markdown content
-  let toc: { id: string; heading: string }[] = [];
-  
-  // Try to build from sections first
-  if (post.sections && post.sections.length > 0) {
-    toc = post.sections
-      .map((s, i) => (s.heading ? { id: `section-${i}`, heading: s.heading } : null))
-      .filter((item): item is { id: string; heading: string } => Boolean(item));
-  }
-  
-  // If no sections but has markdown content, extract from markdown
-  if (toc.length === 0 && post.contentMarkdown) {
-    toc = extractHeadingsFromMarkdown(post.contentMarkdown);
-  }
+  const markdownHeadings = useMemo(
+    () => (post.contentMarkdown ? extractHeadingsFromMarkdown(post.contentMarkdown) : []),
+    [post.contentMarkdown]
+  );
+
+  const toc = useMemo(() => {
+    let computed: { id: string; heading: string }[] = [];
+
+    if (post.sections && post.sections.length > 0) {
+      computed = post.sections
+        .map((s, i) => (s.heading ? { id: `manual-section-${i}`, heading: s.heading } : null))
+        .filter((item): item is { id: string; heading: string } => Boolean(item));
+    }
+
+    if (computed.length === 0 && post.contentMarkdown) {
+      computed = markdownHeadings;
+    }
+
+    return computed;
+  }, [post.sections, post.contentMarkdown, markdownHeadings]);
+
+  useEffect(() => {
+    if (toc.length === 0) {
+      return;
+    }
+
+    const headingElements = toc
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (headingElements.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visibleEntries.length > 0) {
+          setActiveTocId(visibleEntries[0].target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: [0, 0.2, 0.5, 1],
+      }
+    );
+
+    headingElements.forEach((el) => observer.observe(el));
+    setActiveTocId((previousId) => previousId || toc[0]?.id || "");
+
+    return () => observer.disconnect();
+  }, [slug, toc]);
 
   return (
     <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
@@ -178,7 +269,7 @@ const BlogArticle = () => {
           Retour au blog
         </Link>
 
-        <div className="mt-6 lg:grid lg:grid-cols-[1fr_268px] lg:gap-12 xl:gap-16 items-start">
+        <div className="mt-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12 xl:grid-cols-[1fr_330px] xl:gap-16 items-start">
           {/* Main article */}
           <article>
             {/* Cover + header */}
@@ -227,17 +318,21 @@ const BlogArticle = () => {
                   </span>
                 </button>
                 {tocOpen && (
-                  <nav className="border-t-4 border-[#F5C518] p-5 space-y-2 bg-gradient-to-b from-[#0303AB] to-[#020285]">
+                  <nav className="border-t-4 border-[#F5C518] p-5 space-y-2 bg-gradient-to-b from-[#0303AB] to-[#020285] max-h-[55vh] overflow-y-auto">
                     {toc.map((item) => (
                       <a
                         key={item.id}
                         href={`#${item.id}`}
                         onClick={() => setTocOpen(false)}
-                        className="group flex items-start gap-2.5 font-body text-sm font-semibold text-[#FFFFFF]/82 hover:text-[#FFFFFF] leading-snug py-2.5 px-3 border-l-3 border-[#F5C518]/40 hover:border-[#F5C518] hover:bg-[#020285] rounded transition-all duration-150"
+                        className={`group flex items-start gap-2.5 font-body text-sm font-semibold leading-snug py-2.5 px-3 border-l-4 rounded transition-all duration-150 ${
+                          activeTocId === item.id
+                            ? "text-[#FFFFFF] border-[#F5C518] bg-[#020285]"
+                            : "text-[#FFFFFF]/82 border-[#F5C518]/40 hover:border-[#F5C518] hover:bg-[#020285] hover:text-[#FFFFFF]"
+                        }`}
                         title={item.heading}
                       >
-                        <span className="mt-1 flex-shrink-0 w-1 h-1 bg-[#F5C518] rounded-full group-hover:scale-125 transition-transform" />
-                        <span className="line-clamp-2">{item.heading}</span>
+                        <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full transition-transform ${activeTocId === item.id ? "bg-[#F5C518] scale-125" : "bg-[#F5C518] group-hover:scale-125"}`} />
+                        <span>{item.heading}</span>
                       </a>
                     ))}
                     
@@ -264,7 +359,7 @@ const BlogArticle = () => {
             )}
 
             {/* Content sections */}
-            <div className="mt-8 space-y-8">
+            <div ref={readingTargetRef} className="mt-8 space-y-8">
               {post.contentMarkdown && (
                 <section className="border-4 border-[#F5C518] bg-[#0303AB] p-6 sm:p-8">
                   <div className="font-body text-sm sm:text-base text-[#FFFFFF]/88 leading-relaxed">
@@ -272,8 +367,17 @@ const BlogArticle = () => {
                       remarkPlugins={[remarkGfm]}
                       components={{
                         h2: ({ children }) => {
-                          const currentId = `section-${headingIndexRef.current}`;
-                          headingIndexRef.current++;
+                          const headingText = nodeToText(children).trim();
+                          const headingSlug = slugifyHeading(headingText);
+                          const shouldSkipTocId = headingSlug === "table-des-matieres" || headingSlug === "sommaire";
+                          const baseId = `md-${headingSlug || "section"}`;
+                          const count = renderedHeadingIdCounts.get(baseId) ?? 0;
+                          renderedHeadingIdCounts.set(baseId, count + 1);
+                          const currentId = shouldSkipTocId
+                            ? `${baseId}-internal-${count + 1}`
+                            : count === 0
+                              ? baseId
+                              : `${baseId}-${count + 1}`;
                           return (
                             <h2 
                               id={currentId}
@@ -322,7 +426,7 @@ const BlogArticle = () => {
               {post.sections.map((section, sectionIndex) => (
                 <section
                   key={`section-${sectionIndex}`}
-                  id={`section-${sectionIndex}`}
+                  id={`manual-section-${sectionIndex}`}
                   className="border-4 border-[#F5C518] bg-[#0303AB] p-6 sm:p-8 scroll-mt-28"
                 >
                   <h2 className="font-display font-black text-xl sm:text-2xl uppercase">{section.heading}</h2>
@@ -425,16 +529,20 @@ const BlogArticle = () => {
                 </div>
 
                 {/* TOC Navigation */}
-                <nav className="p-5 space-y-2 max-h-[400px] overflow-y-auto">
-                  {toc.map((item, idx) => (
+                <nav className="p-5 space-y-2 max-h-[62vh] overflow-y-auto">
+                  {toc.map((item) => (
                     <a
                       key={item.id}
                       href={`#${item.id}`}
-                      className="group flex items-start gap-2.5 font-body text-sm font-semibold text-[#FFFFFF]/82 hover:text-[#FFFFFF] leading-snug py-2 px-3 border-l-3 border-[#F5C518]/40 hover:border-[#F5C518] hover:bg-[#020285] rounded transition-all duration-150"
+                      className={`group flex items-start gap-2.5 font-body text-sm font-semibold leading-snug py-2 px-3 border-l-4 rounded transition-all duration-150 ${
+                        activeTocId === item.id
+                          ? "text-[#FFFFFF] border-[#F5C518] bg-[#020285]"
+                          : "text-[#FFFFFF]/82 border-[#F5C518]/40 hover:border-[#F5C518] hover:bg-[#020285] hover:text-[#FFFFFF]"
+                      }`}
                       title={item.heading}
                     >
-                      <span className="mt-1 flex-shrink-0 w-1 h-1 bg-[#F5C518] rounded-full group-hover:scale-125 transition-transform" />
-                      <span className="line-clamp-2">{item.heading}</span>
+                      <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full transition-transform ${activeTocId === item.id ? "bg-[#F5C518] scale-125" : "bg-[#F5C518] group-hover:scale-125"}`} />
+                      <span>{item.heading}</span>
                     </a>
                   ))}
                 </nav>
