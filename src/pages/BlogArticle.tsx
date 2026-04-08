@@ -7,6 +7,28 @@ import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 
+// Parse markdown to extract h2 headings for TOC
+function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: string }[] {
+  const lines = markdown.split('\n');
+  const headings: { id: string; heading: string }[] = [];
+  let headingIndex = 0;
+  
+  lines.forEach((line) => {
+    if (line.startsWith('## ')) {
+      const heading = line.replace('## ', '').trim();
+      if (heading) {
+        headings.push({
+          id: `section-${headingIndex}`,
+          heading: heading
+        });
+        headingIndex++;
+      }
+    }
+  });
+  
+  return headings;
+}
+
 function useReadingProgress() {
   const [progress, setProgress] = useState(0);
 
@@ -65,6 +87,16 @@ function CopyButton({ code }: { code: string }) {
 }
 
 const BlogArticle = () => {
+  // Create a ref to track heading index during markdown rendering
+  const headingIndexRef = { current: 0 };
+  
+  let headingIndexCounter = 0;
+  
+  const getNextHeadingId = () => {
+    const id = `section-${headingIndexCounter}`;
+    headingIndexCounter++;
+    return id;
+  };
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
   const progress = useReadingProgress();
@@ -109,10 +141,20 @@ const BlogArticle = () => {
     .slice(0, 3 - sameCategory.length);
   const relatedArticles = [...sameCategory, ...others];
 
-  // Build TOC from sections headings
-  const toc = post.sections
-    .map((s, i) => (s.heading ? { id: `section-${i}`, heading: s.heading } : null))
-    .filter((item): item is { id: string; heading: string } => Boolean(item));
+  // Build TOC from sections headings or markdown content
+  let toc: { id: string; heading: string }[] = [];
+  
+  // Try to build from sections first
+  if (post.sections && post.sections.length > 0) {
+    toc = post.sections
+      .map((s, i) => (s.heading ? { id: `section-${i}`, heading: s.heading } : null))
+      .filter((item): item is { id: string; heading: string } => Boolean(item));
+  }
+  
+  // If no sections but has markdown content, extract from markdown
+  if (toc.length === 0 && post.contentMarkdown) {
+    toc = extractHeadingsFromMarkdown(post.contentMarkdown);
+  }
 
   return (
     <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
@@ -229,11 +271,18 @@ const BlogArticle = () => {
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        h2: ({ children }) => (
-                          <h2 className="mt-8 first:mt-0 font-display font-black text-xl sm:text-2xl uppercase text-[#FFFFFF]">
-                            {children}
-                          </h2>
-                        ),
+                        h2: ({ children }) => {
+                          const currentId = `section-${headingIndexRef.current}`;
+                          headingIndexRef.current++;
+                          return (
+                            <h2 
+                              id={currentId}
+                              className="mt-8 first:mt-0 font-display font-black text-xl sm:text-2xl uppercase text-[#FFFFFF] scroll-mt-28"
+                            >
+                              {children}
+                            </h2>
+                          );
+                        },
                         h3: ({ children }) => (
                           <h3 className="mt-6 font-display font-black text-lg sm:text-xl uppercase text-[#FFFFFF]">
                             {children}
