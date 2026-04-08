@@ -93,6 +93,8 @@ function useReadingProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    setProgress(0);
+
     const update = () => {
       const scrollTop = window.scrollY;
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -100,7 +102,8 @@ function useReadingProgress() {
         setProgress(100);
         return;
       }
-      setProgress((scrollTop / totalHeight) * 100);
+      const current = (scrollTop / totalHeight) * 100;
+      setProgress((prev) => Math.max(prev, current));
     };
 
     update();
