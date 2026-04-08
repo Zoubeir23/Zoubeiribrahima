@@ -8,15 +8,39 @@ import { Link, useParams } from "react-router-dom";
 
 function useReadingProgress() {
   const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    const update = () => {
+    // Calculer immédiatement pour le chargement initial
+    const calculateProgress = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0);
+      const newProgress = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+      setProgress(newProgress);
     };
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
+
+    // Event listener throttlé pour éviter trop de re-renders
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          calculateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Calculer au montage et sur resize
+    calculateProgress();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", calculateProgress);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", calculateProgress);
+    };
   }, []);
+
   return progress;
 }
 
@@ -92,7 +116,7 @@ const BlogArticle = () => {
   return (
     <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
       {/* Reading progress bar — above navbar */}
-      <div className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-[#0303AB]">
+      <div className="fixed top-0 left-0 right-0 z-[9999] h-[4px] bg-[#0303AB]">
         <div
           className="h-full bg-[#F5C518] transition-[width] duration-150"
           style={{ width: `${progress}%` }}
