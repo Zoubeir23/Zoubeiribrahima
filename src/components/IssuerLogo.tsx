@@ -63,23 +63,42 @@ const AnthropicLogo = () => (
   </svg>
 );
 
-/* ── Harvard CS50 — pas de logo officiel SVG public, badge stylisé ── */
+/* ── Harvard CS50 — shield Harvard public ── */
 const HarvardLogo = () => (
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
-    <rect width="24" height="24" rx="3" fill="#A51C30" />
-    <path
-      d="M5 6h2.5v4.5H11V6h2.5v12H11v-5H7.5v5H5z M16 6h2.5v12H16z"
-      fill="#FFFFFF"
-    />
-  </svg>
+  <img
+    src="https://commons.wikimedia.org/wiki/Special:FilePath/Harvard_University_shield.svg"
+    alt="Harvard University shield"
+    className="w-6 h-6 object-contain"
+    loading="lazy"
+    referrerPolicy="no-referrer"
+    onError={(event) => {
+      event.currentTarget.onerror = null;
+      event.currentTarget.src = "/logos/cert-default.svg";
+    }}
+  />
 );
 
-/* ── Udemy — logo officiel svgl.app (icône U uniquement) ── */
+/* ── Cursa — logo public de la société ── */
+const CursaLogo = () => (
+  <img
+    src="https://media.licdn.com/dms/image/v2/C4D0BAQFveMkSMhYI9A/company-logo_200_200/company-logo_200_200/0/1644934823241/cursa_online_courses_logo?e=2147483647&v=beta&t=vDNJT7VMPqc6pliV0CvYAWovk6x7wMVzw4jouicFFd4"
+    alt="Cursa"
+    className="w-6 h-6 object-contain"
+    loading="lazy"
+    referrerPolicy="no-referrer"
+    onError={(event) => {
+      event.currentTarget.onerror = null;
+      event.currentTarget.src = "/logos/cert-default.svg";
+    }}
+  />
+);
+
+/* ── Udemy — logo officiel (Simple Icons) ── */
 const UdemyLogo = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
     <path
       fill="#A435F0"
-      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.195 4.797l1.07 1.851 1.073-1.851h1.964l-2.01 3.316 2.118 3.537h-1.993l-1.152-2.014-1.15 2.014H10.12l2.12-3.537L10.23 4.797h1.965zm-4.388.876h1.714v4.636c0 .67.012 1.084.038 1.244.062.384.249.692.56.924.315.232.73.35 1.248.35.525 0 .924-.11 1.195-.33.273-.219.435-.488.488-.808.052-.319.079-.744.079-1.274V5.673h1.713v4.504c0 .999-.046 1.706-.137 2.121a2.748 2.748 0 0 1-.568 1.19c-.281.343-.654.611-1.118.802-.465.192-1.062.289-1.793.289-.895 0-1.574-.107-2.04-.321a2.759 2.759 0 0 1-1.097-.853 2.738 2.738 0 0 1-.497-1.107c-.115-.46-.172-1.174-.172-2.142V5.673z"
+      d="M12 0L5.81 3.573v3.574l6.189-3.574 6.191 3.574V3.573zM5.81 10.148v8.144c0 1.85.589 3.243 1.741 4.234S10.177 24 11.973 24s3.269-.482 4.448-1.474c1.179-.991 1.768-2.439 1.768-4.314v-8.064h-3.242v7.85c0 2.036-1.509 3.055-2.948 3.055-1.428 0-2.947-.991-2.947-3.027v-7.878z"
     />
   </svg>
 );
@@ -124,6 +143,8 @@ const IssuerLogo = ({ issuer }: IssuerLogoProps) => {
       return <AnthropicLogo />;
     case "Harvard CS50":
       return <HarvardLogo />;
+    case "Cursa - Cursos Online":
+      return <CursaLogo />;
     case "Udemy":
       return <UdemyLogo />;
     default:

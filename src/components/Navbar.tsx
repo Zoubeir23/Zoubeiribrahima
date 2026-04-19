@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "@/lib/static-motion";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useColorMode } from "@/hooks/useColorMode";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,7 @@ const Navbar = () => {
   const activeSectionLink = isHomePage ? activeLink : "";
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const { isWarmMode, toggleColorMode } = useColorMode();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -110,23 +112,27 @@ const Navbar = () => {
         {/* Logo */}
         {isHomePage ? (
           <motion.a href="#hero" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <img
-              src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-              alt="Scale avec Zoubeir"
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain"
-              width={380}
-              height={80}
-            />
+            <span className="logo-shell inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3 sm:py-2">
+              <img
+                src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+                alt="Scale avec Zoubeir"
+                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
+                width={380}
+                height={80}
+              />
+            </span>
           </motion.a>
         ) : (
           <Link to="/#hero">
-            <img
-              src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-              alt="Scale avec Zoubeir"
-              className="h-14 sm:h-16 md:h-20 w-auto object-contain"
-              width={380}
-              height={80}
-            />
+            <span className="logo-shell inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3 sm:py-2">
+              <img
+                src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+                alt="Scale avec Zoubeir"
+                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
+                width={380}
+                height={80}
+              />
+            </span>
           </Link>
         )}
 
@@ -185,6 +191,15 @@ const Navbar = () => {
 
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleColorMode}
+            className="hidden md:block px-4 py-2 border-2 border-[#F5C518] text-[#FFFFFF] font-body font-semibold text-xs uppercase tracking-wider hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150"
+            aria-label="Basculer la palette de couleurs"
+          >
+            {isWarmMode ? "Mode Bleu" : "Mode Warm"}
+          </button>
+
           {isHomePage ? (
             <motion.a
               href="#contact"
@@ -294,6 +309,16 @@ const Navbar = () => {
                   Me Recruter
                 </Link>
               )}
+              <button
+                type="button"
+                onClick={() => {
+                  toggleColorMode();
+                  setIsMenuOpen(false);
+                }}
+                className="mt-2 py-3.5 px-4 border-2 border-[#F5C518] text-[#FFFFFF] font-body font-semibold text-base uppercase text-center leading-tight hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150"
+              >
+                {isWarmMode ? "Activer Mode Bleu" : "Activer Mode Warm"}
+              </button>
               <Link
                 to="/blog"
                 onClick={() => setIsMenuOpen(false)}

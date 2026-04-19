@@ -55,6 +55,14 @@ export default {
           DEFAULT: "#FFFFFF",
           foreground: "#143DFF",
         },
+        primaryWarm: {
+          DEFAULT: "#FFF3E0",
+          foreground: "#2B1F14",
+        },
+        secondaryDeep: {
+          DEFAULT: "#D62828",
+          foreground: "#FFF3E0",
+        },
         muted: {
           DEFAULT: "#143DFF",
           foreground: "#FFFFFF",

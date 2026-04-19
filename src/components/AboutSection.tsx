@@ -185,9 +185,9 @@ const AboutSection = () => {
                       <span className="font-display font-black text-sm uppercase text-[#FFFFFF]">{l.lang}</span>
                       <span className="font-body font-bold text-xs uppercase text-[#FFFFFF]/60">{l.level}</span>
                     </div>
-                    <div className="h-2 bg-[#FFFFFF]/10 border-2 border-[#F5C518]">
+                    <div className="language-level-track h-2 bg-[#FFFFFF]/10 border-2 border-[#F5C518]">
                       <div
-                        className="h-full bg-[#FFFFFF]"
+                        className="language-level-fill h-full bg-[#FFFFFF]"
                         style={{ width: `${l.pct}%` }}
                       />
                     </div>

@@ -68,13 +68,15 @@ const CtaBand = () => {
 const Footer = () => (
   <footer className="bg-[#020285] border-t-8 border-[#F5C518] py-10 sm:py-12 px-4 sm:px-6">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
-      <img
-          src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-          alt="Scale avec Zoubeir"
-          className="h-16 max-[390px]:h-14 sm:h-20 md:h-24 w-auto object-contain"
-          width={420}
-          height={96}
-        />
+      <span className="logo-shell inline-flex items-center justify-center px-3 py-2 sm:px-4 sm:py-3">
+        <img
+            src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+            alt="Scale avec Zoubeir"
+            className="h-16 max-[390px]:h-14 sm:h-20 md:h-24 w-auto object-contain"
+            width={420}
+            height={96}
+          />
+      </span>
       <p className="font-body text-[10px] font-black uppercase tracking-[0.16em] sm:tracking-[0.25em] text-[#FFFFFF]/60 text-center">
         © 2025 Zoubeir Ibrahima Amed — Tous droits réservés
       </p>
