@@ -5,10 +5,14 @@ import { ArrowLeft, ArrowUp, List } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Card } from "@/components/ui/card";
 import { CopyButton } from "@/components/blog/CopyButton";
+import { CodeBlock } from "@/components/blog/CodeBlock";
 import { useReadingProgress } from "@/hooks/use-reading-progress";
 import { extractHeadingsFromMarkdown, nodeToText, slugifyHeading } from "@/lib/blog-markdown-utils";
+import { buildBlogArticleJsonLd } from "@/lib/blog-seo";
+import { DEFAULT_SOCIAL_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config";
 
 const BlogArticle = () => {
   const renderedHeadingIdCounts = new Map<string, number>();
@@ -107,6 +111,10 @@ const BlogArticle = () => {
   if (!post) {
     return (
       <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
+        <Helmet>
+          <title>Article introuvable | Blog Zoubeir Ibrahima</title>
+          <meta name="robots" content="noindex, follow" />
+        </Helmet>
         <Navbar />
         <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-32 pb-24">
           <h1 className="font-display font-black text-4xl uppercase">Article introuvable</h1>
@@ -123,8 +131,30 @@ const BlogArticle = () => {
     );
   }
 
+  const articleUrl = `${SITE_URL}/blog/${post.slug}`;
+  const pageTitle = `${post.title} | Blog Zoubeir Ibrahima`;
+  const coverImageUrl = `${SITE_URL}${post.coverImage}`;
+
   return (
     <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={post.excerpt} />
+        <link rel="canonical" href={articleUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={articleUrl} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:image" content={coverImageUrl} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta property="article:published_time" content={post.date} />
+        <meta property="article:section" content={post.category} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={coverImageUrl} />
+        <script type="application/ld+json">{JSON.stringify(buildBlogArticleJsonLd(post))}</script>
+      </Helmet>
       {/* Reading progress bar — above navbar */}
       <div className="fixed top-0 left-0 right-0 z-[9999] h-[4px] bg-[#0303AB]">
         <div
@@ -282,15 +312,12 @@ const BlogArticle = () => {
                         code: ({ className, children }) => {
                           const isBlock = className?.includes("language-");
                           if (isBlock) {
-                            return (
-                              <code className="block whitespace-pre overflow-x-auto border-4 border-[#F5C518] bg-[#020285] p-4 font-mono text-xs sm:text-sm text-[#FFFFFF]/90 leading-relaxed">
-                                {children}
-                              </code>
-                            );
+                            const language = className?.replace("language-", "");
+                            return <CodeBlock code={nodeToText(children)} language={language} />;
                           }
                           return <code className="bg-[#020285] px-1.5 py-0.5 text-[#F5C518] font-mono text-[0.85em]">{children}</code>;
                         },
-                        pre: ({ children }) => <div className="mt-4 relative">{children}</div>,
+                        pre: ({ children }) => <div className="mt-4">{children}</div>,
                       }}
                     >
                       {post.contentMarkdown}
@@ -330,9 +357,7 @@ const BlogArticle = () => {
                         {section.codeBlocks.map((codeBlock, cbIdx) => (
                           <div key={`cb-${sectionIndex}-${cbIdx}`} className="relative">
                             <CopyButton code={codeBlock} />
-                            <pre className="overflow-x-auto border-4 border-[#F5C518] bg-[#020285] p-4 pt-10 font-mono text-xs sm:text-sm text-[#FFFFFF]/90 leading-relaxed">
-                              <code>{codeBlock}</code>
-                            </pre>
+                            <CodeBlock code={codeBlock} className="pt-10" />
                           </div>
                         ))}
                       </div>
