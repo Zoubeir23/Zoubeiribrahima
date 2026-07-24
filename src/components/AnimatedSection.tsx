@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "@/lib/static-motion";
 import { ReactNode } from "react";
 
 interface AnimatedSectionProps {

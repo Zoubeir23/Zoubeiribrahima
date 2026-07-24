@@ -1,209 +1,93 @@
-import { motion } from "framer-motion";
+import { motion } from "@/lib/static-motion";
 import { Award, ExternalLink } from "lucide-react";
-import AnimatedSection from "./AnimatedSection";
-
-interface Certification {
-  title: string;
-  issuer: string;
-  date: string;
-  skills?: string[];
-  logo: string;
-  certId?: string;
-}
-
-const certifications: Certification[] = [
-  {
-    title: "Certificat Python (base)",
-    issuer: "HackerRank",
-    date: "janv. 2026",
-    skills: ["Python"],
-    logo: "HR",
-  },
-  {
-    title: "Claude Code in Action",
-    issuer: "Anthropic",
-    date: "déc. 2025",
-    certId: "b2gcc4ubkdsu",
-    logo: "A",
-  },
-  {
-    title: "Bien démarrer avec GitHub Copilot",
-    issuer: "Microsoft",
-    date: "sept. 2025",
-    logo: "MS",
-  },
-  {
-    title: "Développer des fonctionnalités de code avec GitHub Copilot",
-    issuer: "Microsoft",
-    date: "sept. 2025",
-    skills: ["GitHub Copilot"],
-    logo: "MS",
-  },
-  {
-    title: "Développer des tests unitaires avec GitHub Copilot",
-    issuer: "Microsoft",
-    date: "sept. 2025",
-    skills: ["Tests unitaires"],
-    logo: "MS",
-  },
-  {
-    title: "Générer une documentation avec GitHub Copilot",
-    issuer: "Microsoft",
-    date: "sept. 2025",
-    skills: ["Documentation"],
-    logo: "MS",
-  },
-  {
-    title: "Python Essentials 1",
-    issuer: "Cisco Networking Academy",
-    date: "août 2025",
-    skills: ["Python"],
-    logo: "C",
-  },
-  {
-    title: "Dépannage de Microsoft Teams",
-    issuer: "Microsoft",
-    date: "avr. 2025",
-    skills: ["Microsoft Teams"],
-    logo: "MS",
-  },
-  {
-    title: "L'essentiel de Django",
-    issuer: "LinkedIn",
-    date: "avr. 2025",
-    skills: ["Django"],
-    logo: "in",
-  },
-  {
-    title: "Les fondements de la programmation",
-    issuer: "LinkedIn",
-    date: "avr. 2025",
-    skills: ["GitHub", "HTML5", "Git"],
-    logo: "in",
-  },
-  {
-    title: "Les fondements de la programmation : Les algorithmes",
-    issuer: "LinkedIn",
-    date: "avr. 2025",
-    skills: ["Programmation"],
-    logo: "in",
-  },
-  {
-    title: "Python : L'automatisation des tâches",
-    issuer: "LinkedIn",
-    date: "avr. 2025",
-    skills: ["Automatisation"],
-    logo: "in",
-  },
-  {
-    title: "Se préparer au métier de développeur",
-    issuer: "Microsoft",
-    date: "avr. 2025",
-    skills: ["Développement logiciel", "HTML5"],
-    logo: "MS",
-  },
-  {
-    title: "Java Fundamentals Pour les débutants",
-    issuer: "Udemy",
-    date: "mars 2025",
-    logo: "U",
-  },
-  {
-    title: "Introduction to Cybersecurity",
-    issuer: "Cisco",
-    date: "mars 2025",
-    skills: ["Cybersécurité"],
-    logo: "C",
-  },
-  {
-    title: "Maîtrise de la programmation Java et Python",
-    issuer: "Udemy",
-    date: "mars 2025",
-    skills: ["Java", "Python"],
-    logo: "U",
-  },
-  {
-    title: "CS50x",
-    issuer: "Harvard CS50",
-    date: "déc. 2024",
-    skills: ["Informatique", "HTML5"],
-    logo: "H",
-  },
-  {
-    title: "CS50p - Python",
-    issuer: "Harvard CS50",
-    date: "nov. 2024",
-    skills: ["Python"],
-    logo: "H",
-  },
-  {
-    title: "WordPress",
-    issuer: "Coursera",
-    date: "nov. 2024",
-    skills: ["WordPress"],
-    logo: "Co",
-  },
-  {
-    title: "Cours Python complet",
-    issuer: "Udemy",
-    date: "2024",
-    skills: ["Python"],
-    logo: "U",
-  },
-];
+import { certifications } from "@/data/certifications";
+import IssuerLogo from "@/components/IssuerLogo";
 
 const CertificationsSection = () => {
   return (
-    <AnimatedSection delay={0.1}>
-      <div className="section-card">
-        <h2 className="section-title">
-          <Award className="section-icon" />
-          Licences et Certifications
-          <span className="ml-auto text-xs text-muted-foreground font-normal">
-            {certifications.length} certifications
-          </span>
-        </h2>
+    <section className="bg-[#020285] py-16 px-6">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <Award className="w-5 h-5 text-[#FFFFFF]" />
+            <p className="font-display font-bold text-[#FFFFFF]/60 text-xs uppercase tracking-[0.3em]">
+              Liste complète
+            </p>
+          </div>
+          <h3 className="font-display font-black text-[#FFFFFF] text-2xl uppercase">
+            Toutes mes Certifications
+            <span className="ml-3 text-sm font-bold text-[#FFFFFF]/40">
+              ({certifications.length})
+            </span>
+          </h3>
+        </motion.div>
 
-        <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
-          {certifications.map((cert, index) => (
-            <motion.div
-              key={index}
-              className="cert-card group"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-20px" }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
-              whileHover={{ x: 4 }}
-            >
-              <div className="cert-logo">{cert.logo}</div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
-                  {cert.title}
-                </h3>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {cert.issuer} • {cert.date}
-                </p>
-                {cert.skills && cert.skills.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {cert.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary/80"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-4 border-[#F5C518]">
+          {certifications.map((cert, index) => {
+            const Card = cert.certUrl ? "a" : "div";
+            const cardProps = cert.certUrl
+              ? { href: cert.certUrl, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+
+            return (
+              <motion.div
+                key={cert.id || index}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.03 }}
+              >
+                <Card
+                  {...cardProps}
+                  className={`group flex items-start gap-4 p-6 md:p-7 border-r-4 border-b-4 border-[#F5C518] bg-[#020285] transition-all duration-200 h-full ${
+                    cert.certUrl
+                      ? "hover:bg-[#FFFFFF] cursor-pointer"
+                      : "hover:bg-[#FFFFFF]/10"
+                  }`}
+                >
+                  <div className="w-10 h-10 md:w-11 md:h-11 shrink-0 border-2 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200">
+                    <IssuerLogo issuer={cert.issuer} />
                   </div>
-                )}
-              </div>
-              {cert.certId && (
-                <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0" />
-              )}
-            </motion.div>
-          ))}
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-display font-black text-sm uppercase leading-tight text-[#FFFFFF] group-hover:text-[#020285] transition-colors duration-200 line-clamp-2">
+                      {cert.title}
+                    </h4>
+                    <p className="font-body text-xs font-semibold text-[#FFFFFF]/60 group-hover:text-[#020285]/60 uppercase tracking-wider mt-1 transition-colors duration-200">
+                      {cert.date}
+                    </p>
+                    {cert.skills && cert.skills.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {cert.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="text-[10px] px-2 py-0.5 border border-[#F5C518]/30 group-hover:border-[#020285]/30 text-[#FFFFFF]/70 group-hover:text-[#020285]/70 uppercase tracking-wide transition-colors duration-200"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Link icon */}
+                  {cert.certUrl && (
+                    <ExternalLink className="w-4 h-4 shrink-0 text-[#FFFFFF]/40 group-hover:text-[#020285] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
+                  )}
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-    </AnimatedSection>
+    </section>
   );
 };
 

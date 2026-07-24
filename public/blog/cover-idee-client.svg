@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Idee au premier client">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020285"/>
+      <stop offset="100%" stop-color="#3A4AF0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g2)"/>
+  <rect x="70" y="90" width="1060" height="495" rx="18" fill="#FFFFFF" opacity="0.06"/>
+  <text x="110" y="280" fill="#FFFFFF" font-size="56" font-family="Arial, sans-serif" font-weight="700">Premier client</text>
+  <text x="110" y="345" fill="#F5C518" font-size="32" font-family="Arial, sans-serif" font-weight="700">de l'idee a la conversion</text>
+</svg>

@@ -13,7 +13,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>(() => {
     // Check localStorage for saved language preference
     const savedLanguage = localStorage.getItem("language") as Language;
-    return savedLanguage || "en";
+    return savedLanguage || "fr";
   });
 
   useEffect(() => {

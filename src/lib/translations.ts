@@ -68,13 +68,13 @@ export const translations = {
         "Crafting high-performance SaaS platforms and digital experiences with React, Node.js, and Python. Based in Dakar, Senegal.",
       featuredProject: "Featured Project",
       snapfoliooDesc:
-        "A cutting-edge SaaS platform for creating portfolios, CVs, and LinkedIn banners. Featuring auto-save, multi-project management, and secure OAuth authentication.",
+        "A modern SaaS platform for creating portfolios, CVs, and LinkedIn banners with a real-time visual editor, auto-save, and one-click publishing.",
       snapfolioProblem:
         "🎯 Problem: Freelancers and professionals struggle to create attractive portfolios quickly",
       snapfolioSolution:
-        "🛠️ Solution: Automated SaaS platform with pre-designed templates and real-time editor",
+        "🛠️ Solution: React + TypeScript + Supabase platform with pre-designed templates, real-time editing, and instant deployment",
       snapfolioResult: "🚀 Result: 100+ active users, 500+ portfolios generated in 3 months",
-      snapfolioRole: "👨‍💻 Role: Founder & Fullstack Developer (React, Supabase, OAuth, RLS)",
+      snapfolioRole: "👨‍💻 Role: Founder & Fullstack Developer (React, TypeScript, Supabase, Tailwind, Vercel)",
       liveDemo: "Live Demo",
       github: "GitHub",
       techArsenal: "Tech Arsenal",
@@ -85,7 +85,7 @@ export const translations = {
       active: "Active",
       footer: "© 2025 Zoubeir Ibrahima Amed. All rights reserved.",
       footerBio:
-        "Fullstack Developer based in Dakar, Senegal. Specialized in building robust SaaS platforms with React, Django, and PostgreSQL. Available worldwide remotely 🌍",
+        "Fullstack Developer based in Dakar, Senegal. Specialized in building robust SaaS platforms with React, TypeScript, Supabase, and Vercel. Available worldwide remotely 🌍",
       email: "Email",
       linkedin: "LinkedIn",
       downloadCV: "Download CV",
@@ -112,8 +112,8 @@ export const translations = {
       snapfolioRole: "Founder & Lead Dev",
       snapfolioCompany: "Snapfolioo",
       snapfolioDesc:
-        "Architected a scalable SaaS. Implemented Google OAuth, RLS, and auto-save functionality.",
-      snapfolioDate: "Jan 2025 - Present",
+        "Architected a scalable SaaS with React 18 + TypeScript + Vite. Implemented Supabase Auth, PostgreSQL, and auto-save with deployment on Vercel.",
+      snapfolioDate: "Jan 2026 - Present",
     },
     // Certifications
     certifications: {
@@ -220,13 +220,13 @@ export const translations = {
         "Création de plateformes SaaS performantes et d'expériences digitales avec React, Node.js et Python. Basé à Dakar, Sénégal.",
       featuredProject: "Projet Vedette",
       snapfoliooDesc:
-        "Une plateforme SaaS de pointe pour créer des portfolios, CV et bannières LinkedIn. Avec sauvegarde automatique, gestion multi-projets et authentification OAuth sécurisée.",
+        "Une plateforme SaaS moderne pour créer des portfolios, CV et bannières LinkedIn avec éditeur visuel en temps réel, sauvegarde automatique et publication instantanée.",
       snapfolioProblem:
         "🎯 Problème : Les freelances et professionnels peinent à créer rapidement des portfolios attractifs",
       snapfolioSolution:
-        "🛠️ Solution : Plateforme SaaS automatisée avec templates pré-conçus et éditeur temps réel",
+        "🛠️ Solution : Plateforme React + TypeScript + Supabase avec templates pré-conçus, édition en temps réel et déploiement instantané",
       snapfolioResult: "🚀 Résultat : 100+ utilisateurs actifs, 500+ portfolios générés en 3 mois",
-      snapfolioRole: "👨‍💻 Rôle : Fondateur & Développeur Fullstack (React, Supabase, OAuth, RLS)",
+      snapfolioRole: "👨‍💻 Rôle : Fondateur & Développeur Fullstack (React, TypeScript, Supabase, Tailwind, Vercel)",
       liveDemo: "Démo en Direct",
       github: "GitHub",
       techArsenal: "Arsenal Technique",
@@ -237,7 +237,7 @@ export const translations = {
       active: "Actif",
       footer: "© 2025 Zoubeir Ibrahima Amed. Tous droits réservés.",
       footerBio:
-        "Développeur Fullstack basé à Dakar, Sénégal. Spécialisé dans la création de plateformes SaaS robustes avec React, Django et PostgreSQL. Disponible partout en télétravail 🌍",
+        "Développeur Fullstack basé à Dakar, Sénégal. Spécialisé dans la création de plateformes SaaS robustes avec React, TypeScript, Supabase et Vercel. Disponible partout en télétravail 🌍",
       email: "Email",
       linkedin: "LinkedIn",
       downloadCV: "Télécharger CV",
@@ -264,8 +264,8 @@ export const translations = {
       snapfolioRole: "Fondateur & Lead Dev",
       snapfolioCompany: "Snapfolioo",
       snapfolioDesc:
-        "Architecture d'une plateforme SaaS scalable. Implémentation de Google OAuth, RLS et fonctionnalité de sauvegarde automatique.",
-      snapfolioDate: "Jan 2025 - Aujourd'hui",
+        "Architecture d'une plateforme SaaS scalable avec React 18 + TypeScript + Vite. Implémentation de Supabase Auth, PostgreSQL, sauvegarde automatique et déploiement sur Vercel.",
+      snapfolioDate: "Jan 2026 - Aujourd'hui",
     },
     // Certifications
     certifications: {

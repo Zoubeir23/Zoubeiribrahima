@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0D2FD1" stroke="#FFFFFF" stroke-width="4"/>
+  <g stroke="#68F0FF" stroke-width="3" stroke-linecap="round">
+    <path d="M32 14L39 18V26L32 30L25 26V18L32 14Z"/>
+    <path d="M39 26L46 30V38L39 42L32 38V30L39 26Z"/>
+    <path d="M25 26L32 30V38L25 42L18 38V30L25 26Z"/>
+  </g>
+  <text x="32" y="57" text-anchor="middle" font-family="IBM Plex Sans, Arial, sans-serif" font-weight="700" font-size="8" fill="#FFFFFF">OPENAI SDK</text>
+</svg>
