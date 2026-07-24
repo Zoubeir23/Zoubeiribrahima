@@ -1,8 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zoubeiribrahima.dev/</loc>
+    <loc>https://zoubeiribrahima.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/git-github-de-zero-a-heros-guide-complet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/html-css-de-zero-a-heros-guide-complet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/python-de-zero-a-heros-guide-complet</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/apprendre-django-guide-complet-developpeur</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/docker-compose-orchestration-conteneurs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/git-github-workflow-propre-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/python-bonnes-pratiques-code-maintenable-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/agents-ia-claude-code-openclaw-tendances-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/vibe-coding-et-claude-code-en-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zoubeiribrahima.vercel.app/blog/installer-claude-code-guide-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
