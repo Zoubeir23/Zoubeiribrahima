@@ -1,8 +1,14 @@
 import { useState, useMemo } from "react";
 import { ArrowLeft, BookOpen, Bot, Rocket, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/Navbar";
+import { DEFAULT_SOCIAL_IMAGE, SITE_NAME, SITE_URL } from "@/lib/site-config";
+
+const BLOG_PAGE_TITLE = "Blog | Articles Python, Django, Frontend, DevOps & IA — Zoubeir Ibrahima";
+const BLOG_PAGE_DESCRIPTION =
+  "Articles techniques sur Python, Django, HTML/CSS, Git, Docker et les agents IA de code (Claude Code, OpenClaw), écrits par Zoubeir Ibrahima, développeur FullStack.";
 
 const CATEGORY_LABELS: Record<string, string> = {
   all: "Tous",
@@ -60,6 +66,21 @@ const Blog = () => {
 
   return (
     <main className="min-h-screen bg-[#020285] text-[#FFFFFF]">
+      <Helmet>
+        <title>{BLOG_PAGE_TITLE}</title>
+        <meta name="description" content={BLOG_PAGE_DESCRIPTION} />
+        <link rel="canonical" href={`${SITE_URL}/blog`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SITE_URL}/blog`} />
+        <meta property="og:title" content={BLOG_PAGE_TITLE} />
+        <meta property="og:description" content={BLOG_PAGE_DESCRIPTION} />
+        <meta property="og:image" content={DEFAULT_SOCIAL_IMAGE} />
+        <meta property="og:site_name" content={SITE_NAME} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={BLOG_PAGE_TITLE} />
+        <meta name="twitter:description" content={BLOG_PAGE_DESCRIPTION} />
+        <meta name="twitter:image" content={DEFAULT_SOCIAL_IMAGE} />
+      </Helmet>
       <Navbar />
 
       {/* Hero */}
