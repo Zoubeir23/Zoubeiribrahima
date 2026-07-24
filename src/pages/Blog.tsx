@@ -127,6 +127,7 @@ const Blog = () => {
             <input
               type="text"
               placeholder="Rechercher un article..."
+              aria-label="Rechercher un article"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full bg-[#0303AB] border-4 border-[#F5C518] pl-9 pr-8 py-2.5 font-body text-sm text-[#FFFFFF] placeholder:text-[#FFFFFF]/35 outline-none focus:border-[#FFFFFF] transition-colors"
