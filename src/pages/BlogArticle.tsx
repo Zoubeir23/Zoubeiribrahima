@@ -1,150 +1,29 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import { blogPosts } from "@/data/blogPosts";
-import { ArrowLeft, ArrowUp, Check, Copy, List } from "lucide-react";
+import { ArrowLeft, ArrowUp, List } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-
-function slugifyHeading(value: string): string {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-}
-
-function nodeToText(node: unknown): string {
-  if (typeof node === "string") {
-    return node;
-  }
-  if (typeof node === "number") {
-    return String(node);
-  }
-  if (Array.isArray(node)) {
-    return node.map((child) => nodeToText(child)).join("");
-  }
-  if (node && typeof node === "object" && "props" in node) {
-    const maybeProps = node as { props?: { children?: unknown } };
-    return nodeToText(maybeProps.props?.children);
-  }
-  return "";
-}
-
-// Parse markdown to extract h2 headings for TOC with stable ids.
-function extractHeadingsFromMarkdown(markdown: string): { id: string; heading: string }[] {
-  const lines = markdown.split("\n");
-  const headings: { id: string; heading: string }[] = [];
-  const idCounts = new Map<string, number>();
-  let inCodeFence = false;
-  let reachedPreface = false;
-
-  lines.forEach((line) => {
-    const trimmed = line.trim();
-
-    if (trimmed.startsWith("```")) {
-      inCodeFence = !inCodeFence;
-      return;
-    }
-
-    if (inCodeFence) {
-      return;
-    }
-
-    if (!line.startsWith("## ")) {
-      return;
-    }
-
-    const heading = line.replace("## ", "").trim();
-    if (!heading) {
-      return;
-    }
-
-    const normalizedHeading = slugifyHeading(heading);
-
-    if (normalizedHeading === "preface") {
-      reachedPreface = true;
-    }
-
-    if (!reachedPreface) {
-      return;
-    }
-
-    if (normalizedHeading === "table-des-matieres" || normalizedHeading === "sommaire") {
-      return;
-    }
-
-    const baseId = `md-${normalizedHeading || "section"}`;
-    const currentCount = idCounts.get(baseId) ?? 0;
-    idCounts.set(baseId, currentCount + 1);
-    const id = currentCount === 0 ? baseId : `${baseId}-${currentCount + 1}`;
-
-    headings.push({ id, heading });
-  });
-
-  return headings;
-}
-
-function useReadingProgress() {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    setProgress(0);
-
-    const update = () => {
-      const scrollTop = window.scrollY;
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight <= 0) {
-        setProgress(100);
-        return;
-      }
-      const current = (scrollTop / totalHeight) * 100;
-      setProgress((prev) => Math.max(prev, current));
-    };
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
-  }, []);
-
-  return progress;
-}
-
-function CopyButton({ code }: { code: string }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(code.trim());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, [code]);
-  return (
-    <button
-      onClick={handleCopy}
-      className="absolute top-3 right-3 flex items-center gap-1.5 bg-[#020285] border border-[#F5C518]/50 text-[#FFFFFF]/55 hover:text-[#F5C518] hover:border-[#F5C518] px-2 py-1 font-display font-black text-[9px] uppercase tracking-[0.2em] transition-all duration-150 z-10"
-      aria-label="Copier le code"
-    >
-      {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
-      {copied ? "Copié !" : "Copier"}
-    </button>
-  );
-}
+import { CopyButton } from "@/components/blog/CopyButton";
+import { useReadingProgress } from "@/hooks/use-reading-progress";
+import { extractHeadingsFromMarkdown, nodeToText, slugifyHeading } from "@/lib/blog-markdown-utils";
 
 const BlogArticle = () => {
   const renderedHeadingIdCounts = new Map<string, number>();
   const articleRef = useRef<HTMLElement | null>(null);
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
-  const progress = useReadingProgress();
+  const progress = useReadingProgress(slug ?? "");
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
   const [activeTocId, setActiveTocId] = useState<string>("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setActiveTocId("");
+    setTocOpen(false);
   }, [slug]);
 
   useEffect(() => {
