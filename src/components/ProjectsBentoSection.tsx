@@ -62,7 +62,7 @@ const ProjectsBentoSection = () => {
             {mobileProjects.map((project) => (
               <article
                 key={project.title}
-                className={`snap-start shrink-0 w-[86vw] border-4 border-[#F5C518] p-5 flex flex-col gap-5 ${project.featured ? "bg-[#2553F0]" : "bg-[#0303AB]"}`}
+                className="snap-start shrink-0 w-[86vw] border-4 border-[#F5C518] p-5 flex flex-col gap-5 bg-[#0303AB]"
               >
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-display font-black text-[10px] uppercase tracking-[0.22em] bg-[#FFFFFF] text-[#0303AB] px-3 py-1.5">
