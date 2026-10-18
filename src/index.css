@@ -68,23 +68,6 @@
     overflow-x: clip;
   }
 
-  #root::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 40;
-    opacity: 0.22;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.78) 0.8px, transparent 0.8px);
-    background-size: 15px 15px;
-  }
-
-  .theme-warm #root::before {
-    opacity: 0.26;
-    background-image: radial-gradient(rgba(94, 71, 57, 0.24) 0.9px, transparent 0.9px);
-    background-size: 15px 15px;
-  }
-
   h1, h2 {
     font-family: var(--font-display);
     font-weight: 800;
