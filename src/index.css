@@ -374,24 +374,4 @@
     transform: translate(-3px, -3px);
     box-shadow: 6px 6px 0px #FFFFFF;
   }
-
-  /* Disable hover-driven visual changes for a static look */
-  * {
-    transition: none !important;
-  }
-
-  @media (hover: hover) {
-    .brutalist-hover:hover,
-    [class*="hover:"]:hover,
-    .group:hover [class*="group-hover:"] {
-      transform: none !important;
-      box-shadow: none !important;
-      filter: none !important;
-      opacity: 1 !important;
-      background: inherit !important;
-      background-color: inherit !important;
-      color: inherit !important;
-      border-color: inherit !important;
-    }
-  }
 }
