@@ -395,19 +395,3 @@
     }
   }
 }
-
-@media (hover: hover) {
-  .theme-warm [class*="hover:bg"]:hover {
-    background-color: inherit !important;
-  }
-
-  .theme-warm [class*="hover:text"]:hover {
-    color: var(--theme-on-primary-soft) !important;
-  }
-
-  .theme-warm .group:hover [class*="group-hover:"] {
-    background-color: inherit !important;
-    color: var(--theme-on-primary-soft) !important;
-    border-color: rgba(94, 71, 57, 0.25) !important;
-  }
-}
