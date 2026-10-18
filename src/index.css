@@ -46,7 +46,7 @@
     background-image: none;
     background-attachment: scroll;
     color: var(--theme-on-primary);
-    font-family: "Outfit", system-ui, sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
