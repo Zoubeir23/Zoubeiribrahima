@@ -25,10 +25,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["IBM Plex Sans", "system-ui", "sans-serif"],
-        display: ["Bebas Neue", "sans-serif"],
-        grotesk: ["Bebas Neue", "sans-serif"],
-        manrope: ["IBM Plex Sans", "sans-serif"],
+        sans: ["var(--font-body)"],
+        body: ["var(--font-body)"],
+        display: ["var(--font-display)"],
+        mono: ["var(--font-mono)"],
       },
       colors: {
         yellow: {
