@@ -8,16 +8,16 @@
 
 @layer base {
   :root {
-    --background: #0303AB;
-    --foreground: #F8FAFC;
-    --accent: #F5C518;
+    --background: var(--surface-deepest);
+    --foreground: var(--text-primary);
+    --accent: var(--accent-primary);
     --ink-soft: rgba(255, 255, 255, 0.72);
-    --radius: 0px;
-    --theme-primary: #0303AB;
-    --theme-primary-strong: #020285;
-    --theme-secondary: #F5C518;
-    --theme-on-primary: #FFFFFF;
-    --theme-on-secondary: #020285;
+    --radius: var(--radius-medium);
+    --theme-primary: var(--surface-deepest);
+    --theme-primary-strong: var(--surface-base);
+    --theme-secondary: var(--accent-primary);
+    --theme-on-primary: var(--text-primary);
+    --theme-on-secondary: var(--surface-deepest);
   }
 
   .theme-warm {
