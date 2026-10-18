@@ -54,11 +54,6 @@
     overscroll-behavior-x: none;
   }
 
-  body::before,
-  body::after {
-    content: none;
-  }
-
   #root {
     position: relative;
     z-index: 1;
