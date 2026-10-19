@@ -18,6 +18,7 @@ export interface LandingContent {
     projects: string;
     experience: string;
     certifications: string;
+    about: string;
     contact: string;
     blog: string;
     hire: string;
@@ -104,6 +105,7 @@ const frenchContent: LandingContent = {
     projects: "Projets",
     experience: "Expérience",
     certifications: "Certifications",
+    about: "À propos",
     contact: "Contact",
     blog: "Blog",
     hire: "Démarrer un projet",
@@ -247,6 +249,7 @@ const englishContent: LandingContent = {
     projects: "Projects",
     experience: "Experience",
     certifications: "Certifications",
+    about: "About",
     contact: "Contact",
     blog: "Blog",
     hire: "Start a project",
