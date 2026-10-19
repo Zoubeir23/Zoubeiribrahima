@@ -62,7 +62,7 @@ const ProjectsBentoSection = () => {
             {mobileProjects.map((project) => (
               <article
                 key={project.title}
-                className={`snap-start shrink-0 w-[86vw] border border-[var(--surface-border)] p-5 flex flex-col gap-5 ${project.featured ? "bg-[#2553F0]" : "bg-[var(--surface-deepest)]"}`}
+                className={`snap-start shrink-0 w-[86vw] border border-[var(--surface-border)] p-5 flex flex-col gap-5 ${project.featured ? "bg-[var(--surface-raised)]" : "bg-[var(--surface-deepest)]"}`}
               >
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-display font-black text-[10px] uppercase tracking-[0.22em] bg-white text-[var(--surface-deepest)] px-3 py-1.5 rounded-full">
