@@ -21,15 +21,6 @@
     --theme-on-secondary: var(--surface-deepest);
   }
 
-  .theme-warm {
-    --theme-primary: #FFF3E0;
-    --theme-primary-strong: #F6E2C2;
-    --theme-secondary: #D62828;
-    --theme-on-primary: #2B1F14;
-    --theme-on-primary-soft: #5E4739;
-    --theme-on-secondary: #FFF3E0;
-  }
-
   * {
     box-sizing: border-box;
   }
@@ -101,95 +92,9 @@
   }
 }
 
-.theme-warm [class*="bg-[#0303AB]"],
-.theme-warm [class*="bg-[#020285]"] {
-  background-color: var(--theme-primary) !important;
-}
-
-.theme-warm [class*="border-[#F5C518]"] {
-  border-color: var(--theme-secondary) !important;
-}
-
-.theme-warm [class*="bg-[#F5C518]"] {
-  background-color: var(--theme-secondary) !important;
-}
-
-.theme-warm [class*="text-[#020285]"] {
-  color: var(--theme-on-secondary) !important;
-}
-
-.theme-warm [class*="text-[#FFFFFF]"] {
-  color: var(--theme-on-primary) !important;
-}
-
-.theme-warm [class*="hover:bg-[#FFFFFF]"]:hover {
-  background-color: var(--theme-primary-strong) !important;
-}
-
-.theme-warm [class*="hover:bg-[#020285]"]:hover,
-.theme-warm [class*="hover:bg-[#0303AB]"]:hover {
-  background-color: var(--theme-primary-strong) !important;
-}
-
-.theme-warm [class*="group-hover:bg-[#020285]"],
-.theme-warm [class*="group-hover:bg-[#0303AB]"],
-.theme-warm [class*="group-hover:bg-[#FFFFFF]"],
-.theme-warm [class*="hover:bg-[#FFFFFF]/10"]:hover {
-  background-color: var(--theme-primary-strong) !important;
-}
-
-.theme-warm [class*="hover:bg-[#F5C518]"]:hover {
-  background-color: var(--theme-primary-strong) !important;
-}
-
-.theme-warm [class*="hover:text-[#0303AB]"]:hover,
-.theme-warm [class*="hover:text-[#020285]"]:hover {
-  color: var(--theme-on-primary) !important;
-}
-
-.theme-warm [class*="hover:text-[#FFFFFF]"]:hover {
-  color: var(--theme-on-primary) !important;
-}
-
-.theme-warm [class*="group-hover:text-[#0303AB]"],
-.theme-warm [class*="group-hover:text-[#020285]"],
-.theme-warm [class*="group-hover:text-[#FFFFFF]"],
-.theme-warm [class*="hover:text-[#020285]"]:hover,
-.theme-warm [class*="hover:text-[#0303AB]"]:hover {
-  color: var(--theme-on-primary) !important;
-}
-
-.theme-warm [class*="group-hover:border-[#0303AB]"],
-.theme-warm [class*="group-hover:border-[#020285]"],
-.theme-warm [class*="hover:border-[#0303AB]"],
-.theme-warm [class*="hover:border-[#020285]"]:hover {
-  border-color: rgba(94, 71, 57, 0.45) !important;
-}
-
   .logo-shell {
     background: transparent;
   }
-
-  .theme-warm .logo-shell {
-    background: linear-gradient(180deg, rgba(94, 71, 57, 0.14), rgba(43, 31, 20, 0.1));
-    border: 1px solid rgba(94, 71, 57, 0.12);
-    box-shadow: 0 6px 18px rgba(43, 31, 20, 0.04), inset 0 1px 0 rgba(255, 243, 224, 0.1);
-    border-radius: 9999px !important;
-    backdrop-filter: blur(8px);
-  }
-
-  .theme-warm .logo-shell img {
-    filter: drop-shadow(0 2px 5px rgba(43, 31, 20, 0.12));
-  }
-
-.theme-warm .language-level-track {
-  background-color: rgba(214, 40, 40, 0.14) !important;
-  border-color: rgba(214, 40, 40, 0.5) !important;
-}
-
-.theme-warm .language-level-fill {
-  background-color: var(--theme-secondary) !important;
-}
 
 @layer components {
   .font-display {
