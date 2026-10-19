@@ -59,4 +59,9 @@ describe("ContactSection", () => {
     renderContact();
     expect(screen.queryByRole("group", { name: "Prise de rendez-vous" })).not.toBeInTheDocument();
   });
+
+  it("links to WhatsApp with the configured international number", () => {
+    renderContact();
+    expect(screen.getByRole("link", { name: "WhatsApp" })).toHaveAttribute("href", "https://wa.me/221785941071");
+  });
 });
