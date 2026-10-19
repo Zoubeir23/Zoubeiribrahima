@@ -24,7 +24,10 @@ const FaqSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
               value={`faq-item-${index}`}
               className="border-[var(--surface-border)]"
             >
-              <AccordionTrigger className="text-left font-body text-base text-white hover:no-underline">
+              <AccordionTrigger
+                headingLevel={headingAs === "h1" ? 2 : 3}
+                className="text-left font-body text-base text-white hover:no-underline"
+              >
                 <span className="flex items-center gap-3">
                   <Emoji symbol={FAQ_EMOJIS[index] ?? "❓"} className="text-xl" />
                   {item.question}
