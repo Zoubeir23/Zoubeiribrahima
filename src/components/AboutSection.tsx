@@ -1,9 +1,9 @@
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
+import TechnologyIcon from "@/components/TechnologyIcon";
 import SectionHeading from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { experienceContent } from "@/lib/experience-content";
-import { getTechnologyEmoji } from "@/lib/icon-sets";
 
 const AboutSection = () => {
   const experience = useLocalizedContent(experienceContent);
@@ -74,7 +74,7 @@ const AboutSection = () => {
                       key={tag}
                       className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white"
                     >
-                      <Emoji symbol={getTechnologyEmoji(tag)} className="mr-1.5" />
+                      <TechnologyIcon name={tag} className="mr-2" />
                       {tag}
                     </li>
                   ))}
