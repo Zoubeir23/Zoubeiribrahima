@@ -11,6 +11,7 @@ import ServicesSection from "@/components/ServicesSection";
 import SiteFooter from "@/components/SiteFooter";
 import SkillsSection from "@/components/SkillsSection";
 import { useLandingContent } from "@/hooks/useLandingContent";
+import { serviceMeta, serviceSlugs } from "@/lib/service-meta";
 
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const CertificationsWallOfFame = lazy(() => import("@/components/CertificationsWallOfFame"));
@@ -30,7 +31,7 @@ const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => 
 
 const ServiceTickerBand = () => {
   const { hero } = useLandingContent();
-  return <ServiceTicker items={hero.tickerItems} label={hero.tickerLabel} />;
+  return <ServiceTicker items={hero.tickerItems} emojis={serviceSlugs.map((slug) => serviceMeta[slug].emoji)} label={hero.tickerLabel} />;
 };
 
 const Index = () => {

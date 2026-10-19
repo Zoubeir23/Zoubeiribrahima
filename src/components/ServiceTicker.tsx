@@ -1,9 +1,12 @@
+import Emoji from "@/components/Emoji";
+
 interface ServiceTickerProps {
   items: readonly string[];
+  emojis?: readonly string[];
   label: string;
 }
 
-const ServiceTicker = ({ items, label }: ServiceTickerProps) => {
+const ServiceTicker = ({ items, emojis = [], label }: ServiceTickerProps) => {
   const repeatedItems = [...items, ...items];
 
   return (
@@ -19,7 +22,10 @@ const ServiceTicker = ({ items, label }: ServiceTickerProps) => {
             aria-hidden={index >= items.length}
             className="flex shrink-0 items-center gap-10 font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-muted)] sm:text-sm"
           >
-            {item}
+            <span className="flex items-center gap-3">
+              {emojis[index % items.length] ? <Emoji symbol={emojis[index % items.length]} className="text-lg" /> : null}
+              {item}
+            </span>
             <span aria-hidden="true" className="text-[var(--accent-orange)]">
               ◆
             </span>
