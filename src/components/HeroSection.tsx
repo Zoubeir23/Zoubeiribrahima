@@ -1,6 +1,10 @@
 import type { CSSProperties } from "react";
 import { ArrowRight, MapPin } from "lucide-react";
+import Emoji from "@/components/Emoji";
 import { useLandingContent } from "@/hooks/useLandingContent";
+
+const TRUST_BADGE_EMOJIS = ["💼", "💻", "🌍"] as const;
+const STAT_EMOJIS = ["⏱️", "🏆", "🚀"] as const;
 
 const HeroSection = () => {
   const { hero } = useLandingContent();
@@ -55,6 +59,7 @@ const HeroSection = () => {
                 href="#contact"
                 className="animate-glow-pulse group inline-flex min-h-11 items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
+                <Emoji symbol="🚀" />
                 {hero.primaryAction}
                 <ArrowRight
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -65,6 +70,7 @@ const HeroSection = () => {
                 href="#projects"
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--surface-border)] px-7 py-3.5 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
+                <Emoji symbol="📂" className="mr-2" />
                 {hero.secondaryAction}
               </a>
             </div>
@@ -73,14 +79,9 @@ const HeroSection = () => {
               className="reveal-up flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]"
               style={{ "--reveal-delay": "0.45s" } as CSSProperties}
             >
-              {hero.trustBadges.map((badge) => (
+              {hero.trustBadges.map((badge, index) => (
                 <li key={badge} className="flex items-center gap-2">
-                  <span
-                    className="text-[var(--accent-orange)]"
-                    aria-hidden="true"
-                  >
-                    ◆
-                  </span>
+                  <Emoji symbol={TRUST_BADGE_EMOJIS[index] ?? "◆"} className="text-sm" />
                   {badge}
                 </li>
               ))}
@@ -90,12 +91,13 @@ const HeroSection = () => {
               className="reveal-up grid grid-cols-3 gap-4 border-t border-[var(--surface-border)] pt-6"
               style={{ "--reveal-delay": "0.55s" } as CSSProperties}
             >
-              {hero.stats.map((stat) => (
+              {hero.stats.map((stat, index) => (
                 <div key={stat.label}>
                   <dd className="font-display text-3xl font-extrabold text-white sm:text-4xl">
                     {stat.value}
                   </dd>
                   <dt className="font-body text-xs uppercase tracking-wider text-[var(--text-muted)] sm:text-sm">
+                    <Emoji symbol={STAT_EMOJIS[index] ?? "•"} className="mr-1.5" />
                     {stat.label}
                   </dt>
                 </div>
