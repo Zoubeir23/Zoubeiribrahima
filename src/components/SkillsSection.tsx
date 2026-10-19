@@ -1,7 +1,9 @@
 import { Brain, Cloud, Server, type LucideIcon } from "lucide-react";
+import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { DOMAIN_EMOJIS, SKILL_CARD_EMOJIS } from "@/lib/icon-sets";
 import { skillsContent } from "@/lib/skills-content";
 
 const skillIcons: readonly LucideIcon[] = [Server, Brain, Cloud];
@@ -34,6 +36,7 @@ const SkillsSection = () => {
                   />
                 </div>
                 <h3 className="mb-5 font-display text-lg uppercase text-white">
+                  <Emoji symbol={SKILL_CARD_EMOJIS[index] ?? "•"} className="mr-2" />
                   {card.title}
                 </h3>
                 <ul className="space-y-2">
@@ -61,11 +64,12 @@ const SkillsSection = () => {
           {skills.domainsLabel}
         </p>
         <ul className="flex flex-wrap gap-2 sm:gap-3">
-          {skills.domains.map((domain) => (
+          {skills.domains.map((domain, index) => (
             <li
               key={domain}
               className="rounded-full border border-[var(--surface-border)] px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-white"
             >
+              <Emoji symbol={DOMAIN_EMOJIS[index] ?? "•"} className="mr-2" />
               {domain}
             </li>
           ))}
