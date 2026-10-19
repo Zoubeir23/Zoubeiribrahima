@@ -1,3 +1,4 @@
+import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { experienceContent } from "@/lib/experience-content";
@@ -6,7 +7,10 @@ const AboutSection = () => {
   const experience = useLocalizedContent(experienceContent);
 
   return (
-    <section id="experience" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+    <section
+      id="experience"
+      className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
+    >
       <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           eyebrow={experience.eyebrow}
@@ -31,21 +35,34 @@ const AboutSection = () => {
             {experience.professionalLabel}
           </h3>
           <ol className="space-y-12 border-l border-[var(--surface-border)] pl-6 sm:pl-8">
-            {experience.experiences.map((item) => (
-              <li key={item.company} className="relative">
+            {experience.experiences.map((item, index) => (
+              <Reveal
+                as="li"
+                key={item.company}
+                className="relative"
+                delaySeconds={index * 0.12}
+              >
                 <span
                   aria-hidden="true"
-                  className="absolute -left-[2.2rem] top-1.5 h-3 w-3 rounded-full bg-[var(--accent-orange)] sm:-left-[2.7rem]"
+                  className="animate-status-ping absolute -left-[2.2rem] top-1.5 h-3 w-3 rounded-full bg-[var(--accent-orange)] sm:-left-[2.7rem]"
                 />
                 <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-                  <h4 className="font-display text-xl uppercase leading-none text-white sm:text-2xl">{item.company}</h4>
+                  <h4 className="font-display text-xl uppercase leading-none text-white sm:text-2xl">
+                    {item.company}
+                  </h4>
                   <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">
                     {item.period}
                   </span>
                 </div>
-                <p className="font-body text-base font-semibold text-white">{item.role}</p>
-                <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">{item.location}</p>
-                <p className="mb-5 text-sm text-[var(--text-secondary)] sm:text-base">{item.description}</p>
+                <p className="font-body text-base font-semibold text-white">
+                  {item.role}
+                </p>
+                <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                  {item.location}
+                </p>
+                <p className="mb-5 text-sm text-[var(--text-secondary)] sm:text-base">
+                  {item.description}
+                </p>
                 <ul className="flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <li
@@ -56,7 +73,7 @@ const AboutSection = () => {
                     </li>
                   ))}
                 </ul>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </div>
@@ -66,12 +83,23 @@ const AboutSection = () => {
             {experience.educationLabel}
           </h3>
           <ul>
-            {experience.education.map((item) => (
-              <li key={item.degree} className="flex flex-col gap-1 border-b border-[var(--surface-border)] py-6">
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">{item.period}</span>
-                <h4 className="font-display text-lg uppercase leading-tight text-white sm:text-xl">{item.degree}</h4>
-                <p className="text-sm text-[var(--text-secondary)]">{item.school}</p>
-              </li>
+            {experience.education.map((item, index) => (
+              <Reveal
+                as="li"
+                key={item.degree}
+                className="flex flex-col gap-1 border-b border-[var(--surface-border)] py-6"
+                delaySeconds={index * 0.1}
+              >
+                <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                  {item.period}
+                </span>
+                <h4 className="font-display text-lg uppercase leading-tight text-white sm:text-xl">
+                  {item.degree}
+                </h4>
+                <p className="text-sm text-[var(--text-secondary)]">
+                  {item.school}
+                </p>
+              </Reveal>
             ))}
           </ul>
 
@@ -83,8 +111,12 @@ const AboutSection = () => {
               {experience.languages.map((language) => (
                 <li key={language.name}>
                   <div className="mb-1 flex justify-between gap-4">
-                    <span className="font-body text-sm font-semibold text-white">{language.name}</span>
-                    <span className="font-mono text-xs uppercase text-[var(--text-muted)]">{language.level}</span>
+                    <span className="font-body text-sm font-semibold text-white">
+                      {language.name}
+                    </span>
+                    <span className="font-mono text-xs uppercase text-[var(--text-muted)]">
+                      {language.level}
+                    </span>
                   </div>
                   <div
                     role="progressbar"
