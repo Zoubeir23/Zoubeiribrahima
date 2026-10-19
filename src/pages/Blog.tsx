@@ -151,7 +151,8 @@ const Blog = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`font-display font-black text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 border transition-all duration-150 ${
+                  aria-pressed={activeCategory === cat}
+                  className={`inline-flex min-h-11 items-center rounded-full font-display font-black text-[10px] uppercase tracking-[0.2em] px-4 py-1.5 border transition-all duration-150 ${
                     activeCategory === cat
                       ? "bg-white text-[var(--surface-deepest)] border-[var(--surface-border)]"
                       : "bg-transparent text-white/65 border-[var(--surface-border)] hover:border-[var(--accent-violet)] hover:text-white"
