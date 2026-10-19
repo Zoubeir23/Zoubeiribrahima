@@ -12,3 +12,10 @@ export const contactConfig = {
 } as const;
 
 export const contactChannels = buildContactChannels(contactConfig);
+
+// Optional identity facts: leave empty until confirmed, the About page only shows what is filled in.
+export const identityConfig = {
+  legalStatus: "",
+  registrationNumber: "",
+  paymentMethods: [] as readonly string[],
+};
