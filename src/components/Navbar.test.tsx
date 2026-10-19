@@ -4,10 +4,10 @@ import { beforeEach, describe, expect, it } from "vitest";
 import Navbar from "@/components/Navbar";
 import { LanguageProvider } from "@/hooks/useLanguage";
 
-const renderNavbar = () =>
+const renderNavbar = (initialPath = "/") =>
   render(
     <LanguageProvider>
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter initialEntries={[initialPath]}>
         <Navbar />
       </MemoryRouter>
     </LanguageProvider>,
@@ -43,5 +43,11 @@ describe("Navbar", () => {
   it("no longer offers a color palette toggle", () => {
     renderNavbar();
     expect(screen.queryByText(/mode (bleu|warm)/i)).not.toBeInTheDocument();
+  });
+
+  it("marks the blog link as the current page on blog routes", () => {
+    renderNavbar("/blog");
+    const blogLinks = screen.getAllByRole("link", { name: "Blog" });
+    expect(blogLinks.some((link) => link.getAttribute("aria-current") === "page")).toBe(true);
   });
 });

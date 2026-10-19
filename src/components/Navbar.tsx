@@ -93,27 +93,22 @@ const Navbar = () => {
   const isBlogActive = location.pathname.startsWith("/blog");
   const nextLanguage = language === "fr" ? "en" : "fr";
 
-  const desktopLinkClassName =
-    "relative rounded-full px-3 py-2 text-[var(--text-secondary)] transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)]";
+  const getDesktopLinkClassName = (isActive: boolean) =>
+    `rounded-full px-4 py-2 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)] ${
+      isActive
+        ? "bg-white font-semibold text-[var(--surface-deepest)]"
+        : "text-white hover:bg-[var(--surface-raised)]"
+    }`;
   const mobileLinkClassName =
     "block rounded-[var(--radius-small)] px-4 py-3.5 text-center font-body text-base font-semibold text-[var(--text-secondary)] transition-colors duration-300 hover:bg-[var(--surface-raised)] hover:text-white";
   const primaryActionClassName =
     "inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
 
-  const renderActiveUnderline = (isActive: boolean) => (
-    <span
-      aria-hidden="true"
-      className={`absolute inset-x-3 -bottom-0.5 h-px bg-[var(--accent-violet)] transition-opacity duration-300 ${
-        isActive ? "opacity-100" : "opacity-0"
-      }`}
-    />
-  );
-
   const logoImage = (
     <img
       src="/logo-scale-avec-zoubeir-for-dark-background.png"
       alt="Scale avec Zoubeir"
-      className="h-12 w-auto object-contain sm:h-14"
+      className="h-14 w-auto object-contain sm:h-16"
       width={380}
       height={80}
     />
@@ -122,37 +117,39 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-50 border-b border-[var(--surface-border)] backdrop-blur-md transition-colors duration-300 ${
-        scrolled ? "bg-[var(--surface-deepest)]/95" : "bg-[var(--surface-deepest)]/70"
+        scrolled ? "bg-[var(--surface-deepest)]/95 shadow-[0_8px_30px_rgba(0,0,0,0.6)]" : "bg-[var(--surface-deepest)]/85"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6">
         {isHomePage ? <a href="#hero">{logoImage}</a> : <Link to="/#hero">{logoImage}</Link>}
 
-        <div className="hidden items-center gap-1 font-body text-sm font-medium md:flex">
+        <div className="hidden items-center gap-1 rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] p-1 font-body text-sm font-medium md:flex">
           {navLinks.map((link) =>
             isHomePage ? (
               <a
                 key={link.href}
                 href={link.href}
-                className={desktopLinkClassName}
+                aria-current={activeSectionLink === link.href ? "location" : undefined}
+                className={getDesktopLinkClassName(activeSectionLink === link.href)}
               >
                 {link.label}
-                {renderActiveUnderline(activeSectionLink === link.href)}
               </a>
             ) : (
               <Link
                 key={link.href}
                 to={`/${link.href}`}
-                className={desktopLinkClassName}
+                className={getDesktopLinkClassName(false)}
               >
                 {link.label}
-                {renderActiveUnderline(false)}
               </Link>
             ),
           )}
-          <Link to="/blog" className={desktopLinkClassName}>
+          <Link
+            to="/blog"
+            aria-current={isBlogActive ? "page" : undefined}
+            className={getDesktopLinkClassName(isBlogActive)}
+          >
             {nav.blog}
-            {renderActiveUnderline(isBlogActive)}
           </Link>
         </div>
 
@@ -194,7 +191,7 @@ const Navbar = () => {
         <div
           id="mobile-nav-menu"
           ref={mobileMenuRef}
-          className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-[var(--surface-border)] bg-[var(--surface-deepest)] md:hidden"
+          className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[var(--surface-border)] bg-[var(--surface-deepest)] md:hidden"
         >
           <div className="flex flex-col gap-1 p-4 sm:p-6">
             {navLinks.map((link) =>
