@@ -9,7 +9,7 @@ interface ConsentGateProps {
 }
 
 const ConsentGate = ({ providerName, description, loadButtonLabel, children }: ConsentGateProps) => {
-  const { canLoadExternalContent, accept } = useConsent();
+  const { canLoadExternalContent, allowExternalContent } = useConsent();
 
   if (canLoadExternalContent) {
     return <>{children}</>;
@@ -24,7 +24,7 @@ const ConsentGate = ({ providerName, description, loadButtonLabel, children }: C
       <p className="max-w-md text-sm text-[var(--text-secondary)]">{description}</p>
       <button
         type="button"
-        onClick={accept}
+        onClick={allowExternalContent}
         className="min-h-11 rounded-full bg-white px-6 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
       >
         {loadButtonLabel}
