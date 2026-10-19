@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import type { ReactElement } from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 import FaqSection from "@/components/FaqSection";
@@ -40,8 +40,8 @@ describe("landing sections", () => {
   it("reveals an answer when its question is opened", () => {
     renderWithLanguage(<FaqSection />);
     const firstFaqItem = landingContent.fr.faq.items[0];
-    expect(screen.queryByText(firstFaqItem.answer)).not.toBeVisible?.call(null);
+    expect(screen.queryByText(firstFaqItem.answer)).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: firstFaqItem.question }));
-    expect(within(document.body).getByText(firstFaqItem.answer)).toBeVisible();
+    expect(screen.getByText(firstFaqItem.answer)).toBeVisible();
   });
 });
