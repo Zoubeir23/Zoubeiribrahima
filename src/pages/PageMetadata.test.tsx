@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ConsentProvider from "@/components/consent/ConsentProvider";
 import { blogPosts } from "@/data/blogPosts";
 import { LanguageProvider } from "@/hooks/useLanguage";
@@ -32,11 +32,23 @@ const renderRoute = (path: string) =>
 const description = () => document.head.querySelector('meta[name="description"]')?.getAttribute("content");
 const canonical = () => document.head.querySelector('link[rel="canonical"]')?.getAttribute("href");
 
+class InertIntersectionObserver {
+  observe = () => {};
+  unobserve = () => {};
+  disconnect = () => {};
+}
+
 describe("metadata of secondary pages", () => {
   beforeEach(() => {
+    // The blog article observes headings, and jsdom has no IntersectionObserver.
+    vi.stubGlobal("IntersectionObserver", InertIntersectionObserver);
     window.localStorage.clear();
     document.head.innerHTML = "";
     document.title = "";
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
   });
 
   it("gives the blog list its own title, description and canonical url", () => {
