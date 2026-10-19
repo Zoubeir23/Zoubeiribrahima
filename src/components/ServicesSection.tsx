@@ -23,7 +23,7 @@ const ServicesSection = () => {
                 to={`/services/${slug}`}
                 className="group flex h-full flex-col gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 transition-colors duration-300 hover:border-[var(--accent-violet)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
-                <ServiceIllustration slug={slug} className="h-20 w-20 transition-transform duration-300 group-hover:scale-105" />
+                <ServiceIllustration slug={slug} className="aspect-[4/3] w-full transition-transform duration-300 group-hover:scale-[1.02]" emojiClassName="text-6xl" />
                 <div className="flex-1">
                   <h3 className="font-body text-lg font-semibold text-white">{service.title}</h3>
                   <p className="mt-2 text-sm text-[var(--text-secondary)]">{service.summary}</p>
