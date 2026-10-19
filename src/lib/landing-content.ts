@@ -21,6 +21,7 @@ export interface LandingContent {
     tickerLabel: string;
     tickerItems: string[];
     trustBadges: string[];
+    stats: { value: string; label: string }[];
   };
   services: {
     title: string;
@@ -59,6 +60,11 @@ const frenchContent: LandingContent = {
     tickerLabel: "Domaines d'intervention",
     tickerItems: ["SaaS", "Applications web", "Applications mobiles", "Sites portfolio", "Support à distance"],
     trustBadges: ["Freelance", "100 % à distance", "Clients nationaux et internationaux"],
+    stats: [
+      { value: "2+", label: "Ans d'expérience" },
+      { value: "10+", label: "Certifications" },
+      { value: "1", label: "SaaS fondé" },
+    ],
   },
   services: {
     title: "Mes services",
@@ -169,6 +175,11 @@ const englishContent: LandingContent = {
     tickerLabel: "Areas of work",
     tickerItems: ["SaaS", "Web applications", "Mobile applications", "Portfolio websites", "Remote support"],
     trustBadges: ["Freelance", "100% remote", "National and international clients"],
+    stats: [
+      { value: "2+", label: "Years of experience" },
+      { value: "10+", label: "Certifications" },
+      { value: "1", label: "SaaS founded" },
+    ],
   },
   services: {
     title: "My services",
