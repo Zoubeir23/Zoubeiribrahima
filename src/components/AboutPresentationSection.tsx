@@ -5,12 +5,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { buildIdentityRows } from "@/lib/about-identity";
 import { aboutContent } from "@/lib/about-content";
-import { contactChannels, contactConfig, identityConfig } from "@/lib/contact-config";
+import { contactChannels, contactConfig, identityConfig, type PaymentMethod } from "@/lib/contact-config";
 import { getSubheadingTag } from "@/lib/heading-levels";
 
 interface AboutPresentationSectionProps {
   headingAs?: SectionHeadingLevel;
-  paymentMethods?: readonly string[];
+  paymentMethods?: readonly PaymentMethod[];
   legalStatus?: string;
   registrationNumber?: string;
 }
@@ -125,8 +125,21 @@ const AboutPresentationSection = ({
                 <p className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]">{about.tabs.payment.methodsLabel}</p>
                 <ul className="flex flex-wrap gap-2">
                   {paymentMethods.map((method) => (
-                    <li key={method} className="rounded-full border border-[var(--surface-border)] px-4 py-1.5 text-sm text-white">
-                      {method}
+                    <li key={method.label}>
+                      {method.href?.startsWith("https://") ? (
+                        <a
+                          href={method.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 items-center rounded-full border border-[var(--surface-border)] px-4 py-1.5 text-sm text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
+                        >
+                          {method.label}
+                        </a>
+                      ) : (
+                        <span className="inline-flex rounded-full border border-[var(--surface-border)] px-4 py-1.5 text-sm text-white">
+                          {method.label}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
