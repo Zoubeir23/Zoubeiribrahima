@@ -1,16 +1,19 @@
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLanguage } from "@/hooks/useLanguage";
+
+const NAV_SECTION_IDS = ["hero", "services", "skills", "projects", "experience", "certifications", "contact"] as const;
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("#hero");
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const activeSectionLink = isHomePage ? activeLink : "";
+  const activeSectionId = useActiveSection(NAV_SECTION_IDS, isHomePage);
+  const activeSectionLink = activeSectionId ? `#${activeSectionId}` : "";
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const { nav } = useLandingContent();
@@ -52,16 +55,6 @@ const Navbar = () => {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [isMenuOpen]);
-
-  useEffect(() => {
-    const updateActiveLink = () => {
-      setActiveLink(window.location.hash || "#hero");
-    };
-
-    updateActiveLink();
-    window.addEventListener("hashchange", updateActiveLink);
-    return () => window.removeEventListener("hashchange", updateActiveLink);
-  }, []);
 
   useEffect(() => {
     if (location.pathname !== "/" || !location.hash) {
@@ -141,7 +134,6 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setActiveLink(link.href)}
                 className={desktopLinkClassName}
               >
                 {link.label}
@@ -151,7 +143,6 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 to={`/${link.href}`}
-                onClick={() => setActiveLink(link.href)}
                 className={desktopLinkClassName}
               >
                 {link.label}
@@ -212,7 +203,6 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => {
-                    setActiveLink(link.href);
                     setIsMenuOpen(false);
                   }}
                   className={mobileLinkClassName}
@@ -224,7 +214,6 @@ const Navbar = () => {
                   key={link.href}
                   to={`/${link.href}`}
                   onClick={() => {
-                    setActiveLink(link.href);
                     setIsMenuOpen(false);
                   }}
                   className={mobileLinkClassName}
