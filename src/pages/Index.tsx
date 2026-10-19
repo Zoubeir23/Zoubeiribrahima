@@ -4,12 +4,16 @@ import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ServiceTicker from "@/components/ServiceTicker";
+import ServicesSection from "@/components/ServicesSection";
+import ProcessSection from "@/components/ProcessSection";
+import ReasonsSection from "@/components/ReasonsSection";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const CertificationsWallOfFame = lazy(() => import("@/components/CertificationsWallOfFame"));
 const CertificationsSection = lazy(() => import("@/components/CertificationsSection"));
+const FaqSection = lazy(() => import("@/components/FaqSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => (
@@ -132,8 +136,11 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <ServiceTickerBand />
+      <ServicesSection />
       <SkillsSection />
       <ProjectsBentoSection />
+      <ProcessSection />
+      <ReasonsSection />
       <CtaBand />
       <div ref={deepSectionsTriggerRef} aria-hidden="true" className="h-px w-full" />
       {deferDeepSections ? (
@@ -146,6 +153,9 @@ const Index = () => {
           </Suspense>
           <Suspense fallback={<SectionPlaceholder minHeight="420px" />}>
             <CertificationsSection />
+          </Suspense>
+          <Suspense fallback={<SectionPlaceholder minHeight="420px" />}>
+            <FaqSection />
           </Suspense>
           <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
             <ContactSection />
