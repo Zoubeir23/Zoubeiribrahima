@@ -75,6 +75,23 @@ const TECHNOLOGY_EMOJIS: Record<string, string> = {
   optimization: "🚀",
   déploiement: "📦",
   deployment: "📦",
+  sql: "🗃️",
+  agile: "🔄",
+  "clean code": "✨",
+  "tests unitaires": "🧪",
+  "unit testing": "🧪",
+  javascript: "🟨",
+  php: "🟣",
+  java: "☕",
+  laravel: "🔺",
+  "node.js": "🟢",
+  mysql: "🐬",
+  git: "🌿",
+  github: "🐙",
+  "claude code": "🤖",
+  "vs code": "💻",
+  warp: "⚡",
+  "react.js": "⚛️",
 };
 
 export const getTechnologyEmoji = (technologyName: string): string =>
