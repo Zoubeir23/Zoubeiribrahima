@@ -7,6 +7,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
     badge: "Remote · Quote-based",
     offerings: [
       {
+        emoji: "🔐",
         tabLabel: "Accounts and access",
         headline: "ACCOUNTS",
         tagline: "Your users, safely.",
@@ -16,6 +17,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like a SaaS with account and access management: ",
       },
       {
+        emoji: "💳",
         tabLabel: "Subscriptions",
         headline: "SUBSCRIPTIONS",
         tagline: "Turn your tool into a service.",
@@ -25,6 +27,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like a SaaS with subscriptions and billing: ",
       },
       {
+        emoji: "📊",
         tabLabel: "Dashboards",
         headline: "DASHBOARDS",
         tagline: "Your data, finally readable.",
@@ -42,6 +45,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
     badge: "Remote · Quote-based",
     offerings: [
       {
+        emoji: "🧩",
         tabLabel: "Custom built",
         headline: "CUSTOM",
         tagline: "The tool that fits your business.",
@@ -51,6 +55,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like a custom web application: ",
       },
       {
+        emoji: "🔌",
         tabLabel: "APIs and integrations",
         headline: "API",
         tagline: "Your tools, finally connected.",
@@ -60,6 +65,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like to connect my tools through an API: ",
       },
       {
+        emoji: "⚡",
         tabLabel: "Performance",
         headline: "SPEED",
         tagline: "An application that feels good to use.",
@@ -77,6 +83,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
     badge: "Remote · Quote-based",
     offerings: [
       {
+        emoji: "🎨",
         tabLabel: "Design",
         headline: "DESIGN",
         tagline: "Built for the thumb.",
@@ -86,6 +93,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like to design a mobile application: ",
       },
       {
+        emoji: "📲",
         tabLabel: "Features",
         headline: "FEATURES",
         tagline: "What your users actually need.",
@@ -95,6 +103,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like to develop the features of a mobile application: ",
       },
       {
+        emoji: "🚀",
         tabLabel: "Release",
         headline: "LAUNCH",
         tagline: "From test version to real users.",
@@ -112,6 +121,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
     badge: "Remote · Quote-based",
     offerings: [
       {
+        emoji: "👤",
         tabLabel: "Personal portfolio",
         headline: "PORTFOLIO",
         tagline: "Your work, well presented.",
@@ -121,6 +131,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like a personal portfolio: ",
       },
       {
+        emoji: "🏪",
         tabLabel: "Business website",
         headline: "SHOWCASE",
         tagline: "Your business online.",
@@ -130,6 +141,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like a showcase website for my business: ",
       },
       {
+        emoji: "🔎",
         tabLabel: "Search visibility",
         headline: "VISIBILITY",
         tagline: "Get found on Google.",
@@ -147,6 +159,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
     badge: "Remote · Anywhere",
     offerings: [
       {
+        emoji: "🔧",
         tabLabel: "Troubleshooting",
         headline: "FIXES",
         tagline: "A problem? We fix it remotely.",
@@ -156,6 +169,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I need remote IT troubleshooting: ",
       },
       {
+        emoji: "🛡️",
         tabLabel: "Maintenance",
         headline: "MAINTENANCE",
         tagline: "So everything keeps working.",
@@ -165,6 +179,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like regular maintenance for my tools: ",
       },
       {
+        emoji: "💬",
         tabLabel: "Support",
         headline: "ADVICE",
         tagline: "A trusted technical person on your side.",
