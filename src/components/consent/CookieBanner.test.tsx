@@ -80,4 +80,46 @@ describe("CookieBanner", () => {
     expect(screen.getByRole("switch", { name: text.analyticsTitle })).toBeChecked();
     expect(screen.getByRole("switch", { name: text.externalContentTitle })).not.toBeChecked();
   });
+
+  it("does not steal keyboard focus on the first visit", () => {
+    renderBanner();
+    expect(screen.getByRole("dialog")).not.toContainElement(document.activeElement as HTMLElement);
+  });
+
+  it("offers no close button before a decision and ignores Escape", () => {
+    renderBanner();
+    expect(screen.queryByRole("button", { name: text.close })).not.toBeInTheDocument();
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.getByRole("dialog", { name: text.title })).toBeInTheDocument();
+  });
+
+  it("moves focus into the dialog when reopened from the settings button", () => {
+    window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify({ analytics: false, externalContent: false }));
+    renderBanner();
+    fireEvent.click(screen.getByRole("button", { name: text.settingsButtonLabel }));
+    expect(screen.getByRole("dialog", { name: text.title })).toHaveFocus();
+  });
+
+  it("closes the reopened dialog with the close button without changing choices", () => {
+    window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify({ analytics: true, externalContent: false }));
+    renderBanner();
+    fireEvent.click(screen.getByRole("button", { name: text.settingsButtonLabel }));
+    fireEvent.click(screen.getByRole("button", { name: text.close }));
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(storedPreferences()).toEqual({ analytics: true, externalContent: false });
+  });
+
+  it("closes the reopened dialog with Escape", () => {
+    window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify({ analytics: false, externalContent: false }));
+    renderBanner();
+    fireEvent.click(screen.getByRole("button", { name: text.settingsButtonLabel }));
+    fireEvent.keyDown(document, { key: "Escape" });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("keeps the dialog scrollable inside small viewports", () => {
+    renderBanner();
+    expect(screen.getByRole("dialog").className).toMatch(/overflow-y-auto/);
+    expect(screen.getByRole("dialog").className).toMatch(/max-h-/);
+  });
 });

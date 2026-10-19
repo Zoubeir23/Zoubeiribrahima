@@ -79,4 +79,19 @@ describe("useConsent", () => {
   it("throws when used outside the provider", () => {
     expect(() => renderHook(() => useConsent())).toThrow(/ConsentProvider/);
   });
+
+  it("closes the reopened banner without changing the stored choice", () => {
+    const { result } = renderHook(() => useConsent(), { wrapper });
+    act(() => result.current.acceptAll());
+    act(() => result.current.openPreferences());
+    act(() => result.current.closePreferences());
+    expect(result.current.isBannerVisible).toBe(false);
+    expect(result.current.canUseAnalytics).toBe(true);
+  });
+
+  it("keeps the banner open before any decision when asked to close", () => {
+    const { result } = renderHook(() => useConsent(), { wrapper });
+    act(() => result.current.closePreferences());
+    expect(result.current.isBannerVisible).toBe(true);
+  });
 });
