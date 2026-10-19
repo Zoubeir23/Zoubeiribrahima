@@ -3,6 +3,8 @@ import { ArrowUp } from "lucide-react";
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import ServiceTicker from "@/components/ServiceTicker";
+import { useLandingContent } from "@/hooks/useLandingContent";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
 const AboutSection = lazy(() => import("@/components/AboutSection"));
@@ -18,27 +20,10 @@ const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => 
   />
 );
 
-/* ── Static Tech Band ─────────────────────────────────────────── */
-const MarqueeSection = () => {
-  const items = [
-    "Architecture", "Backend", "Frontend", "APIs",
-    "Bases de donnees", "DevOps", "Automatisation", "Securite",
-    "Performance", "Qualite", "Fiabilite", "Conception"
-  ];
-  return (
-    <div className="bg-[#0303AB] border-y-4 border-[#F5C518] py-4 sm:py-6 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-        {items.map((item) => (
-          <span
-            key={item}
-            className="font-body font-semibold text-xs sm:text-sm uppercase tracking-wider text-[#FFFFFF] border-2 border-[#F5C518] bg-[#020285] px-3 py-1"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+/* ── Service Ticker ───────────────────────────────────────────── */
+const ServiceTickerBand = () => {
+  const { hero } = useLandingContent();
+  return <ServiceTicker items={hero.tickerItems} label={hero.tickerLabel} />;
 };
 
 /* ── Static CTA Band ──────────────────────────────────────────── */
@@ -146,7 +131,7 @@ const Index = () => {
     <div className="min-h-screen bg-[#020285] text-[#FFFFFF] font-body antialiased">
       <Navbar />
       <HeroSection />
-      <MarqueeSection />
+      <ServiceTickerBand />
       <SkillsSection />
       <ProjectsBentoSection />
       <CtaBand />
