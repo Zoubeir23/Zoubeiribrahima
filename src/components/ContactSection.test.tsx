@@ -79,3 +79,49 @@ describe("ContactSection", () => {
     expect(screen.getByRole("link", { name: "WhatsApp" })).toHaveAttribute("href", "https://wa.me/221785941071");
   });
 });
+
+describe("ContactSection spam and size protection", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("caps the length of every field", () => {
+    renderContact();
+    expect(screen.getByLabelText("Nom complet")).toHaveAttribute("maxlength", "100");
+    expect(screen.getByLabelText("Email")).toHaveAttribute("maxlength", "254");
+    expect(screen.getByLabelText("Message")).toHaveAttribute("maxlength", "5000");
+  });
+
+  it("hides a trap field from people and assistive technologies", () => {
+    const { container } = renderContact();
+    const trapField = container.querySelector<HTMLInputElement>('input[name="_gotcha"]');
+    expect(trapField).not.toBeNull();
+    expect(trapField?.tabIndex).toBe(-1);
+    expect(trapField?.closest("[aria-hidden='true']")).not.toBeNull();
+  });
+
+  it("does not contact the server when the trap field is filled", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    const { container } = renderContact();
+    fireEvent.change(container.querySelector('input[name="_gotcha"]') as HTMLInputElement, { target: { value: "robot" } });
+    fillAndSubmit();
+
+    await waitFor(() => expect(screen.getByText("Message envoyé !")).toBeInTheDocument());
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("never sends the trap field with a genuine message", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    renderContact();
+    fillAndSubmit();
+
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+    expect(Object.keys(JSON.parse(fetchMock.mock.calls[0][1].body))).toEqual(["name", "email", "message"]);
+  });
+});
