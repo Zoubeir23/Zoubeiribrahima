@@ -1,0 +1,191 @@
+@property --orbit-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes orbit-spin {
+  to {
+    --orbit-angle: 360deg;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes status-ping {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.7);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 35px var(--accent-glow-violet);
+  }
+}
+
+@keyframes scan-sweep {
+  from {
+    top: -5%;
+  }
+  to {
+    top: 105%;
+  }
+}
+
+/* Light streak orbiting a card border: runs on hover and keyboard focus only. */
+.orbit-card {
+  position: relative;
+  transition:
+    transform var(--duration-fast) var(--easing-smooth),
+    border-color var(--duration-fast) var(--easing-smooth);
+}
+
+.orbit-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--orbit-angle),
+    transparent 0deg,
+    transparent 255deg,
+    rgba(139, 92, 246, 0.55) 320deg,
+    #fff 350deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  animation: orbit-spin 5s linear infinite;
+  animation-play-state: paused;
+  transition: opacity var(--duration-fast) var(--easing-smooth);
+}
+
+.orbit-card:hover,
+.orbit-card:focus-within {
+  transform: translateY(-4px);
+}
+
+.orbit-card:hover::before,
+.orbit-card:focus-within::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+/* Soft highlight following the pointer (--mouse-x / --mouse-y set by usePointerSpotlight). */
+.spotlight-card {
+  position: relative;
+}
+
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(139, 92, 246, 0.18),
+    transparent 65%
+  );
+  transition: opacity var(--duration-fast) var(--easing-smooth);
+}
+
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+/* Fade and rise when entering the viewport (toggled by the Reveal component). */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--duration-slow) var(--easing-smooth),
+    transform var(--duration-slow) var(--easing-smooth);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+.animate-status-ping {
+  animation: status-ping 2s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.scan-surface {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-surface::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--accent-violet), transparent);
+  opacity: 0.5;
+  animation: scan-sweep 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-card,
+  .orbit-card::before,
+  .spotlight-card::after,
+  .animate-float-soft,
+  .animate-status-ping,
+  .animate-glow-pulse,
+  .scan-surface::after {
+    animation: none;
+    transition: none;
+  }
+
+  .orbit-card:hover,
+  .orbit-card:focus-within {
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
