@@ -5,7 +5,7 @@ export const contactConfig = {
   email: "Zoubeiribrahima@gmail.com",
   phoneDisplay: "+221 78 594 10 71",
   phoneHref: "tel:+221785941071",
-  whatsappNumber: "",
+  whatsappNumber: "+221785941071",
   bookingUrl: "",
 } as const;
 
