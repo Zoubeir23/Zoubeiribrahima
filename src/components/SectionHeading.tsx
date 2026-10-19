@@ -1,3 +1,5 @@
+import Reveal from "@/components/Reveal";
+
 interface SectionHeadingProps {
   title: string;
   highlight?: string;
@@ -6,7 +8,7 @@ interface SectionHeadingProps {
 }
 
 const SectionHeading = ({ title, highlight, eyebrow, subtitle }: SectionHeadingProps) => (
-  <div className="mb-10 max-w-3xl sm:mb-14">
+  <Reveal className="mb-10 max-w-3xl sm:mb-14">
     {eyebrow ? (
       <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">— {eyebrow}</p>
     ) : null}
@@ -20,7 +22,7 @@ const SectionHeading = ({ title, highlight, eyebrow, subtitle }: SectionHeadingP
       ) : null}
     </h2>
     {subtitle ? <p className="mt-4 text-[var(--text-secondary)]">{subtitle}</p> : null}
-  </div>
+  </Reveal>
 );
 
 export default SectionHeading;
