@@ -1,275 +1,157 @@
-import { motion } from "@/lib/static-motion";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import TechnologyIcon from "@/components/TechnologyIcon";
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { projectsContent } from "@/lib/projects-content";
+
+const FEATURED_PROJECT_URL = "https://snapfolioo.com";
+const GITHUB_PROFILE_URL = "https://github.com/Zoubeir23";
+
+const tagClassName =
+  "rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white";
 
 const ProjectsBentoSection = () => {
-  const mobileProjects = [
-    {
-      title: "Snapfolioo",
-      status: "Projet Vedette",
-      desc: "Plateforme SaaS no-code permettant aux professionnels de créer des portfolios, CV et bannières LinkedIn en quelques minutes.",
-      tags: ["React 18", "TypeScript", "Vite", "Supabase", "Tailwind CSS", "Vercel", "Playwright"],
-      link: "https://snapfolioo.com",
-      cta: "Explorer le Projet",
-      featured: true,
-    },
-    {
-      title: "Smart-HR",
-      status: "Coming Soon",
-      desc: "Système de Gestion RH intelligent avec IA intégrée, recrutement automatisé et analytics avancés.",
-      tags: ["Django", "React", "TypeScript", "PostgreSQL", "Docker"],
-      link: "https://github.com/Zoubeir23",
-      cta: "Voir le profil",
-      featured: false,
-    },
-    {
-      title: "Tchokos SARL — B2B",
-      status: "En cours",
-      desc: "Plateforme e-commerce B2B sur mesure avec catalogue centralisé, portail revendeurs et back-office admin.",
-      tags: ["Django", "Python", "PostgreSQL", "TailwindCSS"],
-      link: "https://github.com/Zoubeir23",
-      cta: "Voir le profil",
-      featured: false,
-    },
-  ];
+  const projects = useLocalizedContent(projectsContent);
 
   return (
-    <section id="projects" className="bg-[#0303AB] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="mb-10 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="font-display font-bold text-[#FFFFFF]/50 text-sm uppercase tracking-[0.3em] mb-3">
-            — Portfolio
-          </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
-            Mes
-            <br />
-            <span className="bg-[#FFFFFF] text-[#0303AB] px-3 inline-block">Projets</span>
-          </h2>
-        </motion.div>
+    <section
+      id="projects"
+      className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
+    >
+      <SectionHeading
+        emoji="🚀"
+        eyebrow={projects.eyebrow}
+        title={projects.titleLead}
+        highlight={projects.titleHighlight}
+      />
 
-        <div className="md:hidden mb-8 -mx-4 px-4">
-          <div
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2"
-            tabIndex={0}
-            aria-label="Projets défilables horizontalement"
-          >
-            {mobileProjects.map((project) => (
-              <article
-                key={project.title}
-                className={`snap-start shrink-0 w-[86vw] border-4 border-[#F5C518] p-5 flex flex-col gap-5 ${project.featured ? "bg-[#2553F0]" : "bg-[#0303AB]"}`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <span className="font-display font-black text-[10px] uppercase tracking-[0.22em] bg-[#FFFFFF] text-[#0303AB] px-3 py-1.5">
-                    {project.status}
-                  </span>
-                  {project.featured ? (
-                    <span className="font-display font-black text-[10px] uppercase tracking-[0.22em] text-[#FFFFFF]/70">
-                      Swipe mobile
-                    </span>
-                  ) : null}
-                </div>
-
-                <div>
-                  <h3 className="font-display font-black text-3xl uppercase text-[#FFFFFF] leading-none mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="font-body text-sm leading-relaxed text-[#FFFFFF]/80">
-                    {project.desc}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-body font-bold text-[10px] uppercase tracking-wider border-2 border-[#F5C518] text-[#FFFFFF] px-2.5 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-3 bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide border-4 border-[#F5C518]"
-                >
-                  {project.cta}
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </article>
-            ))}
-          </div>
-          <p className="mt-3 font-body text-xs uppercase tracking-[0.18em] text-[#FFFFFF]/65 text-center">
-            Glisse à droite ou à gauche pour voir les projets
-          </p>
-        </div>
-
-        <div className="hidden md:block">
-        {/* Featured Project - Snapfolioo */}
-        <motion.div
-          className="mb-4 border-4 border-[#F5C518] bg-[#0303AB] group hover:bg-[#0303AB] transition-all duration-200"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Content */}
-            <div className="p-6 sm:p-8 md:p-14 flex flex-col justify-between gap-8 sm:gap-10">
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="font-display font-black text-xs uppercase tracking-widest bg-[#0303AB] text-[#FFFFFF] px-4 py-2">
-                    ★ Projet Vedette
-                  </span>
-                  <span className="font-display font-black text-xs uppercase tracking-widest border-2 border-[#F5C518]/45 text-[#FFFFFF] px-4 py-2">
-                    En Production
-                  </span>
-                </div>
-                <h3 className="font-display font-black text-3xl sm:text-5xl md:text-6xl uppercase text-[#FFFFFF] leading-none mb-4">
-                  Snapfolioo
-                </h3>
-                <p className="font-body text-[#FFFFFF]/85 text-base sm:text-lg leading-relaxed mb-8">
-                  Plateforme SaaS no-code permettant aux professionnels de creer des portfolios, CV et bannieres LinkedIn en quelques minutes. Editeur visuel en temps reel, +18 templates, sauvegarde cloud Supabase et publication instantanee.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {["React 18", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Vercel", "Playwright"].map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-display font-bold text-xs uppercase tracking-wider border-2 border-[#F5C518]/45 text-[#FFFFFF] px-3 py-1 hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+      <Reveal className="mb-4">
+        <article className="gradient-ring spotlight-card relative grid rounded-[var(--radius-medium)] bg-[var(--surface-base)] lg:grid-cols-2">
+          <div className="flex flex-col justify-between gap-8 p-6 sm:p-10">
+            <div>
+              <div className="mb-6 flex flex-wrap items-center gap-3">
+                <span className="rounded-full bg-white px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--surface-deepest)]">
+                  ★ {projects.featuredBadge}
+                </span>
+                <span className="rounded-full border border-[var(--surface-border)] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-white">
+                  {projects.featured.status}
+                </span>
               </div>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <a
-                  href="https://snapfolioo.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-[#F5C518] text-[#020285] font-display font-black text-xs sm:text-sm uppercase tracking-wide border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Explorer le Projet
-                </a>
-                <a
-                  href="https://github.com/Zoubeir23"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 sm:px-8 py-3.5 sm:py-4 bg-[#F5C518] text-[#020285] font-display font-black text-xs sm:text-sm uppercase tracking-wide border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
-                >
-                  GitHub →
-                </a>
-              </div>
-            </div>
-
-            {/* Visual / Stats side */}
-            <div className="border-t-4 lg:border-t-0 lg:border-l-4 border-[#F5C518]/30 p-6 sm:p-8 md:p-14 flex flex-col justify-center gap-6 sm:gap-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { number: "SaaS", label: "Produit lancé" },
-                  { number: "18+", label: "Templates" },
-                  { number: "Jan 2026", label: "Depuis" },
-                  { number: "Vercel", label: "Deploiement" },
-                ].map((stat) => (
-                  <div key={stat.label} className="border-4 border-[#F5C518]/25 p-5">
-                    <p className="font-display font-black text-2xl sm:text-3xl text-[#FFFFFF] mb-1">
-                      {stat.number}
-                    </p>
-                    <p className="font-body font-semibold text-xs uppercase tracking-wider text-[#FFFFFF]/80">
-                      {stat.label}
-                    </p>
-                  </div>
+              <h3 className="mb-4 font-display text-4xl uppercase leading-none text-white sm:text-5xl">
+                {projects.featured.title}
+              </h3>
+              <p className="mb-8 text-base text-[var(--text-secondary)] sm:text-lg">
+                {projects.featured.description}
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                {projects.featured.tags.map((tag) => (
+                  <li key={tag} className={tagClassName}>
+                    <TechnologyIcon name={tag} className="mr-2" />
+                    {tag}
+                  </li>
                 ))}
-              </div>
-              <div className="border-t-4 border-[#F5C518]/20 pt-6">
-                <p className="font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/75 mb-3">
-                  Architecture
-                </p>
-                <p className="font-body text-sm text-[#FFFFFF]/85 leading-relaxed">
-                  Frontend React 18 + TypeScript + Vite · Styling Tailwind CSS · Backend Supabase (PostgreSQL + Auth) · Tests Playwright · Deploye sur Vercel
-                </p>
-              </div>
+              </ul>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={FEATURED_PROJECT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)]"
+              >
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                {projects.featured.linkLabel}
+              </a>
+              <a
+                href={GITHUB_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--surface-border)] px-6 py-3 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white"
+              >
+                GitHub →
+              </a>
             </div>
           </div>
-        </motion.div>
 
-        {/* Secondary Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            {
-              title: "Smart-HR",
-              desc: "Système de Gestion RH intelligent avec IA intégrée — recrutement automatisé, gestion des congés, paie et analytics avancés.",
-              tags: ["Django", "React", "TypeScript", "PostgreSQL", "Docker"],
-              status: "Coming Soon",
-            },
-            {
-              title: "Tchokos SARL — B2B",
-              desc: "Plateforme e-commerce B2B sur mesure pour un grossiste mode à Douala. Catalogue centralisé, portail revendeurs, gestion des demandes d'importation et back-office admin.",
-              tags: ["Django", "Python", "PostgreSQL", "TailwindCSS"],
-              status: "En cours",
-            },
-          ].map((project, index) => (
-            <motion.div
-              key={project.title}
-              className="border-4 border-[#F5C518] p-6 sm:p-8 bg-[#0303AB] group hover:bg-[#FFFFFF] transition-all duration-200"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <div className="flex items-start justify-between mb-6">
-                <h3 className="font-display font-black text-xl sm:text-2xl uppercase text-[#FFFFFF] group-hover:text-[#0303AB] transition-colors duration-200 leading-tight">
+          <div className="flex flex-col justify-center gap-6 border-t border-[var(--surface-border)] p-6 sm:p-10 lg:border-l lg:border-t-0">
+            <dl className="grid grid-cols-2 gap-4">
+              {projects.featuredStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-md border border-[var(--surface-border)] p-5"
+                >
+                  <dd className="font-display text-2xl text-white sm:text-3xl">
+                    {stat.value}
+                  </dd>
+                  <dt className="mt-1 font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                    {stat.label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+            <div className="border-t border-[var(--surface-border)] pt-6">
+              <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                {projects.architectureLabel}
+              </p>
+              <p className="text-sm text-[var(--text-secondary)]">
+                {projects.architectureText}
+              </p>
+            </div>
+          </div>
+        </article>
+      </Reveal>
+
+      <ul className="grid gap-4 md:grid-cols-2">
+        {projects.others.map((project, index) => (
+          <Reveal as="li" key={project.title} delaySeconds={index * 0.1}>
+            <div className="orbit-card spotlight-card h-full rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 hover:border-[var(--accent-violet)] sm:p-8">
+              <div className="mb-5 flex items-start justify-between gap-4">
+                <h3 className="font-display text-xl uppercase leading-tight text-white sm:text-2xl">
                   {project.title}
                 </h3>
-                <span className="font-display font-black text-xs uppercase tracking-widest bg-[#FFFFFF] group-hover:bg-[#0303AB] text-[#0303AB] group-hover:text-[#FFFFFF] px-3 py-1.5 shrink-0 ml-4 transition-all duration-200">
+                <span className="shrink-0 rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-widest text-white">
                   {project.status}
                 </span>
               </div>
-              <p className="font-body text-sm text-[#FFFFFF]/70 group-hover:text-[#0303AB]/70 leading-relaxed mb-6 transition-colors duration-200">
-                {project.desc}
+              <p className="mb-6 text-sm text-[var(--text-secondary)]">
+                {project.description}
               </p>
-              <div className="flex flex-wrap gap-2">
+              <ul className="mb-6 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="font-body font-bold text-xs uppercase tracking-wider border-2 border-[#F5C518] group-hover:border-[#0303AB] text-[#FFFFFF] group-hover:text-[#0303AB] px-3 py-1 transition-all duration-200"
-                  >
+                  <li key={tag} className={tagClassName}>
+                    <TechnologyIcon name={tag} className="mr-2" />
                     {tag}
-                  </span>
+                  </li>
                 ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </ul>
+              <a
+                href={GITHUB_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
+              >
+                {project.linkLabel}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+          </Reveal>
+        ))}
+      </ul>
 
-        {/* GitHub CTA */}
-        <motion.div
-          className="mt-8 flex justify-start sm:justify-end"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+      <div className="mt-8 flex justify-start sm:justify-end">
+        <a
+          href={GITHUB_PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex min-h-11 items-center gap-3 border-b border-[var(--surface-border)] pb-1 font-mono text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:border-white"
         >
-          <a
-            href="https://github.com/Zoubeir23"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 font-display font-black text-sm uppercase tracking-widest text-[#FFFFFF] border-b-4 border-[#F5C518] pb-1 hover:border-transparent transition-all duration-150 group"
-          >
-            Voir tous mes projets sur GitHub
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </motion.div>
-        </div>
+          {projects.githubAllProjects}
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+        </a>
       </div>
     </section>
   );

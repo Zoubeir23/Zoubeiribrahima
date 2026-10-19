@@ -1,0 +1,40 @@
+:root {
+  /* Surfaces */
+  --surface-deepest: #050505;
+  --surface-base: #0f0f0f;
+  --surface-raised: #1a1a1a;
+  --surface-border: #2a2a2a;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d4;
+  --text-muted: #8a8a8a;
+
+  /* Accents */
+  --accent-primary: #ffffff;
+  --accent-orange: #ff6b00;
+  --accent-violet: #8b5cf6;
+  --accent-glow-white: rgba(255, 255, 255, 0.06);
+  --accent-glow-orange: rgba(255, 107, 0, 0.35);
+  --accent-glow-violet: rgba(139, 92, 246, 0.35);
+
+  /* Status */
+  --status-success: #22c55e;
+  --status-warning: #f59e0b;
+  --status-error: #ef4444;
+
+  /* Shape */
+  --radius-small: 10px;
+  --radius-medium: 16px;
+  --radius-pill: 100px;
+
+  /* Motion */
+  --easing-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --duration-fast: 0.3s;
+  --duration-slow: 0.6s;
+
+  /* Typography */
+  --font-display: "Orbitron", system-ui, sans-serif;
+  --font-body: "Poppins", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}

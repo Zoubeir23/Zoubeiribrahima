@@ -1,19 +1,25 @@
-import { motion, AnimatePresence } from "@/lib/static-motion";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useColorMode } from "@/hooks/useColorMode";
+import Emoji from "@/components/Emoji";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { useLandingContent } from "@/hooks/useLandingContent";
+import { useLanguage } from "@/hooks/useLanguage";
+import { BLOG_EMOJI, HIRE_EMOJI, NAV_EMOJIS } from "@/lib/site-navigation";
+
+const NAV_SECTION_IDS = ["hero", "services", "skills", "projects", "experience", "certifications", "contact"] as const;
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("#hero");
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const activeSectionLink = isHomePage ? activeLink : "";
+  const activeSectionId = useActiveSection(NAV_SECTION_IDS, isHomePage);
+  const activeSectionLink = activeSectionId ? `#${activeSectionId}` : "";
   const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
-  const { isWarmMode, toggleColorMode } = useColorMode();
+  const { nav } = useLandingContent();
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,16 +59,6 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    const updateActiveLink = () => {
-      setActiveLink(window.location.hash || "#hero");
-    };
-
-    updateActiveLink();
-    window.addEventListener("hashchange", updateActiveLink);
-    return () => window.removeEventListener("hashchange", updateActiveLink);
-  }, []);
-
-  useEffect(() => {
     if (location.pathname !== "/" || !location.hash) {
       return;
     }
@@ -87,254 +83,178 @@ const Navbar = () => {
   }, [location.hash, location.pathname]);
 
   const navLinks = [
-    { label: "Accueil", href: "#hero" },
-    { label: "Stack", href: "#skills" },
-    { label: "Projets", href: "#projects" },
-    { label: "Expérience", href: "#experience" },
-    { label: "Certifications", href: "#certifications" },
-    { label: "Contact", href: "#contact" },
+    { label: nav.home, href: "#hero" },
+    { label: nav.services, href: "#services" },
+    { label: nav.stack, href: "#skills" },
+    { label: nav.projects, href: "#projects" },
+    { label: nav.experience, href: "#experience" },
+    { label: nav.certifications, href: "#certifications" },
+    { label: nav.contact, href: "#contact" },
   ];
 
   const isBlogActive = location.pathname.startsWith("/blog");
+  const nextLanguage = language === "fr" ? "en" : "fr";
+
+  const getDesktopLinkClassName = (isActive: boolean) =>
+    `inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)] ${
+      isActive
+        ? "bg-white font-semibold text-[var(--surface-deepest)]"
+        : "text-white hover:bg-[var(--surface-raised)]"
+    }`;
+  const mobileLinkClassName =
+    "block rounded-[var(--radius-small)] px-4 py-3.5 text-center font-body text-base font-semibold text-[var(--text-secondary)] transition-colors duration-300 hover:bg-[var(--surface-raised)] hover:text-white";
+  const primaryActionClassName =
+    "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full bg-white px-5 py-2 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
+
+  const logoImage = (
+    <img
+      src="/logo-scale-avec-zoubeir-for-dark-background.png"
+      alt="Scale avec Zoubeir"
+      className="h-14 w-auto object-contain sm:h-16"
+      width={380}
+      height={80}
+    />
+  );
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0303AB]/95 backdrop-blur-md"
-          : "bg-[#0303AB]/80 backdrop-blur-sm"
+    <nav
+      className={`fixed inset-x-0 top-0 z-50 border-b border-[var(--surface-border)] backdrop-blur-md transition-colors duration-300 ${
+        scrolled ? "bg-[var(--surface-deepest)]/95 shadow-[0_8px_30px_rgba(0,0,0,0.6)]" : "bg-[var(--surface-deepest)]/85"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-        {/* Logo */}
-        {isHomePage ? (
-          <motion.a href="#hero" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <span className="logo-shell inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3 sm:py-2">
-              <img
-                src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-                alt="Scale avec Zoubeir"
-                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
-                width={380}
-                height={80}
-              />
-            </span>
-          </motion.a>
-        ) : (
-          <Link to="/#hero">
-            <span className="logo-shell inline-flex items-center justify-center px-2.5 py-1.5 sm:px-3 sm:py-2">
-              <img
-                src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-                alt="Scale avec Zoubeir"
-                className="h-14 sm:h-16 md:h-20 w-auto object-contain"
-                width={380}
-                height={80}
-              />
-            </span>
-          </Link>
-        )}
+      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6">
+        {isHomePage ? <a href="#hero">{logoImage}</a> : <Link to="/#hero">{logoImage}</Link>}
 
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-1 font-body text-sm font-semibold uppercase tracking-wider">
-          {navLinks.map((link, index) => (
+        <div className="hidden items-center gap-1 rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] p-1 font-body text-sm font-medium xl:flex">
+          {navLinks.map((link) =>
             isHomePage ? (
-              <motion.a
+              <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setActiveLink(link.href)}
-                className="relative px-4 py-2 text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 overflow-hidden"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
+                aria-current={activeSectionLink === link.href ? "location" : undefined}
+                className={getDesktopLinkClassName(activeSectionLink === link.href)}
               >
+                <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
                 {link.label}
-                <span
-                  className={`absolute left-4 right-4 bottom-0 h-1 bg-[#F5C518] transition-opacity duration-150 ${
-                    activeSectionLink === link.href ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              </motion.a>
+              </a>
             ) : (
               <Link
                 key={link.href}
                 to={`/${link.href}`}
-                onClick={() => setActiveLink(link.href)}
-                className="relative px-4 py-2 text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 overflow-hidden"
+                className={getDesktopLinkClassName(false)}
               >
+                <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
                 {link.label}
-                <span
-                  className={`absolute left-4 right-4 bottom-0 h-1 bg-[#F5C518] transition-opacity duration-150 ${
-                    activeSectionLink === link.href ? "opacity-100" : "opacity-0"
-                  }`}
-                />
               </Link>
-            )
-          ))}
+            ),
+          )}
           <Link
             to="/blog"
-            className={`relative px-4 py-2 transition-all duration-150 overflow-hidden ${
-              isBlogActive
-                ? "text-[#FFFFFF]"
-                : "text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0303AB]"
-            }`}
+            aria-current={isBlogActive ? "page" : undefined}
+            className={getDesktopLinkClassName(isBlogActive)}
           >
-            Blog
-            <span
-              className={`absolute left-4 right-4 bottom-0 h-1 bg-[#F5C518] transition-opacity duration-150 ${
-                isBlogActive ? "opacity-100" : "opacity-0"
-              }`}
-            />
+            <Emoji symbol={BLOG_EMOJI} className="mr-1.5" />
+            {nav.blog}
           </Link>
         </div>
 
-        {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={toggleColorMode}
-            className="hidden md:block px-4 py-2 border-2 border-[#F5C518] text-[#FFFFFF] font-body font-semibold text-xs uppercase tracking-wider hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150"
-            aria-label="Basculer la palette de couleurs"
+            onClick={() => setLanguage(nextLanguage)}
+            aria-label={nav.switchLanguage}
+            className="min-h-11 min-w-11 rounded-full border border-[var(--surface-border)] px-3 font-mono text-xs font-semibold uppercase tracking-widest text-[var(--text-secondary)] transition-colors duration-300 hover:border-white hover:text-white"
           >
-            {isWarmMode ? "Mode Bleu" : "Mode Warm"}
+            {nextLanguage}
           </button>
 
           {isHomePage ? (
-            <motion.a
-              href="#contact"
-              className="hidden md:block px-5 py-2 bg-[#F5C518] text-[#020285] font-body font-semibold text-sm uppercase tracking-wider hover:bg-transparent hover:text-[#F5C518] transition-all duration-150"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Me Recruter
-            </motion.a>
+            <a href="#contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
+              <Emoji symbol={HIRE_EMOJI} className="mr-2" />
+              {nav.hire}
+            </a>
           ) : (
-            <Link
-              to="/#contact"
-              className="hidden md:block px-5 py-2 bg-[#F5C518] text-[#020285] font-body font-semibold text-sm uppercase tracking-wider hover:bg-transparent hover:text-[#F5C518] transition-all duration-150"
-            >
-              Me Recruter
+            <Link to="/#contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
+              <Emoji symbol={HIRE_EMOJI} className="mr-2" />
+              {nav.hire}
             </Link>
           )}
 
-          <motion.button
+          <button
             ref={menuButtonRef}
-            className="md:hidden min-h-11 min-w-11 p-2.5 bg-[#F5C518] text-[#020285]"
+            type="button"
+            className="min-h-11 min-w-11 rounded-full border border-[var(--surface-border)] p-2.5 text-white xl:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+            aria-label={nav.toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav-menu"
-            whileTap={{ scale: 0.95 }}
           >
-            {isMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </motion.button>
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            id="mobile-nav-menu"
-            ref={mobileMenuRef}
-            className="md:hidden bg-[#0303AB] max-h-[calc(100svh-3.5rem)] overflow-y-auto"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-          >
-            <div className="flex flex-col p-4 sm:p-6 gap-2">
-              {navLinks.map((link, index) => (
-                isHomePage ? (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => {
-                      setActiveLink(link.href);
-                      setIsMenuOpen(false);
-                    }}
-                    className="relative block py-3.5 px-4 font-body font-semibold text-base uppercase text-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 leading-tight overflow-hidden"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: index * 0.05 }}
-                  >
-                    {link.label}
-                    <span
-                      className={`absolute left-4 right-4 bottom-0 h-1 bg-[#F5C518] transition-opacity duration-150 ${
-                        activeSectionLink === link.href ? "opacity-100" : "opacity-0"
-                      }`}
-                    />
-                  </motion.a>
-                ) : (
-                  <Link
-                    key={link.href}
-                    to={`/${link.href}`}
-                    onClick={() => {
-                      setActiveLink(link.href);
-                      setIsMenuOpen(false);
-                    }}
-                    className="relative block py-3.5 px-4 font-body font-semibold text-base uppercase text-[#FFFFFF] text-center hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 leading-tight overflow-hidden"
-                  >
-                    {link.label}
-                    <span
-                      className={`absolute left-4 right-4 bottom-0 h-1 bg-[#F5C518] transition-opacity duration-150 ${
-                        activeSectionLink === link.href ? "opacity-100" : "opacity-0"
-                      }`}
-                    />
-                  </Link>
-                )
-              ))}
-              {isHomePage ? (
-                <motion.a
-                  href="#contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="mt-2 py-3.5 px-4 bg-[#F5C518] text-[#020285] font-body font-semibold text-base uppercase text-center leading-tight"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.2, delay: navLinks.length * 0.05 }}
+      {isMenuOpen && (
+        <div
+          id="mobile-nav-menu"
+          ref={mobileMenuRef}
+          className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[var(--surface-border)] bg-[var(--surface-deepest)] xl:hidden"
+        >
+          <div className="flex flex-col gap-1 p-4 sm:p-6">
+            {navLinks.map((link) =>
+              isHomePage ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                  className={mobileLinkClassName}
                 >
-                  Me Recruter
-                </motion.a>
+                  <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
+                {link.label}
+                </a>
               ) : (
                 <Link
-                  to="/#contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="mt-2 py-3.5 px-4 bg-[#F5C518] text-[#020285] font-body font-semibold text-base uppercase text-center leading-tight"
+                  key={link.href}
+                  to={`/${link.href}`}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                  className={mobileLinkClassName}
                 >
-                  Me Recruter
+                  <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
+                {link.label}
                 </Link>
-              )}
-              <button
-                type="button"
-                onClick={() => {
-                  toggleColorMode();
-                  setIsMenuOpen(false);
-                }}
-                className="mt-2 py-3.5 px-4 border-2 border-[#F5C518] text-[#FFFFFF] font-body font-semibold text-base uppercase text-center leading-tight hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150"
-              >
-                {isWarmMode ? "Activer Mode Bleu" : "Activer Mode Warm"}
-              </button>
-              <Link
-                to="/blog"
+              ),
+            )}
+            <Link to="/blog" onClick={() => setIsMenuOpen(false)} className={mobileLinkClassName}>
+              <Emoji symbol={BLOG_EMOJI} className="mr-1.5" />
+            {nav.blog}
+            </Link>
+            {isHomePage ? (
+              <a
+                href="#contact"
                 onClick={() => setIsMenuOpen(false)}
-                className={`mt-2 py-3.5 px-4 font-body font-semibold text-base uppercase text-center leading-tight transition-all duration-150 ${
-                  isBlogActive
-                    ? "text-[#FFFFFF]"
-                    : "text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0303AB]"
-                }`}
+                className={`mt-2 ${primaryActionClassName}`}
               >
-                Blog
+                <Emoji symbol={HIRE_EMOJI} className="mr-2" />
+              {nav.hire}
+              </a>
+            ) : (
+              <Link
+                to="/#contact"
+                onClick={() => setIsMenuOpen(false)}
+                className={`mt-2 ${primaryActionClassName}`}
+              >
+                <Emoji symbol={HIRE_EMOJI} className="mr-2" />
+              {nav.hire}
               </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+            )}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

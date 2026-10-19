@@ -14,21 +14,21 @@ export default {
     },
     borderRadius: {
       none: "0px",
-      DEFAULT: "0px",
-      sm: "0px",
-      md: "0px",
-      lg: "0px",
-      xl: "0px",
-      "2xl": "0px",
-      "3xl": "0px",
-      full: "0px",
+      sm: "var(--radius-small)",
+      DEFAULT: "var(--radius-small)",
+      md: "var(--radius-medium)",
+      lg: "var(--radius-medium)",
+      xl: "var(--radius-medium)",
+      "2xl": "var(--radius-medium)",
+      "3xl": "var(--radius-medium)",
+      full: "var(--radius-pill)",
     },
     extend: {
       fontFamily: {
-        sans: ["IBM Plex Sans", "system-ui", "sans-serif"],
-        display: ["Bebas Neue", "sans-serif"],
-        grotesk: ["Bebas Neue", "sans-serif"],
-        manrope: ["IBM Plex Sans", "sans-serif"],
+        sans: ["var(--font-body)"],
+        body: ["var(--font-body)"],
+        display: ["var(--font-display)"],
+        mono: ["var(--font-mono)"],
       },
       colors: {
         yellow: {

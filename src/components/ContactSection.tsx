@@ -1,16 +1,70 @@
-import { motion } from "@/lib/static-motion";
-import { useRef, useState } from "react";
-import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  type LucideIcon,
+} from "lucide-react";
+import { useRef, useState, type FormEvent, type ReactNode } from "react";
+import ConsentGate from "@/components/consent/ConsentGate";
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import { useLandingContent } from "@/hooks/useLandingContent";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { contactChannels, contactConfig, SITE_DOMAIN } from "@/lib/contact-config";
+import { buildBookingEmbedUrl } from "@/lib/contact-channels";
+import { contactContent } from "@/lib/contact-content";
+
+const FORM_ENDPOINT = "https://formspree.io/f/xaqovjqb";
+
+type SubmitStatus = "idle" | "success" | "error";
+
+const fieldClassName =
+  "w-full border-b border-[var(--surface-border)] bg-transparent py-3 font-body text-base text-white transition-colors duration-300 placeholder:text-[var(--text-muted)] focus:border-[var(--accent-violet)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)] sm:text-lg";
+const labelClassName =
+  "mb-2 block font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-secondary)]";
+const pillLinkClassName =
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-5 py-3 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)]";
+
+interface InfoRowProps {
+  icon: LucideIcon;
+  label: string;
+  children: ReactNode;
+}
+
+const InfoRow = ({ icon: Icon, label, children }: InfoRowProps) => (
+  <div className="flex items-start gap-4">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-[var(--surface-border)]">
+      <Icon className="h-4 w-4 text-white" aria-hidden="true" />
+    </div>
+    <div>
+      <p className="mb-1 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+        {label}
+      </p>
+      {children}
+    </div>
+  </div>
+);
 
 const ContactSection = () => {
+  const contact = useLocalizedContent(contactContent);
+  const { booking } = useLandingContent();
   const formRef = useRef<HTMLFormElement | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const currentForm = e.currentTarget;
-    const formData = new FormData(currentForm);
+  const whatsappChannel = contactChannels.find(
+    (channel) => channel.kind === "whatsapp",
+  );
+  const bookingChannel = contactChannels.find(
+    (channel) => channel.kind === "booking",
+  );
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
     const payload = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
@@ -21,7 +75,7 @@ const ContactSection = () => {
     setSubmitStatus("idle");
 
     try {
-      const response = await fetch("https://formspree.io/f/xaqovjqb", {
+      const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -40,53 +94,50 @@ const ContactSection = () => {
     }
   };
 
-  return (
-    <section id="contact" className="bg-[#0303AB] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="mb-10 sm:mb-16"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="font-display font-bold text-[#FFFFFF]/55 text-sm uppercase tracking-[0.3em] mb-4">
-            — Parlons-en
-          </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-8xl uppercase leading-tight">
-            Travaillons
-            <br />
-            <span className="text-[#FFFFFF]/35">Ensemble</span>
-          </h2>
-        </motion.div>
+  const announcement =
+    submitStatus === "success"
+      ? contact.successAnnouncement
+      : submitStatus === "error"
+        ? contact.errorAnnouncement
+        : "";
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border-4 border-[#F5C518]">
-          {/* Form */}
-          <motion.div
-            className="p-6 sm:p-10 border-b-4 lg:border-b-0 lg:border-r-4 border-[#F5C518] bg-[#0303AB]"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+  return (
+    <section
+      id="contact"
+      className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
+    >
+      <SectionHeading
+        emoji="✉️"
+        eyebrow={contact.eyebrow}
+        title={contact.titleLead}
+        highlight={contact.titleHighlight}
+      />
+
+      <Reveal>
+        <div className="grid overflow-hidden rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] lg:grid-cols-2">
+          <div className="border-b border-[var(--surface-border)] p-6 sm:p-10 lg:border-b-0 lg:border-r">
             {submitStatus === "success" ? (
-              <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                <div className="w-16 h-16 bg-[#0303AB] flex items-center justify-center mb-6">
-                  <span className="font-display font-black text-2xl text-[#FFFFFF]">✓</span>
-                </div>
-                  <h3 className="font-display font-black text-2xl text-[#FFFFFF] uppercase mb-3">
-                  Message Envoyé !
+              <div className="flex h-full flex-col items-center justify-center py-16 text-center">
+                <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white font-display text-2xl text-[var(--surface-deepest)]">
+                  ✓
+                </span>
+                <h3 className="mb-3 font-display text-2xl uppercase text-white">
+                  {contact.successTitle}
                 </h3>
-                  <p className="font-body text-[#FFFFFF]/80">
-                  Je vous répondrai dans les plus brefs délais.
+                <p className="text-[var(--text-secondary)]">
+                  {contact.successBody}
                 </p>
               </div>
             ) : (
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                className="space-y-7"
+                noValidate
+              >
                 <div>
-                  <label htmlFor="contact-name" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
-                    Nom Complet
+                  <label htmlFor="contact-name" className={labelClassName}>
+                    {contact.nameLabel}
                   </label>
                   <input
                     id="contact-name"
@@ -94,13 +145,13 @@ const ContactSection = () => {
                     name="name"
                     required
                     autoComplete="name"
-                    placeholder="Jean Dupont"
-                    className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30"
+                    placeholder={contact.namePlaceholder}
+                    className={fieldClassName}
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
-                    Email
+                  <label htmlFor="contact-email" className={labelClassName}>
+                    {contact.emailLabel}
                   </label>
                   <input
                     id="contact-email"
@@ -108,142 +159,131 @@ const ContactSection = () => {
                     name="email"
                     required
                     autoComplete="email"
-                    placeholder="jean@exemple.com"
-                    className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30"
+                    placeholder={contact.emailPlaceholder}
+                    className={fieldClassName}
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-message" className="block font-display font-bold text-xs uppercase tracking-[0.2em] text-[#FFFFFF]/80 mb-3">
-                    Message
+                  <label htmlFor="contact-message" className={labelClassName}>
+                    {contact.messageLabel}
                   </label>
                   <textarea
                     id="contact-message"
                     name="message"
                     required
                     rows={5}
-                    placeholder="Parlez-moi de votre projet..."
-                    className="w-full bg-transparent border-b-4 border-[#F5C518]/30 focus:border-[#F5C518] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFFFFF] text-[#FFFFFF] font-body text-base sm:text-lg py-3 transition-colors duration-200 placeholder:text-[#FFFFFF]/30 resize-none"
+                    placeholder={contact.messagePlaceholder}
+                    className={`${fieldClassName} resize-none`}
                   />
                 </div>
-                {submitStatus === "error" && (
-                  <p role="status" aria-live="polite" className="font-body text-sm text-red-500">
-                    Une erreur s'est produite. Réessayez ou contactez-moi directement par email.
+                {submitStatus === "error" ? (
+                  <p className="text-sm text-[var(--status-error)]">
+                    {contact.errorMessage}
                   </p>
-                )}
-                <motion.button
+                ) : null}
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F5C518] text-[#020285] font-display font-black text-xs sm:text-sm uppercase tracking-wide sm:tracking-widest py-4 sm:py-5 border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed min-h-11"
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
+                  className="min-h-11 w-full rounded-full bg-white py-4 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {isSubmitting ? "Envoi en cours..." : "Envoyer le Message →"}
-                </motion.button>
+                  {isSubmitting ? contact.submittingLabel : contact.submitLabel}
+                </button>
                 <p role="status" aria-live="polite" className="sr-only">
-                  {submitStatus === "success"
-                    ? "Message envoyé avec succès"
-                    : submitStatus === "error"
-                    ? "Erreur lors de l'envoi"
-                    : ""}
+                  {announcement}
                 </p>
               </form>
             )}
-          </motion.div>
+          </div>
 
-          {/* Info */}
-          <motion.div
-            className="p-6 sm:p-10 flex flex-col justify-between gap-8 sm:gap-10 bg-[#0303AB]"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+          <div className="flex flex-col justify-between gap-10 p-6 sm:p-10">
             <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border-4 border-[#F5C518] flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4 text-[#FFFFFF]" />
-                </div>
-                <div>
-                  <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
-                    Email
-                  </p>
+              <InfoRow icon={Mail} label={contact.emailLabel}>
+                <a
+                  href={`mailto:${contactConfig.email}`}
+                  className="break-all font-semibold text-white hover:text-[var(--text-secondary)]"
+                >
+                  {contactConfig.email}
+                </a>
+              </InfoRow>
+              <InfoRow icon={Phone} label={contact.phoneLabel}>
+                <a
+                  href={contactConfig.phoneHref}
+                  className="font-semibold text-white hover:text-[var(--text-secondary)]"
+                >
+                  {contactConfig.phoneDisplay}
+                </a>
+              </InfoRow>
+              {whatsappChannel ? (
+                <InfoRow icon={MessageCircle} label={contact.whatsappLabel}>
                   <a
-                    href="mailto:Zoubeiribrahima@gmail.com"
-                    className="font-body font-semibold text-[#FFFFFF] text-base hover:text-[#FFFFFF]/70 transition-colors break-all"
+                    href={whatsappChannel.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-white hover:text-[var(--text-secondary)]"
                   >
-                    Zoubeiribrahima@gmail.com
+                    {contact.whatsappLabel}
                   </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border-4 border-[#F5C518] flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 text-[#FFFFFF]" />
-                </div>
-                <div>
-                  <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
-                    Téléphone
-                  </p>
-                  <a
-                    href="tel:+221785941071"
-                    className="font-body font-semibold text-[#FFFFFF] text-base hover:text-[#FFFFFF]/70 transition-colors"
-                  >
-                    +221 78 594 10 71
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 border-4 border-[#F5C518] flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-[#FFFFFF]" />
-                </div>
-                <div>
-                  <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em] mb-1">
-                    Localisation
-                  </p>
-                  <p className="font-body font-semibold text-[#FFFFFF] text-base">
-                    Sénégal
-                  </p>
-                </div>
-              </div>
+                </InfoRow>
+              ) : null}
+              <InfoRow icon={MapPin} label={contact.locationLabel}>
+                <p className="font-semibold text-white">
+                  {contact.locationValue}
+                </p>
+              </InfoRow>
             </div>
 
-            <div className="border-t-4 border-[#F5C518]/20 pt-8 space-y-4">
-              <p className="font-display font-bold text-[#FFFFFF]/80 text-xs uppercase tracking-[0.2em]">
-                Réseaux Sociaux
+            <div className="space-y-4 border-t border-[var(--surface-border)] pt-8">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                {contact.socialsLabel}
               </p>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="https://github.com/Zoubeir23"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#F5C518] bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
+                  className={pillLinkClassName}
                 >
-                  <Github className="w-4 h-4" />
+                  <Github className="h-4 w-4" aria-hidden="true" />
                   GitHub
                 </a>
                 <a
                   href="https://linkedin.com/in/zoubeir-ibrahima"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 border-4 border-[#F5C518] bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
+                  className={pillLinkClassName}
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <Linkedin className="h-4 w-4" aria-hidden="true" />
                   LinkedIn
                 </a>
-              </div>
-              {/* CV Downloads */}
-              <div className="flex flex-wrap gap-3 pt-4">
                 <a
                   href="/CV.pdf"
                   download="Zoubeir-Ibrahima-Amed-CV.pdf"
-                  className="w-full sm:w-auto text-center px-5 py-3 bg-[#F5C518] text-[#020285] font-display font-black text-xs uppercase tracking-wide border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 min-h-11"
+                  className={pillLinkClassName}
                 >
-                  CV PDF →
+                  {contact.downloadCvLabel}
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </div>
+      </Reveal>
+
+      {bookingChannel ? (
+        <div className="mt-8">
+          <ConsentGate
+            providerName={booking.providerName}
+            description={booking.description}
+            loadButtonLabel={booking.loadButtonLabel}
+          >
+            <iframe
+              title={booking.providerName}
+              src={buildBookingEmbedUrl(bookingChannel.href, SITE_DOMAIN)}
+              loading="lazy"
+              className="h-[640px] w-full rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)]"
+            />
+          </ConsentGate>
+        </div>
+      ) : null}
     </section>
   );
 };

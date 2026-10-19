@@ -1,91 +1,70 @@
-import { motion } from "@/lib/static-motion";
 import { Award, ExternalLink } from "lucide-react";
-import { certifications } from "@/data/certifications";
 import IssuerLogo from "@/components/IssuerLogo";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { certifications } from "@/data/certifications";
+import { certificationsContent } from "@/lib/certifications-content";
 
 const CertificationsSection = () => {
-  return (
-    <section className="bg-[#020285] py-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex items-center gap-3 mb-2">
-            <Award className="w-5 h-5 text-[#FFFFFF]" />
-            <p className="font-display font-bold text-[#FFFFFF]/60 text-xs uppercase tracking-[0.3em]">
-              Liste complète
-            </p>
-          </div>
-          <h3 className="font-display font-black text-[#FFFFFF] text-2xl uppercase">
-            Toutes mes Certifications
-            <span className="ml-3 text-sm font-bold text-[#FFFFFF]/40">
-              ({certifications.length})
-            </span>
-          </h3>
-        </motion.div>
+  const content = useLocalizedContent(certificationsContent);
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-4 border-[#F5C518]">
-          {certifications.map((cert, index) => {
-            const Card = cert.certUrl ? "a" : "div";
-            const cardProps = cert.certUrl
-              ? { href: cert.certUrl, target: "_blank", rel: "noopener noreferrer" }
-              : {};
+  return (
+    <section className="border-y border-[var(--surface-border)] bg-[var(--surface-base)]">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+        <div className="mb-10">
+          <div className="mb-2 flex items-center gap-3">
+            <Award className="h-5 w-5 text-[var(--accent-orange)]" aria-hidden="true" />
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">{content.listEyebrow}</p>
+          </div>
+          <h3 className="font-display text-2xl uppercase text-white">
+            {content.listTitle}
+            <span className="ml-3 font-mono text-sm text-[var(--text-muted)]">({certifications.length})</span>
+          </h3>
+        </div>
+
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {certifications.map((certification) => {
+            const itemClassName =
+              "orbit-card spotlight-card group flex h-full items-start gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-5 hover:border-[var(--accent-violet)]";
+            const itemBody = (
+              <>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white">
+                  <IssuerLogo issuer={certification.issuer} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h4 className="line-clamp-2 font-display text-sm uppercase leading-tight text-white">{certification.title}</h4>
+                  <p className="mt-1 font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">{certification.date}</p>
+                  {certification.skills && certification.skills.length > 0 ? (
+                    <ul className="mt-2 flex flex-wrap gap-1">
+                      {certification.skills.map((skill) => (
+                        <li
+                          key={skill}
+                          className="rounded-full border border-[var(--surface-border)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-wide text-[var(--text-secondary)]"
+                        >
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+                {certification.certUrl ? (
+                  <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-[var(--text-muted)] transition-colors duration-300 group-hover:text-white" aria-hidden="true" />
+                ) : null}
+              </>
+            );
 
             return (
-              <motion.div
-                key={cert.id || index}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.03 }}
-              >
-                <Card
-                  {...cardProps}
-                  className={`group flex items-start gap-4 p-6 md:p-7 border-r-4 border-b-4 border-[#F5C518] bg-[#020285] transition-all duration-200 h-full ${
-                    cert.certUrl
-                      ? "hover:bg-[#FFFFFF] cursor-pointer"
-                      : "hover:bg-[#FFFFFF]/10"
-                  }`}
-                >
-                  <div className="w-10 h-10 md:w-11 md:h-11 shrink-0 border-2 border-[#F5C518] bg-[#FFFFFF] flex items-center justify-center transition-all duration-200">
-                    <IssuerLogo issuer={cert.issuer} />
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-display font-black text-sm uppercase leading-tight text-[#FFFFFF] group-hover:text-[#020285] transition-colors duration-200 line-clamp-2">
-                      {cert.title}
-                    </h4>
-                    <p className="font-body text-xs font-semibold text-[#FFFFFF]/60 group-hover:text-[#020285]/60 uppercase tracking-wider mt-1 transition-colors duration-200">
-                      {cert.date}
-                    </p>
-                    {cert.skills && cert.skills.length > 0 && (
-                      <div className="flex flex-wrap gap-1 mt-2">
-                        {cert.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="text-[10px] px-2 py-0.5 border border-[#F5C518]/30 group-hover:border-[#020285]/30 text-[#FFFFFF]/70 group-hover:text-[#020285]/70 uppercase tracking-wide transition-colors duration-200"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Link icon */}
-                  {cert.certUrl && (
-                    <ExternalLink className="w-4 h-4 shrink-0 text-[#FFFFFF]/40 group-hover:text-[#020285] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
-                  )}
-                </Card>
-              </motion.div>
+              <li key={certification.id}>
+                {certification.certUrl ? (
+                  <a href={certification.certUrl} target="_blank" rel="noopener noreferrer" className={itemClassName}>
+                    {itemBody}
+                  </a>
+                ) : (
+                  <div className={itemClassName}>{itemBody}</div>
+                )}
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

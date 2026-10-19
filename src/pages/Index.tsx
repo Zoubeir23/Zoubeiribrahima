@@ -1,117 +1,42 @@
-import { motion, useReducedMotion } from "@/lib/static-motion";
-import { ArrowUp } from "lucide-react";
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
-import Navbar from "@/components/Navbar";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import ClosingCallToAction from "@/components/ClosingCallToAction";
 import HeroSection from "@/components/HeroSection";
-import SkillsSection from "@/components/SkillsSection";
+import Navbar from "@/components/Navbar";
+import ProcessSection from "@/components/ProcessSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
+import ReasonsSection from "@/components/ReasonsSection";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
+import ServiceTicker from "@/components/ServiceTicker";
+import ServicesSection from "@/components/ServicesSection";
+import SiteFooter from "@/components/SiteFooter";
+import SkillsSection from "@/components/SkillsSection";
+import { useLandingContent } from "@/hooks/useLandingContent";
+import { serviceMeta, serviceSlugs } from "@/lib/service-meta";
+
 const AboutSection = lazy(() => import("@/components/AboutSection"));
 const CertificationsWallOfFame = lazy(() => import("@/components/CertificationsWallOfFame"));
 const CertificationsSection = lazy(() => import("@/components/CertificationsSection"));
+const FaqSection = lazy(() => import("@/components/FaqSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
+
+const DEFERRED_SECTIONS_ROOT_MARGIN = "900px 0px";
 
 const SectionPlaceholder = ({ minHeight = "360px" }: { minHeight?: string }) => (
   <div
-    className="w-full border-y-4 border-[#F5C518]/20 bg-[#020285]/50"
+    className="w-full border-y border-[var(--surface-border)] bg-[var(--surface-base)]/50"
     style={{ minHeight }}
     aria-hidden="true"
   />
 );
 
-/* ── Static Tech Band ─────────────────────────────────────────── */
-const MarqueeSection = () => {
-  const items = [
-    "Architecture", "Backend", "Frontend", "APIs",
-    "Bases de donnees", "DevOps", "Automatisation", "Securite",
-    "Performance", "Qualite", "Fiabilite", "Conception"
-  ];
-  return (
-    <div className="bg-[#0303AB] border-y-4 border-[#F5C518] py-4 sm:py-6 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-        {items.map((item) => (
-          <span
-            key={item}
-            className="font-body font-semibold text-xs sm:text-sm uppercase tracking-wider text-[#FFFFFF] border-2 border-[#F5C518] bg-[#020285] px-3 py-1"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+const ServiceTickerBand = () => {
+  const { hero } = useLandingContent();
+  return <ServiceTicker items={hero.tickerItems} emojis={serviceSlugs.map((slug) => serviceMeta[slug].emoji)} label={hero.tickerLabel} />;
 };
 
-/* ── Static CTA Band ──────────────────────────────────────────── */
-const CtaBand = () => {
-  const text = "VOUS AVEZ UN PROJET ? TRAVAILLONS ENSEMBLE → ";
-
-  return (
-    <div className="bg-[#0303AB] border-y-8 border-[#F5C518] py-4 sm:py-6 overflow-hidden">
-      <div
-        className="flex whitespace-nowrap"
-        style={{ animation: "marquee 24s linear infinite" }}
-      >
-        {[text, text, text].map((t, i) => (
-          <span
-            key={i}
-            className="font-display font-black text-sm sm:text-lg md:text-3xl uppercase text-[#FFFFFF] tracking-tight shrink-0"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-/* ── Footer ───────────────────────────────────────────────────── */
-const Footer = () => (
-  <footer className="bg-[#020285] border-t-8 border-[#F5C518] py-10 sm:py-12 px-4 sm:px-6">
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
-      <span className="logo-shell inline-flex items-center justify-center px-3 py-2 sm:px-4 sm:py-3">
-        <img
-            src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
-            alt="Scale avec Zoubeir"
-            className="h-16 max-[390px]:h-14 sm:h-20 md:h-24 w-auto object-contain"
-            width={420}
-            height={96}
-          />
-      </span>
-      <p className="font-body text-[10px] font-black uppercase tracking-[0.16em] sm:tracking-[0.25em] text-[#FFFFFF]/60 text-center">
-        © 2025 Zoubeir Ibrahima Amed — Tous droits réservés
-      </p>
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-        {[
-          { label: "GitHub", href: "https://github.com/Zoubeir23" },
-          { label: "LinkedIn", href: "https://linkedin.com/in/zoubeir-ibrahima" },
-          { label: "Email", href: "mailto:Zoubeiribrahima@gmail.com" },
-        ].map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-display font-black text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-[#FFFFFF]/50 hover:text-[#FFFFFF] border-b-2 border-transparent hover:border-[#F5C518] transition-all duration-200 pb-0.5"
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
-    </div>
-  </footer>
-);
-
-/* ── Page ─────────────────────────────────────────────────────── */
 const Index = () => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [deferDeepSections, setDeferDeepSections] = useState(false);
   const deepSectionsTriggerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     if (!("IntersectionObserver" in window)) {
@@ -131,11 +56,7 @@ const Index = () => {
           observer.disconnect();
         }
       },
-      {
-        root: null,
-        rootMargin: "900px 0px",
-        threshold: 0,
-      }
+      { root: null, rootMargin: DEFERRED_SECTIONS_ROOT_MARGIN, threshold: 0 },
     );
 
     observer.observe(triggerNode);
@@ -143,58 +64,55 @@ const Index = () => {
   }, [deferDeepSections]);
 
   return (
-    <div className="min-h-screen bg-[#020285] text-[#FFFFFF] font-body antialiased">
+    <div className="min-h-screen bg-[var(--surface-deepest)] font-body text-white antialiased">
       <Navbar />
-      <HeroSection />
-      <MarqueeSection />
-      <SkillsSection />
-      <ProjectsBentoSection />
-      <CtaBand />
-      <div ref={deepSectionsTriggerRef} aria-hidden="true" className="h-px w-full" />
-      {deferDeepSections ? (
-        <>
-          <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
-            <AboutSection />
-          </Suspense>
-          <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
-            <CertificationsWallOfFame />
-          </Suspense>
-          <Suspense fallback={<SectionPlaceholder minHeight="420px" />}>
-            <CertificationsSection />
-          </Suspense>
-          <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
-            <ContactSection />
-          </Suspense>
-        </>
-      ) : (
-        <>
-          <section id="experience" aria-label="Chargement de la section experience">
-            <SectionPlaceholder minHeight="520px" />
-          </section>
-          <section id="certifications" aria-label="Chargement de la section certifications">
-            <SectionPlaceholder minHeight="520px" />
-          </section>
-          <section aria-label="Chargement de la liste complete des certifications">
-            <SectionPlaceholder minHeight="420px" />
-          </section>
-          <section id="contact" aria-label="Chargement de la section contact">
-            <SectionPlaceholder minHeight="520px" />
-          </section>
-        </>
-      )}
-      <Footer />
-
-      {/* Scroll to top */}
-      <motion.button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed right-4 sm:right-6 bottom-[max(env(safe-area-inset-bottom),1rem)] sm:bottom-6 p-3 sm:p-4 min-h-11 min-w-11 bg-[#F5C518] text-[#020285] border-4 border-[#F5C518] hover:bg-[#F5C518] hover:text-[#020285] transition-all duration-150 z-50 font-display font-black text-xs shadow-lg"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Retour en haut"
-      >
-        <ArrowUp className="w-5 h-5" />
-      </motion.button>
+      <main>
+        <HeroSection />
+        <ServiceTickerBand />
+        <ServicesSection />
+        <SkillsSection />
+        <ProjectsBentoSection />
+        <ProcessSection />
+        <ReasonsSection />
+        <div ref={deepSectionsTriggerRef} aria-hidden="true" className="h-px w-full" />
+        {deferDeepSections ? (
+          <>
+            <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
+              <AboutSection />
+            </Suspense>
+            <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
+              <CertificationsWallOfFame />
+            </Suspense>
+            <Suspense fallback={<SectionPlaceholder minHeight="420px" />}>
+              <CertificationsSection />
+            </Suspense>
+            <Suspense fallback={<SectionPlaceholder minHeight="420px" />}>
+              <FaqSection />
+            </Suspense>
+            <ClosingCallToAction />
+            <Suspense fallback={<SectionPlaceholder minHeight="520px" />}>
+              <ContactSection />
+            </Suspense>
+          </>
+        ) : (
+          <>
+            <section id="experience" aria-label="Chargement de la section experience">
+              <SectionPlaceholder minHeight="520px" />
+            </section>
+            <section id="certifications" aria-label="Chargement de la section certifications">
+              <SectionPlaceholder minHeight="520px" />
+            </section>
+            <section aria-label="Chargement de la liste complete des certifications">
+              <SectionPlaceholder minHeight="420px" />
+            </section>
+            <section id="contact" aria-label="Chargement de la section contact">
+              <SectionPlaceholder minHeight="520px" />
+            </section>
+          </>
+        )}
+      </main>
+      <SiteFooter />
+      <ScrollToTopButton />
     </div>
   );
 };

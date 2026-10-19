@@ -1,118 +1,108 @@
-import type { ElementType } from "react";
-import { motion } from "@/lib/static-motion";
-import { Server, Brain, Cloud } from "lucide-react";
+import { Brain, Cloud, Server, type LucideIcon } from "lucide-react";
+import Emoji from "@/components/Emoji";
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import TechnologyIcon from "@/components/TechnologyIcon";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { DOMAIN_EMOJIS, SKILL_CARD_EMOJIS } from "@/lib/icon-sets";
+import { skillsContent } from "@/lib/skills-content";
 
-interface SkillCard {
-  icon: ElementType;
-  title: string;
-  techs: string[];
-  emoji: string;
-}
-
-const skillCards: SkillCard[] = [
-  {
-    icon: Server,
-    title: "Backend Architecture",
-    techs: ["Architecture backend", "API REST", "Modelisation de donnees", "Integration de services"],
-    emoji: "⚙️",
-  },
-  {
-    icon: Brain,
-    title: "AI & Intelligence",
-    techs: ["Automatisation intelligente", "Conception de prompts", "Integration IA", "Analyse de donnees"],
-    emoji: "🧠",
-  },
-  {
-    icon: Cloud,
-    title: "DevOps & Cloud",
-    techs: ["Conteneurisation", "Deploiement continu", "Versioning", "Supervision"],
-    emoji: "☁️",
-  },
-];
+const skillIcons: readonly LucideIcon[] = [Server, Brain, Cloud];
 
 const SkillsSection = () => {
+  const skills = useLocalizedContent(skillsContent);
+
   return (
-    <section id="skills" className="bg-[#0303AB] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          className="mb-10 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="font-display font-bold text-[#FFFFFF]/55 text-sm uppercase tracking-[0.3em] mb-3">
-            — Technologies
-          </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
-            My Tech
-            <br />
-            <span className="text-[#FFFFFF]/35">Stack</span>
-          </h2>
-        </motion.div>
+    <section
+      id="skills"
+      className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
+    >
+      <SectionHeading
+        emoji="⚙️"
+        eyebrow={skills.eyebrow}
+        title={skills.titleLead}
+        highlight={skills.titleHighlight}
+      />
 
-        {/* 3 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-4 border-[#F5C518] bg-[#0303AB]">
-          {skillCards.map((card, index) => (
-            <motion.div
-              key={card.title}
-              className="group border-b-4 md:border-b-0 md:border-r-4 border-[#F5C518] last:border-b-0 md:last:border-r-0 p-5 sm:p-6 md:p-7 bg-[#0303AB] hover:bg-[#FFFFFF] transition-all duration-200 cursor-default"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              {/* Icon */}
-              <div className="mb-6">
-                <div className="w-14 h-14 border-4 border-[#F5C518] group-hover:border-[#0303AB] flex items-center justify-center bg-[#FFFFFF] group-hover:bg-[#0303AB] transition-all duration-200">
-                  <card.icon className="w-6 h-6 text-[#0303AB] group-hover:text-[#FFFFFF] transition-colors duration-200" />
+      <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {skills.cards.map((card, index) => {
+          const SkillIcon = skillIcons[index] ?? Server;
+          return (
+            <Reveal as="li" key={card.title} delaySeconds={index * 0.1}>
+              <div className="orbit-card spotlight-card group h-full rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 hover:border-[var(--accent-violet)]">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-md bg-white">
+                  <SkillIcon
+                    className="h-6 w-6 text-[var(--surface-deepest)]"
+                    aria-hidden="true"
+                  />
                 </div>
+                <h3 className="mb-5 font-display text-lg uppercase text-white">
+                  <Emoji symbol={SKILL_CARD_EMOJIS[index] ?? "•"} className="mr-2" />
+                  {card.title}
+                </h3>
+                <ul className="space-y-2">
+                  {card.techs.map((tech) => (
+                    <li
+                      key={tech}
+                      className="flex items-center gap-3 text-sm text-[var(--text-secondary)]"
+                    >
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-orange)]"
+                        aria-hidden="true"
+                      />
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            </Reveal>
+          );
+        })}
+      </ul>
 
-              {/* Title */}
-              <h3 className="font-display font-black text-lg sm:text-xl uppercase text-[#FFFFFF] group-hover:text-[#0303AB] mb-6 transition-colors duration-200">
-                {card.title}
-              </h3>
-
-              {/* Tech list */}
-              <ul className="space-y-2">
-                {card.techs.map((tech) => (
+      <Reveal className="mt-12">
+        <h3 className="mb-6 font-display text-xl uppercase text-white">
+          <Emoji symbol="🧰" className="mr-3" />
+          {skills.stack.title}
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.stack.groups.map((group) => (
+            <div
+              key={group.label}
+              className="spotlight-card rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-5"
+            >
+              <h4 className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-muted)]">{group.label}</h4>
+              <ul aria-label={group.label} className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
                   <li
-                    key={tech}
-                    className="flex min-w-0 items-center gap-3 font-body font-semibold text-xs sm:text-sm text-[#FFFFFF]/80 group-hover:text-[#0303AB]/80 transition-colors duration-200"
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full border border-[var(--surface-border)] bg-[var(--surface-deepest)] py-1.5 pl-2 pr-3 font-mono text-xs uppercase tracking-wider text-white"
                   >
-                    <span className="w-2 h-2 bg-[#FFFFFF] group-hover:bg-[#0303AB] shrink-0 transition-colors duration-200" />
-                    {tech}
+                    <TechnologyIcon name={item} />
+                    {item}
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           ))}
         </div>
+      </Reveal>
 
-        {/* Full stack tags row */}
-        <motion.div
-          className="mt-12 border-t-4 border-[#020285] pt-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <p className="font-display font-bold text-[#FFFFFF]/70 text-xs uppercase tracking-[0.3em] mb-4">
-            Domaines maitrises
-          </p>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {["Backend", "APIs", "Data", "Frontend", "Automatisation", "DevOps", "Architecture", "Qualite", "Securite", "Scalabilite"].map((tech) => (
-              <span
-                key={tech}
-                className="inline-flex items-center gap-2 font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider border-2 border-[#F5C518] text-[#FFFFFF] px-3 py-1.5 hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+      <div className="mt-12 border-t border-[var(--surface-border)] pt-8">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+          {skills.domainsLabel}
+        </p>
+        <ul className="flex flex-wrap gap-2 sm:gap-3">
+          {skills.domains.map((domain, index) => (
+            <li
+              key={domain}
+              className="rounded-full border border-[var(--surface-border)] px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-white"
+            >
+              <Emoji symbol={DOMAIN_EMOJIS[index] ?? "•"} className="mr-2" />
+              {domain}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
