@@ -40,7 +40,7 @@ describe("ServiceDetail", () => {
 
   it("links back to the services section of the home page", () => {
     renderPage("/services/saas");
-    expect(screen.getByRole("link", { name: french.backToServices })).toHaveAttribute("href", "/#services");
+    expect(screen.getByRole("link", { name: french.backToServices })).toHaveAttribute("href", "/services");
   });
 
   it("shows the first offering and switches when another tab is chosen", () => {
@@ -76,6 +76,24 @@ describe("ServiceDetail", () => {
   it("shows a not found message for an unknown service", () => {
     renderPage("/services/unknown-service");
     expect(screen.getByRole("heading", { name: french.notFoundTitle })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: french.backToServices })).toHaveAttribute("href", "/#services");
+    expect(screen.getByRole("link", { name: french.backToServices })).toHaveAttribute("href", "/services");
+  });
+});
+
+describe("ServiceDetail internal links", () => {
+  beforeEach(() => {
+    window.localStorage.clear();
+  });
+
+  it("sends the final call to action to the contact page", () => {
+    renderPage("/services/saas");
+    const contactLinks = screen.getAllByRole("link", { name: servicesContent.fr.contactLabel });
+    expect(contactLinks.every((link) => link.getAttribute("href") === "/contact")).toBe(true);
+  });
+
+  it("uses no in-page anchor to another section of the old home page", () => {
+    renderPage("/services/saas");
+    const homeAnchors = screen.getAllByRole("link").filter((link) => /^\/#/.test(link.getAttribute("href") ?? ""));
+    expect(homeAnchors).toHaveLength(0);
   });
 });

@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import { useLandingContent } from "@/hooks/useLandingContent";
@@ -14,13 +15,13 @@ const ClosingCallToAction = () => {
             <Emoji symbol="🤝" className="mr-3" />
             {closing.title}
           </h2>
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
           >
             {closing.action}
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       </Reveal>
     </section>

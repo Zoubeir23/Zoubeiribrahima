@@ -1,7 +1,8 @@
 import { Brain, Cloud, Server, type LucideIcon } from "lucide-react";
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import { getSubheadingTag } from "@/lib/heading-levels";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { DOMAIN_EMOJIS, SKILL_CARD_EMOJIS } from "@/lib/icon-sets";
@@ -9,7 +10,9 @@ import { skillsContent } from "@/lib/skills-content";
 
 const skillIcons: readonly LucideIcon[] = [Server, Brain, Cloud];
 
-const SkillsSection = () => {
+const SkillsSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
+  const CardHeading = getSubheadingTag(headingAs, 1);
+  const GroupHeading = getSubheadingTag(headingAs, 2);
   const skills = useLocalizedContent(skillsContent);
 
   return (
@@ -17,7 +20,7 @@ const SkillsSection = () => {
       id="skills"
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading
+      <SectionHeading headingAs={headingAs}
         emoji="⚙️"
         eyebrow={skills.eyebrow}
         title={skills.titleLead}
@@ -36,10 +39,10 @@ const SkillsSection = () => {
                     aria-hidden="true"
                   />
                 </div>
-                <h3 className="mb-5 font-display text-lg uppercase text-white">
+                <CardHeading className="mb-5 font-display text-lg uppercase text-white">
                   <Emoji symbol={SKILL_CARD_EMOJIS[index] ?? "•"} className="mr-2" />
                   {card.title}
-                </h3>
+                </CardHeading>
                 <ul className="space-y-2">
                   {card.techs.map((tech) => (
                     <li
@@ -61,17 +64,17 @@ const SkillsSection = () => {
       </ul>
 
       <Reveal className="mt-12">
-        <h3 className="mb-6 font-display text-xl uppercase text-white">
+        <CardHeading className="mb-6 font-display text-xl uppercase text-white">
           <Emoji symbol="🧰" className="mr-3" />
           {skills.stack.title}
-        </h3>
+        </CardHeading>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {skills.stack.groups.map((group) => (
             <div
               key={group.label}
               className="spotlight-card rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-5"
             >
-              <h4 className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-muted)]">{group.label}</h4>
+              <GroupHeading className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-muted)]">{group.label}</GroupHeading>
               <ul aria-label={group.label} className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <li

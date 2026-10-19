@@ -1,5 +1,4 @@
 import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Emoji from "@/components/Emoji";
@@ -11,6 +10,8 @@ import ServiceOfferingTabs from "@/components/ServiceOfferingTabs";
 import SiteFooter from "@/components/SiteFooter";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { toMetaDescription } from "@/lib/meta-description";
 import { isServiceSlug } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
@@ -22,15 +23,11 @@ const ServiceDetail = () => {
   const content = useLocalizedContent(servicesContent);
   const service = isServiceSlug(slug) ? content.services[slug] : null;
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [slug]);
-
-  useEffect(() => {
-    if (service) {
-      document.title = `${service.title} | ${content.pageTitleSuffix}`;
-    }
-  }, [service, content.pageTitleSuffix]);
+  usePageMetadata({
+    title: `${service?.title ?? content.notFoundTitle} | ${content.pageTitleSuffix}`,
+    description: service ? toMetaDescription(service.summary) : content.notFoundBody,
+    path: service && slug ? `/services/${slug}` : "/services",
+  });
 
   if (!isServiceSlug(slug) || !service) {
     return (
@@ -41,7 +38,7 @@ const ServiceDetail = () => {
             {content.notFoundTitle}
           </h1>
           <p className="text-[var(--text-secondary)]">{content.notFoundBody}</p>
-          <Link to="/#services" className={backLinkClassName}>
+          <Link to="/services" className={backLinkClassName}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {content.backToServices}
           </Link>
@@ -64,7 +61,7 @@ const ServiceDetail = () => {
       <main>
         <header className="hero-backdrop">
           <div className="mx-auto max-w-7xl px-4 pb-12 pt-32 sm:px-6">
-            <Link to="/#services" className={backLinkClassName}>
+            <Link to="/services" className={backLinkClassName}>
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {content.backToServices}
             </Link>
@@ -171,7 +168,7 @@ const ServiceDetail = () => {
               {service.title}
             </h2>
             <Link
-              to="/#contact"
+              to="/contact"
               className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)]"
             >
               {content.contactLabel}

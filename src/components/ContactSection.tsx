@@ -10,7 +10,7 @@ import {
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import ConsentGate from "@/components/consent/ConsentGate";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { contactChannels, contactConfig, SITE_DOMAIN } from "@/lib/contact-config";
@@ -48,7 +48,7 @@ const InfoRow = ({ icon: Icon, label, children }: InfoRowProps) => (
   </div>
 );
 
-const ContactSection = () => {
+const ContactSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const contact = useLocalizedContent(contactContent);
   const { booking } = useLandingContent();
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -106,7 +106,7 @@ const ContactSection = () => {
       id="contact"
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading
+      <SectionHeading headingAs={headingAs}
         emoji="✉️"
         eyebrow={contact.eyebrow}
         title={contact.titleLead}

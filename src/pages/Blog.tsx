@@ -3,6 +3,9 @@ import { ArrowLeft, BookOpen, Bot, Rocket, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogPosts } from "@/data/blogPosts";
 import Navbar from "@/components/Navbar";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { pageContent } from "@/lib/page-content";
 
 const CATEGORY_LABELS: Record<string, string> = {
   all: "Tous",
@@ -32,6 +35,8 @@ const categoryCards = [
 ];
 
 const Blog = () => {
+  const blogMeta = useLocalizedContent(pageContent).blog;
+  usePageMetadata({ title: `${blogMeta.title} | Zoubeir Ibrahima`, description: blogMeta.description, path: "/blog" });
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 

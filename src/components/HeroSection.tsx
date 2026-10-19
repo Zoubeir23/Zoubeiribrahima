@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { ArrowRight, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import Emoji from "@/components/Emoji";
 import { useLandingContent } from "@/hooks/useLandingContent";
 
@@ -55,8 +56,8 @@ const HeroSection = () => {
               className="reveal-up flex flex-wrap gap-3"
               style={{ "--reveal-delay": "0.35s" } as CSSProperties}
             >
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="animate-glow-pulse group inline-flex min-h-11 items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
                 <Emoji symbol="🚀" />
@@ -65,14 +66,14 @@ const HeroSection = () => {
                   className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
-              </a>
-              <a
-                href="#projects"
+              </Link>
+              <Link
+                to="/projects"
                 className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--surface-border)] px-7 py-3.5 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
                 <Emoji symbol="📂" className="mr-2" />
                 {hero.secondaryAction}
-              </a>
+              </Link>
             </div>
 
             <ul

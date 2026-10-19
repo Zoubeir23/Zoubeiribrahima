@@ -6,6 +6,10 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { toMetaDescription } from "@/lib/meta-description";
+import { pageContent } from "@/lib/page-content";
 
 function slugifyHeading(value: string): string {
   return value
@@ -138,6 +142,12 @@ const BlogArticle = () => {
   const articleRef = useRef<HTMLElement | null>(null);
   const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((item) => item.slug === slug);
+  const blogMeta = useLocalizedContent(pageContent).blog;
+  usePageMetadata({
+    title: `${post?.title ?? blogMeta.title} | Zoubeir Ibrahima`,
+    description: post ? toMetaDescription(post.excerpt) : blogMeta.description,
+    path: post ? `/blog/${post.slug}` : "/blog",
+  });
   const progress = useReadingProgress();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);

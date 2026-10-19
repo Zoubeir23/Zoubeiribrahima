@@ -77,7 +77,7 @@ const ServiceOfferingTabs = ({ slug, offerings }: ServiceOfferingTabsProps) => {
                   {content.requestQuoteLabel}
                 </a>
               ) : (
-                <Link to="/#contact" className={primaryActionClassName}>
+                <Link to="/contact" className={primaryActionClassName}>
                   {content.requestQuoteLabel}
                 </Link>
               )}

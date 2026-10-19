@@ -5,7 +5,7 @@ import { useConsent } from "@/hooks/useConsent";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { contactChannels, contactConfig } from "@/lib/contact-config";
-import { BLOG_EMOJI, NAV_EMOJIS, SOCIAL_PROFILES } from "@/lib/site-navigation";
+import { NAV_ITEMS, SOCIAL_PROFILES } from "@/lib/site-navigation";
 import { serviceMeta, serviceSlugs } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
@@ -16,24 +16,12 @@ interface SocialLink {
   isExternal: boolean;
 }
 
-const FOOTER_NAVIGATION_HREFS = ["#hero", "#services", "#skills", "#projects", "#experience", "#certifications", "#contact"] as const;
-
-const navigationLabelKeys = {
-  "#hero": "home",
-  "#services": "services",
-  "#skills": "stack",
-  "#projects": "projects",
-  "#experience": "experience",
-  "#certifications": "certifications",
-  "#contact": "contact",
-} as const;
-
 const columnTitleClassName = "mb-4 font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-muted)]";
 const footerLinkClassName =
   "inline-flex min-h-9 items-center gap-2 text-sm text-[var(--text-secondary)] transition-colors duration-300 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
 
 const SiteFooter = () => {
-  const { footer, nav, hero } = useLandingContent();
+  const { footer, nav, hero, faq } = useLandingContent();
   const services = useLocalizedContent(servicesContent);
   const { openPreferences } = useConsent();
   const currentYear = new Date().getFullYear();
@@ -100,18 +88,18 @@ const SiteFooter = () => {
               {footer.navigationTitle}
             </h2>
             <ul className="space-y-1">
-              {FOOTER_NAVIGATION_HREFS.map((href) => (
-                <li key={href}>
-                  <Link to={`/${href}`} className={footerLinkClassName}>
-                    <Emoji symbol={NAV_EMOJIS[href]} />
-                    {nav[navigationLabelKeys[href]]}
+              {NAV_ITEMS.map((item) => (
+                <li key={item.path}>
+                  <Link to={item.path} className={footerLinkClassName}>
+                    <Emoji symbol={item.emoji} />
+                    {nav[item.labelKey]}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link to="/blog" className={footerLinkClassName}>
-                  <Emoji symbol={BLOG_EMOJI} />
-                  {nav.blog}
+                <Link to="/faq" className={footerLinkClassName}>
+                  <Emoji symbol="❓" />
+                  {faq.title}
                 </Link>
               </li>
             </ul>

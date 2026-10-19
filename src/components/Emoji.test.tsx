@@ -31,4 +31,16 @@ describe("SectionHeading emoji", () => {
     const { container } = render(<SectionHeading title="Mes services" />);
     expect(container.querySelector("[aria-hidden=true]")).toBeNull();
   });
+
+  it("renders a level two heading by default", () => {
+    render(<SectionHeading title="Mes services" />);
+    expect(screen.getByRole("heading", { level: 2, name: "Mes services" })).toBeInTheDocument();
+  });
+
+  it("renders a level one heading on dedicated pages", () => {
+    render(<SectionHeading title="Mes services" headingAs="h1" />);
+    expect(screen.getByRole("heading", { level: 1, name: "Mes services" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+  });
 });
+

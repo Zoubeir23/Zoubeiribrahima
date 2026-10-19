@@ -1,7 +1,8 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import { getSubheadingTag } from "@/lib/heading-levels";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { projectsContent } from "@/lib/projects-content";
 
@@ -11,7 +12,8 @@ const GITHUB_PROFILE_URL = "https://github.com/Zoubeir23";
 const tagClassName =
   "rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white";
 
-const ProjectsBentoSection = () => {
+const ProjectsBentoSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
+  const CardHeading = getSubheadingTag(headingAs, 1);
   const projects = useLocalizedContent(projectsContent);
 
   return (
@@ -19,7 +21,7 @@ const ProjectsBentoSection = () => {
       id="projects"
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading
+      <SectionHeading headingAs={headingAs}
         emoji="🚀"
         eyebrow={projects.eyebrow}
         title={projects.titleLead}
@@ -38,9 +40,9 @@ const ProjectsBentoSection = () => {
                   {projects.featured.status}
                 </span>
               </div>
-              <h3 className="mb-4 font-display text-4xl uppercase leading-none text-white sm:text-5xl">
+              <CardHeading className="mb-4 font-display text-4xl uppercase leading-none text-white sm:text-5xl">
                 {projects.featured.title}
-              </h3>
+              </CardHeading>
               <p className="mb-8 text-base text-[var(--text-secondary)] sm:text-lg">
                 {projects.featured.description}
               </p>
@@ -107,9 +109,9 @@ const ProjectsBentoSection = () => {
           <Reveal as="li" key={project.title} delaySeconds={index * 0.1}>
             <div className="orbit-card spotlight-card h-full rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 hover:border-[var(--accent-violet)] sm:p-8">
               <div className="mb-5 flex items-start justify-between gap-4">
-                <h3 className="font-display text-xl uppercase leading-tight text-white sm:text-2xl">
+                <CardHeading className="font-display text-xl uppercase leading-tight text-white sm:text-2xl">
                   {project.title}
-                </h3>
+                </CardHeading>
                 <span className="shrink-0 rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-widest text-white">
                   {project.status}
                 </span>
