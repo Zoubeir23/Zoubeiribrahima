@@ -168,7 +168,7 @@ const SiteFooter = () => {
           </p>
           <p className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)]">
             <Emoji symbol="📍" className="mr-2" />
-            Sénégal
+            {footer.location}
           </p>
         </div>
       </div>
