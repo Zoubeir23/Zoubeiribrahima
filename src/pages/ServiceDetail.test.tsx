@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
+import ConsentProvider from "@/components/consent/ConsentProvider";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import ServiceDetail from "@/pages/ServiceDetail";
 import { servicesContent } from "@/lib/services-content";
@@ -11,11 +12,13 @@ const saas = french.services.saas;
 const renderPage = (path: string) =>
   render(
     <LanguageProvider>
-      <MemoryRouter initialEntries={[path]}>
-        <Routes>
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-        </Routes>
-      </MemoryRouter>
+      <ConsentProvider>
+        <MemoryRouter initialEntries={[path]}>
+          <Routes>
+            <Route path="/services/:slug" element={<ServiceDetail />} />
+          </Routes>
+        </MemoryRouter>
+      </ConsentProvider>
     </LanguageProvider>,
   );
 
@@ -65,7 +68,7 @@ describe("ServiceDetail", () => {
 
   it("offers a booking button that opens the public Calendly page", () => {
     renderPage("/services/saas");
-    const bookingLink = screen.getByRole("link", { name: french.bookCallLabel });
+    const bookingLink = within(screen.getByRole("main")).getByRole("link", { name: french.bookCallLabel });
     expect(bookingLink).toHaveAttribute("href", "https://calendly.com/zoubeiribrahima/30min");
     expect(bookingLink).toHaveAttribute("target", "_blank");
   });
