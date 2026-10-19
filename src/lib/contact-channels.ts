@@ -13,9 +13,15 @@ export interface ContactChannelsConfig {
 
 const MINIMUM_PHONE_DIGITS = 8;
 
-export const buildWhatsappLink = (phoneNumber: string): string | null => {
+export const buildWhatsappLink = (phoneNumber: string, prefilledMessage?: string): string | null => {
   const digitsOnly = phoneNumber.replace(/\D/g, "");
-  return digitsOnly.length >= MINIMUM_PHONE_DIGITS ? `https://wa.me/${digitsOnly}` : null;
+  if (digitsOnly.length < MINIMUM_PHONE_DIGITS) {
+    return null;
+  }
+
+  const baseLink = `https://wa.me/${digitsOnly}`;
+  const trimmedMessage = prefilledMessage?.trim();
+  return trimmedMessage ? `${baseLink}?text=${encodeURIComponent(trimmedMessage)}` : baseLink;
 };
 
 const isSecureUrl = (candidate: string): boolean => {
