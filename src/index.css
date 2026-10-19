@@ -139,15 +139,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #FFFFFF;
+    background: var(--surface-deepest);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #020285;
+    background: var(--surface-border);
+    border-radius: var(--radius-pill);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #020285;
+    background: var(--text-muted);
   }
 }
 
