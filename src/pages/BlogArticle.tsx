@@ -7,7 +7,11 @@ import remarkGfm from "remark-gfm";
 import { Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import BlogArticleCallToAction from "@/components/BlogArticleCallToAction";
+import BlogBreadcrumb from "@/components/BlogBreadcrumb";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { useStructuredData } from "@/hooks/useStructuredData";
+import { buildBlogArticleStructuredData, buildBlogBreadcrumbStructuredData } from "@/lib/blog-structured-data";
 import { toMetaDescription } from "@/lib/meta-description";
 import { pageContent } from "@/lib/page-content";
 
@@ -148,6 +152,8 @@ const BlogArticle = () => {
     description: post ? toMetaDescription(post.excerpt) : blogMeta.description,
     path: post ? `/blog/${post.slug}` : "/blog",
   });
+  useStructuredData("article", post ? buildBlogArticleStructuredData(post) : null);
+  useStructuredData("breadcrumb", post ? buildBlogBreadcrumbStructuredData(post) : null);
   const progress = useReadingProgress();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
@@ -267,14 +273,7 @@ const BlogArticle = () => {
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-20">
-        {/* Back */}
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-2 text-[var(--accent-orange)] font-display font-black text-xs uppercase tracking-[0.2em] hover:opacity-75 transition-opacity"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Retour au blog
-        </Link>
+        <BlogBreadcrumb articleTitle={post.title} />
 
         <div className="mt-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12 xl:grid-cols-[1fr_330px] xl:gap-16 items-start">
           {/* Main article */}
@@ -472,6 +471,8 @@ const BlogArticle = () => {
                 </section>
               ))}
             </div>
+
+            <BlogArticleCallToAction />
 
             {/* Related articles */}
             {relatedArticles.length > 0 && (
