@@ -118,7 +118,7 @@ const Navbar = () => {
 
   const logoImage = (
     <img
-      src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+      src="/logo-scale-avec-zoubeir-for-dark-background.png"
       alt="Scale avec Zoubeir"
       className="h-12 w-auto object-contain sm:h-14"
       width={380}
