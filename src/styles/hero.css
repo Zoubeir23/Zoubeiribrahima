@@ -1,0 +1,45 @@
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up {
+  animation: reveal-up var(--duration-slow) var(--easing-smooth) both;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+.gradient-ring {
+  position: relative;
+}
+
+.gradient-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(from 200deg, var(--accent-violet), transparent 40%, var(--accent-orange) 75%, transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.hero-backdrop {
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, var(--accent-glow-violet), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, var(--accent-glow-orange), transparent 70%),
+    var(--surface-deepest);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    animation: none;
+  }
+}
