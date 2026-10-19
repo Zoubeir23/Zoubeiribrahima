@@ -122,4 +122,21 @@ describe("CookieBanner", () => {
     expect(screen.getByRole("dialog").className).toMatch(/overflow-y-auto/);
     expect(screen.getByRole("dialog").className).toMatch(/max-h-/);
   });
+
+  it("shows the choices just made when reopened in the same session", () => {
+    renderBanner();
+    fireEvent.click(screen.getByRole("button", { name: text.acceptAll }));
+    fireEvent.click(screen.getByRole("button", { name: text.settingsButtonLabel }));
+    fireEvent.click(screen.getByRole("button", { name: text.customize }));
+    expect(screen.getByRole("switch", { name: text.analyticsTitle })).toBeChecked();
+    expect(screen.getByRole("switch", { name: text.externalContentTitle })).toBeChecked();
+  });
+
+  it("starts from the summary view each time it is reopened", () => {
+    renderBanner();
+    fireEvent.click(screen.getByRole("button", { name: text.customize }));
+    fireEvent.click(screen.getByRole("button", { name: text.savePreferences }));
+    fireEvent.click(screen.getByRole("button", { name: text.settingsButtonLabel }));
+    expect(screen.getByRole("button", { name: text.acceptAll })).toBeInTheDocument();
+  });
 });
