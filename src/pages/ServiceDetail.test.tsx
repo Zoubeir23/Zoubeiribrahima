@@ -63,9 +63,11 @@ describe("ServiceDetail", () => {
     }
   });
 
-  it("does not offer a booking button while no booking link is configured", () => {
+  it("offers a booking button that opens the public Calendly page", () => {
     renderPage("/services/saas");
-    expect(screen.queryByRole("link", { name: french.bookCallLabel })).not.toBeInTheDocument();
+    const bookingLink = screen.getByRole("link", { name: french.bookCallLabel });
+    expect(bookingLink).toHaveAttribute("href", "https://calendly.com/zoubeiribrahima/30min");
+    expect(bookingLink).toHaveAttribute("target", "_blank");
   });
 
   it("shows a not found message for an unknown service", () => {
