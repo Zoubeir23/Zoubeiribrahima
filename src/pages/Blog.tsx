@@ -9,6 +9,7 @@ import { pageContent } from "@/lib/page-content";
 
 const CATEGORY_LABELS: Record<string, string> = {
   all: "Tous",
+  saas: "SaaS",
   outils: "Outils",
   python: "Python",
   frontend: "Frontend",
