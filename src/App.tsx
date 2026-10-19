@@ -4,21 +4,23 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RouteScrollReset from "@/components/RouteScrollReset";
 import { MotionConfig } from "@/lib/static-motion";
+import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
-import Blog from "./pages/Blog";
-import BlogArticle from "./pages/BlogArticle";
-import CertificationsPage from "./pages/CertificationsPage";
-import ContactPage from "./pages/ContactPage";
-import ExperiencePage from "./pages/ExperiencePage";
-import FaqPage from "./pages/FaqPage";
-import LegalPage from "./pages/LegalPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import ServiceDetail from "./pages/ServiceDetail";
-import ServicesPage from "./pages/ServicesPage";
-import SkillsPage from "./pages/SkillsPage";
-import { usePointerSpotlight } from "./hooks/usePointerSpotlight";
 import NotFound from "./pages/NotFound";
 
+// Every page except the home page is split into its own chunk to keep the first load light.
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+const CertificationsPage = lazy(() => import("./pages/CertificationsPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const ExperiencePage = lazy(() => import("./pages/ExperiencePage"));
+const FaqPage = lazy(() => import("./pages/FaqPage"));
+const LegalPage = lazy(() => import("./pages/LegalPage"));
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const SkillsPage = lazy(() => import("./pages/SkillsPage"));
+import { usePointerSpotlight } from "./hooks/usePointerSpotlight";
 const App = () => {
   usePointerSpotlight();
 
@@ -29,6 +31,7 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <RouteScrollReset />
+          <Suspense fallback={<div className="min-h-screen bg-[var(--surface-deepest)]" aria-hidden="true" />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<ServicesPage />} />
@@ -46,6 +49,7 @@ const App = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </MotionConfig>
