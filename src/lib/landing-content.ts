@@ -11,6 +11,19 @@ interface FaqItem {
 }
 
 export interface LandingContent {
+  nav: {
+    home: string;
+    services: string;
+    stack: string;
+    projects: string;
+    experience: string;
+    certifications: string;
+    contact: string;
+    blog: string;
+    hire: string;
+    toggleMenu: string;
+    switchLanguage: string;
+  };
   hero: {
     availability: string;
     headlineLead: string;
@@ -49,6 +62,19 @@ export interface LandingContent {
 }
 
 const frenchContent: LandingContent = {
+  nav: {
+    home: "Accueil",
+    services: "Services",
+    stack: "Stack",
+    projects: "Projets",
+    experience: "Expérience",
+    certifications: "Certifications",
+    contact: "Contact",
+    blog: "Blog",
+    hire: "Démarrer un projet",
+    toggleMenu: "Ouvrir ou fermer le menu",
+    switchLanguage: "Passer en anglais",
+  },
   hero: {
     availability: "Disponible en freelance",
     headlineLead: "Je conçois et livre votre",
@@ -164,6 +190,19 @@ const frenchContent: LandingContent = {
 };
 
 const englishContent: LandingContent = {
+  nav: {
+    home: "Home",
+    services: "Services",
+    stack: "Stack",
+    projects: "Projects",
+    experience: "Experience",
+    certifications: "Certifications",
+    contact: "Contact",
+    blog: "Blog",
+    hire: "Start a project",
+    toggleMenu: "Open or close the menu",
+    switchLanguage: "Switch to French",
+  },
   hero: {
     availability: "Available for freelance work",
     headlineLead: "I design and ship your",
