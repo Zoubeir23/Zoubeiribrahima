@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { getTechnologyLogo } from "@/lib/technology-logos";
@@ -36,9 +36,8 @@ describe("TechnologyIcon", () => {
 
   it("falls back to the emoji when the logo file fails to load", () => {
     const { container } = render(<TechnologyIcon name="Django" />);
-    container.querySelector("img")?.dispatchEvent(new Event("error"));
-    return Promise.resolve().then(() => {
-      expect(container.querySelector("img")).toBeNull();
-    });
+    fireEvent.error(container.querySelector("img") as HTMLImageElement);
+    expect(container.querySelector("img")).toBeNull();
+    expect(screen.getByText("🎸")).toBeInTheDocument();
   });
 });
