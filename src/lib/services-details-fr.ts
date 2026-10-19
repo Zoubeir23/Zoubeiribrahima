@@ -7,6 +7,7 @@ export const serviceDetailsFrench: ServiceDetails = {
     badge: "À distance · Sur devis",
     offerings: [
       {
+        emoji: "🔐",
         tabLabel: "Comptes et accès",
         headline: "COMPTES",
         tagline: "Vos utilisateurs, en toute sécurité.",
@@ -16,6 +17,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite un SaaS avec gestion des comptes et des accès : ",
       },
       {
+        emoji: "💳",
         tabLabel: "Abonnements",
         headline: "ABONNEMENTS",
         tagline: "Transformez votre outil en service.",
@@ -25,6 +27,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite un SaaS avec abonnements et facturation : ",
       },
       {
+        emoji: "📊",
         tabLabel: "Tableaux de bord",
         headline: "DASHBOARDS",
         tagline: "Vos données, enfin lisibles.",
@@ -42,6 +45,7 @@ export const serviceDetailsFrench: ServiceDetails = {
     badge: "À distance · Sur devis",
     offerings: [
       {
+        emoji: "🧩",
         tabLabel: "Sur mesure",
         headline: "SUR MESURE",
         tagline: "L'outil qui colle à votre activité.",
@@ -51,6 +55,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite une application web sur mesure : ",
       },
       {
+        emoji: "🔌",
         tabLabel: "API et intégrations",
         headline: "API",
         tagline: "Vos outils, enfin connectés.",
@@ -60,6 +65,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite connecter mes outils avec une API : ",
       },
       {
+        emoji: "⚡",
         tabLabel: "Performance",
         headline: "RAPIDITÉ",
         tagline: "Une application agréable à utiliser.",
@@ -77,6 +83,7 @@ export const serviceDetailsFrench: ServiceDetails = {
     badge: "À distance · Sur devis",
     offerings: [
       {
+        emoji: "🎨",
         tabLabel: "Conception",
         headline: "CONCEPTION",
         tagline: "Pensée pour le pouce.",
@@ -86,6 +93,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite concevoir une application mobile : ",
       },
       {
+        emoji: "📲",
         tabLabel: "Fonctionnalités",
         headline: "FONCTIONS",
         tagline: "Ce dont vos utilisateurs ont besoin.",
@@ -95,6 +103,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite développer les fonctionnalités d'une application mobile : ",
       },
       {
+        emoji: "🚀",
         tabLabel: "Mise à disposition",
         headline: "LANCEMENT",
         tagline: "De la version de test aux utilisateurs.",
@@ -112,6 +121,7 @@ export const serviceDetailsFrench: ServiceDetails = {
     badge: "À distance · Sur devis",
     offerings: [
       {
+        emoji: "👤",
         tabLabel: "Portfolio personnel",
         headline: "PORTFOLIO",
         tagline: "Votre travail, bien présenté.",
@@ -121,6 +131,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite un portfolio personnel : ",
       },
       {
+        emoji: "🏪",
         tabLabel: "Site vitrine",
         headline: "VITRINE",
         tagline: "Votre activité en ligne.",
@@ -130,6 +141,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite un site vitrine pour mon activité : ",
       },
       {
+        emoji: "🔎",
         tabLabel: "Référencement",
         headline: "VISIBILITÉ",
         tagline: "Être trouvé sur Google.",
@@ -147,6 +159,7 @@ export const serviceDetailsFrench: ServiceDetails = {
     badge: "À distance · Partout",
     offerings: [
       {
+        emoji: "🔧",
         tabLabel: "Dépannage",
         headline: "DÉPANNAGE",
         tagline: "Un problème ? On le règle à distance.",
@@ -156,6 +169,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, j'ai besoin d'un dépannage informatique à distance : ",
       },
       {
+        emoji: "🛡️",
         tabLabel: "Maintenance",
         headline: "MAINTENANCE",
         tagline: "Pour que tout continue de fonctionner.",
@@ -165,6 +179,7 @@ export const serviceDetailsFrench: ServiceDetails = {
         quoteMessage: "Bonjour, je souhaite une maintenance régulière de mes outils : ",
       },
       {
+        emoji: "💬",
         tabLabel: "Accompagnement",
         headline: "CONSEIL",
         tagline: "Une personne de confiance côté technique.",
