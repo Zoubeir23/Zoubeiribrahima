@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import { useLandingContent } from "@/hooks/useLandingContent";
 
@@ -10,6 +11,7 @@ const ClosingCallToAction = () => {
       <Reveal>
         <div className="gradient-ring animate-glow-pulse relative flex flex-col items-start justify-between gap-6 rounded-[var(--radius-medium)] bg-[var(--surface-base)] p-8 sm:flex-row sm:items-center sm:p-12">
           <h2 className="max-w-xl font-display text-[clamp(1.4rem,3.5vw,2.25rem)] uppercase leading-tight text-white">
+            <Emoji symbol="🤝" className="mr-3" />
             {closing.title}
           </h2>
           <a
