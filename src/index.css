@@ -3,6 +3,7 @@
 @import "./styles/ticker.css";
 @import "./styles/hero.css";
 @import "./styles/large-screens.css";
+@import "./styles/animations.css";
 
 @tailwind base;
 @tailwind components;
