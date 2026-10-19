@@ -20,6 +20,7 @@ export interface PageContent {
   certifications: PageMeta;
   faq: PageMeta;
   contact: PageMeta;
+  blog: PageMeta;
   teasers: {
     skills: TeaserContent;
     projects: TeaserContent;
@@ -70,6 +71,11 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Contact",
       description:
         "Écrivez-moi, contactez-moi sur WhatsApp ou réservez un créneau de 30 minutes pour parler de votre projet de SaaS, d'application ou de site.",
+    },
+    blog: {
+      title: "Blog",
+      description:
+        "Articles et guides de développement : Django, Python, Git, Docker, HTML et CSS, et l'IA appliquée au code, pour apprendre et progresser.",
     },
     teasers: {
       skills: {
@@ -139,6 +145,11 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Contact",
       description:
         "Write to me, reach me on WhatsApp or book a 30-minute slot to talk about your SaaS, application or website project.",
+    },
+    blog: {
+      title: "Blog",
+      description:
+        "Development articles and guides: Django, Python, Git, Docker, HTML and CSS, and AI applied to code, to help you learn and improve.",
     },
     teasers: {
       skills: {
