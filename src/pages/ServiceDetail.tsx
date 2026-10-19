@@ -10,6 +10,7 @@ import ServiceIllustration from "@/components/ServiceIllustration";
 import ServiceOfferingTabs from "@/components/ServiceOfferingTabs";
 import SiteFooter from "@/components/SiteFooter";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { getTechnologyEmoji } from "@/lib/icon-sets";
 import { isServiceSlug } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
@@ -112,7 +113,7 @@ const ServiceDetail = () => {
             title={content.offeringsTitle}
           />
           <Reveal delaySeconds={0.1}>
-            <ServiceOfferingTabs offerings={service.offerings} />
+            <ServiceOfferingTabs slug={slug} offerings={service.offerings} />
           </Reveal>
         </section>
 
@@ -154,6 +155,7 @@ const ServiceDetail = () => {
             {service.technologies.map((technology, index) => (
               <Reveal as="li" key={technology} delaySeconds={index * 0.06}>
                 <span className="block rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-5 py-2 font-mono text-sm uppercase tracking-wider text-white transition-colors duration-300 hover:border-[var(--accent-violet)]">
+                  <Emoji symbol={getTechnologyEmoji(technology)} className="mr-2" />
                   {technology}
                 </span>
               </Reveal>
