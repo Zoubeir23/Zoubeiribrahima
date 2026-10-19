@@ -1,3 +1,7 @@
+import validerIdeeSaasMarkdown from "@/data/articles/valider-une-idee-saas-en-30-jours.md?raw";
+import choisirStackSaasMarkdown from "@/data/articles/choisir-la-stack-technique-d-un-saas.md?raw";
+import fixerPrixSaasMarkdown from "@/data/articles/fixer-le-prix-de-son-saas.md?raw";
+import lancerMvpSaasMarkdown from "@/data/articles/lancer-le-mvp-d-un-saas-checklist.md?raw";
 import vibeCodingArticleMarkdown from "@/data/articles/vibe-coding-et-claude-code-en-2026.md?raw";
 import apprendreDjangoGuideCompletMarkdown from "@/data/articles/apprendre-django-guide-complet.md?raw";
 import dockerComposeArticleMarkdown from "@/data/articles/docker-compose-orchestration-conteneurs.md?raw";
@@ -28,6 +32,66 @@ const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
 const avatarAlt = "Photo de profil anime de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "valider-une-idee-saas-en-30-jours",
+    title: "Valider une idée de SaaS en 30 jours avant d'écrire une ligne de code",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "saas",
+    readingTime: "12 minutes",
+    date: "Octobre 2026",
+    excerpt:
+      "Un plan en quatre semaines pour tester le besoin, la promesse et l'engagement de vrais clients avant de choisir une stack.",
+    intro:
+      "Le plus grand risque d'un SaaS n'est pas technique : c'est de construire ce dont personne n'a besoin. Voici comment le vérifier vite.",
+    contentMarkdown: validerIdeeSaasMarkdown,
+    sections: [],
+  },
+  {
+    slug: "choisir-la-stack-technique-d-un-saas",
+    title: "Choisir la stack technique d'un SaaS : critères avant technologies",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "saas",
+    readingTime: "10 minutes",
+    date: "Octobre 2026",
+    excerpt:
+      "Les cinq critères qui comptent vraiment pour choisir sa stack, et une combinaison pragmatique Django, React et PostgreSQL.",
+    intro:
+      "Maîtrise, écosystème, maintenance, coût et sécurité : une méthode pour choisir sans suivre les modes.",
+    contentMarkdown: choisirStackSaasMarkdown,
+    sections: [],
+  },
+  {
+    slug: "fixer-le-prix-de-son-saas",
+    title: "Fixer le prix de son SaaS : abonnement, paliers et marchés locaux",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "saas",
+    readingTime: "9 minutes",
+    date: "Octobre 2026",
+    excerpt:
+      "Abonnement, usage ou licence : comment choisir un modèle, adapter les moyens de paiement et tester ses prix.",
+    intro:
+      "Le prix est une fonctionnalité du produit. Il se teste, se révise et doit tenir compte des moyens de paiement du marché visé.",
+    contentMarkdown: fixerPrixSaasMarkdown,
+    sections: [],
+  },
+  {
+    slug: "lancer-le-mvp-d-un-saas-checklist",
+    title: "Lancer le MVP d'un SaaS : la checklist avant la mise en ligne",
+    coverImage: avatarCover,
+    coverAlt: avatarAlt,
+    category: "saas",
+    readingTime: "8 minutes",
+    date: "Octobre 2026",
+    excerpt:
+      "Le parcours minimal, le filet de sécurité et le cadre légal à prévoir avant de lancer un premier SaaS.",
+    intro:
+      "Un MVP est un parcours complet et minuscule. Voici ce qui doit exister le jour du lancement, et ce qu'on repousse.",
+    contentMarkdown: lancerMvpSaasMarkdown,
+    sections: [],
+  },
   {
     slug: "git-github-de-zero-a-heros-guide-complet",
     title: "Git & GitHub : Guide Complet du Developpeur de Zero a Heros",
