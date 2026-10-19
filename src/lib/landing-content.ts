@@ -58,6 +58,20 @@ export interface LandingContent {
     title: string;
     action: string;
   };
+  consent: {
+    title: string;
+    description: string;
+    languageNote: string;
+    acceptAll: string;
+    refuseAll: string;
+    customize: string;
+    savePreferences: string;
+    analyticsTitle: string;
+    analyticsDescription: string;
+    externalContentTitle: string;
+    externalContentDescription: string;
+    settingsButtonLabel: string;
+  };
   footer: {
     rights: string;
     scrollToTop: string;
@@ -194,6 +208,21 @@ const frenchContent: LandingContent = {
     title: "Vous avez un projet ? Travaillons ensemble.",
     action: "Me contacter",
   },
+  consent: {
+    title: "Gestion des cookies",
+    description:
+      "Vous choisissez ce que ce site peut charger : la mesure d'audience anonyme et les contenus externes comme l'agenda de rendez-vous. Vous pouvez changer d'avis à tout moment.",
+    languageNote: "Votre préférence de langue reste enregistrée sur votre appareil : elle ne nécessite pas de consentement.",
+    acceptAll: "Tout accepter",
+    refuseAll: "Tout refuser",
+    customize: "Personnaliser mes choix",
+    savePreferences: "Enregistrer mes choix",
+    analyticsTitle: "Mesure d'audience",
+    analyticsDescription: "Statistiques de visite anonymes (Vercel Analytics) pour améliorer le site.",
+    externalContentTitle: "Contenus externes",
+    externalContentDescription: "Agenda de rendez-vous et autres services tiers susceptibles de déposer des cookies.",
+    settingsButtonLabel: "Gérer mes cookies",
+  },
   footer: {
     rights: "Tous droits réservés",
     scrollToTop: "Retour en haut",
@@ -329,6 +358,21 @@ const englishContent: LandingContent = {
   closing: {
     title: "Have a project? Let's work together.",
     action: "Contact me",
+  },
+  consent: {
+    title: "Cookie settings",
+    description:
+      "You choose what this site may load: anonymous audience measurement and external content such as the booking calendar. You can change your mind at any time.",
+    languageNote: "Your language preference stays on your device and does not require consent.",
+    acceptAll: "Accept all",
+    refuseAll: "Refuse all",
+    customize: "Customize my choices",
+    savePreferences: "Save my choices",
+    analyticsTitle: "Audience measurement",
+    analyticsDescription: "Anonymous visit statistics (Vercel Analytics) to improve the site.",
+    externalContentTitle: "External content",
+    externalContentDescription: "Booking calendar and other third-party services that may set cookies.",
+    settingsButtonLabel: "Manage my cookies",
   },
   footer: {
     rights: "All rights reserved",
