@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import Emoji from "@/components/Emoji";
 import ProcessSection from "@/components/ProcessSection";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
@@ -132,12 +133,7 @@ const ServiceDetail = () => {
                   key={item}
                   className="flex items-center gap-3 rounded-md border border-[var(--surface-border)] border-l-[var(--accent-orange)] px-4 py-3 text-sm text-white"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="text-[var(--accent-orange)]"
-                  >
-                    ✓
-                  </span>
+                  <Emoji symbol="✅" />
                   {item}
                 </li>
               ))}
