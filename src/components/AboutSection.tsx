@@ -13,6 +13,7 @@ const AboutSection = () => {
     >
       <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
+          emoji="🎓"
           eyebrow={experience.eyebrow}
           title={experience.titleLead}
           highlight={experience.titleHighlight}

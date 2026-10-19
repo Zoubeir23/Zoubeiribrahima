@@ -10,7 +10,7 @@ const ReasonsSection = () => {
 
   return (
     <section id="why-me" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-      <SectionHeading title={reasons.title} />
+      <SectionHeading emoji="🤝" title={reasons.title} />
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {reasons.items.map((reason, index) => {
           const ReasonIcon = reasonIcons[index] ?? MessageCircle;

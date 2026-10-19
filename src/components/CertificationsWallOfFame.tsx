@@ -27,6 +27,7 @@ const CertificationsWallOfFame = () => {
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
       <SectionHeading
+        emoji="🏆"
         eyebrow={content.eyebrow}
         title={content.titleLead}
         highlight={content.titleHighlight}

@@ -8,7 +8,7 @@ const ProcessSection = () => {
   return (
     <section id="process" className="border-y border-[var(--surface-border)] bg-[var(--surface-base)]">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-        <SectionHeading title={process.title} subtitle={process.subtitle} />
+        <SectionHeading emoji="🧭" title={process.title} subtitle={process.subtitle} />
         <ol className="grid gap-6 md:grid-cols-3">
           {process.steps.map((step, index) => (
             <Reveal as="li" key={step.title} delaySeconds={index * 0.12}>

@@ -106,6 +106,7 @@ const ServiceDetail = () => {
           className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24"
         >
           <SectionHeading
+            emoji="🎯"
             eyebrow={content.offeringsEyebrow}
             title={content.offeringsTitle}
           />
@@ -149,6 +150,7 @@ const ServiceDetail = () => {
           className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24"
         >
           <SectionHeading
+            emoji="🧰"
             eyebrow={content.technologiesEyebrow}
             title={content.technologiesTitle}
           />

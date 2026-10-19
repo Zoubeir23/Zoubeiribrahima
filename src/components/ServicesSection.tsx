@@ -14,7 +14,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-      <SectionHeading title={services.title} subtitle={services.subtitle} />
+      <SectionHeading emoji="🛠️" title={services.title} subtitle={services.subtitle} />
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {serviceSlugs.map((slug, index) => {
           const service = content.services[slug];
