@@ -9,8 +9,8 @@ import SectionHeading from "@/components/SectionHeading";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import ServiceOfferingTabs from "@/components/ServiceOfferingTabs";
 import SiteFooter from "@/components/SiteFooter";
+import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
-import { getTechnologyEmoji } from "@/lib/icon-sets";
 import { isServiceSlug } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
@@ -155,7 +155,7 @@ const ServiceDetail = () => {
             {service.technologies.map((technology, index) => (
               <Reveal as="li" key={technology} delaySeconds={index * 0.06}>
                 <span className="block rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-5 py-2 font-mono text-sm uppercase tracking-wider text-white transition-colors duration-300 hover:border-[var(--accent-violet)]">
-                  <Emoji symbol={getTechnologyEmoji(technology)} className="mr-2" />
+                  <TechnologyIcon name={technology} className="mr-2" />
                   {technology}
                 </span>
               </Reveal>
