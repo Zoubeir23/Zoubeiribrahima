@@ -96,3 +96,31 @@ describe("skills stack from the CV", () => {
   });
 });
 
+describe("experience content follows the CV", () => {
+  const findExperience = (language: "fr" | "en", company: string) =>
+    experienceContent[language].experiences.find((item) => item.company === company);
+
+  it("marks the HooYia internship as finished and Snapfolioo as ongoing", () => {
+    for (const language of ["fr", "en"] as const) {
+      expect(findExperience(language, "HooYia")?.isCurrent, `${language} HooYia`).toBe(false);
+      expect(findExperience(language, "Snapfolioo")?.isCurrent, `${language} Snapfolioo`).toBe(true);
+    }
+  });
+
+  it("states the three month duration of the HooYia internship", () => {
+    for (const language of ["fr", "en"] as const) {
+      const period = findExperience(language, "HooYia")?.period ?? "";
+      expect(period).toMatch(/3/);
+      expect(period).not.toMatch(/présent|present/i);
+    }
+  });
+
+  it("mentions the authentication and export details of Snapfolioo", () => {
+    for (const language of ["fr", "en"] as const) {
+      const description = findExperience(language, "Snapfolioo")?.description ?? "";
+      expect(description).toContain("Google OAuth");
+      expect(description).toContain("PDF");
+    }
+  });
+});
+
