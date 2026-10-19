@@ -1,26 +1,40 @@
-export const CONSENT_STORAGE_KEY = "externalContentConsent";
+export const CONSENT_STORAGE_KEY = "cookieConsentPreferences";
 
-export type ConsentChoice = "accepted" | "refused" | "unset";
-export type StoredConsentChoice = Exclude<ConsentChoice, "unset">;
+export interface ConsentPreferences {
+  analytics: boolean;
+  externalContent: boolean;
+}
 
-const isStoredConsentChoice = (value: string | null): value is StoredConsentChoice =>
-  value === "accepted" || value === "refused";
+export const ACCEPT_ALL_PREFERENCES: ConsentPreferences = { analytics: true, externalContent: true };
+export const REFUSE_ALL_PREFERENCES: ConsentPreferences = { analytics: false, externalContent: false };
 
-export const readConsentChoice = (storage: Pick<Storage, "getItem">): ConsentChoice => {
+const isConsentPreferences = (value: unknown): value is ConsentPreferences =>
+  typeof value === "object" &&
+  value !== null &&
+  typeof (value as ConsentPreferences).analytics === "boolean" &&
+  typeof (value as ConsentPreferences).externalContent === "boolean";
+
+export const readConsentPreferences = (storage: Pick<Storage, "getItem">): ConsentPreferences | null => {
   try {
     const storedValue = storage.getItem(CONSENT_STORAGE_KEY);
-    return isStoredConsentChoice(storedValue) ? storedValue : "unset";
+    if (storedValue === null) {
+      return null;
+    }
+    const parsedValue: unknown = JSON.parse(storedValue);
+    return isConsentPreferences(parsedValue)
+      ? { analytics: parsedValue.analytics, externalContent: parsedValue.externalContent }
+      : null;
   } catch {
-    return "unset";
+    return null;
   }
 };
 
-export const writeConsentChoice = (
+export const writeConsentPreferences = (
   storage: Pick<Storage, "setItem">,
-  choice: StoredConsentChoice,
+  preferences: ConsentPreferences,
 ): void => {
   try {
-    storage.setItem(CONSENT_STORAGE_KEY, choice);
+    storage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(preferences));
   } catch {
     // Storage can be blocked (private mode); the choice then lasts for the session only.
   }
