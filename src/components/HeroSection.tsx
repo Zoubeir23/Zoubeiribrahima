@@ -30,7 +30,7 @@ const HeroSection = () => {
               </span>
               <span className="inline-flex items-center gap-1.5 font-body text-sm text-[var(--text-muted)]">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
-                Sénégal
+                {hero.location}
               </span>
             </div>
 
