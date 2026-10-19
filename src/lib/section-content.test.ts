@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { certificationsContent } from "@/lib/certifications-content";
 import { experienceContent } from "@/lib/experience-content";
 import { projectsContent } from "@/lib/projects-content";
 import { skillsContent } from "@/lib/skills-content";
@@ -8,6 +9,7 @@ const contentModules = {
   skills: skillsContent,
   projects: projectsContent,
   experience: experienceContent,
+  certifications: certificationsContent,
 };
 
 describe.each(Object.entries(contentModules))("%s content", (_name, content) => {
