@@ -139,4 +139,10 @@ describe("CookieBanner", () => {
     fireEvent.click(screen.getByRole("button", { name: text.settingsButtonLabel }));
     expect(screen.getByRole("button", { name: text.acceptAll })).toBeInTheDocument();
   });
+
+  it("links to the privacy policy so the visitor can read what the choices mean", () => {
+    renderBanner();
+    expect(screen.getByRole("link", { name: text.learnMore })).toHaveAttribute("href", "/privacy");
+  });
 });
+
