@@ -345,7 +345,7 @@ const BlogArticle = () => {
                       </div>
                       <div className="h-1.5 bg-[var(--surface-base)] w-full border border-[var(--surface-border)] rounded overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-[#F5C518] to-[var(--accent-orange)] transition-[width] duration-300"
+                          className="h-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)] transition-[width] duration-300"
                           style={{ width: `${progress}%` }}
                         />
                       </div>
@@ -556,7 +556,7 @@ const BlogArticle = () => {
                   </div>
                   <div className="h-2 bg-[var(--surface-base)] w-full border border-[var(--surface-border)] rounded overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#F5C518] to-[var(--accent-orange)] transition-[width] duration-300 rounded"
+                      className="h-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)] transition-[width] duration-300 rounded"
                       style={{ width: `${progress}%` }}
                     />
                   </div>
