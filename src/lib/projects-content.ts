@@ -24,8 +24,6 @@ export interface ProjectsContent {
   featured: ProjectContent;
   others: ProjectContent[];
   githubAllProjects: string;
-  swipeHint: string;
-  swipeAriaLabel: string;
 }
 
 export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
@@ -70,8 +68,6 @@ export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
       },
     ],
     githubAllProjects: "Voir tous mes projets sur GitHub",
-    swipeHint: "Glisse à droite ou à gauche pour voir les projets",
-    swipeAriaLabel: "Projets défilables horizontalement",
   },
   en: {
     eyebrow: "Portfolio",
@@ -114,7 +110,5 @@ export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
       },
     ],
     githubAllProjects: "See all my projects on GitHub",
-    swipeHint: "Swipe left or right to see the projects",
-    swipeAriaLabel: "Horizontally scrollable projects",
   },
 };
