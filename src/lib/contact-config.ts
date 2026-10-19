@@ -14,8 +14,15 @@ export const contactConfig = {
 export const contactChannels = buildContactChannels(contactConfig);
 
 // Optional identity facts: leave empty until confirmed, the About page only shows what is filled in.
+export interface PaymentMethod {
+  label: string;
+  /** Secure (https) payment link; without one the method is listed as plain text. */
+  href?: string;
+}
+
 export const identityConfig = {
   legalStatus: "",
+  // Awaiting the NINEA registration (expected within 48 hours of 2026-10-19).
   registrationNumber: "",
-  paymentMethods: [] as readonly string[],
+  paymentMethods: [{ label: "PayPal", href: "https://www.paypal.biz/Zoubeir05" }] as readonly PaymentMethod[],
 };
