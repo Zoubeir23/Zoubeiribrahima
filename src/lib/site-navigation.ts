@@ -1,14 +1,3 @@
-export const NAV_EMOJIS: Record<string, string> = {
-  "#hero": "🏠",
-  "#services": "🛠️",
-  "#skills": "⚙️",
-  "#projects": "🚀",
-  "#experience": "🎓",
-  "#certifications": "🏆",
-  "#contact": "✉️",
-};
-
-export const BLOG_EMOJI = "📖";
 export const HIRE_EMOJI = "🚀";
 
 export const SOCIAL_PROFILES = {
