@@ -7,13 +7,13 @@ interface ServiceIllustrationProps {
   emojiClassName?: string;
 }
 
-const ServiceIllustration = ({ slug, className = "h-16 w-16", emojiClassName = "text-5xl" }: ServiceIllustrationProps) => {
+const ServiceIllustration = ({ slug, className = "aspect-[4/3] w-32", emojiClassName = "text-5xl" }: ServiceIllustrationProps) => {
   const [hasImageFailed, setHasImageFailed] = useState(false);
   const { emoji, illustrationPath } = serviceMeta[slug];
 
   if (hasImageFailed) {
     return (
-      <span aria-hidden="true" className={`flex items-center justify-center ${emojiClassName} ${className}`}>
+      <span aria-hidden="true" className={`flex items-center justify-center rounded-md bg-[var(--surface-raised)] ${emojiClassName} ${className}`}>
         {emoji}
       </span>
     );
@@ -23,9 +23,11 @@ const ServiceIllustration = ({ slug, className = "h-16 w-16", emojiClassName = "
     <img
       src={illustrationPath}
       alt=""
+      width={578}
+      height={432}
       loading="lazy"
       onError={() => setHasImageFailed(true)}
-      className={`object-contain ${className}`}
+      className={`rounded-md bg-white object-contain ${className}`}
     />
   );
 };
