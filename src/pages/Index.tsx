@@ -55,7 +55,7 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8">
       <span className="logo-shell inline-flex items-center justify-center px-3 py-2 sm:px-4 sm:py-3">
         <img
-            src="/Gemini_Generated_Image_s7afnts7afnts7af-removebg-preview.png"
+            src="/logo-scale-avec-zoubeir-for-dark-background.png"
             alt="Scale avec Zoubeir"
             className="h-16 max-[390px]:h-14 sm:h-20 md:h-24 w-auto object-contain"
             width={420}
