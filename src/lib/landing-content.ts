@@ -70,6 +70,7 @@ export interface LandingContent {
     externalContentTitle: string;
     externalContentDescription: string;
     settingsButtonLabel: string;
+    close: string;
   };
   footer: {
     rights: string;
@@ -199,6 +200,7 @@ const frenchContent: LandingContent = {
     externalContentTitle: "Contenus externes",
     externalContentDescription: "Agenda de rendez-vous et autres services tiers susceptibles de déposer des cookies.",
     settingsButtonLabel: "Gérer mes cookies",
+    close: "Fermer",
   },
   footer: {
     rights: "Tous droits réservés",
@@ -328,6 +330,7 @@ const englishContent: LandingContent = {
     externalContentTitle: "External content",
     externalContentDescription: "Booking calendar and other third-party services that may set cookies.",
     settingsButtonLabel: "Manage my cookies",
+    close: "Close",
   },
   footer: {
     rights: "All rights reserved",
