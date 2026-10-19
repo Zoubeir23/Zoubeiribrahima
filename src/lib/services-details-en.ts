@@ -104,7 +104,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
         quoteMessage: "Hello, I would like to launch my mobile application: ",
       },
     ],
-    technologies: ["Android", "iOS", "REST API", "Notifications"],
+    technologies: ["Flutter", "Dart", "React Native", "REST API", "Notifications"],
   },
   "portfolio-websites": {
     title: "Portfolio websites",
