@@ -57,14 +57,14 @@ const ServiceDetail = () => {
     <div className="min-h-screen bg-[var(--surface-deepest)] font-body text-white antialiased">
       <Navbar />
       <main>
-        <header className="hero-backdrop px-4 pb-12 pt-32 sm:px-6">
-          <div className="mx-auto max-w-7xl">
+        <header className="hero-backdrop">
+          <div className="mx-auto max-w-7xl px-4 pb-12 pt-32 sm:px-6">
             <Link to="/#services" className={backLinkClassName}>
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {content.backToServices}
             </Link>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <ServiceIllustration slug={slug} className="h-28 w-28 shrink-0 sm:h-36 sm:w-36" />
+              <ServiceIllustration slug={slug} className="h-28 w-28 shrink-0 sm:h-36 sm:w-36" emojiClassName="text-7xl sm:text-8xl" />
               <div>
                 <span className="inline-block rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
                   {service.badge}
