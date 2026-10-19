@@ -6,7 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Emoji from "@/components/Emoji";
 import { useLandingContent } from "@/hooks/useLandingContent";
+import { FAQ_EMOJIS } from "@/lib/icon-sets";
 
 const FaqSection = () => {
   const { faq } = useLandingContent();
@@ -23,7 +25,10 @@ const FaqSection = () => {
               className="border-[var(--surface-border)]"
             >
               <AccordionTrigger className="text-left font-body text-base text-white hover:no-underline">
-                {item.question}
+                <span className="flex items-center gap-3">
+                  <Emoji symbol={FAQ_EMOJIS[index] ?? "❓"} className="text-xl" />
+                  {item.question}
+                </span>
               </AccordionTrigger>
               <AccordionContent className="text-[var(--text-secondary)]">
                 {item.answer}
