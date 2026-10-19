@@ -44,3 +44,23 @@ export const buildContactChannels = (config: ContactChannelsConfig): ContactChan
   }
   return channels;
 };
+
+const BOOKING_EMBED_COLORS = {
+  background_color: "0f0f0f",
+  text_color: "ffffff",
+  primary_color: "8b5cf6",
+} as const;
+
+export const buildBookingEmbedUrl = (bookingUrl: string, embeddingDomain: string): string => {
+  try {
+    const embedUrl = new URL(bookingUrl);
+    embedUrl.searchParams.set("embed_domain", embeddingDomain);
+    embedUrl.searchParams.set("embed_type", "Inline");
+    for (const [name, value] of Object.entries(BOOKING_EMBED_COLORS)) {
+      embedUrl.searchParams.set(name, value);
+    }
+    return embedUrl.toString();
+  } catch {
+    return bookingUrl;
+  }
+};
