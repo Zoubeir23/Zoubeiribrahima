@@ -4,15 +4,16 @@ import { serviceMeta, type ServiceSlug } from "@/lib/service-meta";
 interface ServiceIllustrationProps {
   slug: ServiceSlug;
   className?: string;
+  emojiClassName?: string;
 }
 
-const ServiceIllustration = ({ slug, className = "h-16 w-16" }: ServiceIllustrationProps) => {
+const ServiceIllustration = ({ slug, className = "h-16 w-16", emojiClassName = "text-5xl" }: ServiceIllustrationProps) => {
   const [hasImageFailed, setHasImageFailed] = useState(false);
   const { emoji, illustrationPath } = serviceMeta[slug];
 
   if (hasImageFailed) {
     return (
-      <span aria-hidden="true" className={`flex items-center justify-center text-4xl ${className}`}>
+      <span aria-hidden="true" className={`flex items-center justify-center ${emojiClassName} ${className}`}>
         {emoji}
       </span>
     );
