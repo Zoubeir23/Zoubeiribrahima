@@ -13,6 +13,16 @@ describe("buildWhatsappLink", () => {
   it("returns null when the number has too few digits", () => {
     expect(buildWhatsappLink("+12")).toBeNull();
   });
+
+  it("appends a url-encoded prefilled message when provided", () => {
+    expect(buildWhatsappLink("+221 77 123 45 67", "Bonjour, j'ai un projet")).toBe(
+      "https://wa.me/221771234567?text=Bonjour%2C%20j'ai%20un%20projet",
+    );
+  });
+
+  it("ignores a blank message", () => {
+    expect(buildWhatsappLink("+221771234567", "   ")).toBe("https://wa.me/221771234567");
+  });
 });
 
 describe("buildContactChannels", () => {
