@@ -5,9 +5,10 @@ import { beforeEach, describe, expect, it } from "vitest";
 import AboutPresentationSection from "@/components/AboutPresentationSection";
 import ConsentProvider from "@/components/consent/ConsentProvider";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import type { PaymentMethod } from "@/lib/contact-config";
 
 interface RenderOptions {
-  paymentMethods?: readonly string[];
+  paymentMethods?: readonly PaymentMethod[];
   legalStatus?: string;
 }
 
@@ -55,10 +56,26 @@ describe("AboutPresentationSection", () => {
   });
 
   it("lists payment methods in the payment tab when configured", async () => {
-    renderSection({ paymentMethods: ["Wave", "Virement"] });
+    renderSection({ paymentMethods: [{ label: "Wave" }, { label: "Virement" }] });
     await userEvent.click(screen.getByRole("tab", { name: "Paiement" }));
     expect(screen.getByText("Wave")).toBeInTheDocument();
     expect(screen.getByText("Virement")).toBeInTheDocument();
+  });
+
+  it("turns a payment method with a secure address into an external link", async () => {
+    renderSection({ paymentMethods: [{ label: "PayPal", href: "https://www.paypal.biz/Zoubeir05" }] });
+    await userEvent.click(screen.getByRole("tab", { name: "Paiement" }));
+    const link = screen.getByRole("link", { name: "PayPal" });
+    expect(link).toHaveAttribute("href", "https://www.paypal.biz/Zoubeir05");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", expect.stringContaining("noopener"));
+  });
+
+  it("never links a payment method whose address is not secure", async () => {
+    renderSection({ paymentMethods: [{ label: "Fragile", href: "http://example.com/pay" }] });
+    await userEvent.click(screen.getByRole("tab", { name: "Paiement" }));
+    expect(screen.queryByRole("link", { name: "Fragile" })).not.toBeInTheDocument();
+    expect(screen.getByText("Fragile")).toBeInTheDocument();
   });
 
   it("links the background tab to the experience page", async () => {
