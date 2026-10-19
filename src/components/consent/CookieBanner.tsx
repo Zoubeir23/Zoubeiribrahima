@@ -6,16 +6,20 @@ import { useLandingContent } from "@/hooks/useLandingContent";
 import { type ConsentPreferences } from "@/lib/consent-storage";
 
 interface CategoryToggleProps {
+  emoji: string;
   title: string;
   description: string;
   isChecked: boolean;
   onToggle: () => void;
 }
 
-const CategoryToggle = ({ title, description, isChecked, onToggle }: CategoryToggleProps) => (
+const CategoryToggle = ({ emoji, title, description, isChecked, onToggle }: CategoryToggleProps) => (
   <div className="flex items-start justify-between gap-4 rounded-md border border-[var(--surface-border)] p-3">
     <div>
-      <p className="text-sm font-semibold text-white">{title}</p>
+      <p className="text-sm font-semibold text-white">
+        <Emoji symbol={emoji} className="mr-2" />
+        {title}
+      </p>
       <p className="mt-0.5 text-xs text-[var(--text-secondary)]">{description}</p>
     </div>
     <button
@@ -107,12 +111,14 @@ const CookieBannerPanel = () => {
       {isCustomizing ? (
         <div className="mb-4 space-y-3">
           <CategoryToggle
+            emoji="📊"
             title={consent.analyticsTitle}
             description={consent.analyticsDescription}
             isChecked={draftPreferences.analytics}
             onToggle={() => setDraftPreferences((current) => ({ ...current, analytics: !current.analytics }))}
           />
           <CategoryToggle
+            emoji="🌐"
             title={consent.externalContentTitle}
             description={consent.externalContentDescription}
             isChecked={draftPreferences.externalContent}
