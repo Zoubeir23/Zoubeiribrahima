@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
+import { projectsContent } from "@/lib/projects-content";
 import { skillsContent } from "@/lib/skills-content";
 import { collectKeyPaths, collectTexts } from "@/test/content-parity";
 
 const contentModules = {
   skills: skillsContent,
+  projects: projectsContent,
 };
 
 describe.each(Object.entries(contentModules))("%s content", (_name, content) => {
