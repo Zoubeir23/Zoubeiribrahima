@@ -34,7 +34,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
     home: {
       title: "Zoubeir Ibrahima | Développeur freelance SaaS, web et mobile | Dakar",
       description:
-        "Développeur freelance basé à Dakar : SaaS, applications web et mobiles, sites portfolio et services informatiques à distance. Fondateur de Snapfolioo, certifié Harvard CS50.",
+        "Développeur freelance basé à Dakar : SaaS, applications web et mobiles, sites portfolio et services informatiques à distance. Fondateur de Snapfolioo.",
     },
     services: {
       title: "Services",
