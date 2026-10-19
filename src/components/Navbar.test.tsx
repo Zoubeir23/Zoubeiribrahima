@@ -61,6 +61,12 @@ describe("Navbar", () => {
     expect(screen.getAllByRole("link").some((link) => link.getAttribute("href")?.includes("#"))).toBe(false);
   });
 
+  it("never lets the crowded menu squeeze the logo", () => {
+    renderNavbar();
+    const logoLink = screen.getByAltText("Scale avec Zoubeir").closest("a");
+    expect(logoLink?.className).toContain("shrink-0");
+  });
+
   it("marks the page being viewed as current", () => {
     renderNavbar("/projects");
     const current = screen.getAllByRole("link").filter((link) => link.getAttribute("aria-current") === "page");
