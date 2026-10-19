@@ -6,9 +6,12 @@ import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { buildWhatsappLink } from "@/lib/contact-channels";
 import { contactChannels, contactConfig } from "@/lib/contact-config";
 import { servicesContent } from "@/lib/services-content";
+import { OFFERING_CHIP_EMOJIS } from "@/lib/icon-sets";
+import type { ServiceSlug } from "@/lib/service-meta";
 import type { ServiceOffering } from "@/lib/services-types";
 
 interface ServiceOfferingTabsProps {
+  slug: ServiceSlug;
   offerings: ServiceOffering[];
 }
 
@@ -17,7 +20,7 @@ const primaryActionClassName =
 const secondaryActionClassName =
   "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-[var(--surface-border)] px-6 py-3 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
 
-const ServiceOfferingTabs = ({ offerings }: ServiceOfferingTabsProps) => {
+const ServiceOfferingTabs = ({ slug, offerings }: ServiceOfferingTabsProps) => {
   const content = useLocalizedContent(servicesContent);
   const bookingChannel = contactChannels.find((channel) => channel.kind === "booking");
 
@@ -57,11 +60,12 @@ const ServiceOfferingTabs = ({ offerings }: ServiceOfferingTabsProps) => {
             <p className="mt-4 font-body text-lg font-semibold text-white sm:text-xl">{offering.tagline}</p>
             <p className="mt-3 max-w-2xl text-[var(--text-secondary)]">{offering.description}</p>
             <ul className="mt-6 flex flex-wrap gap-2">
-              {offering.chips.map((chip) => (
+              {offering.chips.map((chip, chipIndex) => (
                 <li
                   key={chip}
                   className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white"
                 >
+                  <Emoji symbol={OFFERING_CHIP_EMOJIS[slug][index]?.[chipIndex] ?? "•"} className="mr-2" />
                   {chip}
                 </li>
               ))}
