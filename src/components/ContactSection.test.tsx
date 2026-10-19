@@ -1,12 +1,15 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import ConsentProvider from "@/components/consent/ConsentProvider";
 import ContactSection from "@/components/ContactSection";
 import { LanguageProvider } from "@/hooks/useLanguage";
 
 const renderContact = () =>
   render(
     <LanguageProvider>
-      <ContactSection />
+      <ConsentProvider>
+        <ContactSection />
+      </ConsentProvider>
     </LanguageProvider>,
   );
 
@@ -55,9 +58,20 @@ describe("ContactSection", () => {
     expect(screen.getByLabelText("Full name")).toBeInTheDocument();
   });
 
-  it("does not render the booking calendar when no booking link is configured", () => {
-    renderContact();
-    expect(screen.queryByRole("group", { name: "Prise de rendez-vous" })).not.toBeInTheDocument();
+  it("keeps the booking calendar behind the consent gate until the visitor agrees", () => {
+    const { container } = renderContact();
+    expect(screen.getByRole("group", { name: "Prise de rendez-vous" })).toBeInTheDocument();
+    expect(container.querySelector("iframe")).toBeNull();
+  });
+
+  it("embeds the public Calendly page once the visitor agrees to load it", () => {
+    const { container } = renderContact();
+    fireEvent.click(screen.getByRole("button", { name: "Afficher le calendrier" }));
+    const frame = container.querySelector("iframe");
+    expect(frame).not.toBeNull();
+    const frameUrl = new URL(frame?.getAttribute("src") ?? "");
+    expect(frameUrl.origin + frameUrl.pathname).toBe("https://calendly.com/zoubeiribrahima/30min");
+    expect(frameUrl.searchParams.get("embed_domain")).toBe("zoubeir.me");
   });
 
   it("links to WhatsApp with the configured international number", () => {
