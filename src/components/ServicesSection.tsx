@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Reveal from "@/components/Reveal";
+import { getSubheadingTag } from "@/lib/heading-levels";
 import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import { useLandingContent } from "@/hooks/useLandingContent";
@@ -9,6 +10,7 @@ import { serviceSlugs } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
 const ServicesSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
+  const CardHeading = getSubheadingTag(headingAs, 1);
   const { services } = useLandingContent();
   const content = useLocalizedContent(servicesContent);
 
@@ -26,7 +28,7 @@ const ServicesSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => 
               >
                 <ServiceIllustration slug={slug} className="aspect-[4/3] w-full transition-transform duration-300 group-hover:scale-[1.02]" emojiClassName="text-6xl" />
                 <div className="flex-1">
-                  <h3 className="font-body text-lg font-semibold text-white">{service.title}</h3>
+                  <CardHeading className="font-body text-lg font-semibold text-white">{service.title}</CardHeading>
                   <p className="mt-2 text-sm text-[var(--text-secondary)]">{service.summary}</p>
                 </div>
                 <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] transition-colors duration-300 group-hover:text-white">
