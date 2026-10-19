@@ -5,6 +5,11 @@ interface SkillCardContent {
   techs: string[];
 }
 
+interface StackGroupContent {
+  label: string;
+  items: string[];
+}
+
 export interface SkillsContent {
   eyebrow: string;
   titleLead: string;
@@ -12,6 +17,10 @@ export interface SkillsContent {
   cards: SkillCardContent[];
   domainsLabel: string;
   domains: string[];
+  stack: {
+    title: string;
+    groups: StackGroupContent[];
+  };
 }
 
 export const skillsContent: Record<LandingLanguage, SkillsContent> = {
@@ -35,6 +44,17 @@ export const skillsContent: Record<LandingLanguage, SkillsContent> = {
     ],
     domainsLabel: "Domaines maîtrisés",
     domains: ["Backend", "APIs", "Data", "Frontend", "Automatisation", "DevOps", "Architecture", "Qualité", "Sécurité", "Scalabilité"],
+    stack: {
+      title: "Stack détaillée",
+      groups: [
+        { label: "Langages", items: ["JavaScript", "Python", "PHP", "Java", "SQL"] },
+        { label: "Frontend", items: ["React", "Tailwind CSS"] },
+        { label: "Backend", items: ["Node.js", "Django", "Laravel"] },
+        { label: "Bases de données", items: ["PostgreSQL", "Supabase", "MySQL"] },
+        { label: "Outils", items: ["Git", "GitHub", "Claude Code", "VS Code", "Warp"] },
+        { label: "Méthodologies", items: ["Agile", "Clean Code", "Tests unitaires"] },
+      ],
+    },
   },
   en: {
     eyebrow: "Technologies",
@@ -56,5 +76,16 @@ export const skillsContent: Record<LandingLanguage, SkillsContent> = {
     ],
     domainsLabel: "Areas of expertise",
     domains: ["Backend", "APIs", "Data", "Frontend", "Automation", "DevOps", "Architecture", "Quality", "Security", "Scalability"],
+    stack: {
+      title: "Detailed stack",
+      groups: [
+        { label: "Languages", items: ["JavaScript", "Python", "PHP", "Java", "SQL"] },
+        { label: "Frontend", items: ["React", "Tailwind CSS"] },
+        { label: "Backend", items: ["Node.js", "Django", "Laravel"] },
+        { label: "Databases", items: ["PostgreSQL", "Supabase", "MySQL"] },
+        { label: "Tools", items: ["Git", "GitHub", "Claude Code", "VS Code", "Warp"] },
+        { label: "Methodologies", items: ["Agile", "Clean Code", "Unit testing"] },
+      ],
+    },
   },
 };
