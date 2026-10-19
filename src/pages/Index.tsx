@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import ClosingCallToAction from "@/components/ClosingCallToAction";
 import HeroSection from "@/components/HeroSection";
+import LegacyHashRedirect from "@/components/LegacyHashRedirect";
 import Navbar from "@/components/Navbar";
 import ProcessSection from "@/components/ProcessSection";
 import ProjectsBentoSection from "@/components/ProjectsBentoSection";
@@ -65,6 +66,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[var(--surface-deepest)] font-body text-white antialiased">
+      <LegacyHashRedirect />
       <Navbar />
       <main>
         <HeroSection />
