@@ -1,4 +1,15 @@
+import { useLocation } from "react-router-dom";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
+
 const NotFound = () => {
+  const { pathname } = useLocation();
+  usePageMetadata({
+    title: "Page introuvable | Zoubeir Ibrahima",
+    description: "La page demandée est introuvable ou a été déplacée.",
+    path: pathname,
+    noindex: true,
+  });
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-[var(--surface-deepest)] px-6">
       <div className="w-full max-w-xl border border-[var(--surface-border)] bg-white p-10 text-center rounded-md">
