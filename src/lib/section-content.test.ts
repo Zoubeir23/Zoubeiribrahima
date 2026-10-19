@@ -4,6 +4,7 @@ import { contactContent } from "@/lib/contact-content";
 import { experienceContent } from "@/lib/experience-content";
 import { landingContent } from "@/lib/landing-content";
 import { legalContent } from "@/lib/legal-content";
+import { pageContent } from "@/lib/page-content";
 import { projectsContent } from "@/lib/projects-content";
 import { servicesContent } from "@/lib/services-content";
 import { skillsContent } from "@/lib/skills-content";
@@ -17,6 +18,7 @@ const contentModules = {
   contact: contactContent,
   services: servicesContent,
   legal: legalContent,
+  pages: pageContent,
 };
 
 describe.each(Object.entries(contentModules))("%s content", (_name, content) => {
@@ -131,6 +133,31 @@ describe("location follows the CV", () => {
       expect(landingContent[language].hero.location, `${language} hero`).toContain("Dakar");
       expect(landingContent[language].footer.location, `${language} footer`).toContain("Dakar");
       expect(contactContent[language].locationValue, `${language} contact`).toContain("Dakar");
+    }
+  });
+});
+
+describe("page metadata", () => {
+  const pageKeys = ["home", "services", "skills", "projects", "experience", "certifications", "faq", "contact"] as const;
+
+  it("describes every page with a title and a search-friendly description", () => {
+    for (const language of ["fr", "en"] as const) {
+      for (const key of pageKeys) {
+        const meta = pageContent[language][key];
+        expect(meta.title.trim(), `${language} ${key} title`).not.toBe("");
+        expect(meta.description.length, `${language} ${key} description`).toBeGreaterThan(60);
+        expect(meta.description.length, `${language} ${key} description`).toBeLessThanOrEqual(170);
+      }
+    }
+  });
+
+  it("gives every home teaser a title, a description and a link label", () => {
+    for (const language of ["fr", "en"] as const) {
+      for (const teaser of Object.values(pageContent[language].teasers)) {
+        expect(teaser.title.trim()).not.toBe("");
+        expect(teaser.description.trim()).not.toBe("");
+        expect(teaser.linkLabel.trim()).not.toBe("");
+      }
     }
   });
 });
