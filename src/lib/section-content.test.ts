@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { aboutContent } from "@/lib/about-content";
 import { certificationsContent } from "@/lib/certifications-content";
 import { contactContent } from "@/lib/contact-content";
 import { experienceContent } from "@/lib/experience-content";
@@ -11,6 +12,7 @@ import { skillsContent } from "@/lib/skills-content";
 import { collectKeyPaths, collectTexts } from "@/test/content-parity";
 
 const contentModules = {
+  about: aboutContent,
   skills: skillsContent,
   projects: projectsContent,
   experience: experienceContent,
