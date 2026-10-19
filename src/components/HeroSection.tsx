@@ -13,9 +13,15 @@ const HeroSection = () => {
       <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-16">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <div className="space-y-7 lg:col-span-7">
-            <div className="reveal-up flex flex-wrap items-center gap-3" style={{ "--reveal-delay": "0.05s" } as CSSProperties}>
+            <div
+              className="reveal-up flex flex-wrap items-center gap-3"
+              style={{ "--reveal-delay": "0.05s" } as CSSProperties}
+            >
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--status-success)]" aria-hidden="true" />
+                <span
+                  className="animate-status-ping h-2 w-2 rounded-full bg-[var(--status-success)]"
+                  aria-hidden="true"
+                />
                 {hero.availability}
               </span>
               <span className="inline-flex items-center gap-1.5 font-body text-sm text-[var(--text-muted)]">
@@ -29,7 +35,9 @@ const HeroSection = () => {
               style={{ "--reveal-delay": "0.15s" } as CSSProperties}
             >
               {hero.headlineLead}{" "}
-              <span className="text-[var(--accent-violet)]">{hero.headlineHighlight}</span>
+              <span className="text-[var(--accent-violet)]">
+                {hero.headlineHighlight}
+              </span>
             </h1>
 
             <p
@@ -45,10 +53,13 @@ const HeroSection = () => {
             >
               <a
                 href="#contact"
-                className="group inline-flex min-h-11 items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
+                className="animate-glow-pulse group inline-flex min-h-11 items-center justify-center gap-3 rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
                 {hero.primaryAction}
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
               </a>
               <a
                 href="#projects"
@@ -64,7 +75,10 @@ const HeroSection = () => {
             >
               {hero.trustBadges.map((badge) => (
                 <li key={badge} className="flex items-center gap-2">
-                  <span className="text-[var(--accent-orange)]" aria-hidden="true">
+                  <span
+                    className="text-[var(--accent-orange)]"
+                    aria-hidden="true"
+                  >
                     ◆
                   </span>
                   {badge}
@@ -78,29 +92,37 @@ const HeroSection = () => {
             >
               {hero.stats.map((stat) => (
                 <div key={stat.label}>
-                  <dd className="font-display text-3xl font-extrabold text-white sm:text-4xl">{stat.value}</dd>
-                  <dt className="font-body text-xs uppercase tracking-wider text-[var(--text-muted)] sm:text-sm">{stat.label}</dt>
+                  <dd className="font-display text-3xl font-extrabold text-white sm:text-4xl">
+                    {stat.value}
+                  </dd>
+                  <dt className="font-body text-xs uppercase tracking-wider text-[var(--text-muted)] sm:text-sm">
+                    {stat.label}
+                  </dt>
                 </div>
               ))}
             </dl>
           </div>
 
           <div className="flex justify-center lg:col-span-5 lg:justify-end">
-            <div
-              className="reveal-up gradient-ring relative w-64 rounded-[var(--radius-medium)] bg-[var(--surface-base)] sm:w-72 md:w-96"
-              style={{ "--reveal-delay": "0.3s" } as CSSProperties}
-            >
-              <img
-                src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
-                alt="Zoubeir Ibrahima Amed"
-                className="h-72 w-full object-contain object-bottom sm:h-80 md:h-[28rem]"
-                width={768}
-                height={896}
-                {...{ fetchpriority: "high" }}
-              />
-              <span className="absolute -bottom-3 left-4 rounded-full border border-[var(--surface-border)] bg-[var(--surface-raised)] px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-white">
-                Django · Python · AI
-              </span>
+            <div className="animate-float-soft">
+              <div
+                className="reveal-up gradient-ring relative w-64 rounded-[var(--radius-medium)] bg-[var(--surface-base)] sm:w-72 md:w-96"
+                style={{ "--reveal-delay": "0.3s" } as CSSProperties}
+              >
+                <div className="scan-surface rounded-[inherit]">
+                  <img
+                    src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
+                    alt="Zoubeir Ibrahima Amed"
+                    className="h-72 w-full object-contain object-bottom sm:h-80 md:h-[28rem]"
+                    width={768}
+                    height={896}
+                    {...{ fetchpriority: "high" }}
+                  />
+                </div>
+                <span className="absolute -bottom-3 left-4 rounded-full border border-[var(--surface-border)] bg-[var(--surface-raised)] px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-white">
+                  Django · Python · AI
+                </span>
+              </div>
             </div>
           </div>
         </div>
