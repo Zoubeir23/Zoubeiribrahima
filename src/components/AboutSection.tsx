@@ -1,200 +1,107 @@
-import { motion } from "@/lib/static-motion";
-
-const experiences = [
-  {
-    company: "HooYia",
-    role: "Stagiaire Développeur Backend",
-    period: "Févr. 2026 — Présent",
-    location: "Cameroun · À distance",
-    desc: "Participation au développement et à la maintenance des applications backend. Conception et optimisation d'API et de bases de données. Collaboration avec l'équipe technique pour la mise en œuvre de nouvelles fonctionnalités.",
-    tags: ["Architecture backend", "APIs REST", "Bases de donnees", "Optimisation", "Deploiement"],
-    active: true,
-  },
-  {
-    company: "Snapfolioo",
-    role: "Fondateur & Développeur Principal",
-    period: "Janv. 2026 — Présent",
-    location: "Dakar, Sénégal",
-    desc: "Conception et développement d'une plateforme SaaS permettant de créer portfolios, CV et bannières LinkedIn. Développement de +18 templates professionnels avec éditeur visuel en temps réel. Architecture scalable avec auto-sauvegarde et export multi-formats.",
-    tags: ["React 18", "TypeScript", "Vite", "Supabase", "TailwindCSS", "Vercel"],
-    active: true,
-  },
-];
-
-const education = [
-  {
-    degree: "Licence IAGE",
-    school: "ISI — Institut Supérieur d'Informatique, Dakar",
-    period: "2023 — 2026 (en cours)",
-  },
-  {
-    degree: "BTS Informatique de Gestion",
-    school: "ISI, Dakar, Sénégal",
-    period: "2023 — 2025",
-  },
-  {
-    degree: "Baccalauréat Série C",
-    school: "École Communautaire Arabo-Islamique, Mitsoudjé, Comores",
-    period: "2023",
-  },
-];
+import SectionHeading from "@/components/SectionHeading";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { experienceContent } from "@/lib/experience-content";
 
 const AboutSection = () => {
+  const experience = useLocalizedContent(experienceContent);
+
   return (
-    <section id="experience" className="bg-[var(--surface-deepest)] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="experience" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <SectionHeading
+          eyebrow={experience.eyebrow}
+          title={experience.titleLead}
+          highlight={experience.titleHighlight}
+        />
+        <div className="flex h-36 w-28 shrink-0 items-end justify-center overflow-hidden rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] sm:h-44 sm:w-36">
+          <img
+            src="/Sans_titre-removebg-preview.png"
+            alt={experience.portraitAlt}
+            className="h-full w-full object-contain object-bottom"
+            width={467}
+            height={534}
+            loading="lazy"
+          />
+        </div>
+      </div>
 
-        {/* ── Header ── */}
-        <motion.div
-          className="mb-10 sm:mb-16 md:mb-20 flex flex-col md:flex-row md:items-end gap-6 sm:gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="flex-1">
-            <p className="font-display font-bold text-white/50 text-sm uppercase tracking-[0.3em] mb-3">
-              — Parcours
-            </p>
-            <h2 className="font-display font-black text-white text-3xl sm:text-5xl md:text-8xl uppercase leading-tight">
-              Expériences<br />
-              <span className="text-white/30">&amp; Formation</span>
-            </h2>
-          </div>
-          {/* Portrait illustration */}
-          <div className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] w-28 h-36 sm:w-36 sm:h-44 md:w-44 md:h-52 shrink-0 overflow-hidden flex items-end justify-center rounded-md">
-            <img
-              src="/Sans_titre-removebg-preview.png"
-              alt="Portrait Zoubeir"
-              className="w-full h-full object-contain object-bottom"
-            />
-          </div>
-        </motion.div>
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h3 className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+            {experience.professionalLabel}
+          </h3>
+          <ol className="space-y-12 border-l border-[var(--surface-border)] pl-6 sm:pl-8">
+            {experience.experiences.map((item) => (
+              <li key={item.company} className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-[2.2rem] top-1.5 h-3 w-3 rounded-full bg-[var(--accent-orange)] sm:-left-[2.7rem]"
+                />
+                <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+                  <h4 className="font-display text-xl uppercase leading-none text-white sm:text-2xl">{item.company}</h4>
+                  <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">
+                    {item.period}
+                  </span>
+                </div>
+                <p className="font-body text-base font-semibold text-white">{item.role}</p>
+                <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">{item.location}</p>
+                <p className="mb-5 text-sm text-[var(--text-secondary)] sm:text-base">{item.description}</p>
+                <ul className="flex flex-wrap gap-2">
+                  {item.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+        <div>
+          <h3 className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+            {experience.educationLabel}
+          </h3>
+          <ul>
+            {experience.education.map((item) => (
+              <li key={item.degree} className="flex flex-col gap-1 border-b border-[var(--surface-border)] py-6">
+                <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">{item.period}</span>
+                <h4 className="font-display text-lg uppercase leading-tight text-white sm:text-xl">{item.degree}</h4>
+                <p className="text-sm text-[var(--text-secondary)]">{item.school}</p>
+              </li>
+            ))}
+          </ul>
 
-          {/* ── Experiences column ── */}
-          <div className="border-r-0 lg:border-r border-b lg:border-b-0 border-[var(--surface-border)] pr-0 lg:pr-12 pb-12 lg:pb-0">
-            <p className="font-display font-black text-xs uppercase tracking-[0.22em] sm:tracking-[0.3em] text-white/50 mb-8 sm:mb-10">
-              Expérience professionnelle
-            </p>
-
-            <div className="relative border-l border-[var(--surface-border)] pl-6 sm:pl-8 space-y-10 sm:space-y-16">
-              {experiences.map((exp, i) => (
-                <motion.div
-                  key={exp.company}
-                  className="relative"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  {/* Square dot */}
+          <div className="mt-10 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-8">
+            <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+              {experience.languagesLabel}
+            </h3>
+            <ul className="space-y-4">
+              {experience.languages.map((language) => (
+                <li key={language.name}>
+                  <div className="mb-1 flex justify-between gap-4">
+                    <span className="font-body text-sm font-semibold text-white">{language.name}</span>
+                    <span className="font-mono text-xs uppercase text-[var(--text-muted)]">{language.level}</span>
+                  </div>
                   <div
-                    className={`absolute -left-[2.125rem] sm:-left-[2.625rem] top-1 w-5 h-5 border border-[var(--surface-border)] ${
-                      exp.active ? "bg-white" : "bg-[var(--surface-deepest)]"
-                    }`}
-                  />
-
-                  <div className="flex flex-col gap-1 mb-3">
-                    <div className="flex flex-wrap items-start justify-between gap-2">
-                      <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl text-white uppercase tracking-tight leading-none">
-                        {exp.company}
-                      </h3>
-                      <span className="font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider text-white/50 bg-white/10 px-2.5 sm:px-3 py-1 border border-[var(--surface-border)]">
-                        {exp.period}
-                      </span>
-                    </div>
-                    <p className="font-display font-bold text-base text-white/70 uppercase tracking-wide">
-                      {exp.role}
-                    </p>
-                    <p className="font-body text-xs font-semibold text-white/50 uppercase tracking-wider">
-                      {exp.location}
-                    </p>
+                    role="progressbar"
+                    aria-label={language.name}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={language.percentage}
+                    className="h-1.5 overflow-hidden rounded-full bg-[var(--surface-raised)]"
+                  >
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)]"
+                      style={{ width: `${language.percentage}%` }}
+                    />
                   </div>
-
-                  <p className="font-body text-sm sm:text-base text-white/80 leading-relaxed mb-5">
-                    {exp.desc}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-body font-bold text-xs uppercase tracking-wider bg-white text-[var(--surface-deepest)] px-3 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
+                </li>
               ))}
-            </div>
-          </div>
-
-          {/* ── Education column ── */}
-          <div className="pt-12 lg:pt-0 lg:pl-12">
-            <p className="font-display font-black text-xs uppercase tracking-[0.22em] sm:tracking-[0.3em] text-white/50 mb-8 sm:mb-10">
-              Formation académique
-            </p>
-
-            <div className="space-y-0">
-              {education.map((edu, i) => (
-                <motion.div
-                  key={edu.degree}
-                  className="border-b border-[var(--surface-border)] py-6 sm:py-8 group hover:bg-white sm:hover:px-4 transition-all duration-200"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                >
-                  <div className="flex flex-col gap-1">
-                    <span className="font-body font-bold text-xs uppercase tracking-wider text-white/50 group-hover:text-[var(--surface-deepest)]/60 transition-colors">
-                      {edu.period}
-                    </span>
-                    <h4 className="font-display font-black text-lg sm:text-xl uppercase text-white group-hover:text-[var(--surface-deepest)] transition-colors leading-tight">
-                      {edu.degree}
-                    </h4>
-                    <p className="font-body text-sm text-white/70 group-hover:text-[var(--surface-deepest)]/70 transition-colors">
-                      {edu.school}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Languages */}
-            <motion.div
-              className="mt-10 sm:mt-12 border border-[var(--surface-border)] p-6 sm:p-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-            >
-              <p className="font-display font-black text-xs uppercase tracking-[0.3em] text-white/50 mb-6">
-                Langues
-              </p>
-              <div className="space-y-4">
-                {[
-                  { lang: "Français", level: "Natif", pct: 100 },
-                  { lang: "Anglais", level: "Technique", pct: 30 },
-                  { lang: "Arabe", level: "Lecture & Écriture", pct: 50 },
-                ].map((l) => (
-                  <div key={l.lang}>
-                    <div className="flex justify-between mb-1">
-                      <span className="font-display font-black text-sm uppercase text-white">{l.lang}</span>
-                      <span className="font-body font-bold text-xs uppercase text-white/60">{l.level}</span>
-                    </div>
-                    <div className="language-level-track h-2 bg-white/10 border border-[var(--surface-border)]">
-                      <div
-                        className="language-level-fill h-full bg-white"
-                        style={{ width: `${l.pct}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            </ul>
           </div>
         </div>
       </div>
