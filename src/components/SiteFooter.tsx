@@ -5,7 +5,6 @@ import { useConsent } from "@/hooks/useConsent";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { contactChannels, contactConfig } from "@/lib/contact-config";
-import { aboutContent } from "@/lib/about-content";
 import { NAV_ITEMS, SOCIAL_PROFILES } from "@/lib/site-navigation";
 import { serviceMeta, serviceSlugs } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
@@ -23,7 +22,6 @@ const footerLinkClassName =
 
 const SiteFooter = () => {
   const { footer, nav, hero, faq } = useLandingContent();
-  const about = useLocalizedContent(aboutContent);
   const services = useLocalizedContent(servicesContent);
   const { openPreferences } = useConsent();
   const currentYear = new Date().getFullYear();
@@ -98,12 +96,6 @@ const SiteFooter = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link to="/a-propos" className={footerLinkClassName}>
-                  <Emoji symbol="👤" />
-                  {about.meta.title}
-                </Link>
-              </li>
               <li>
                 <Link to="/faq" className={footerLinkClassName}>
                   <Emoji symbol="❓" />
