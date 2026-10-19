@@ -7,25 +7,30 @@ import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import ServiceDetail from "./pages/ServiceDetail";
+import { usePointerSpotlight } from "./hooks/usePointerSpotlight";
 import NotFound from "./pages/NotFound";
 
-const App = () => (
-  <MotionConfig reducedMotion="always">
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/services/:slug" element={<ServiceDetail />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </MotionConfig>
-);
+const App = () => {
+  usePointerSpotlight();
+
+  return (
+    <MotionConfig reducedMotion="always">
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
+            <Route path="/services/:slug" element={<ServiceDetail />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </MotionConfig>
+  );
+};
 
 export default App;
