@@ -166,7 +166,7 @@ const Blog = () => {
                       : "bg-transparent text-white/65 border-[var(--surface-border)] hover:border-[var(--accent-violet)] hover:text-white"
                   }`}
                 >
-                  {label} <span className="opacity-55">({count})</span>
+                  {label} <span className="opacity-80">({count})</span>
                 </button>
               );
             })}
