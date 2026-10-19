@@ -5,6 +5,8 @@ interface PageMetadata {
   title: string;
   description: string;
   path: string;
+  /** Marks pages that must stay out of search results, such as a missing page. */
+  noindex?: boolean;
 }
 
 const findOrCreateHeadElement = <ElementType extends HTMLElement>(selector: string, tagName: string, attributes: Record<string, string>): ElementType => {
@@ -20,7 +22,7 @@ const findOrCreateHeadElement = <ElementType extends HTMLElement>(selector: stri
   return created;
 };
 
-export const usePageMetadata = ({ title, description, path }: PageMetadata): void => {
+export const usePageMetadata = ({ title, description, path, noindex = false }: PageMetadata): void => {
   useEffect(() => {
     document.title = title;
 
@@ -30,4 +32,22 @@ export const usePageMetadata = ({ title, description, path }: PageMetadata): voi
     const canonicalLink = findOrCreateHeadElement<HTMLLinkElement>('link[rel="canonical"]', "link", { rel: "canonical" });
     canonicalLink.setAttribute("href", `https://${SITE_DOMAIN}${path}`);
   }, [title, description, path]);
+
+  useEffect(() => {
+    if (!noindex) {
+      return undefined;
+    }
+
+    const robotsTag = findOrCreateHeadElement<HTMLMetaElement>('meta[name="robots"]', "meta", { name: "robots" });
+    const previousContent = robotsTag.getAttribute("content");
+    robotsTag.setAttribute("content", "noindex, follow");
+
+    return () => {
+      if (previousContent === null) {
+        robotsTag.remove();
+      } else {
+        robotsTag.setAttribute("content", previousContent);
+      }
+    };
+  }, [noindex]);
 };
