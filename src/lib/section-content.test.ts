@@ -138,7 +138,7 @@ describe("location follows the CV", () => {
 });
 
 describe("page metadata", () => {
-  const pageKeys = ["home", "services", "skills", "projects", "experience", "certifications", "faq", "contact"] as const;
+  const pageKeys = ["home", "services", "skills", "projects", "experience", "certifications", "faq", "contact", "blog"] as const;
 
   it("describes every page with a title and a search-friendly description", () => {
     for (const language of ["fr", "en"] as const) {
