@@ -2,6 +2,7 @@ import { Brain, Cloud, Server, type LucideIcon } from "lucide-react";
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { DOMAIN_EMOJIS, SKILL_CARD_EMOJIS } from "@/lib/icon-sets";
 import { skillsContent } from "@/lib/skills-content";
@@ -58,6 +59,34 @@ const SkillsSection = () => {
           );
         })}
       </ul>
+
+      <Reveal className="mt-12">
+        <h3 className="mb-6 font-display text-xl uppercase text-white">
+          <Emoji symbol="🧰" className="mr-3" />
+          {skills.stack.title}
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.stack.groups.map((group) => (
+            <div
+              key={group.label}
+              className="spotlight-card rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-5"
+            >
+              <h4 className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-[var(--text-muted)]">{group.label}</h4>
+              <ul aria-label={group.label} className="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="inline-flex items-center gap-2 rounded-full border border-[var(--surface-border)] bg-[var(--surface-deepest)] py-1.5 pl-2 pr-3 font-mono text-xs uppercase tracking-wider text-white"
+                  >
+                    <TechnologyIcon name={item} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Reveal>
 
       <div className="mt-12 border-t border-[var(--surface-border)] pt-8">
         <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
