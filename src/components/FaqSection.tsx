@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import {
   Accordion,
   AccordionContent,
@@ -10,12 +10,12 @@ import Emoji from "@/components/Emoji";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { FAQ_EMOJIS } from "@/lib/icon-sets";
 
-const FaqSection = () => {
+const FaqSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const { faq } = useLandingContent();
 
   return (
     <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28">
-      <SectionHeading emoji="❓" title={faq.title} />
+      <SectionHeading headingAs={headingAs} emoji="❓" title={faq.title} />
       <Reveal delaySeconds={0.1}>
         <Accordion type="single" collapsible className="w-full">
           {faq.items.map((item, index) => (

@@ -1,7 +1,7 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { projectsContent } from "@/lib/projects-content";
 
@@ -11,7 +11,7 @@ const GITHUB_PROFILE_URL = "https://github.com/Zoubeir23";
 const tagClassName =
   "rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white";
 
-const ProjectsBentoSection = () => {
+const ProjectsBentoSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const projects = useLocalizedContent(projectsContent);
 
   return (
@@ -19,7 +19,7 @@ const ProjectsBentoSection = () => {
       id="projects"
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading
+      <SectionHeading headingAs={headingAs}
         emoji="🚀"
         eyebrow={projects.eyebrow}
         title={projects.titleLead}

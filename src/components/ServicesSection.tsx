@@ -1,20 +1,20 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { serviceSlugs } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
-const ServicesSection = () => {
+const ServicesSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const { services } = useLandingContent();
   const content = useLocalizedContent(servicesContent);
 
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-      <SectionHeading emoji="🛠️" title={services.title} subtitle={services.subtitle} />
+      <SectionHeading headingAs={headingAs} emoji="🛠️" title={services.title} subtitle={services.subtitle} />
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {serviceSlugs.map((slug, index) => {
           const service = content.services[slug];

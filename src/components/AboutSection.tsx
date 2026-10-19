@@ -1,11 +1,11 @@
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import TechnologyIcon from "@/components/TechnologyIcon";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { experienceContent } from "@/lib/experience-content";
 
-const AboutSection = () => {
+const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const experience = useLocalizedContent(experienceContent);
 
   return (
@@ -14,7 +14,7 @@ const AboutSection = () => {
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
       <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <SectionHeading
+        <SectionHeading headingAs={headingAs}
           emoji="🎓"
           eyebrow={experience.eyebrow}
           title={experience.titleLead}

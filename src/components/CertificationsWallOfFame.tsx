@@ -1,7 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import IssuerLogo from "@/components/IssuerLogo";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import {
   certificationIssuerCount,
@@ -18,7 +18,7 @@ const featuredForWall = featuredCertifications.slice(
 
 const extractYear = (date: string): string => date.match(/\d{4}/)?.[0] ?? "-";
 
-const CertificationsWallOfFame = () => {
+const CertificationsWallOfFame = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const content = useLocalizedContent(certificationsContent);
 
   return (
@@ -26,7 +26,7 @@ const CertificationsWallOfFame = () => {
       id="certifications"
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading
+      <SectionHeading headingAs={headingAs}
         emoji="🏆"
         eyebrow={content.eyebrow}
         title={content.titleLead}

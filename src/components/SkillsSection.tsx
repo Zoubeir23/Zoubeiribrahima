@@ -1,7 +1,7 @@
 import { Brain, Cloud, Server, type LucideIcon } from "lucide-react";
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { DOMAIN_EMOJIS, SKILL_CARD_EMOJIS } from "@/lib/icon-sets";
@@ -9,7 +9,7 @@ import { skillsContent } from "@/lib/skills-content";
 
 const skillIcons: readonly LucideIcon[] = [Server, Brain, Cloud];
 
-const SkillsSection = () => {
+const SkillsSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const skills = useLocalizedContent(skillsContent);
 
   return (
@@ -17,7 +17,7 @@ const SkillsSection = () => {
       id="skills"
       className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading
+      <SectionHeading headingAs={headingAs}
         emoji="⚙️"
         eyebrow={skills.eyebrow}
         title={skills.titleLead}
