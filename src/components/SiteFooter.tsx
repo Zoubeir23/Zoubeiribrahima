@@ -11,8 +11,8 @@ const SiteFooter = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--surface-border)] bg-[var(--surface-base)] px-4 py-10 sm:px-6">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
+    <footer className="border-t border-[var(--surface-border)] bg-[var(--surface-base)] px-4 pb-24 pt-10 sm:px-6 lg:pb-10">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 lg:flex-row">
         <img
           src="/logo-scale-avec-zoubeir-for-dark-background.png"
           alt="Scale avec Zoubeir"
