@@ -29,9 +29,9 @@ describe("application routes", () => {
     ["/certifications", /mes certifications/i],
     ["/faq", /questions fréquentes/i],
     ["/contact", /travaillons ensemble/i],
-  ])("serves %s on its own page", (path, headingPattern) => {
+  ])("serves %s on its own page", async (path, headingPattern) => {
     renderAppAt(path);
-    expect(screen.getByRole("heading", { level: 1, name: headingPattern })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 1, name: headingPattern })).toBeInTheDocument();
   });
 
   it("keeps the home page on the root path", () => {
@@ -39,19 +39,19 @@ describe("application routes", () => {
     expect(screen.getByRole("heading", { level: 1, name: /produit digital/i })).toBeInTheDocument();
   });
 
-  it("keeps the service detail pages", () => {
+  it("keeps the service detail pages", async () => {
     renderAppAt("/services/saas");
-    expect(screen.getByRole("heading", { level: 1, name: /développement saas/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 1, name: /développement saas/i })).toBeInTheDocument();
   });
 
-  it("keeps the legal pages", () => {
+  it("keeps the legal pages", async () => {
     renderAppAt("/privacy");
-    expect(screen.getByRole("heading", { level: 1, name: /politique de confidentialité/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 1, name: /politique de confidentialité/i })).toBeInTheDocument();
   });
 
-  it("redirects an old home anchor to the matching dedicated page", () => {
+  it("redirects an old home anchor to the matching dedicated page", async () => {
     renderAppAt("/#projects");
-    expect(screen.getByRole("heading", { level: 1, name: /mes projets/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 1, name: /mes projets/i })).toBeInTheDocument();
   });
 
   it("shows the not found page for an unknown route", () => {
