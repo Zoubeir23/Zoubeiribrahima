@@ -102,7 +102,7 @@ const ProjectsBentoSection = () => {
               href={GITHUB_PROFILE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white underline-offset-4 hover:underline"
             >
               {project.linkLabel}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -116,7 +116,7 @@ const ProjectsBentoSection = () => {
           href={GITHUB_PROFILE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-3 border-b border-[var(--surface-border)] pb-1 font-mono text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:border-white"
+          className="group inline-flex min-h-11 items-center gap-3 border-b border-[var(--surface-border)] pb-1 font-mono text-sm uppercase tracking-widest text-white transition-colors duration-300 hover:border-white"
         >
           {projects.githubAllProjects}
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
