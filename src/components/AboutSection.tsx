@@ -1,11 +1,14 @@
 import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import TechnologyIcon from "@/components/TechnologyIcon";
+import { getSubheadingTag } from "@/lib/heading-levels";
 import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { experienceContent } from "@/lib/experience-content";
 
 const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
+  const CardHeading = getSubheadingTag(headingAs, 1);
+  const ItemHeading = getSubheadingTag(headingAs, 2);
   const experience = useLocalizedContent(experienceContent);
 
   return (
@@ -34,9 +37,9 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
 
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h3 className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+          <CardHeading className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
             {experience.professionalLabel}
-          </h3>
+          </CardHeading>
           <ol className="space-y-12 border-l border-[var(--surface-border)] pl-6 sm:pl-8">
             {experience.experiences.map((item, index) => (
               <Reveal
@@ -54,9 +57,9 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                   }`}
                 />
                 <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
-                  <h4 className="font-display text-xl uppercase leading-none text-white sm:text-2xl">
+                  <ItemHeading className="font-display text-xl uppercase leading-none text-white sm:text-2xl">
                     {item.company}
-                  </h4>
+                  </ItemHeading>
                   <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">
                     <Emoji symbol="📅" className="mr-2" />
                     {item.period}
@@ -89,9 +92,9 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
         </div>
 
         <div>
-          <h3 className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+          <CardHeading className="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
             {experience.educationLabel}
-          </h3>
+          </CardHeading>
           <ul>
             {experience.education.map((item, index) => (
               <Reveal
@@ -104,9 +107,9 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                   <Emoji symbol="🎓" className="mr-2" />
                   {item.period}
                 </span>
-                <h4 className="font-display text-lg uppercase leading-tight text-white sm:text-xl">
+                <ItemHeading className="font-display text-lg uppercase leading-tight text-white sm:text-xl">
                   {item.degree}
-                </h4>
+                </ItemHeading>
                 <p className="text-sm text-[var(--text-secondary)]">
                   {item.school}
                 </p>
@@ -115,9 +118,9 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
           </ul>
 
           <div className="mt-10 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-8">
-            <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+            <CardHeading className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
               {experience.languagesLabel}
-            </h3>
+            </CardHeading>
             <ul className="space-y-4">
               {experience.languages.map((language) => (
                 <li key={language.name}>
