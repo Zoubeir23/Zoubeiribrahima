@@ -1,9 +1,10 @@
+import Emoji from "@/components/Emoji";
 import { useLandingContent } from "@/hooks/useLandingContent";
 
 const footerLinks = [
-  { label: "GitHub", href: "https://github.com/Zoubeir23" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/zoubeir-ibrahima" },
-  { label: "Email", href: "mailto:Zoubeiribrahima@gmail.com" },
+  { label: "GitHub", emoji: "🐙", href: "https://github.com/Zoubeir23" },
+  { label: "LinkedIn", emoji: "💼", href: "https://linkedin.com/in/zoubeir-ibrahima" },
+  { label: "Email", emoji: "✉️", href: "mailto:Zoubeiribrahima@gmail.com" },
 ] as const;
 
 const SiteFooter = () => {
@@ -33,6 +34,7 @@ const SiteFooter = () => {
                 rel="noopener noreferrer"
                 className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] transition-colors duration-300 hover:text-white"
               >
+                <Emoji symbol={link.emoji} className="mr-2" />
                 {link.label}
               </a>
             </li>
