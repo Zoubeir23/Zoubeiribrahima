@@ -1,0 +1,19 @@
+import { describe, expect, it } from "vitest";
+import { skillsContent } from "@/lib/skills-content";
+import { collectKeyPaths, collectTexts } from "@/test/content-parity";
+
+const contentModules = {
+  skills: skillsContent,
+};
+
+describe.each(Object.entries(contentModules))("%s content", (_name, content) => {
+  it("exposes the same structure in French and English", () => {
+    expect(collectKeyPaths(content.en)).toEqual(collectKeyPaths(content.fr));
+  });
+
+  it("never leaves an empty string", () => {
+    for (const language of ["fr", "en"] as const) {
+      expect(collectTexts(content[language]).filter((text) => text.trim() === "")).toEqual([]);
+    }
+  });
+});
