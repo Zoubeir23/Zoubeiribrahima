@@ -107,7 +107,7 @@ const Navbar = () => {
   const nextLanguage = language === "fr" ? "en" : "fr";
 
   const getDesktopLinkClassName = (isActive: boolean) =>
-    `rounded-full px-4 py-2 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)] ${
+    `inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)] ${
       isActive
         ? "bg-white font-semibold text-[var(--surface-deepest)]"
         : "text-white hover:bg-[var(--surface-raised)]"
@@ -115,7 +115,7 @@ const Navbar = () => {
   const mobileLinkClassName =
     "block rounded-[var(--radius-small)] px-4 py-3.5 text-center font-body text-base font-semibold text-[var(--text-secondary)] transition-colors duration-300 hover:bg-[var(--surface-raised)] hover:text-white";
   const primaryActionClassName =
-    "inline-flex min-h-11 items-center justify-center rounded-full bg-white px-5 py-2 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
+    "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full bg-white px-5 py-2 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
 
   const logoImage = (
     <img
