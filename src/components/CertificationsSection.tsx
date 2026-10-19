@@ -24,7 +24,7 @@ const CertificationsSection = () => {
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {certifications.map((certification) => {
             const itemClassName =
-              "group flex h-full items-start gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-5 transition-colors duration-300 hover:border-[var(--accent-violet)]";
+              "orbit-card spotlight-card group flex h-full items-start gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-5 hover:border-[var(--accent-violet)]";
             const itemBody = (
               <>
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-white">
