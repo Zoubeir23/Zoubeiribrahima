@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://zoubeiribrahima.dev/sitemap.xml
+Sitemap: https://zoubeir.me/sitemap.xml
