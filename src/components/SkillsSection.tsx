@@ -32,7 +32,7 @@ const skillCards: SkillCard[] = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="bg-[#0303AB] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
+    <section id="skills" className="bg-[var(--surface-deepest)] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -42,22 +42,22 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-display font-bold text-[#FFFFFF]/55 text-sm uppercase tracking-[0.3em] mb-3">
+          <p className="font-display font-bold text-white/55 text-sm uppercase tracking-[0.3em] mb-3">
             — Technologies
           </p>
-          <h2 className="font-display font-black text-[#FFFFFF] text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
+          <h2 className="font-display font-black text-white text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
             My Tech
             <br />
-            <span className="text-[#FFFFFF]/35">Stack</span>
+            <span className="text-white/35">Stack</span>
           </h2>
         </motion.div>
 
         {/* 3 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-4 border-[#F5C518] bg-[#0303AB]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-[var(--surface-border)] bg-[var(--surface-deepest)] rounded-md">
           {skillCards.map((card, index) => (
             <motion.div
               key={card.title}
-              className="group border-b-4 md:border-b-0 md:border-r-4 border-[#F5C518] last:border-b-0 md:last:border-r-0 p-5 sm:p-6 md:p-7 bg-[#0303AB] hover:bg-[#FFFFFF] transition-all duration-200 cursor-default"
+              className="group border-b md:border-b-0 md:border-r border-[var(--surface-border)] last:border-b-0 md:last:border-r-0 p-5 sm:p-6 md:p-7 bg-[var(--surface-deepest)] hover:bg-white transition-all duration-200 cursor-default"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -65,13 +65,13 @@ const SkillsSection = () => {
             >
               {/* Icon */}
               <div className="mb-6">
-                <div className="w-14 h-14 border-4 border-[#F5C518] group-hover:border-[#0303AB] flex items-center justify-center bg-[#FFFFFF] group-hover:bg-[#0303AB] transition-all duration-200">
-                  <card.icon className="w-6 h-6 text-[#0303AB] group-hover:text-[#FFFFFF] transition-colors duration-200" />
+                <div className="w-14 h-14 border border-[var(--surface-border)] group-hover:border-[var(--accent-violet)] flex items-center justify-center bg-white group-hover:bg-[var(--surface-raised)] transition-all duration-200 rounded-md">
+                  <card.icon className="w-6 h-6 text-[var(--surface-deepest)] group-hover:text-white transition-colors duration-200" />
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="font-display font-black text-lg sm:text-xl uppercase text-[#FFFFFF] group-hover:text-[#0303AB] mb-6 transition-colors duration-200">
+              <h3 className="font-display font-black text-lg sm:text-xl uppercase text-white group-hover:text-[var(--surface-deepest)] mb-6 transition-colors duration-200">
                 {card.title}
               </h3>
 
@@ -80,9 +80,9 @@ const SkillsSection = () => {
                 {card.techs.map((tech) => (
                   <li
                     key={tech}
-                    className="flex min-w-0 items-center gap-3 font-body font-semibold text-xs sm:text-sm text-[#FFFFFF]/80 group-hover:text-[#0303AB]/80 transition-colors duration-200"
+                    className="flex min-w-0 items-center gap-3 font-body font-semibold text-xs sm:text-sm text-white/80 group-hover:text-[var(--surface-deepest)]/80 transition-colors duration-200"
                   >
-                    <span className="w-2 h-2 bg-[#FFFFFF] group-hover:bg-[#0303AB] shrink-0 transition-colors duration-200" />
+                    <span className="w-2 h-2 bg-white group-hover:bg-[var(--surface-raised)] shrink-0 transition-colors duration-200" />
                     {tech}
                   </li>
                 ))}
@@ -93,20 +93,20 @@ const SkillsSection = () => {
 
         {/* Full stack tags row */}
         <motion.div
-          className="mt-12 border-t-4 border-[#020285] pt-8"
+          className="mt-12 border-t border-[var(--surface-border)] pt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <p className="font-display font-bold text-[#FFFFFF]/70 text-xs uppercase tracking-[0.3em] mb-4">
+          <p className="font-display font-bold text-white/70 text-xs uppercase tracking-[0.3em] mb-4">
             Domaines maitrises
           </p>
           <div className="flex flex-wrap gap-2 sm:gap-3">
             {["Backend", "APIs", "Data", "Frontend", "Automatisation", "DevOps", "Architecture", "Qualite", "Securite", "Scalabilite"].map((tech) => (
               <span
                 key={tech}
-                className="inline-flex items-center gap-2 font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider border-2 border-[#F5C518] text-[#FFFFFF] px-3 py-1.5 hover:bg-[#FFFFFF] hover:text-[#0303AB] transition-all duration-150 cursor-default"
+                className="inline-flex items-center gap-2 font-body font-bold text-[11px] sm:text-xs uppercase tracking-[0.08em] sm:tracking-wider border border-[var(--surface-border)] text-white px-3 py-1.5 hover:bg-white hover:text-[var(--surface-deepest)] transition-all duration-150 cursor-default"
               >
                 {tech}
               </span>
