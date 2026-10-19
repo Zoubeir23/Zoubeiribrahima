@@ -71,3 +71,28 @@ describe("legal content", () => {
   });
 });
 
+describe("skills stack from the CV", () => {
+  const expectedStackItems = [
+    "JavaScript", "Python", "PHP", "Java", "SQL",
+    "React", "Tailwind CSS",
+    "Node.js", "Django", "Laravel",
+    "PostgreSQL", "Supabase", "MySQL",
+    "Git", "GitHub", "Claude Code", "VS Code", "Warp",
+  ];
+
+  it("lists every language, framework, database and tool of the CV in both languages", () => {
+    for (const language of ["fr", "en"] as const) {
+      const items = skillsContent[language].stack.groups.flatMap((group) => group.items);
+      for (const expected of expectedStackItems) {
+        expect(items, `${language}: ${expected}`).toContain(expected);
+      }
+    }
+  });
+
+  it("groups the stack into languages, frontend, backend, databases, tools and methodologies", () => {
+    for (const language of ["fr", "en"] as const) {
+      expect(skillsContent[language].stack.groups).toHaveLength(6);
+    }
+  });
+});
+
