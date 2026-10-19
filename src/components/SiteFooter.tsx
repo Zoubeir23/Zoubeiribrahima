@@ -56,8 +56,8 @@ const SiteFooter = () => {
   return (
     <footer className="border-t border-[var(--surface-border)] bg-[var(--surface-base)] px-4 pb-24 pt-14 sm:px-6 lg:pb-10">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="sm:col-span-2 lg:col-span-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-12 lg:gap-x-12">
+          <div className="col-span-2 lg:col-span-4">
             <div className="inline-flex rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-3">
               <img
                 src="/logo-scale-avec-zoubeir-for-dark-background.png"
@@ -94,7 +94,7 @@ const SiteFooter = () => {
             </ul>
           </div>
 
-          <nav aria-label={footer.navigationTitle} className="lg:col-span-3">
+          <nav aria-label={footer.navigationTitle} className="lg:col-span-2">
             <h2 className={columnTitleClassName}>
               <Emoji symbol="🧭" className="mr-2" />
               {footer.navigationTitle}
@@ -134,7 +134,7 @@ const SiteFooter = () => {
             </ul>
           </nav>
 
-          <nav aria-label={footer.legalTitle} className="lg:col-span-2">
+          <nav aria-label={footer.legalTitle} className="col-span-2 lg:col-span-3">
             <h2 className={columnTitleClassName}>
               <Emoji symbol="⚖️" className="mr-2" />
               {footer.legalTitle}
