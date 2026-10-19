@@ -14,11 +14,11 @@ interface ServiceMeta {
 }
 
 export const serviceMeta: Record<ServiceSlug, ServiceMeta> = {
-  saas: { emoji: "🚀", illustrationPath: "/services/saas.png" },
-  "web-applications": { emoji: "🌐", illustrationPath: "/services/web-applications.png" },
-  "mobile-applications": { emoji: "📱", illustrationPath: "/services/mobile-applications.png" },
-  "portfolio-websites": { emoji: "🎨", illustrationPath: "/services/portfolio-websites.png" },
-  "remote-it-services": { emoji: "🛠️", illustrationPath: "/services/remote-it-services.png" },
+  saas: { emoji: "🚀", illustrationPath: "/services/saas.webp" },
+  "web-applications": { emoji: "🌐", illustrationPath: "/services/web-applications.webp" },
+  "mobile-applications": { emoji: "📱", illustrationPath: "/services/mobile-applications.webp" },
+  "portfolio-websites": { emoji: "🎨", illustrationPath: "/services/portfolio-websites.webp" },
+  "remote-it-services": { emoji: "🛠️", illustrationPath: "/services/remote-it-services.webp" },
 };
 
 export const isServiceSlug = (candidate: string | undefined): candidate is ServiceSlug =>
