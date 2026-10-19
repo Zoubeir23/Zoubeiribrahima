@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import { useLandingContent } from "@/hooks/useLandingContent";
@@ -15,13 +16,13 @@ const ServicesSection = () => {
     <section id="services" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <SectionHeading title={services.title} subtitle={services.subtitle} />
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {serviceSlugs.map((slug) => {
+        {serviceSlugs.map((slug, index) => {
           const service = content.services[slug];
           return (
-            <li key={slug}>
+            <Reveal as="li" key={slug} delaySeconds={index * 0.08}>
               <Link
                 to={`/services/${slug}`}
-                className="group flex h-full flex-col gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 transition-colors duration-300 hover:border-[var(--accent-violet)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
+                className="orbit-card spotlight-card group flex h-full flex-col gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 hover:border-[var(--accent-violet)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
               >
                 <ServiceIllustration slug={slug} className="aspect-[4/3] w-full transition-transform duration-300 group-hover:scale-[1.02]" emojiClassName="text-6xl" />
                 <div className="flex-1">
@@ -33,7 +34,7 @@ const ServicesSection = () => {
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </span>
               </Link>
-            </li>
+            </Reveal>
           );
         })}
       </ul>
