@@ -1,6 +1,7 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { CalendarDays, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import Emoji from "@/components/Emoji";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { buildWhatsappLink } from "@/lib/contact-channels";
 import { contactChannels, contactConfig } from "@/lib/contact-config";
@@ -32,6 +33,7 @@ const ServiceOfferingTabs = ({ offerings }: ServiceOfferingTabsProps) => {
             value={`offering-${index}`}
             className="shrink-0 rounded-full px-5 py-2.5 font-body text-sm text-white transition-colors duration-300 hover:bg-[var(--surface-raised)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)] data-[state=active]:bg-white data-[state=active]:font-semibold data-[state=active]:text-[var(--surface-deepest)]"
           >
+            <Emoji symbol={offering.emoji} className="mr-2" />
             {offering.tabLabel}
           </Tabs.Trigger>
         ))}
@@ -45,7 +47,10 @@ const ServiceOfferingTabs = ({ offerings }: ServiceOfferingTabsProps) => {
             value={`offering-${index}`}
             className="gradient-ring relative rounded-[var(--radius-medium)] bg-[var(--surface-base)] p-6 focus-visible:outline-none sm:p-10"
           >
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">{offering.tabLabel}</p>
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+              <Emoji symbol={offering.emoji} className="mr-2" />
+              {offering.tabLabel}
+            </p>
             <h3 className="bg-gradient-to-b from-white via-white to-[var(--accent-violet)] bg-clip-text font-display text-[clamp(2.25rem,8vw,5rem)] uppercase leading-none text-transparent">
               {offering.headline}
             </h3>
