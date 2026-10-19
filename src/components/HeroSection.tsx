@@ -96,7 +96,7 @@ const HeroSection = () => {
                 className="h-72 w-full object-contain object-bottom sm:h-80 md:h-[28rem]"
                 width={768}
                 height={896}
-                fetchPriority="high"
+                {...{ fetchpriority: "high" }}
               />
               <span className="absolute -bottom-3 left-4 rounded-full border border-[var(--surface-border)] bg-[var(--surface-raised)] px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-white">
                 Django · Python · AI
