@@ -16,11 +16,6 @@ describe("landingContent", () => {
     expect(collectKeyPaths(landingContent.en)).toEqual(collectKeyPaths(landingContent.fr));
   });
 
-  it("covers the five offered services", () => {
-    expect(landingContent.fr.services.items).toHaveLength(5);
-    expect(landingContent.en.services.items).toHaveLength(5);
-  });
-
   it("never leaves an empty string", () => {
     const allTexts = (value: unknown): string[] =>
       typeof value === "string"

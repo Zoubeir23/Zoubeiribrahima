@@ -39,7 +39,6 @@ export interface LandingContent {
   services: {
     title: string;
     subtitle: string;
-    items: TitledItem[];
   };
   process: {
     title: string;
@@ -117,28 +116,6 @@ const frenchContent: LandingContent = {
   services: {
     title: "Mes services",
     subtitle: "Un seul interlocuteur, de l'idée à la mise en ligne.",
-    items: [
-      {
-        title: "Développement SaaS",
-        description: "Conception et développement de logiciels en ligne : authentification, abonnements, tableaux de bord.",
-      },
-      {
-        title: "Applications web",
-        description: "Applications sur mesure, rapides et maintenables, adaptées à votre activité.",
-      },
-      {
-        title: "Applications mobiles",
-        description: "Applications mobiles pensées pour vos utilisateurs, avec une expérience fluide.",
-      },
-      {
-        title: "Sites portfolio",
-        description: "Un portfolio clair et performant qui met en valeur votre travail et vous fait trouver.",
-      },
-      {
-        title: "Services informatiques à distance",
-        description: "Dépannage, maintenance et accompagnement technique, où que vous soyez.",
-      },
-    ],
   },
   process: {
     title: "Comment ça marche",
@@ -268,28 +245,6 @@ const englishContent: LandingContent = {
   services: {
     title: "My services",
     subtitle: "One point of contact, from idea to launch.",
-    items: [
-      {
-        title: "SaaS development",
-        description: "Design and development of online software: authentication, subscriptions, dashboards.",
-      },
-      {
-        title: "Web applications",
-        description: "Custom applications that are fast, maintainable and fitted to your business.",
-      },
-      {
-        title: "Mobile applications",
-        description: "Mobile apps built around your users, with a smooth experience.",
-      },
-      {
-        title: "Portfolio websites",
-        description: "A clear, fast portfolio that showcases your work and helps you get found.",
-      },
-      {
-        title: "Remote IT services",
-        description: "Troubleshooting, maintenance and technical support, wherever you are.",
-      },
-    ],
   },
   process: {
     title: "How it works",
