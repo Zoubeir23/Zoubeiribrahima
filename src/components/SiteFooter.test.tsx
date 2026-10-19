@@ -64,12 +64,14 @@ describe("SiteFooter", () => {
     expect(gitHubLink).toHaveAttribute("rel", expect.stringContaining("noopener"));
   });
 
-  it("links to every section of the home page", () => {
+  it("links to every dedicated page of the site", () => {
     renderFooter();
     const navigation = screen.getByRole("navigation", { name: text.navigationTitle });
-    expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.services })).toHaveAttribute("href", "/#services");
-    expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.contact })).toHaveAttribute("href", "/#contact");
+    expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.services })).toHaveAttribute("href", "/services");
+    expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.contact })).toHaveAttribute("href", "/contact");
     expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.blog })).toHaveAttribute("href", "/blog");
+    expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.stack })).toHaveAttribute("href", "/skills");
+    expect(within(navigation).getByRole("link", { name: landingContent.fr.faq.title })).toHaveAttribute("href", "/faq");
   });
 
   it("links to the five service pages", () => {
