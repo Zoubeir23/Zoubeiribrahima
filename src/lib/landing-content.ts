@@ -75,6 +75,16 @@ export interface LandingContent {
   footer: {
     rights: string;
     scrollToTop: string;
+    tagline: string;
+    navigationTitle: string;
+    servicesTitle: string;
+    legalTitle: string;
+    followTitle: string;
+    privacyLabel: string;
+    termsLabel: string;
+    cookiesLabel: string;
+    emailLabel: string;
+    whatsappLabel: string;
   };
   booking: {
     providerName: string;
@@ -205,6 +215,16 @@ const frenchContent: LandingContent = {
   footer: {
     rights: "Tous droits réservés",
     scrollToTop: "Retour en haut",
+    tagline: "Développeur freelance : SaaS, applications web et mobiles, sites portfolio et services informatiques à distance.",
+    navigationTitle: "Navigation",
+    servicesTitle: "Services",
+    legalTitle: "Informations légales",
+    followTitle: "Me retrouver",
+    privacyLabel: "Politique de confidentialité",
+    termsLabel: "Conditions d'utilisation",
+    cookiesLabel: "Gérer mes cookies",
+    emailLabel: "Écrire un e-mail",
+    whatsappLabel: "Écrire sur WhatsApp",
   },
   booking: {
     providerName: "Prise de rendez-vous",
@@ -335,6 +355,16 @@ const englishContent: LandingContent = {
   footer: {
     rights: "All rights reserved",
     scrollToTop: "Back to top",
+    tagline: "Freelance developer: SaaS, web and mobile applications, portfolio websites and remote IT services.",
+    navigationTitle: "Navigation",
+    servicesTitle: "Services",
+    legalTitle: "Legal information",
+    followTitle: "Find me online",
+    privacyLabel: "Privacy policy",
+    termsLabel: "Terms of use",
+    cookiesLabel: "Manage my cookies",
+    emailLabel: "Send an email",
+    whatsappLabel: "Write on WhatsApp",
   },
   booking: {
     providerName: "Book a call",
