@@ -5,11 +5,18 @@ import FaqSection from "@/components/FaqSection";
 import ProcessSection from "@/components/ProcessSection";
 import ReasonsSection from "@/components/ReasonsSection";
 import ServicesSection from "@/components/ServicesSection";
+import { MemoryRouter } from "react-router-dom";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { landingContent } from "@/lib/landing-content";
+import { serviceSlugs } from "@/lib/service-meta";
+import { servicesContent } from "@/lib/services-content";
 
 const renderWithLanguage = (element: ReactElement) =>
-  render(<LanguageProvider>{element}</LanguageProvider>);
+  render(
+    <LanguageProvider>
+      <MemoryRouter>{element}</MemoryRouter>
+    </LanguageProvider>,
+  );
 
 describe("landing sections", () => {
   beforeEach(() => {
@@ -19,8 +26,16 @@ describe("landing sections", () => {
   it("renders every offered service under the services anchor", () => {
     const { container } = renderWithLanguage(<ServicesSection />);
     expect(container.querySelector("#services")).not.toBeNull();
-    for (const service of landingContent.fr.services.items) {
-      expect(screen.getByRole("heading", { name: service.title })).toBeInTheDocument();
+    for (const slug of serviceSlugs) {
+      expect(screen.getByRole("heading", { name: servicesContent.fr.services[slug].title })).toBeInTheDocument();
+    }
+  });
+
+  it("links every service card to its detail page", () => {
+    renderWithLanguage(<ServicesSection />);
+    for (const slug of serviceSlugs) {
+      const card = screen.getByRole("link", { name: new RegExp(servicesContent.fr.services[slug].title) });
+      expect(card).toHaveAttribute("href", `/services/${slug}`);
     }
   });
 
