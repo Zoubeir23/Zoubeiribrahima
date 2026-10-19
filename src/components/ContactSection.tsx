@@ -13,7 +13,8 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
-import { contactChannels, contactConfig } from "@/lib/contact-config";
+import { contactChannels, contactConfig, SITE_DOMAIN } from "@/lib/contact-config";
+import { buildBookingEmbedUrl } from "@/lib/contact-channels";
 import { contactContent } from "@/lib/contact-content";
 
 const FORM_ENDPOINT = "https://formspree.io/f/xaqovjqb";
@@ -276,7 +277,7 @@ const ContactSection = () => {
           >
             <iframe
               title={booking.providerName}
-              src={bookingChannel.href}
+              src={buildBookingEmbedUrl(bookingChannel.href, SITE_DOMAIN)}
               loading="lazy"
               className="h-[640px] w-full rounded-md border border-[var(--surface-border)] bg-white"
             />
