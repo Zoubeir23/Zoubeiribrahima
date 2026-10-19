@@ -27,6 +27,7 @@ const ServiceDetail = () => {
     title: `${service?.title ?? content.notFoundTitle} | ${content.pageTitleSuffix}`,
     description: service ? toMetaDescription(service.summary) : content.notFoundBody,
     path: service && slug ? `/services/${slug}` : "/services",
+    noindex: !service,
   });
 
   if (!isServiceSlug(slug) || !service) {

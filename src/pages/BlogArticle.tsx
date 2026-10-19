@@ -151,6 +151,7 @@ const BlogArticle = () => {
     title: `${post?.title ?? blogMeta.title} | Zoubeir Ibrahima`,
     description: post ? toMetaDescription(post.excerpt) : blogMeta.description,
     path: post ? `/blog/${post.slug}` : "/blog",
+    noindex: !post,
   });
   useStructuredData("article", post ? buildBlogArticleStructuredData(post) : null);
   useStructuredData("breadcrumb", post ? buildBlogBreadcrumbStructuredData(post) : null);

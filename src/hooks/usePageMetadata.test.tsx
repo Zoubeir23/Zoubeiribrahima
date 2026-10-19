@@ -46,4 +46,31 @@ describe("usePageMetadata", () => {
     expect(document.title).toBe("Projects");
     expect(readDescription()).toBe("en");
   });
+  describe("noindex", () => {
+    const readRobots = () => document.head.querySelector('meta[name="robots"]')?.getAttribute("content");
+
+    it("leaves the robots tag untouched by default", () => {
+      document.head.innerHTML = '<meta name="robots" content="index, follow">';
+      renderHook(() => usePageMetadata({ title: "t", description: "d", path: "/" }));
+      expect(readRobots()).toBe("index, follow");
+    });
+
+    it("asks search engines not to index a page flagged as noindex", () => {
+      document.head.innerHTML = '<meta name="robots" content="index, follow">';
+      renderHook(() => usePageMetadata({ title: "t", description: "d", path: "/x", noindex: true }));
+      expect(readRobots()).toBe("noindex, follow");
+    });
+
+    it("creates the robots tag when the document has none", () => {
+      renderHook(() => usePageMetadata({ title: "t", description: "d", path: "/x", noindex: true }));
+      expect(readRobots()).toBe("noindex, follow");
+    });
+
+    it("restores indexing when the user leaves the page", () => {
+      document.head.innerHTML = '<meta name="robots" content="index, follow">';
+      const { unmount } = renderHook(() => usePageMetadata({ title: "t", description: "d", path: "/x", noindex: true }));
+      unmount();
+      expect(readRobots()).toBe("index, follow");
+    });
+  });
 });
