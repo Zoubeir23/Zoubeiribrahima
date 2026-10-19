@@ -1,11 +1,12 @@
 import { ArrowLeft, FileText, ShieldCheck } from "lucide-react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Emoji from "@/components/Emoji";
 import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
 import SiteFooter from "@/components/SiteFooter";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { usePageMetadata } from "@/hooks/usePageMetadata";
+import { toMetaDescription } from "@/lib/meta-description";
 import { legalContent } from "@/lib/legal-content";
 
 type LegalKind = "privacy" | "terms";
@@ -33,13 +34,11 @@ const LegalPage = ({ kind }: LegalPageProps) => {
   const otherDocument = content[otherKind];
   const OtherIcon = otherKind === "privacy" ? ShieldCheck : FileText;
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [kind]);
-
-  useEffect(() => {
-    document.title = `${legalDocument.title} | ${SITE_NAME}`;
-  }, [legalDocument.title]);
+  usePageMetadata({
+    title: `${legalDocument.title} | ${SITE_NAME}`,
+    description: toMetaDescription(legalDocument.intro),
+    path: LEGAL_ROUTES[kind],
+  });
 
   return (
     <div className="min-h-screen bg-[var(--surface-deepest)] font-body text-white antialiased">
