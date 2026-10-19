@@ -13,7 +13,7 @@ interface HomeTeaserSectionProps {
 }
 
 const HomeTeaserSection = ({ emoji, title, description, path, linkLabel, children }: HomeTeaserSectionProps) => (
-  <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
+  <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
     <SectionHeading emoji={emoji} title={title} subtitle={description} />
     {children}
     <div className="mt-8 flex justify-start sm:justify-end">
