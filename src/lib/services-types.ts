@@ -1,6 +1,7 @@
 import type { ServiceSlug } from "@/lib/service-meta";
 
 export interface ServiceOffering {
+  emoji: string;
   tabLabel: string;
   headline: string;
   tagline: string;

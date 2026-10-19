@@ -37,6 +37,7 @@ describe("services content", () => {
         expect(service.offerings.length).toBeGreaterThanOrEqual(3);
         for (const offering of service.offerings) {
           expect(offering.quoteMessage.trim()).not.toBe("");
+          expect(offering.emoji.trim()).not.toBe("");
           expect(offering.chips.length).toBeGreaterThan(0);
         }
       }
