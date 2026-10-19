@@ -12,6 +12,7 @@ export interface ConsentContextValue {
   savePreferences: (preferences: ConsentPreferences) => void;
   allowExternalContent: () => void;
   openPreferences: () => void;
+  closePreferences: () => void;
 }
 
 export const ConsentContext = createContext<ConsentContextValue | undefined>(undefined);

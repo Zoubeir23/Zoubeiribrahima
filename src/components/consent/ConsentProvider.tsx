@@ -37,6 +37,7 @@ const ConsentProvider = ({ children }: ConsentProviderProps) => {
       allowExternalContent: () =>
         savePreferences({ analytics: preferences?.analytics ?? false, externalContent: true }),
       openPreferences: () => setIsPanelRequested(true),
+      closePreferences: () => setIsPanelRequested(false),
     }),
     [preferences, isPanelRequested, savePreferences],
   );
