@@ -6,6 +6,7 @@ import CookieBanner from "@/components/consent/CookieBanner";
 import SiteFooter from "@/components/SiteFooter";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { CONSENT_STORAGE_KEY } from "@/lib/consent-storage";
+import { aboutContent } from "@/lib/about-content";
 import { landingContent } from "@/lib/landing-content";
 import { serviceSlugs } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
@@ -72,6 +73,12 @@ describe("SiteFooter", () => {
     expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.blog })).toHaveAttribute("href", "/blog");
     expect(within(navigation).getByRole("link", { name: landingContent.fr.nav.stack })).toHaveAttribute("href", "/skills");
     expect(within(navigation).getByRole("link", { name: landingContent.fr.faq.title })).toHaveAttribute("href", "/faq");
+  });
+
+  it("links to the about page", () => {
+    renderFooter();
+    const navigation = screen.getByRole("navigation", { name: text.navigationTitle });
+    expect(within(navigation).getByRole("link", { name: aboutContent.fr.meta.title })).toHaveAttribute("href", "/a-propos");
   });
 
   it("links to the five service pages", () => {

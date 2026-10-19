@@ -10,7 +10,7 @@ const findItem = (path: string) => {
 };
 
 describe("NAV_ITEMS", () => {
-  it("lists the home page, the six dedicated pages and the blog in order", () => {
+  it("lists the home page, the dedicated pages, the about page and the blog in order", () => {
     expect(NAV_ITEMS.map((item) => item.path)).toEqual([
       "/",
       "/services",
@@ -18,6 +18,7 @@ describe("NAV_ITEMS", () => {
       "/projects",
       "/experience",
       "/certifications",
+      "/a-propos",
       "/contact",
       "/blog",
     ]);

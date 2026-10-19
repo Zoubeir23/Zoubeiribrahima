@@ -7,7 +7,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { HIRE_EMOJI, NAV_ITEMS, isNavItemActive } from "@/lib/site-navigation";
 
 const desktopLinkBaseClassName =
-  "inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)]";
+  "inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-2 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-violet)]";
 const mobileLinkClassName =
   "block rounded-[var(--radius-small)] px-4 py-3.5 text-center font-body text-base font-semibold transition-colors duration-300 hover:bg-[var(--surface-raised)] hover:text-white";
 const primaryActionClassName =
@@ -69,7 +69,7 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6">
-        <Link to="/" aria-label={nav.home}>
+        <Link to="/" aria-label={nav.home} className="shrink-0">
           <img
             src="/logo-scale-avec-zoubeir-for-dark-background.png"
             alt="Scale avec Zoubeir"
@@ -91,7 +91,7 @@ const Navbar = () => {
                   isActive ? "bg-white font-semibold text-[var(--surface-deepest)]" : "text-white hover:bg-[var(--surface-raised)]"
                 }`}
               >
-                <Emoji symbol={item.emoji} className="mr-1.5" />
+                <Emoji symbol={item.emoji} className="mr-1.5 hidden 2xl:inline-block" />
                 {nav[item.labelKey]}
               </Link>
             );
@@ -108,7 +108,7 @@ const Navbar = () => {
             {nextLanguage}
           </button>
 
-          <Link to="/contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
+          <Link to="/contact" className={`hidden 2xl:inline-flex ${primaryActionClassName}`}>
             <Emoji symbol={HIRE_EMOJI} className="mr-2" />
             {nav.hire}
           </Link>

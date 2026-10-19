@@ -12,6 +12,7 @@ export type NavLabelKey =
   | "projects"
   | "experience"
   | "certifications"
+  | "about"
   | "contact"
   | "blog";
 
@@ -28,6 +29,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { path: "/projects", labelKey: "projects", emoji: "🚀" },
   { path: "/experience", labelKey: "experience", emoji: "🎓" },
   { path: "/certifications", labelKey: "certifications", emoji: "🏆" },
+  { path: "/a-propos", labelKey: "about", emoji: "👤" },
   { path: "/contact", labelKey: "contact", emoji: "✉️" },
   { path: "/blog", labelKey: "blog", emoji: "📖" },
 ];

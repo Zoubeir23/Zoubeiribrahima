@@ -1,7 +1,9 @@
 import { useState, useMemo } from "react";
 import { ArrowLeft, BookOpen, Bot, Rocket, Search, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import BlogReadingPaths from "@/components/BlogReadingPaths";
 import { blogPosts } from "@/data/blogPosts";
+import { blogReadingPaths } from "@/data/blogReadingPaths";
 import Navbar from "@/components/Navbar";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
@@ -9,6 +11,7 @@ import { pageContent } from "@/lib/page-content";
 
 const CATEGORY_LABELS: Record<string, string> = {
   all: "Tous",
+  saas: "SaaS",
   outils: "Outils",
   python: "Python",
   frontend: "Frontend",
@@ -116,7 +119,7 @@ const Blog = () => {
               <p className="mt-2 font-body text-xs uppercase tracking-[0.25em] text-white/70">Axes éditoriaux</p>
             </div>
             <div className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-5 rounded-md">
-              <p className="font-display text-4xl font-black">1</p>
+              <p className="font-display text-4xl font-black">{blogReadingPaths.length}</p>
               <p className="mt-2 font-body text-xs uppercase tracking-[0.25em] text-white/70">Parcours de lecture</p>
             </div>
           </div>
@@ -163,7 +166,7 @@ const Blog = () => {
                       : "bg-transparent text-white/65 border-[var(--surface-border)] hover:border-[var(--accent-violet)] hover:text-white"
                   }`}
                 >
-                  {label} <span className="opacity-55">({count})</span>
+                  {label} <span className="opacity-80">({count})</span>
                 </button>
               );
             })}
@@ -304,6 +307,8 @@ const Blog = () => {
           )}
         </div>
       </section>
+
+      <BlogReadingPaths />
 
       {/* Footer CTA */}
       <section className="border-t border-[var(--surface-border)] bg-[var(--surface-base)] py-12 sm:py-16 px-4 sm:px-6">
