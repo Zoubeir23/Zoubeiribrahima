@@ -279,7 +279,7 @@ const ContactSection = () => {
               title={booking.providerName}
               src={buildBookingEmbedUrl(bookingChannel.href, SITE_DOMAIN)}
               loading="lazy"
-              className="h-[640px] w-full rounded-md border border-[var(--surface-border)] bg-white"
+              className="h-[640px] w-full rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)]"
             />
           </ConsentGate>
         </div>
