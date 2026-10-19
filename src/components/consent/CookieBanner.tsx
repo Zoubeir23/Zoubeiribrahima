@@ -94,7 +94,14 @@ const CookieBannerPanel = () => {
         </h2>
       </div>
       <p id="cookie-banner-description" className="mb-4 text-sm text-[var(--text-secondary)]">
-        {consent.description}
+        {consent.description}{" "}
+        {/* A plain anchor: the banner sits outside the router, so a full page load is expected here. */}
+        <a
+          href="/privacy"
+          className="font-semibold text-white underline underline-offset-4 hover:text-[var(--text-secondary)]"
+        >
+          {consent.learnMore}
+        </a>
       </p>
 
       {isCustomizing ? (
