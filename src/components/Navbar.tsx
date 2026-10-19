@@ -123,7 +123,7 @@ const Navbar = () => {
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6">
         {isHomePage ? <a href="#hero">{logoImage}</a> : <Link to="/#hero">{logoImage}</Link>}
 
-        <div className="hidden items-center gap-1 rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] p-1 font-body text-sm font-medium md:flex">
+        <div className="hidden items-center gap-1 rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] p-1 font-body text-sm font-medium xl:flex">
           {navLinks.map((link) =>
             isHomePage ? (
               <a
@@ -164,11 +164,11 @@ const Navbar = () => {
           </button>
 
           {isHomePage ? (
-            <a href="#contact" className={`hidden md:inline-flex ${primaryActionClassName}`}>
+            <a href="#contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
               {nav.hire}
             </a>
           ) : (
-            <Link to="/#contact" className={`hidden md:inline-flex ${primaryActionClassName}`}>
+            <Link to="/#contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
               {nav.hire}
             </Link>
           )}
@@ -176,7 +176,7 @@ const Navbar = () => {
           <button
             ref={menuButtonRef}
             type="button"
-            className="min-h-11 min-w-11 rounded-full border border-[var(--surface-border)] p-2.5 text-white md:hidden"
+            className="min-h-11 min-w-11 rounded-full border border-[var(--surface-border)] p-2.5 text-white xl:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={nav.toggleMenu}
             aria-expanded={isMenuOpen}
@@ -191,7 +191,7 @@ const Navbar = () => {
         <div
           id="mobile-nav-menu"
           ref={mobileMenuRef}
-          className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[var(--surface-border)] bg-[var(--surface-deepest)] md:hidden"
+          className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[var(--surface-border)] bg-[var(--surface-deepest)] xl:hidden"
         >
           <div className="flex flex-col gap-1 p-4 sm:p-6">
             {navLinks.map((link) =>
