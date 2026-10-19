@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { certificationsContent } from "@/lib/certifications-content";
 import { contactContent } from "@/lib/contact-content";
 import { experienceContent } from "@/lib/experience-content";
+import { landingContent } from "@/lib/landing-content";
 import { legalContent } from "@/lib/legal-content";
 import { projectsContent } from "@/lib/projects-content";
 import { servicesContent } from "@/lib/services-content";
@@ -120,6 +121,16 @@ describe("experience content follows the CV", () => {
       const description = findExperience(language, "Snapfolioo")?.description ?? "";
       expect(description).toContain("Google OAuth");
       expect(description).toContain("PDF");
+    }
+  });
+});
+
+describe("location follows the CV", () => {
+  it("names Dakar in the hero, the footer and the contact section", () => {
+    for (const language of ["fr", "en"] as const) {
+      expect(landingContent[language].hero.location, `${language} hero`).toContain("Dakar");
+      expect(landingContent[language].footer.location, `${language} footer`).toContain("Dakar");
+      expect(contactContent[language].locationValue, `${language} contact`).toContain("Dakar");
     }
   });
 });
