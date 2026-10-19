@@ -54,6 +54,14 @@ export interface LandingContent {
     title: string;
     items: FaqItem[];
   };
+  closing: {
+    title: string;
+    action: string;
+  };
+  footer: {
+    rights: string;
+    scrollToTop: string;
+  };
   booking: {
     providerName: string;
     description: string;
@@ -182,6 +190,14 @@ const frenchContent: LandingContent = {
       },
     ],
   },
+  closing: {
+    title: "Vous avez un projet ? Travaillons ensemble.",
+    action: "Me contacter",
+  },
+  footer: {
+    rights: "Tous droits réservés",
+    scrollToTop: "Retour en haut",
+  },
   booking: {
     providerName: "Prise de rendez-vous",
     description: "Ce calendrier est hébergé par un service tiers qui peut déposer des cookies. Il ne se charge qu'avec votre accord.",
@@ -309,6 +325,14 @@ const englishContent: LandingContent = {
         answer: "Yes, maintenance and support can be agreed in the quote according to your needs.",
       },
     ],
+  },
+  closing: {
+    title: "Have a project? Let's work together.",
+    action: "Contact me",
+  },
+  footer: {
+    rights: "All rights reserved",
+    scrollToTop: "Back to top",
   },
   booking: {
     providerName: "Book a call",
