@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { certificationsContent } from "@/lib/certifications-content";
 import { contactContent } from "@/lib/contact-content";
 import { experienceContent } from "@/lib/experience-content";
+import { legalContent } from "@/lib/legal-content";
 import { projectsContent } from "@/lib/projects-content";
 import { servicesContent } from "@/lib/services-content";
 import { skillsContent } from "@/lib/skills-content";
@@ -14,6 +15,7 @@ const contentModules = {
   certifications: certificationsContent,
   contact: contactContent,
   services: servicesContent,
+  legal: legalContent,
 };
 
 describe.each(Object.entries(contentModules))("%s content", (_name, content) => {
@@ -44,3 +46,28 @@ describe("services content", () => {
     }
   });
 });
+
+describe("legal content", () => {
+  it("documents what the site really uses in both languages", () => {
+    for (const language of ["fr", "en"] as const) {
+      const privacyText = collectTexts(legalContent[language].privacy).join(" ");
+      for (const provider of ["Vercel", "Formspree", "Calendly", "WhatsApp"]) {
+        expect(privacyText).toContain(provider);
+      }
+      expect(privacyText).toContain("Zoubeiribrahima@gmail.com");
+    }
+  });
+
+  it("gives every section a title and at least one paragraph", () => {
+    for (const language of ["fr", "en"] as const) {
+      for (const document of [legalContent[language].privacy, legalContent[language].terms]) {
+        expect(document.sections.length).toBeGreaterThanOrEqual(6);
+        for (const section of document.sections) {
+          expect(section.title.trim()).not.toBe("");
+          expect(section.paragraphs.length).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+});
+
