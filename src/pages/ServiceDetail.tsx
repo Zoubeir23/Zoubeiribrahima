@@ -41,7 +41,7 @@ const ServiceDetail = () => {
             {content.notFoundTitle}
           </h1>
           <p className="text-[var(--text-secondary)]">{content.notFoundBody}</p>
-          <Link to="/#services" className={backLinkClassName}>
+          <Link to="/services" className={backLinkClassName}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {content.backToServices}
           </Link>
@@ -64,7 +64,7 @@ const ServiceDetail = () => {
       <main>
         <header className="hero-backdrop">
           <div className="mx-auto max-w-7xl px-4 pb-12 pt-32 sm:px-6">
-            <Link to="/#services" className={backLinkClassName}>
+            <Link to="/services" className={backLinkClassName}>
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               {content.backToServices}
             </Link>
@@ -171,7 +171,7 @@ const ServiceDetail = () => {
               {service.title}
             </h2>
             <Link
-              to="/#contact"
+              to="/contact"
               className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-white px-7 py-3.5 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)]"
             >
               {content.contactLabel}
