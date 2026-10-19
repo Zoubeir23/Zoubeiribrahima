@@ -88,7 +88,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
         label: "Paiement",
         title: "Paiement et conditions",
         paragraphs: [
-          "Les modalités de paiement sont précisées avant tout engagement. Les conditions complètes figurent dans les conditions d'utilisation.",
+          "Les modalités de paiement et les conditions complètes figurent dans les conditions d'utilisation.",
         ],
         methodsLabel: "Moyens de paiement acceptés",
         linkLabel: "Lire les conditions",
@@ -96,7 +96,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
       contact: {
         label: "Contact",
         title: "Me contacter",
-        paragraphs: ["Décrivez votre projet : je réponds en général sous un jour ouvré."],
+        paragraphs: ["Décrivez votre projet et choisissez le canal qui vous convient."],
         linkLabel: "Ouvrir le formulaire de contact",
         emailLabel: "Écrire un email",
         whatsappLabel: "Écrire sur WhatsApp",
@@ -161,7 +161,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
         label: "Payment",
         title: "Payment and terms",
         paragraphs: [
-          "Payment terms are agreed before any commitment. The full terms are available in the terms of use.",
+          "Payment arrangements and full conditions are set out in the terms of use.",
         ],
         methodsLabel: "Accepted payment methods",
         linkLabel: "Read the terms",
@@ -169,7 +169,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
       contact: {
         label: "Contact",
         title: "Get in touch",
-        paragraphs: ["Describe your project: I usually reply within one business day."],
+        paragraphs: ["Describe your project and pick the channel that suits you."],
         linkLabel: "Open the contact form",
         emailLabel: "Send an email",
         whatsappLabel: "Message on WhatsApp",
