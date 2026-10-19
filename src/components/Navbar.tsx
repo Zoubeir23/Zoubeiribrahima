@@ -1,9 +1,22 @@
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Emoji from "@/components/Emoji";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLanguage } from "@/hooks/useLanguage";
+
+const NAV_EMOJIS: Record<string, string> = {
+  "#hero": "🏠",
+  "#services": "🛠️",
+  "#skills": "⚙️",
+  "#projects": "🚀",
+  "#experience": "🎓",
+  "#certifications": "🏆",
+  "#contact": "✉️",
+};
+const BLOG_EMOJI = "📖";
+const HIRE_EMOJI = "🚀";
 
 const NAV_SECTION_IDS = ["hero", "services", "skills", "projects", "experience", "certifications", "contact"] as const;
 
@@ -132,6 +145,7 @@ const Navbar = () => {
                 aria-current={activeSectionLink === link.href ? "location" : undefined}
                 className={getDesktopLinkClassName(activeSectionLink === link.href)}
               >
+                <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
                 {link.label}
               </a>
             ) : (
@@ -140,6 +154,7 @@ const Navbar = () => {
                 to={`/${link.href}`}
                 className={getDesktopLinkClassName(false)}
               >
+                <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
                 {link.label}
               </Link>
             ),
@@ -149,6 +164,7 @@ const Navbar = () => {
             aria-current={isBlogActive ? "page" : undefined}
             className={getDesktopLinkClassName(isBlogActive)}
           >
+            <Emoji symbol={BLOG_EMOJI} className="mr-1.5" />
             {nav.blog}
           </Link>
         </div>
@@ -165,10 +181,12 @@ const Navbar = () => {
 
           {isHomePage ? (
             <a href="#contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
+              <Emoji symbol={HIRE_EMOJI} className="mr-2" />
               {nav.hire}
             </a>
           ) : (
             <Link to="/#contact" className={`hidden xl:inline-flex ${primaryActionClassName}`}>
+              <Emoji symbol={HIRE_EMOJI} className="mr-2" />
               {nav.hire}
             </Link>
           )}
@@ -204,7 +222,8 @@ const Navbar = () => {
                   }}
                   className={mobileLinkClassName}
                 >
-                  {link.label}
+                  <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
+                {link.label}
                 </a>
               ) : (
                 <Link
@@ -215,12 +234,14 @@ const Navbar = () => {
                   }}
                   className={mobileLinkClassName}
                 >
-                  {link.label}
+                  <Emoji symbol={NAV_EMOJIS[link.href] ?? "•"} className="mr-1.5" />
+                {link.label}
                 </Link>
               ),
             )}
             <Link to="/blog" onClick={() => setIsMenuOpen(false)} className={mobileLinkClassName}>
-              {nav.blog}
+              <Emoji symbol={BLOG_EMOJI} className="mr-1.5" />
+            {nav.blog}
             </Link>
             {isHomePage ? (
               <a
@@ -228,7 +249,8 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className={`mt-2 ${primaryActionClassName}`}
               >
-                {nav.hire}
+                <Emoji symbol={HIRE_EMOJI} className="mr-2" />
+              {nav.hire}
               </a>
             ) : (
               <Link
@@ -236,7 +258,8 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className={`mt-2 ${primaryActionClassName}`}
               >
-                {nav.hire}
+                <Emoji symbol={HIRE_EMOJI} className="mr-2" />
+              {nav.hire}
               </Link>
             )}
           </div>
