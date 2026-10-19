@@ -1,6 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import IssuerLogo from "@/components/IssuerLogo";
 import Reveal from "@/components/Reveal";
+import { getSubheadingTag } from "@/lib/heading-levels";
 import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import {
@@ -19,6 +20,7 @@ const featuredForWall = featuredCertifications.slice(
 const extractYear = (date: string): string => date.match(/\d{4}/)?.[0] ?? "-";
 
 const CertificationsWallOfFame = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
+  const CardHeading = getSubheadingTag(headingAs, 1);
   const content = useLocalizedContent(certificationsContent);
 
   return (
@@ -58,9 +60,9 @@ const CertificationsWallOfFame = ({ headingAs }: { headingAs?: SectionHeadingLev
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
                   {categoryLabel} · {extractYear(certification.date)}
                 </span>
-                <h3 className="font-display text-sm uppercase leading-tight text-white sm:text-base">
+                <CardHeading className="font-display text-sm uppercase leading-tight text-white sm:text-base">
                   {certification.featuredTitle ?? certification.title}
-                </h3>
+                </CardHeading>
                 {certification.certUrl ? (
                   <span className="mt-2 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
                     {content.viewCredentialLabel} →
