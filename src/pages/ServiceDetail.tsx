@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import ProcessSection from "@/components/ProcessSection";
+import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import ServiceOfferingTabs from "@/components/ServiceOfferingTabs";
@@ -34,7 +35,9 @@ const ServiceDetail = () => {
       <div className="min-h-screen bg-[var(--surface-deepest)] font-body text-white">
         <Navbar />
         <main className="mx-auto flex max-w-3xl flex-col items-start gap-6 px-4 pb-24 pt-40 sm:px-6">
-          <h1 className="font-display text-3xl uppercase text-white">{content.notFoundTitle}</h1>
+          <h1 className="font-display text-3xl uppercase text-white">
+            {content.notFoundTitle}
+          </h1>
           <p className="text-[var(--text-secondary)]">{content.notFoundBody}</p>
           <Link to="/#services" className={backLinkClassName}>
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -64,7 +67,11 @@ const ServiceDetail = () => {
               {content.backToServices}
             </Link>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <ServiceIllustration slug={slug} className="aspect-[4/3] w-56 shrink-0 sm:w-72" emojiClassName="text-7xl sm:text-8xl" />
+              <ServiceIllustration
+                slug={slug}
+                className="aspect-[4/3] w-56 shrink-0 sm:w-72"
+                emojiClassName="text-7xl sm:text-8xl"
+              />
               <div>
                 <span className="inline-block rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
                   {service.badge}
@@ -72,10 +79,15 @@ const ServiceDetail = () => {
                 <h1 className="mt-4 font-display text-[clamp(1.75rem,5vw,3.5rem)] uppercase leading-tight text-white">
                   {service.title}
                 </h1>
-                <p className="mt-3 max-w-2xl text-[var(--text-secondary)]">{service.summary}</p>
+                <p className="mt-3 max-w-2xl text-[var(--text-secondary)]">
+                  {service.summary}
+                </p>
               </div>
             </div>
-            <nav aria-label={content.anchors.offerings} className="mt-8 flex flex-wrap gap-2">
+            <nav
+              aria-label={content.anchors.offerings}
+              className="mt-8 flex flex-wrap gap-2"
+            >
               {anchorLinks.map((anchor) => (
                 <a
                   key={anchor.href}
@@ -89,41 +101,64 @@ const ServiceDetail = () => {
           </div>
         </header>
 
-        <section id="offerings" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
-          <SectionHeading eyebrow={content.offeringsEyebrow} title={content.offeringsTitle} />
-          <ServiceOfferingTabs offerings={service.offerings} />
+        <section
+          id="offerings"
+          className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24"
+        >
+          <SectionHeading
+            eyebrow={content.offeringsEyebrow}
+            title={content.offeringsTitle}
+          />
+          <Reveal delaySeconds={0.1}>
+            <ServiceOfferingTabs offerings={service.offerings} />
+          </Reveal>
         </section>
 
-        <section id="included" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24">
-          <div className="rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-10">
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">{content.includedEyebrow}</p>
-            <h2 className="mb-6 font-display text-[clamp(1.75rem,5vw,3rem)] uppercase text-white">{content.includedTitle}</h2>
+        <section
+          id="included"
+          className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24"
+        >
+          <Reveal className="spotlight-card rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-10">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">
+              {content.includedEyebrow}
+            </p>
+            <h2 className="mb-6 font-display text-[clamp(1.75rem,5vw,3rem)] uppercase text-white">
+              {content.includedTitle}
+            </h2>
             <ul className="grid gap-3 sm:grid-cols-2">
               {content.includedItems.map((item) => (
                 <li
                   key={item}
                   className="flex items-center gap-3 rounded-md border border-[var(--surface-border)] border-l-[var(--accent-orange)] px-4 py-3 text-sm text-white"
                 >
-                  <span aria-hidden="true" className="text-[var(--accent-orange)]">
+                  <span
+                    aria-hidden="true"
+                    className="text-[var(--accent-orange)]"
+                  >
                     ✓
                   </span>
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </section>
 
-        <section id="technologies" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24">
-          <SectionHeading eyebrow={content.technologiesEyebrow} title={content.technologiesTitle} />
+        <section
+          id="technologies"
+          className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24"
+        >
+          <SectionHeading
+            eyebrow={content.technologiesEyebrow}
+            title={content.technologiesTitle}
+          />
           <ul className="flex flex-wrap gap-3">
-            {service.technologies.map((technology) => (
-              <li
-                key={technology}
-                className="rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-5 py-2 font-mono text-sm uppercase tracking-wider text-white"
-              >
-                {technology}
-              </li>
+            {service.technologies.map((technology, index) => (
+              <Reveal as="li" key={technology} delaySeconds={index * 0.06}>
+                <span className="block rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-5 py-2 font-mono text-sm uppercase tracking-wider text-white transition-colors duration-300 hover:border-[var(--accent-violet)]">
+                  {technology}
+                </span>
+              </Reveal>
             ))}
           </ul>
         </section>
