@@ -64,7 +64,7 @@ const ServiceDetail = () => {
               {content.backToServices}
             </Link>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-              <ServiceIllustration slug={slug} className="h-28 w-28 shrink-0 sm:h-36 sm:w-36" emojiClassName="text-7xl sm:text-8xl" />
+              <ServiceIllustration slug={slug} className="aspect-[4/3] w-56 shrink-0 sm:w-72" emojiClassName="text-7xl sm:text-8xl" />
               <div>
                 <span className="inline-block rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
                   {service.badge}
