@@ -47,7 +47,11 @@ const AboutSection = () => {
               >
                 <span
                   aria-hidden="true"
-                  className="animate-status-ping absolute -left-[2.2rem] top-1.5 h-3 w-3 rounded-full bg-[var(--accent-orange)] sm:-left-[2.7rem]"
+                  className={`absolute -left-[2.2rem] top-1.5 h-3 w-3 rounded-full sm:-left-[2.7rem] ${
+                    item.isCurrent
+                      ? "animate-status-ping bg-[var(--accent-orange)]"
+                      : "bg-[var(--surface-border)]"
+                  }`}
                 />
                 <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
                   <h4 className="font-display text-xl uppercase leading-none text-white sm:text-2xl">
