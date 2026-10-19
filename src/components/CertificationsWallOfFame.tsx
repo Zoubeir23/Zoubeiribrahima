@@ -1,174 +1,84 @@
-import { motion } from "@/lib/static-motion";
 import { ExternalLink } from "lucide-react";
-import { certificationIssuerCount, certifications, featuredCertifications } from "@/data/certifications";
 import IssuerLogo from "@/components/IssuerLogo";
+import SectionHeading from "@/components/SectionHeading";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { certificationIssuerCount, certifications, featuredCertifications } from "@/data/certifications";
+import { certificationsContent } from "@/lib/certifications-content";
 
-const certificationsForWall = featuredCertifications.slice(0, 8);
+const FEATURED_CERTIFICATIONS_LIMIT = 8;
+const featuredForWall = featuredCertifications.slice(0, FEATURED_CERTIFICATIONS_LIMIT);
 
-const getYear = (date: string) => {
-  const match = date.match(/\d{4}/);
-  return match ? match[0] : "-";
-};
+const extractYear = (date: string): string => date.match(/\d{4}/)?.[0] ?? "-";
 
 const CertificationsWallOfFame = () => {
+  const content = useLocalizedContent(certificationsContent);
+
   return (
-    <section id="certifications" className="bg-[var(--surface-deepest)] py-14 sm:py-18 md:py-24 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="mb-10 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-            <p className="font-display font-bold text-white/55 text-sm uppercase tracking-[0.3em] mb-3">
-            — Reconnaissances
-          </p>
-          <h2 className="font-display font-black text-white text-3xl sm:text-5xl md:text-7xl uppercase leading-tight">
-            Certifi
-            <span className="bg-white text-[var(--surface-deepest)] px-2 rounded-full">cations</span>
-          </h2>
-        </motion.div>
+    <section id="certifications" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+      <SectionHeading eyebrow={content.eyebrow} title={content.titleLead} highlight={content.titleHighlight} />
 
-        <div className="md:hidden mb-8 -mx-4 px-4">
-          <div
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2"
-            tabIndex={0}
-            aria-label="Certifications défilables horizontalement"
-          >
-            {certificationsForWall.map((cert) => {
-              const Tag = cert.certUrl ? "a" : "article";
-              const linkProps = cert.certUrl
-                ? { href: cert.certUrl, target: "_blank", rel: "noopener noreferrer" }
-                : {};
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {featuredForWall.map((certification) => {
+          const categoryLabel =
+            certification.category === "Programme" ? content.categoryLabels.program : content.categoryLabels.certification;
+          const cardClassName =
+            "group flex h-full flex-col gap-4 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-5 transition-colors duration-300 hover:border-[var(--accent-violet)]";
+          const cardBody = (
+            <>
+              <div className="flex items-start justify-between">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-white">
+                  <IssuerLogo issuer={certification.issuer} />
+                </div>
+                {certification.certUrl ? (
+                  <ExternalLink className="mt-1 h-4 w-4 text-[var(--text-muted)] transition-colors duration-300 group-hover:text-white" aria-hidden="true" />
+                ) : null}
+              </div>
+              <div className="flex flex-1 flex-col gap-1">
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+                  {categoryLabel} · {extractYear(certification.date)}
+                </span>
+                <h3 className="font-display text-sm uppercase leading-tight text-white sm:text-base">
+                  {certification.featuredTitle ?? certification.title}
+                </h3>
+                {certification.certUrl ? (
+                  <span className="mt-2 font-mono text-[10px] uppercase tracking-widest text-[var(--text-muted)]">
+                    {content.viewCredentialLabel} →
+                  </span>
+                ) : null}
+              </div>
+            </>
+          );
 
-              return (
-                <Tag
-                  key={cert.title}
-                  {...linkProps}
-                  className="snap-start shrink-0 w-[78vw] border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-5 flex flex-col gap-4 rounded-md"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="w-10 h-10 border border-[var(--surface-border)] bg-white flex items-center justify-center shrink-0 rounded-md">
-                      <IssuerLogo issuer={cert.issuer} />
-                    </div>
-                    {cert.certUrl && <ExternalLink className="w-4 h-4 text-white/30 mt-1" />}
-                  </div>
+          return (
+            <li key={certification.id}>
+              {certification.certUrl ? (
+                <a href={certification.certUrl} target="_blank" rel="noopener noreferrer" className={cardClassName}>
+                  {cardBody}
+                </a>
+              ) : (
+                <div className={cardClassName}>{cardBody}</div>
+              )}
+            </li>
+          );
+        })}
+      </ul>
 
-                  <div className="flex flex-col gap-1 flex-1">
-                    <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-white/45">
-                      {(cert.category ?? "Certification")} · {getYear(cert.date)}
-                    </span>
-                    <h3 className="font-display font-black text-sm uppercase leading-tight text-white">
-                      {cert.featuredTitle ?? cert.title}
-                    </h3>
-                    {cert.certUrl && (
-                      <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-white/45">
-                        Voir le diplôme →
-                      </span>
-                    )}
-                  </div>
-                </Tag>
-              );
-            })}
-          </div>
-          <p className="mt-3 font-body text-xs uppercase tracking-[0.18em] text-white/65 text-center">
-            Glisse à droite ou à gauche pour voir toutes les certifications
-          </p>
+      <dl className="mt-8 flex flex-wrap gap-8 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-8">
+        <div>
+          <dd className="font-display text-4xl text-white sm:text-5xl">{certifications.length}</dd>
+          <dt className="mt-1 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">{content.obtainedLabel}</dt>
         </div>
-
-        {/* Grid 2x4 */}
-        <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border border-[var(--surface-border)] bg-[var(--surface-deepest)] rounded-md">
-          {certificationsForWall.map((cert, index) => {
-            const lastRowStart = Math.floor((certificationsForWall.length - 1) / 4) * 4;
-            const Tag = cert.certUrl ? "a" : "div";
-            const linkProps = cert.certUrl
-              ? { href: cert.certUrl, target: "_blank", rel: "noopener noreferrer" }
-              : {};
-
-            return (
-              <motion.div
-                key={cert.title}
-                style={{
-                  borderRight: (index + 1) % 4 === 0 ? "none" : undefined,
-                  borderBottom: index >= lastRowStart ? "none" : undefined,
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
-                className="border-r border-b border-[var(--surface-border)]"
-              >
-                <Tag
-                  {...linkProps}
-                  className={`group p-5 sm:p-6 md:p-7 bg-[var(--surface-deepest)] hover:bg-white transition-all duration-200 flex flex-col gap-4 h-full ${cert.certUrl ? "cursor-pointer" : "cursor-default"}`}
-                >
-                  {/* Icon + ExternalLink row */}
-                  <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 md:w-11 md:h-11 border border-[var(--surface-border)] bg-white flex items-center justify-center transition-all duration-200 shrink-0 rounded-md">
-                      <IssuerLogo issuer={cert.issuer} />
-                    </div>
-                    {cert.certUrl && (
-                      <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-[var(--surface-deepest)] opacity-0 group-hover:opacity-100 transition-all duration-200 mt-1" />
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col gap-1 flex-1">
-                    <span className="font-display font-bold text-[10px] uppercase tracking-[0.2em] text-white/40 group-hover:text-[var(--surface-deepest)]/55 transition-colors duration-200">
-                      {(cert.category ?? "Certification")} · {getYear(cert.date)}
-                    </span>
-                    <h3 className="font-display font-black text-sm sm:text-base uppercase leading-tight text-white group-hover:text-[var(--surface-deepest)] transition-colors duration-200">
-                      {cert.featuredTitle ?? cert.title}
-                    </h3>
-                    {cert.certUrl && (
-                      <span className="mt-2 font-display font-bold text-[10px] uppercase tracking-widest text-white/30 group-hover:text-[var(--surface-deepest)]/70 transition-colors duration-200">
-                        Voir le diplôme →
-                      </span>
-                    )}
-                  </div>
-                </Tag>
-              </motion.div>
-            );
-          })}
+        <div>
+          <dd className="font-display text-4xl text-white sm:text-5xl">{certificationIssuerCount}</dd>
+          <dt className="mt-1 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">{content.issuersLabel}</dt>
         </div>
-
-        {/* Counter strip */}
-        <motion.div
-          className="mt-8 border border-[var(--surface-border)] p-5 sm:p-6 md:p-7 flex flex-wrap gap-5 sm:gap-8 items-center bg-[var(--surface-deepest)] rounded-md"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <div>
-            <p className="font-display font-black text-5xl text-white">{certifications.length}</p>
-            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-white/70 mt-1">
-              Certifications obtenues
-            </p>
-          </div>
-          <div className="border-t sm:border-t-0 sm:border-l border-[var(--surface-border)] pt-5 sm:pt-0 sm:pl-8 w-full sm:w-auto">
-            <p className="font-display font-black text-4xl sm:text-5xl text-white">{certificationIssuerCount}</p>
-            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-white/70 mt-1">
-              Organismes reconnus
-            </p>
-          </div>
-          <div className="border-t sm:border-t-0 sm:border-l border-[var(--surface-border)] pt-5 sm:pt-0 sm:pl-8 w-full sm:w-auto">
-            <p className="font-display font-black text-4xl sm:text-5xl text-white">2+</p>
-            <p className="font-body font-semibold text-xs uppercase tracking-[0.2em] text-white/70 mt-1">
-              Années de formation continue
-            </p>
-          </div>
-          <div className="sm:ml-auto w-full sm:w-auto border-t sm:border-t-0 border-[var(--surface-border)] pt-5 sm:pt-0">
-            <p className="font-display font-black text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.2em] text-white/70">
-              Portfolio sans logos ni marques
-              <br />
-              Axé sur les compétences et les réalisations
-            </p>
-          </div>
-        </motion.div>
-      </div>
+        <div>
+          <dd className="font-display text-4xl text-white sm:text-5xl">{content.continuousLearning.value}</dd>
+          <dt className="mt-1 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            {content.continuousLearning.label}
+          </dt>
+        </div>
+      </dl>
     </section>
   );
 };
