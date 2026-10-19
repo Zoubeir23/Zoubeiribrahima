@@ -26,6 +26,7 @@ export interface LandingContent {
   };
   hero: {
     availability: string;
+    location: string;
     headlineLead: string;
     headlineHighlight: string;
     subtitle: string;
@@ -75,6 +76,7 @@ export interface LandingContent {
   };
   footer: {
     rights: string;
+    location: string;
     scrollToTop: string;
     tagline: string;
     navigationTitle: string;
@@ -110,6 +112,7 @@ const frenchContent: LandingContent = {
   },
   hero: {
     availability: "Disponible en freelance",
+    location: "Dakar, Sénégal",
     headlineLead: "Je conçois et livre votre",
     headlineHighlight: "produit digital",
     subtitle:
@@ -216,6 +219,7 @@ const frenchContent: LandingContent = {
   },
   footer: {
     rights: "Tous droits réservés",
+    location: "Dakar, Sénégal",
     scrollToTop: "Retour en haut",
     tagline: "Développeur freelance : SaaS, applications web et mobiles, sites portfolio et services informatiques à distance.",
     navigationTitle: "Navigation",
@@ -251,6 +255,7 @@ const englishContent: LandingContent = {
   },
   hero: {
     availability: "Available for freelance work",
+    location: "Dakar, Senegal",
     headlineLead: "I design and ship your",
     headlineHighlight: "digital product",
     subtitle:
@@ -357,6 +362,7 @@ const englishContent: LandingContent = {
   },
   footer: {
     rights: "All rights reserved",
+    location: "Dakar, Senegal",
     scrollToTop: "Back to top",
     tagline: "Freelance developer: SaaS, web and mobile applications, portfolio websites and remote IT services.",
     navigationTitle: "Navigation",
