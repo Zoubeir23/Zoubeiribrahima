@@ -1,4 +1,4 @@
-import { Cookie } from "lucide-react";
+import Emoji from "@/components/Emoji";
 import { useState } from "react";
 import { useConsent } from "@/hooks/useConsent";
 import { useLandingContent } from "@/hooks/useLandingContent";
@@ -60,7 +60,7 @@ const CookieBanner = () => {
       className="fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-lg rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.7)] sm:inset-x-auto sm:bottom-6 sm:left-6 sm:mx-0"
     >
       <div className="mb-3 flex items-center gap-3">
-        <Cookie className="h-6 w-6 text-[var(--accent-orange)]" aria-hidden="true" />
+        <Emoji symbol="🍪" className="text-2xl" />
         <h2 id="cookie-banner-title" className="font-display text-base uppercase text-white">
           {consent.title}
         </h2>
