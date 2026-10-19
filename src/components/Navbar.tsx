@@ -5,18 +5,7 @@ import Emoji from "@/components/Emoji";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLanguage } from "@/hooks/useLanguage";
-
-const NAV_EMOJIS: Record<string, string> = {
-  "#hero": "🏠",
-  "#services": "🛠️",
-  "#skills": "⚙️",
-  "#projects": "🚀",
-  "#experience": "🎓",
-  "#certifications": "🏆",
-  "#contact": "✉️",
-};
-const BLOG_EMOJI = "📖";
-const HIRE_EMOJI = "🚀";
+import { BLOG_EMOJI, HIRE_EMOJI, NAV_EMOJIS } from "@/lib/site-navigation";
 
 const NAV_SECTION_IDS = ["hero", "services", "skills", "projects", "experience", "certifications", "contact"] as const;
 
