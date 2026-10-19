@@ -18,6 +18,10 @@ import { buildBookingEmbedUrl } from "@/lib/contact-channels";
 import { contactContent } from "@/lib/contact-content";
 
 const FORM_ENDPOINT = "https://formspree.io/f/xaqovjqb";
+const NAME_MAX_LENGTH = 100;
+const EMAIL_MAX_LENGTH = 254;
+const MESSAGE_MAX_LENGTH = 5000;
+const TRAP_FIELD_NAME = "_gotcha";
 
 type SubmitStatus = "idle" | "success" | "error";
 
@@ -65,6 +69,14 @@ const ContactSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+
+    // Robots fill every field: a filled trap field is answered with a fake success and nothing is sent.
+    if (String(formData.get(TRAP_FIELD_NAME) ?? "").length > 0) {
+      setSubmitStatus("success");
+      formRef.current?.reset();
+      return;
+    }
+
     const payload = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
@@ -144,6 +156,7 @@ const ContactSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                     type="text"
                     name="name"
                     required
+                    maxLength={NAME_MAX_LENGTH}
                     autoComplete="name"
                     placeholder={contact.namePlaceholder}
                     className={fieldClassName}
@@ -158,6 +171,7 @@ const ContactSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                     type="email"
                     name="email"
                     required
+                    maxLength={EMAIL_MAX_LENGTH}
                     autoComplete="email"
                     placeholder={contact.emailPlaceholder}
                     className={fieldClassName}
@@ -171,10 +185,14 @@ const ContactSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                     id="contact-message"
                     name="message"
                     required
+                    maxLength={MESSAGE_MAX_LENGTH}
                     rows={5}
                     placeholder={contact.messagePlaceholder}
                     className={`${fieldClassName} resize-none`}
                   />
+                </div>
+                <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                  <input type="text" name={TRAP_FIELD_NAME} tabIndex={-1} autoComplete="off" defaultValue="" />
                 </div>
                 {submitStatus === "error" ? (
                   <p className="text-sm text-[var(--status-error)]">
