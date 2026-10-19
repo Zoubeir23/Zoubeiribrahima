@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 import {
+  ACCEPT_ALL_PREFERENCES,
   CONSENT_STORAGE_KEY,
-  readConsentChoice,
-  writeConsentChoice,
+  REFUSE_ALL_PREFERENCES,
+  readConsentPreferences,
+  writeConsentPreferences,
 } from "@/lib/consent-storage";
 
 const createMemoryStorage = (initialValue?: string) => {
@@ -18,38 +20,39 @@ const createMemoryStorage = (initialValue?: string) => {
   };
 };
 
-describe("readConsentChoice", () => {
-  it("returns unset when nothing is stored", () => {
-    expect(readConsentChoice(createMemoryStorage())).toBe("unset");
+describe("readConsentPreferences", () => {
+  it("returns null when nothing is stored", () => {
+    expect(readConsentPreferences(createMemoryStorage())).toBeNull();
   });
 
-  it("returns the stored accepted choice", () => {
-    expect(readConsentChoice(createMemoryStorage("accepted"))).toBe("accepted");
+  it("returns stored preferences", () => {
+    const stored = JSON.stringify({ analytics: true, externalContent: false });
+    expect(readConsentPreferences(createMemoryStorage(stored))).toEqual({ analytics: true, externalContent: false });
   });
 
-  it("returns the stored refused choice", () => {
-    expect(readConsentChoice(createMemoryStorage("refused"))).toBe("refused");
+  it("returns null when the stored value is not valid JSON", () => {
+    expect(readConsentPreferences(createMemoryStorage("not json"))).toBeNull();
   });
 
-  it("falls back to unset when the stored value is unknown", () => {
-    expect(readConsentChoice(createMemoryStorage("maybe"))).toBe("unset");
+  it("returns null when the stored shape is wrong", () => {
+    expect(readConsentPreferences(createMemoryStorage(JSON.stringify({ analytics: "yes" })))).toBeNull();
   });
 
-  it("falls back to unset when storage throws", () => {
+  it("returns null when storage throws", () => {
     const throwingStorage = {
       getItem: () => {
         throw new Error("storage blocked");
       },
     };
-    expect(readConsentChoice(throwingStorage)).toBe("unset");
+    expect(readConsentPreferences(throwingStorage)).toBeNull();
   });
 });
 
-describe("writeConsentChoice", () => {
-  it("persists the choice so it can be read back", () => {
+describe("writeConsentPreferences", () => {
+  it("persists preferences so they can be read back", () => {
     const storage = createMemoryStorage();
-    writeConsentChoice(storage, "accepted");
-    expect(readConsentChoice(storage)).toBe("accepted");
+    writeConsentPreferences(storage, ACCEPT_ALL_PREFERENCES);
+    expect(readConsentPreferences(storage)).toEqual(ACCEPT_ALL_PREFERENCES);
   });
 
   it("does not throw when storage is unavailable", () => {
@@ -58,6 +61,16 @@ describe("writeConsentChoice", () => {
         throw new Error("quota exceeded");
       },
     };
-    expect(() => writeConsentChoice(throwingStorage, "refused")).not.toThrow();
+    expect(() => writeConsentPreferences(throwingStorage, REFUSE_ALL_PREFERENCES)).not.toThrow();
+  });
+});
+
+describe("preset preferences", () => {
+  it("accepts every category when accepting all", () => {
+    expect(ACCEPT_ALL_PREFERENCES).toEqual({ analytics: true, externalContent: true });
+  });
+
+  it("refuses every category when refusing all", () => {
+    expect(REFUSE_ALL_PREFERENCES).toEqual({ analytics: false, externalContent: false });
   });
 });
