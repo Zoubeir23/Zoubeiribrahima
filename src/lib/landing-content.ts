@@ -178,7 +178,7 @@ const frenchContent: LandingContent = {
       },
       {
         question: "Travaillez-vous avec des clients à l'étranger ?",
-        answer: "Oui. Je travaille à distance avec des clients nationaux et internationaux, en français et en anglais.",
+        answer: "Oui. Je travaille à distance avec des clients nationaux et internationaux.",
       },
       {
         question: "Comment sont fixés les tarifs ?",
@@ -314,7 +314,7 @@ const englishContent: LandingContent = {
       },
       {
         question: "Do you work with clients abroad?",
-        answer: "Yes. I work remotely with national and international clients, in French and English.",
+        answer: "Yes. I work remotely with national and international clients.",
       },
       {
         question: "How is pricing set?",
