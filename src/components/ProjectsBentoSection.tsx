@@ -1,7 +1,9 @@
 import { ArrowRight, ExternalLink } from "lucide-react";
+import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { getTechnologyEmoji } from "@/lib/icon-sets";
 import { projectsContent } from "@/lib/projects-content";
 
 const FEATURED_PROJECT_URL = "https://snapfolioo.com";
@@ -46,6 +48,7 @@ const ProjectsBentoSection = () => {
               <ul className="flex flex-wrap gap-2">
                 {projects.featured.tags.map((tag) => (
                   <li key={tag} className={tagClassName}>
+                    <Emoji symbol={getTechnologyEmoji(tag)} className="mr-1.5" />
                     {tag}
                   </li>
                 ))}
@@ -118,6 +121,7 @@ const ProjectsBentoSection = () => {
               <ul className="mb-6 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <li key={tag} className={tagClassName}>
+                    <Emoji symbol={getTechnologyEmoji(tag)} className="mr-1.5" />
                     {tag}
                   </li>
                 ))}
