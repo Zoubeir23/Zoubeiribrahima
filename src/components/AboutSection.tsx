@@ -1,7 +1,9 @@
+import Emoji from "@/components/Emoji";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { experienceContent } from "@/lib/experience-content";
+import { getTechnologyEmoji } from "@/lib/icon-sets";
 
 const AboutSection = () => {
   const experience = useLocalizedContent(experienceContent);
@@ -52,6 +54,7 @@ const AboutSection = () => {
                     {item.company}
                   </h4>
                   <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-[var(--text-secondary)]">
+                    <Emoji symbol="📅" className="mr-2" />
                     {item.period}
                   </span>
                 </div>
@@ -59,6 +62,7 @@ const AboutSection = () => {
                   {item.role}
                 </p>
                 <p className="mb-4 font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                  <Emoji symbol="📍" className="mr-2" />
                   {item.location}
                 </p>
                 <p className="mb-5 text-sm text-[var(--text-secondary)] sm:text-base">
@@ -70,6 +74,7 @@ const AboutSection = () => {
                       key={tag}
                       className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white"
                     >
+                      <Emoji symbol={getTechnologyEmoji(tag)} className="mr-1.5" />
                       {tag}
                     </li>
                   ))}
@@ -92,6 +97,7 @@ const AboutSection = () => {
                 delaySeconds={index * 0.1}
               >
                 <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                  <Emoji symbol="🎓" className="mr-2" />
                   {item.period}
                 </span>
                 <h4 className="font-display text-lg uppercase leading-tight text-white sm:text-xl">
