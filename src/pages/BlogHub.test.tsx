@@ -29,7 +29,8 @@ describe("blog hub", () => {
 
   it("counts the real number of reading paths in the statistics", () => {
     renderHub();
-    const label = screen.getByText("Parcours de lecture", { selector: "p.uppercase" });
+    // The statistic comes first in the page; the section eyebrow repeats the same words further down.
+    const [label] = screen.getAllByText("Parcours de lecture", { selector: "p.uppercase" });
     expect(label.previousElementSibling).toHaveTextContent(String(blogReadingPaths.length));
   });
 
