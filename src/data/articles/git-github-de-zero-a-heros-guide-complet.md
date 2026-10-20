@@ -598,5 +598,5 @@ Vous avez appris :
 
 **Guide realise par Patrice Neussi (inspiration du style Django)**
 *PROPENTATECH - 2025*
-📧 propentatech@gmail.com
-🌐 www.propentatech.com
+Email : propentatech@gmail.com
+Web : www.propentatech.com
