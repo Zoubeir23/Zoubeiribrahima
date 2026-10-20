@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Emoji from "@/components/Emoji";
 import { serviceMeta, type ServiceSlug } from "@/lib/service-meta";
 
 interface ServiceIllustrationProps {
@@ -14,7 +15,7 @@ const ServiceIllustration = ({ slug, className = "aspect-[4/3] w-32", emojiClass
   if (hasImageFailed) {
     return (
       <span aria-hidden="true" className={`flex items-center justify-center rounded-md bg-[var(--surface-raised)] ${emojiClassName} ${className}`}>
-        {emoji}
+        <Emoji symbol={emoji} />
       </span>
     );
   }
