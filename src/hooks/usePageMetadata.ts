@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { PageMetadataCollectorContext } from "@/lib/page-metadata-collector";
 import { SITE_DOMAIN } from "@/lib/contact-config";
 
 interface PageMetadata {
@@ -23,6 +24,9 @@ const findOrCreateHeadElement = <ElementType extends HTMLElement>(selector: stri
 };
 
 export const usePageMetadata = ({ title, description, path, noindex = false }: PageMetadata): void => {
+  const collector = useContext(PageMetadataCollectorContext);
+  collector?.record({ title, description, path, noindex });
+
   useEffect(() => {
     document.title = title;
 
