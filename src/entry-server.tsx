@@ -8,10 +8,12 @@ import {
   PageMetadataCollectorContext,
   type CollectedPageMetadata,
 } from "./lib/page-metadata-collector";
+import { buildPageStructuredData, type StructuredDataNode } from "./lib/structured-data";
 
 export interface PrerenderedPage {
   html: string;
   metadata: CollectedPageMetadata | null;
+  structuredData: StructuredDataNode[];
 }
 
 export const renderRoute = (path: string): Promise<PrerenderedPage> =>
@@ -30,7 +32,13 @@ export const renderRoute = (path: string): Promise<PrerenderedPage> =>
         callback();
       },
     });
-    sink.on("finish", () => resolve({ html: Buffer.concat(chunks).toString("utf8"), metadata }));
+    sink.on("finish", () =>
+      resolve({
+        html: Buffer.concat(chunks).toString("utf8"),
+        metadata,
+        structuredData: metadata ? buildPageStructuredData(metadata) : [],
+      }),
+    );
 
     const { pipe } = renderToPipeableStream(
       <PageMetadataCollectorContext.Provider value={collector}>
