@@ -1,3 +1,4 @@
+import Emoji from "@/components/Emoji";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import Reveal from "@/components/Reveal";
@@ -34,7 +35,8 @@ const ProjectsBentoSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }
             <div>
               <div className="mb-6 flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-white px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-[var(--surface-deepest)]">
-                  ★ {projects.featuredBadge}
+                  <Emoji symbol="⭐" className="mr-1.5 align-[-0.1em]" />
+                  {projects.featuredBadge}
                 </span>
                 <span className="rounded-full border border-[var(--surface-border)] px-4 py-1.5 font-mono text-xs uppercase tracking-widest text-white">
                   {projects.featured.status}

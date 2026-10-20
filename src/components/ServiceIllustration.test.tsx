@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { findEmojiElement } from "@/test/emoji-query";
 import { describe, expect, it } from "vitest";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import { serviceMeta } from "@/lib/service-meta";
@@ -16,12 +17,12 @@ describe("ServiceIllustration", () => {
     const { container } = render(<ServiceIllustration slug="saas" />);
     fireEvent.error(container.querySelector("img") as HTMLImageElement);
     expect(container.querySelector("img")).toBeNull();
-    expect(screen.getByText(serviceMeta.saas.emoji)).toBeInTheDocument();
+    expect(findEmojiElement(document, serviceMeta.saas.emoji)).toBeInTheDocument();
   });
 
   it("hides the decorative emoji from assistive technologies", () => {
     const { container } = render(<ServiceIllustration slug="saas" />);
     fireEvent.error(container.querySelector("img") as HTMLImageElement);
-    expect(screen.getByText(serviceMeta.saas.emoji)).toHaveAttribute("aria-hidden", "true");
+    expect(findEmojiElement(document, serviceMeta.saas.emoji)).toHaveAttribute("aria-hidden", "true");
   });
 });

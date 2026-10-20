@@ -70,11 +70,11 @@ export const translations = {
       snapfoliooDesc:
         "A modern SaaS platform for creating portfolios, CVs, and LinkedIn banners with a real-time visual editor, auto-save, and one-click publishing.",
       snapfolioProblem:
-        "🎯 Problem: Freelancers and professionals struggle to create attractive portfolios quickly",
+        "Problem: Freelancers and professionals struggle to create attractive portfolios quickly",
       snapfolioSolution:
-        "🛠️ Solution: React + TypeScript + Supabase platform with pre-designed templates, real-time editing, and instant deployment",
-      snapfolioResult: "🚀 Result: 100+ active users, 500+ portfolios generated in 3 months",
-      snapfolioRole: "👨‍💻 Role: Founder & Fullstack Developer (React, TypeScript, Supabase, Tailwind, Vercel)",
+        "Solution: React + TypeScript + Supabase platform with pre-designed templates, real-time editing, and instant deployment",
+      snapfolioResult: "Result: 100+ active users, 500+ portfolios generated in 3 months",
+      snapfolioRole: "Role: Founder & Fullstack Developer (React, TypeScript, Supabase, Tailwind, Vercel)",
       liveDemo: "Live Demo",
       github: "GitHub",
       techArsenal: "Tech Arsenal",
@@ -85,7 +85,7 @@ export const translations = {
       active: "Active",
       footer: "© 2025 Zoubeir Ibrahima Amed. All rights reserved.",
       footerBio:
-        "Fullstack Developer based in Dakar, Senegal. Specialized in building robust SaaS platforms with React, TypeScript, Supabase, and Vercel. Available worldwide remotely 🌍",
+        "Fullstack Developer based in Dakar, Senegal. Specialized in building robust SaaS platforms with React, TypeScript, Supabase, and Vercel. Available worldwide remotely",
       email: "Email",
       linkedin: "LinkedIn",
       downloadCV: "Download CV",
@@ -140,7 +140,7 @@ export const translations = {
       downloadCV: "Download CV",
       downloadCVImage: "Download CV (Image)",
       downloadCVPDF: "Download CV (PDF)",
-      footer: "Based in Senegal — Available remotely 🌍",
+      footer: "Based in Senegal — Available remotely",
       footerCredit: "Designed and developed by Zoubeir Ibrahima",
       errorMessage: "Error sending message. Please try again.",
     },
@@ -222,11 +222,11 @@ export const translations = {
       snapfoliooDesc:
         "Une plateforme SaaS moderne pour créer des portfolios, CV et bannières LinkedIn avec éditeur visuel en temps réel, sauvegarde automatique et publication instantanée.",
       snapfolioProblem:
-        "🎯 Problème : Les freelances et professionnels peinent à créer rapidement des portfolios attractifs",
+        "Problème : Les freelances et professionnels peinent à créer rapidement des portfolios attractifs",
       snapfolioSolution:
-        "🛠️ Solution : Plateforme React + TypeScript + Supabase avec templates pré-conçus, édition en temps réel et déploiement instantané",
-      snapfolioResult: "🚀 Résultat : 100+ utilisateurs actifs, 500+ portfolios générés en 3 mois",
-      snapfolioRole: "👨‍💻 Rôle : Fondateur & Développeur Fullstack (React, TypeScript, Supabase, Tailwind, Vercel)",
+        "Solution : Plateforme React + TypeScript + Supabase avec templates pré-conçus, édition en temps réel et déploiement instantané",
+      snapfolioResult: "Résultat : 100+ utilisateurs actifs, 500+ portfolios générés en 3 mois",
+      snapfolioRole: "Rôle : Fondateur & Développeur Fullstack (React, TypeScript, Supabase, Tailwind, Vercel)",
       liveDemo: "Démo en Direct",
       github: "GitHub",
       techArsenal: "Arsenal Technique",
@@ -237,7 +237,7 @@ export const translations = {
       active: "Actif",
       footer: "© 2025 Zoubeir Ibrahima Amed. Tous droits réservés.",
       footerBio:
-        "Développeur Fullstack basé à Dakar, Sénégal. Spécialisé dans la création de plateformes SaaS robustes avec React, TypeScript, Supabase et Vercel. Disponible partout en télétravail 🌍",
+        "Développeur Fullstack basé à Dakar, Sénégal. Spécialisé dans la création de plateformes SaaS robustes avec React, TypeScript, Supabase et Vercel. Disponible partout en télétravail",
       email: "Email",
       linkedin: "LinkedIn",
       downloadCV: "Télécharger CV",
@@ -292,7 +292,7 @@ export const translations = {
       downloadCV: "Télécharger CV",
       downloadCVImage: "Télécharger CV (Image)",
       downloadCVPDF: "Télécharger CV (PDF)",
-      footer: "Basé au Sénégal — Disponible en télétravail 🌍",
+      footer: "Basé au Sénégal — Disponible en télétravail",
       footerCredit: "Conçu et développé par Zoubeir Ibrahima",
       errorMessage: "Erreur lors de l'envoi. Veuillez réessayer.",
     },

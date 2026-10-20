@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { findEmojiElement } from "@/test/emoji-query";
 import { describe, expect, it } from "vitest";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { getTechnologyLogo } from "@/lib/technology-logos";
@@ -26,18 +27,18 @@ describe("TechnologyIcon", () => {
   it("falls back to a hidden emoji when there is no logo", () => {
     const { container } = render(<TechnologyIcon name="Clean Code" />);
     expect(container.querySelector("img")).toBeNull();
-    expect(screen.getByText("✨")).toHaveAttribute("aria-hidden", "true");
+    expect(findEmojiElement(container, "✨")).toHaveAttribute("aria-hidden", "true");
   });
 
   it("falls back to the generic emoji for an unknown technology", () => {
-    render(<TechnologyIcon name="Something unknown" />);
-    expect(screen.getByText("🧩")).toBeInTheDocument();
+    const { container } = render(<TechnologyIcon name="Something unknown" />);
+    expect(findEmojiElement(container, "🧩")).toBeInTheDocument();
   });
 
   it("falls back to the emoji when the logo file fails to load", () => {
     const { container } = render(<TechnologyIcon name="Django" />);
     fireEvent.error(container.querySelector("img") as HTMLImageElement);
     expect(container.querySelector("img")).toBeNull();
-    expect(screen.getByText("🎸")).toBeInTheDocument();
+    expect(findEmojiElement(container, "🎸")).toBeInTheDocument();
   });
 });

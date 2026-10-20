@@ -1,3 +1,4 @@
+import Emoji from "@/components/Emoji";
 import {
   Github,
   Linkedin,
@@ -131,7 +132,7 @@ const ContactSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
             {submitStatus === "success" ? (
               <div className="flex h-full flex-col items-center justify-center py-16 text-center">
                 <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white font-display text-2xl text-[var(--surface-deepest)]">
-                  ✓
+                  <Emoji symbol="✔" />
                 </span>
                 <h3 className="mb-3 font-display text-2xl uppercase text-white">
                   {contact.successTitle}

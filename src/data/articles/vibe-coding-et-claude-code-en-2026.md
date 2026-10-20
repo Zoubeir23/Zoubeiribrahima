@@ -122,7 +122,7 @@ API_KEY = "sk-ant-VRAIE_CLE_SECRETE_123"
 La différence entre un bon et un mauvais prompt d'agent IA, c'est la délimitation.
 
 ```
-❌ PROMPT TROP LARGE
+✗ PROMPT TROP LARGE
 ────────────────────
 "Crée une application de gestion de tâches"
 
@@ -135,7 +135,7 @@ La différence entre un bon et un mauvais prompt d'agent IA, c'est la délimitat
 Tu obtiens quelque chose de fonctionnel mais opaque.
 
 
-✅ PROMPT DÉLIMITÉ
+✓ PROMPT DÉLIMITÉ
 ──────────────────
 "Dans models.py (Django), crée un modèle Task avec :
  - title: CharField(max_length=200)
@@ -533,14 +533,14 @@ Débutant → apprend les bases (Python, Django, SQL, Git)
 ### Erreur 4 : ne pas utiliser Git comme filet de sécurité
 
 ```bash
-# ❌ Workflow sans filet
+# ✗ Workflow sans filet
 claude "Refactore tout le dossier src/"
 # → 15 fichiers modifiés
 # → Quelque chose casse
 # → Impossible de savoir ce qui existait avant
 
 
-# ✅ Workflow avec filet
+# ✓ Workflow avec filet
 git add . && git commit -m "chore: snapshot avant refactoring"
 claude "Refactore tout le dossier src/"
 git diff                    # voir exactement ce qui a changé
@@ -596,8 +596,8 @@ RÈGLE 1 — Commite avant chaque intervention
   git add . && git commit -m "chore: snapshot"
 
 RÈGLE 2 — Prompts délimités, pas de "fais tout"
-  ❌ "Crée mon application"
-  ✅ "Dans views.py, ajoute cette fonction précise"
+  ✗ "Crée mon application"
+  ✓ "Dans views.py, ajoute cette fonction précise"
 
 RÈGLE 3 — Lis chaque ligne du git diff
   git diff
