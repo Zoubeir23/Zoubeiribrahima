@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 // @ts-expect-error Plain ES module without type declarations, shared with the build script.
-import { applyPageMetadataToTemplate, injectRenderedBody } from "../../scripts/prerender-html-head.mjs";
+import { applyPageMetadataToTemplate, injectRenderedBody, injectStructuredData } from "../../scripts/prerender-html-head.mjs";
 
 const SITE_ORIGIN = "https://zoubeir.me";
 
@@ -68,5 +68,23 @@ describe("injectRenderedBody", () => {
 
   it("fails when the root element is not empty", () => {
     expect(() => injectRenderedBody('<div id="root"><p>x</p></div>', "<main></main>")).toThrow(/empty/);
+  });
+});
+
+describe("injectStructuredData", () => {
+  it("adds one JSON-LD script per node before the closing head tag", () => {
+    const html = injectStructuredData(templateHtml, [{ "@type": "WebPage" }, { "@type": "BreadcrumbList" }]);
+    expect(html.match(/<script type="application\/ld\+json">/g)).toHaveLength(2);
+    expect(html.indexOf("BreadcrumbList")).toBeLessThan(html.indexOf("</head>"));
+  });
+
+  it("escapes angle brackets so content cannot close the script tag", () => {
+    const html = injectStructuredData(templateHtml, [{ name: "</script><b>" }]);
+    expect(html).not.toContain("</script><b>");
+    expect(html).toContain("\\u003c/script>");
+  });
+
+  it("leaves the page untouched when there is nothing to add", () => {
+    expect(injectStructuredData(templateHtml, [])).toContain("</head>");
   });
 });

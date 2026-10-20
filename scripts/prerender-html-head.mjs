@@ -55,3 +55,16 @@ export const injectRenderedBody = (templateHtml, renderedBody) =>
     () => `<div id="root">${renderedBody}</div>`,
     'empty <div id="root">',
   );
+
+const serializeJsonLd = (node) => JSON.stringify(node).replace(/</g, "\\u003c");
+
+export const injectStructuredData = (templateHtml, structuredDataNodes) =>
+  replaceTagContent(
+    templateHtml,
+    /<\/head>/,
+    () =>
+      `${structuredDataNodes
+        .map((node) => `    <script type="application/ld+json">${serializeJsonLd(node)}</script>\n`)
+        .join("")}  </head>`,
+    "closing head tag",
+  );

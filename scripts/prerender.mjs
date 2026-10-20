@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { applyPageMetadataToTemplate, injectRenderedBody } from "./prerender-html-head.mjs";
+import { applyPageMetadataToTemplate, injectRenderedBody, injectStructuredData } from "./prerender-html-head.mjs";
 
 const SITE_ORIGIN = "https://zoubeir.me";
 const NOT_FOUND_PROBE_PATH = "/page-introuvable";
@@ -29,14 +29,17 @@ const main = async () => {
   const routes = await readRoutesFromSitemap();
 
   for (const route of routes) {
-    const { html, metadata } = await renderRoute(route);
+    const { html, metadata, structuredData } = await renderRoute(route);
     if (!metadata) {
       throw new Error(`No page metadata was recorded while prerendering ${route}`);
     }
     if (metadata.noindex) {
       throw new Error(`Sitemap route ${route} rendered as noindex; it is probably not a real page`);
     }
-    const page = applyPageMetadataToTemplate(injectRenderedBody(templateHtml, html), metadata, SITE_ORIGIN);
+    const page = injectStructuredData(
+      applyPageMetadataToTemplate(injectRenderedBody(templateHtml, html), metadata, SITE_ORIGIN),
+      structuredData,
+    );
     await writePrerenderedPage(outputPathForRoute(route), page);
     console.log(`prerendered ${route}`);
   }
