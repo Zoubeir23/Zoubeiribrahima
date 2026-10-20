@@ -75,17 +75,19 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                 <p className="mb-5 text-sm text-[var(--text-secondary)] sm:text-base">
                   {item.description}
                 </p>
-                <ul className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <li
-                      key={tag}
-                      className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white"
-                    >
-                      <TechnologyIcon name={tag} className="mr-2" />
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
+                {item.tags.length > 0 && (
+                  <ul className="flex flex-wrap gap-2">
+                    {item.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-wider text-white"
+                      >
+                        <TechnologyIcon name={tag} className="mr-2" />
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </Reveal>
             ))}
           </ol>
