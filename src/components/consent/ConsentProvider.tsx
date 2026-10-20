@@ -14,7 +14,7 @@ interface ConsentProviderProps {
 
 const ConsentProvider = ({ children }: ConsentProviderProps) => {
   const [preferences, setPreferences] = useState<ConsentPreferences | null>(() =>
-    readConsentPreferences(window.localStorage),
+    typeof window === "undefined" ? null : readConsentPreferences(window.localStorage),
   );
   const [isPanelRequested, setIsPanelRequested] = useState(false);
 
