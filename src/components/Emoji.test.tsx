@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { findEmojiElement } from "@/test/emoji-query";
 import { describe, expect, it } from "vitest";
 import Emoji from "@/components/Emoji";
 import SectionHeading from "@/components/SectionHeading";
@@ -6,7 +7,9 @@ import SectionHeading from "@/components/SectionHeading";
 describe("Emoji", () => {
   it("renders the symbol hidden from assistive technologies", () => {
     render(<Emoji symbol="🚀" />);
-    expect(screen.getByText("🚀")).toHaveAttribute("aria-hidden", "true");
+    const icon = findEmojiElement(document, "🚀");
+    expect(icon).toHaveAttribute("aria-hidden", "true");
+    expect(icon?.tagName.toLowerCase()).toBe("svg");
   });
 
   it("keeps the accessible name of a labelled link free of the emoji", () => {
@@ -23,7 +26,7 @@ describe("Emoji", () => {
 describe("SectionHeading emoji", () => {
   it("shows a decorative emoji before the title without changing the heading name", () => {
     render(<SectionHeading title="Mes services" emoji="🛠️" />);
-    expect(screen.getByText("🛠️")).toHaveAttribute("aria-hidden", "true");
+    expect(findEmojiElement(document, "🛠️")).toHaveAttribute("aria-hidden", "true");
     expect(screen.getByRole("heading", { name: "Mes services" })).toBeInTheDocument();
   });
 
