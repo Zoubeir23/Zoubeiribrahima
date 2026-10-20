@@ -120,6 +120,17 @@ describe("experience content follows the CV", () => {
     }
   });
 
+  it("lists the ongoing Smart Group Sénégal internship first, located in Dakar", () => {
+    for (const language of ["fr", "en"] as const) {
+      const [latestExperience] = experienceContent[language].experiences;
+      expect(latestExperience.company, `${language} company`).toBe("Smart Group Sénégal");
+      expect(latestExperience.isCurrent, `${language} current`).toBe(true);
+      expect(latestExperience.location, `${language} location`).toContain("Dakar");
+      expect(latestExperience.period, `${language} period`).toMatch(/2026/);
+      expect(latestExperience.description, `${language} description`).toMatch(/SaaS/);
+    }
+  });
+
   it("mentions the authentication and export details of Snapfolioo", () => {
     for (const language of ["fr", "en"] as const) {
       const description = findExperience(language, "Snapfolioo")?.description ?? "";

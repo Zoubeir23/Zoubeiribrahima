@@ -46,6 +46,15 @@ export const experienceContent: Record<LandingLanguage, ExperienceContent> = {
     languagesLabel: "Langues",
     experiences: [
       {
+        company: "Smart Group Sénégal",
+        role: "Développeur web (stage)",
+        period: "Oct. 2026 — Présent",
+        location: "Dakar, Sénégal · Hybride",
+        isCurrent: true,
+        description: "Conception et réalisation de plateformes SaaS.",
+        tags: [],
+      },
+      {
         company: "HooYia",
         role: "Stagiaire développeur backend (CDD)",
         period: "Févr. 2026 — Avr. 2026 · 3 mois",
@@ -98,6 +107,15 @@ export const experienceContent: Record<LandingLanguage, ExperienceContent> = {
     educationLabel: "Education",
     languagesLabel: "Languages",
     experiences: [
+      {
+        company: "Smart Group Sénégal",
+        role: "Web developer (internship)",
+        period: "Oct 2026 — Present",
+        location: "Dakar, Senegal · Hybrid",
+        isCurrent: true,
+        description: "Designing and building SaaS platforms.",
+        tags: [],
+      },
       {
         company: "HooYia",
         role: "Backend developer intern (fixed-term)",
