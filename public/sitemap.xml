@@ -2,157 +2,126 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zoubeir.me/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/a-propos</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/services</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/services/saas</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/services/web-applications</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/services/mobile-applications</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/services/portfolio-websites</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/services/remote-it-services</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/skills</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/projects</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/experience</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-20</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/certifications</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/faq</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/agents-ia-claude-code-openclaw-tendances-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/apprendre-django-guide-complet-developpeur</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/docker-compose-orchestration-conteneurs</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/git-github-de-zero-a-heros-guide-complet</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/git-github-workflow-propre-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/html-css-de-zero-a-heros-guide-complet</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/installer-claude-code-guide-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/python-bonnes-pratiques-code-maintenable-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/python-de-zero-a-heros-guide-complet</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/vibe-coding-et-claude-code-en-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-04-08</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/valider-une-idee-saas-en-30-jours</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/choisir-la-stack-technique-d-un-saas</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/fixer-le-prix-de-son-saas</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
   <url>
     <loc>https://zoubeir.me/blog/lancer-le-mvp-d-un-saas-checklist</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-10-19</lastmod>
   </url>
 </urlset>
