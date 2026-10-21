@@ -34,6 +34,19 @@ export const applyPageMetadataToTemplate = (templateHtml, metadata, siteOrigin) 
   html = replaceMetaContent(html, "name", "twitter:description", metadata.description);
   html = replaceMetaContent(html, "name", "twitter:url", canonicalUrl);
 
+  if (metadata.articlePublishedTime) {
+    html = replaceMetaContent(html, "property", "og:type", "article");
+    html = html.replace(
+      /(<meta property="og:type" content="article" \/>)/,
+      (openingTag) =>
+        [
+          openingTag,
+          `<meta property="article:published_time" content="${escapeHtmlAttribute(metadata.articlePublishedTime)}" />`,
+          `<meta property="article:modified_time" content="${escapeHtmlAttribute(metadata.articleModifiedTime ?? metadata.articlePublishedTime)}" />`,
+        ].join("\n    "),
+    );
+  }
+
   if (metadata.noindex) {
     html = replaceTagContent(html, /\s*<link rel="canonical" href="[^"]*" \/>/, () => "", "canonical link");
     html = replaceMetaContent(html, "name", "robots", "noindex, follow");
