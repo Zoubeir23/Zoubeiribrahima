@@ -53,7 +53,7 @@ describe("metadata of secondary pages", () => {
 
   it("gives the blog list its own title, description and canonical url", () => {
     renderRoute("/blog");
-    expect(document.title).toBe("Blog | Zoubeir Ibrahima");
+    expect(document.title).toBe(`${pageContent.fr.blog.metaTitle} | Zoubeir Ibrahima`);
     expect(description()).toBe(pageContent.fr.blog.description);
     expect(canonical()).toBe("https://zoubeir.me/blog");
   });

@@ -51,7 +51,7 @@ describe.each(dedicatedPages)("%s page", (key, path, Page) => {
   it("sets its own title, description and canonical url", () => {
     renderPage(Page, path);
     const meta = pageContent.fr[key];
-    expect(document.title).toBe(`${meta.title} | Zoubeir Ibrahima`);
+    expect(document.title).toBe(`${meta.metaTitle ?? meta.title} | Zoubeir Ibrahima`);
     expect(document.head.querySelector('meta[name="description"]')?.getAttribute("content")).toBe(meta.description);
     expect(document.head.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(`https://zoubeir.me${path}`);
   });
@@ -66,6 +66,6 @@ describe.each(dedicatedPages)("%s page", (key, path, Page) => {
   it("follows the selected language", () => {
     window.localStorage.setItem("language", "en");
     renderPage(Page, path);
-    expect(document.title).toBe(`${pageContent.en[key].title} | Zoubeir Ibrahima`);
+    expect(document.title).toBe(`${pageContent.en[key].metaTitle ?? pageContent.en[key].title} | Zoubeir Ibrahima`);
   });
 });
