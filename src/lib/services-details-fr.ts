@@ -3,6 +3,9 @@ import type { ServiceDetails } from "@/lib/services-types";
 export const serviceDetailsFrench: ServiceDetails = {
   saas: {
     title: "Développement SaaS",
+    metaTitle: "Développeur SaaS freelance à Dakar | Zoubeir Ibrahima",
+    metaDescription:
+      "Développeur SaaS freelance à Dakar : comptes, abonnements, tableaux de bord et mise en production de votre logiciel en ligne, du MVP à l'évolution.",
     summary: "Conception et développement de logiciels en ligne : comptes, abonnements, tableaux de bord.",
     badge: "À distance · Sur devis",
     offerings: [
@@ -41,6 +44,9 @@ export const serviceDetailsFrench: ServiceDetails = {
   },
   "web-applications": {
     title: "Applications web",
+    metaTitle: "Création d'application web au Sénégal | Zoubeir Ibrahima",
+    metaDescription:
+      "Conception d'applications web sur mesure au Sénégal et à distance : interfaces rapides, back-end fiable et mise en ligne facile à maintenir.",
     summary: "Applications sur mesure, rapides et maintenables, adaptées à votre activité.",
     badge: "À distance · Sur devis",
     offerings: [
@@ -79,6 +85,9 @@ export const serviceDetailsFrench: ServiceDetails = {
   },
   "mobile-applications": {
     title: "Applications mobiles",
+    metaTitle: "Développeur application mobile à Dakar | Zoubeir Ibrahima",
+    metaDescription:
+      "Développement d'applications mobiles Flutter depuis Dakar : expérience fluide, intégration à vos services et publication sur les stores.",
     summary: "Applications mobiles pensées pour vos utilisateurs, avec une expérience fluide.",
     badge: "À distance · Sur devis",
     offerings: [
@@ -117,6 +126,9 @@ export const serviceDetailsFrench: ServiceDetails = {
   },
   "portfolio-websites": {
     title: "Sites portfolio",
+    metaTitle: "Création de site portfolio à Dakar | Zoubeir Ibrahima",
+    metaDescription:
+      "Création de site portfolio et vitrine à Dakar : design soigné, chargement rapide et référencement pensé pour que vos clients vous trouvent.",
     summary: "Un portfolio clair et performant qui met en valeur votre travail et vous fait trouver.",
     badge: "À distance · Sur devis",
     offerings: [
@@ -155,6 +167,9 @@ export const serviceDetailsFrench: ServiceDetails = {
   },
   "remote-it-services": {
     title: "Services informatiques à distance",
+    metaTitle: "Services informatiques à distance, Dakar | Zoubeir Ibrahima",
+    metaDescription:
+      "Dépannage, maintenance et accompagnement technique à distance depuis Dakar, pour particuliers et entreprises, où que vous soyez dans le monde.",
     summary: "Dépannage, maintenance et accompagnement technique, où que vous soyez.",
     badge: "À distance · Partout",
     offerings: [

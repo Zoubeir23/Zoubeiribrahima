@@ -12,6 +12,10 @@ export interface ServiceOffering {
 
 export interface ServiceDetail {
   title: string;
+  /** Full <title> of the service page, naming the offer and its location. */
+  metaTitle: string;
+  /** Meta description of the service page, 110 to 160 characters. */
+  metaDescription: string;
   summary: string;
   badge: string;
   offerings: ServiceOffering[];
