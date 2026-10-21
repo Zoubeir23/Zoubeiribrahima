@@ -1,26 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { blogPosts } from "@/data/blogPosts";
-import { buildPageStructuredData, convertFrenchMonthYearToIsoDate } from "@/lib/structured-data";
+import { buildPageStructuredData } from "@/lib/structured-data";
 
 const baseInput = {
   title: "Titre de page | Zoubeir Ibrahima",
   description: "Description de page.",
 };
-
-describe("convertFrenchMonthYearToIsoDate", () => {
-  it.each([
-    ["Octobre 2026", "2026-10"],
-    ["Avril 2026", "2026-04"],
-    ["Février 2025", "2025-02"],
-    ["août 2024", "2024-08"],
-  ])("converts %s to %s", (frenchDate, isoDate) => {
-    expect(convertFrenchMonthYearToIsoDate(frenchDate)).toBe(isoDate);
-  });
-
-  it("returns null for an unknown format", () => {
-    expect(convertFrenchMonthYearToIsoDate("bientôt")).toBeNull();
-  });
-});
 
 describe("buildPageStructuredData", () => {
   it("describes the home page as a website owned by the person", () => {
@@ -63,7 +48,11 @@ describe("buildPageStructuredData", () => {
         mainEntityOfPage: `https://zoubeir.me/blog/${post.slug}`,
         author: { "@id": "https://zoubeir.me/#person" },
       });
-      expect((posting as { datePublished: string }).datePublished).toMatch(/^\d{4}-\d{2}$/);
+      expect(posting).toMatchObject({
+        datePublished: post.publishedIsoDate,
+        dateModified: post.modifiedIsoDate ?? post.publishedIsoDate,
+      });
+      expect((posting as { image: string }).image).toMatch(/^https:\/\/zoubeir\.me\//);
       expect(breadcrumbs).toMatchObject({ "@type": "BreadcrumbList" });
     }
   });

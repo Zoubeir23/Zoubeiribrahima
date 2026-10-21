@@ -13,34 +13,17 @@ const SITE_ORIGIN = `https://${SITE_DOMAIN}`;
 const PERSON_REFERENCE = { "@id": `${SITE_ORIGIN}/#person` };
 const TITLE_SUFFIX_SEPARATOR = " | ";
 
-const FRENCH_MONTH_NUMBERS: Record<string, string> = {
-  janvier: "01",
-  février: "02",
-  mars: "03",
-  avril: "04",
-  mai: "05",
-  juin: "06",
-  juillet: "07",
-  août: "08",
-  septembre: "09",
-  octobre: "10",
-  novembre: "11",
-  décembre: "12",
-};
-
-/** Blog dates are written "Octobre 2026"; schema.org accepts the partial ISO date "2026-10". */
-export const convertFrenchMonthYearToIsoDate = (frenchDate: string): string | null => {
-  const [monthName, year] = frenchDate.trim().toLowerCase().split(/\s+/);
-  const monthNumber = FRENCH_MONTH_NUMBERS[monthName];
-  return monthNumber && /^\d{4}$/.test(year ?? "") ? `${year}-${monthNumber}` : null;
-};
-
 const removeTitleSuffix = (title: string): string => {
   const separatorIndex = title.lastIndexOf(TITLE_SUFFIX_SEPARATOR);
   return separatorIndex === -1 ? title : title.slice(0, separatorIndex);
 };
 
-const toAbsoluteUrl = (path: string): string => (path === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${path}`);
+const toAbsoluteUrl = (path: string): string => {
+  if (/^https?:\/\//.test(path)) {
+    return path;
+  }
+  return path === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${path}`;
+};
 
 const buildBreadcrumbList = (trail: ReadonlyArray<{ name: string; path: string }>): StructuredDataNode => ({
   "@context": "https://schema.org",
@@ -84,7 +67,7 @@ const buildServiceStructuredData = ({ title, description, path }: PageStructured
 
 const buildBlogPostingStructuredData = ({ title, description, path }: PageStructuredDataInput): StructuredDataNode[] => {
   const slug = path.replace(/^\/blog\//, "");
-  const publishedDate = convertFrenchMonthYearToIsoDate(blogPosts.find((post) => post.slug === slug)?.date ?? "");
+  const post = blogPosts.find((candidate) => candidate.slug === slug);
   const headline = removeTitleSuffix(title);
   return [
     {
@@ -96,7 +79,13 @@ const buildBlogPostingStructuredData = ({ title, description, path }: PageStruct
       mainEntityOfPage: toAbsoluteUrl(path),
       author: PERSON_REFERENCE,
       publisher: PERSON_REFERENCE,
-      ...(publishedDate ? { datePublished: publishedDate, dateModified: publishedDate } : {}),
+      ...(post
+        ? {
+            image: toAbsoluteUrl(post.coverImage),
+            datePublished: post.publishedIsoDate,
+            dateModified: post.modifiedIsoDate ?? post.publishedIsoDate,
+          }
+        : {}),
     },
     buildBreadcrumbList([HOME_STEP, { name: "Blog", path: "/blog" }, { name: headline, path }]),
   ];
