@@ -51,11 +51,11 @@ describe("blog article structure", () => {
     expect(within(breadcrumb).getByText(/Fixer le prix de son SaaS/)).toHaveAttribute("aria-current", "page");
   });
 
-  it("publishes Article and BreadcrumbList structured data", () => {
+  it("leaves structured data to the prerendered page instead of injecting a duplicate", () => {
     renderArticle();
 
-    expect(readStructuredData("article")?.["@type"]).toBe("Article");
-    expect(readStructuredData("breadcrumb")?.["@type"]).toBe("BreadcrumbList");
+    expect(readStructuredData("article")).toBeNull();
+    expect(readStructuredData("breadcrumb")).toBeNull();
   });
 
   it("invites readers to start a project after the article", () => {
