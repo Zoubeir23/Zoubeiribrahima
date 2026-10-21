@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Reveal from "@/components/Reveal";
 import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
 import {
@@ -12,12 +13,13 @@ import { FAQ_EMOJIS } from "@/lib/icon-sets";
 
 const FaqSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
   const { faq } = useLandingContent();
+  const [openItemValue, setOpenItemValue] = useState("");
 
   return (
     <section id="faq" className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28">
       <SectionHeading headingAs={headingAs} emoji="❓" title={faq.title} />
       <Reveal delaySeconds={0.1}>
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible value={openItemValue} onValueChange={setOpenItemValue} className="w-full">
           {faq.items.map((item, index) => (
             <AccordionItem
               key={item.question}
@@ -33,7 +35,7 @@ const FaqSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
                   {item.question}
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="text-[var(--text-secondary)]">
+              <AccordionContent forceMount hidden={openItemValue !== `faq-item-${index}`} className="text-[var(--text-secondary)]">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
