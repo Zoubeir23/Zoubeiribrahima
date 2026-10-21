@@ -10,8 +10,6 @@ import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import BlogArticleCallToAction from "@/components/BlogArticleCallToAction";
 import BlogBreadcrumb from "@/components/BlogBreadcrumb";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
-import { useStructuredData } from "@/hooks/useStructuredData";
-import { buildBlogArticleStructuredData, buildBlogBreadcrumbStructuredData } from "@/lib/blog-structured-data";
 import { toMetaDescription } from "@/lib/meta-description";
 import { pageContent } from "@/lib/page-content";
 
@@ -153,8 +151,6 @@ const BlogArticle = () => {
     path: post ? `/blog/${post.slug}` : "/blog",
     noindex: !post,
   });
-  useStructuredData("article", post ? buildBlogArticleStructuredData(post) : null);
-  useStructuredData("breadcrumb", post ? buildBlogBreadcrumbStructuredData(post) : null);
   const progress = useReadingProgress();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [tocOpen, setTocOpen] = useState(false);
