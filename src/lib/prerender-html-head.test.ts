@@ -6,7 +6,6 @@ const SITE_ORIGIN = "https://zoubeir.me";
 
 const templateHtml = `<!doctype html><html><head>
 <title>Default title</title>
-<meta name="title" content="Default title" />
 <meta name="description" content="Default description" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://zoubeir.me" />
@@ -39,9 +38,10 @@ describe("applyPageMetadataToTemplate", () => {
     expect(html).toContain('content="Logiciels &lt;en ligne&gt; &amp; plus"');
   });
 
-  it("keeps the bare origin as canonical url for the home page", () => {
+  it("uses the origin with a trailing slash as canonical url for the home page, like the sitemap", () => {
     const html = applyPageMetadataToTemplate(templateHtml, { ...metadata, path: "/" }, SITE_ORIGIN);
-    expect(html).toContain('<link rel="canonical" href="https://zoubeir.me" />');
+    expect(html).toContain('<link rel="canonical" href="https://zoubeir.me/" />');
+    expect(html).toContain('<meta property="og:url" content="https://zoubeir.me/" />');
   });
 
   it("leaves indexing untouched for indexable pages", () => {
@@ -52,6 +52,11 @@ describe("applyPageMetadataToTemplate", () => {
   it("marks noindex pages as noindex", () => {
     const html = applyPageMetadataToTemplate(templateHtml, { ...metadata, noindex: true }, SITE_ORIGIN);
     expect(html).toContain('<meta name="robots" content="noindex, follow" />');
+  });
+
+  it("gives noindex pages no canonical link", () => {
+    const html = applyPageMetadataToTemplate(templateHtml, { ...metadata, noindex: true }, SITE_ORIGIN);
+    expect(html).not.toContain('rel="canonical"');
   });
 
   it("fails loudly when the template lacks a tag to rewrite", () => {
