@@ -25,6 +25,10 @@ describe("static head of index.html", () => {
   });
 
   it("points the canonical link to the official domain", () => {
-    expect(readTag(/<link rel="canonical" href="([^"]*)"/)).toBe("https://zoubeir.me");
+    expect(readTag(/<link rel="canonical" href="([^"]*)"/)).toBe("https://zoubeir.me/");
+  });
+
+  it("drops meta tags that search engines ignore", () => {
+    expect(indexHtml).not.toMatch(/<meta name="(keywords|language|revisit-after|title)"/);
   });
 });
