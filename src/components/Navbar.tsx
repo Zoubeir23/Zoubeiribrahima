@@ -71,11 +71,11 @@ const Navbar = () => {
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link to="/" aria-label={nav.home} className="shrink-0">
           <img
-            src="/logo-scale-avec-zoubeir-for-dark-background.png"
+            src="/logo-scale-avec-zoubeir-dark-background.webp"
             alt="Scale avec Zoubeir"
             className="h-14 w-auto object-contain sm:h-16"
-            width={380}
-            height={80}
+            width={330}
+            height={193}
           />
         </Link>
 

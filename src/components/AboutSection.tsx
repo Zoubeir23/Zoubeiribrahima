@@ -25,11 +25,11 @@ const AboutSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }) => {
         />
         <div className="flex h-36 w-28 shrink-0 items-end justify-center overflow-hidden rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] sm:h-44 sm:w-36">
           <img
-            src="/Sans_titre-removebg-preview.png"
+            src="/zoubeir-portrait-avatar.webp"
             alt={experience.portraitAlt}
             className="h-full w-full object-contain object-bottom"
-            width={467}
-            height={534}
+            width={300}
+            height={343}
             loading="lazy"
           />
         </div>

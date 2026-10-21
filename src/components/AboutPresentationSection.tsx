@@ -180,11 +180,11 @@ const AboutPresentationSection = ({
         <aside className="space-y-6 lg:sticky lg:top-28">
           <div className="rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] p-5">
             <img
-              src="/Sans_titre-removebg-preview.png"
+              src="/zoubeir-portrait-avatar.webp"
               alt={about.portraitAlt}
               className="mx-auto h-40 w-auto object-contain"
-              width={467}
-              height={534}
+              width={300}
+              height={343}
               loading="lazy"
             />
           </div>
