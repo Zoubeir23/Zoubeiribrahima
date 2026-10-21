@@ -1,5 +1,6 @@
 import { blogPosts } from "@/data/blogPosts";
 import { SITE_DOMAIN } from "@/lib/contact-config";
+import { landingContent } from "@/lib/landing-content";
 
 export type StructuredDataNode = Record<string, unknown>;
 
@@ -120,6 +121,22 @@ const buildAboutStructuredData = ({ title, description, path }: PageStructuredDa
   buildBreadcrumbList([HOME_STEP, { name: removeTitleSuffix(title), path }]),
 ];
 
+const buildFaqStructuredData = ({ title, path }: PageStructuredDataInput): StructuredDataNode[] => [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    url: toAbsoluteUrl(path),
+    inLanguage: "fr",
+    isPartOf: WEBSITE_REFERENCE,
+    mainEntity: landingContent.fr.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+  buildBreadcrumbList([HOME_STEP, { name: removeTitleSuffix(title), path }]),
+];
+
 const buildGenericStructuredData = ({ title, description, path }: PageStructuredDataInput): StructuredDataNode[] => {
   const name = removeTitleSuffix(title);
   return [
@@ -143,6 +160,9 @@ export const buildPageStructuredData = (input: PageStructuredDataInput): Structu
   }
   if (input.path === "/a-propos") {
     return buildAboutStructuredData(input);
+  }
+  if (input.path === "/faq") {
+    return buildFaqStructuredData(input);
   }
   if (input.path.startsWith("/services/")) {
     return buildServiceStructuredData(input);

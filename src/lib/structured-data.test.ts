@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { blogPosts } from "@/data/blogPosts";
+import { landingContent } from "@/lib/landing-content";
 import { buildPageStructuredData } from "@/lib/structured-data";
 
 const baseInput = {
@@ -83,6 +84,20 @@ describe("buildPageStructuredData", () => {
   it("describes the about page as a profile of the person", () => {
     const [profile] = buildPageStructuredData({ ...baseInput, path: "/a-propos" });
     expect(profile).toMatchObject({ "@type": "ProfilePage", mainEntity: { "@id": "https://zoubeir.me/#person" } });
+  });
+
+  it("describes the FAQ page with every question and its answer", () => {
+    const [faqPage, breadcrumbs] = buildPageStructuredData({ ...baseInput, path: "/faq" });
+    const { items } = landingContent.fr.faq;
+    expect(faqPage).toMatchObject({ "@type": "FAQPage", url: "https://zoubeir.me/faq", inLanguage: "fr" });
+    expect((faqPage as { mainEntity: unknown[] }).mainEntity).toEqual(
+      items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    );
+    expect(breadcrumbs).toMatchObject({ "@type": "BreadcrumbList" });
   });
 
   it("falls back to a web page with breadcrumbs for other pages", () => {
