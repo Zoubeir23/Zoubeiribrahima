@@ -7,7 +7,7 @@ const AboutPage = () => {
   const { meta } = useLocalizedContent(aboutContent);
 
   return (
-    <PageShell path="/a-propos" title={meta.title} description={meta.description}>
+    <PageShell path="/a-propos" title={meta.title} metaTitle={meta.metaTitle} description={meta.description}>
       <AboutPresentationSection headingAs="h1" />
     </PageShell>
   );

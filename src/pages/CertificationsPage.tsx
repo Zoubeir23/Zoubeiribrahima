@@ -8,7 +8,7 @@ const CertificationsPage = () => {
   const meta = useLocalizedContent(pageContent).certifications;
 
   return (
-    <PageShell path="/certifications" title={meta.title} description={meta.description}>
+    <PageShell path="/certifications" title={meta.title} metaTitle={meta.metaTitle} description={meta.description}>
       <CertificationsWallOfFame headingAs="h1" />
       <CertificationsSection />
     </PageShell>

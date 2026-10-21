@@ -9,7 +9,7 @@ const ServicesPage = () => {
   const meta = useLocalizedContent(pageContent).services;
 
   return (
-    <PageShell path="/services" title={meta.title} description={meta.description}>
+    <PageShell path="/services" title={meta.title} metaTitle={meta.metaTitle} description={meta.description}>
       <ServicesSection headingAs="h1" />
       <ProcessSection />
       <ReasonsSection />

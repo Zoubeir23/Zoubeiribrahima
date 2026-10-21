@@ -7,7 +7,7 @@ const ProjectsPage = () => {
   const meta = useLocalizedContent(pageContent).projects;
 
   return (
-    <PageShell path="/projects" title={meta.title} description={meta.description}>
+    <PageShell path="/projects" title={meta.title} metaTitle={meta.metaTitle} description={meta.description}>
       <ProjectsBentoSection headingAs="h1" />
     </PageShell>
   );
