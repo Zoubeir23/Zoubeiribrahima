@@ -469,7 +469,7 @@ const BlogArticle = () => {
               ))}
             </div>
 
-            <BlogArticleCallToAction />
+            <BlogArticleCallToAction category={post.category} />
 
             {/* Related articles */}
             {relatedArticles.length > 0 && (

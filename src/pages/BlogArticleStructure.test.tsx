@@ -58,6 +58,13 @@ describe("blog article structure", () => {
     expect(readStructuredData("breadcrumb")).toBeNull();
   });
 
+  it("links a SaaS article to the SaaS service page", () => {
+    renderArticle();
+
+    const serviceLink = screen.getByRole("link", { name: /offre de développement saas/i });
+    expect(serviceLink).toHaveAttribute("href", "/services/saas");
+  });
+
   it("invites readers to start a project after the article", () => {
     renderArticle();
 
