@@ -66,11 +66,11 @@ describe("metadata of secondary pages", () => {
     expect(canonical()).toBe(`https://zoubeir.me/blog/${post.slug}`);
   });
 
-  it("gives a service page its summary and canonical url", () => {
+  it("gives a service page its search title, description and canonical url", () => {
     renderRoute("/services/saas");
     const service = servicesContent.fr.services.saas;
-    expect(document.title).toBe(`${service.title} | Zoubeir Ibrahima`);
-    expect(description()).toBe(toMetaDescription(service.summary));
+    expect(document.title).toBe(service.metaTitle);
+    expect(description()).toBe(service.metaDescription);
     expect(canonical()).toBe("https://zoubeir.me/services/saas");
   });
 

@@ -35,7 +35,7 @@ describe("ServiceDetail", () => {
 
   it("updates the document title for the service", () => {
     renderPage("/services/saas");
-    expect(document.title).toContain(saas.title);
+    expect(document.title).toBe(saas.metaTitle);
   });
 
   it("links back to the services section of the home page", () => {
