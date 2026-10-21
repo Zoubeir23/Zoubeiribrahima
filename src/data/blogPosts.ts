@@ -30,7 +30,7 @@ export interface BlogPost {
   }>;
 }
 
-const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
+const avatarCover = "/zoubeir-portrait-avatar.webp";
 const avatarAlt = "Photo de profil animée de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
