@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import type { BlogPost } from "@/data/blogPosts";
 
 interface BlogArticleCallToActionProps {
   /** Category of the article; a SaaS article points to the SaaS offer. */
-  category?: string;
+  category?: BlogPost["category"];
 }
 
 const secondaryLinkClassName =
-  "mt-6 inline-flex min-h-11 items-center rounded-full border border-[var(--surface-border)] px-6 py-3 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
+  "inline-flex min-h-11 items-center rounded-full border border-[var(--surface-border)] px-6 py-3 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
 
 const BlogArticleCallToAction = ({
   category,
@@ -25,10 +26,10 @@ const BlogArticleCallToAction = ({
       SaaS, application web ou mobile, site portfolio : je vous aide à passer de
       l'idée à une première version en ligne.
     </p>
-    <div className="flex flex-wrap gap-3">
+    <div className="mt-6 flex flex-wrap gap-3">
       <Link
         to="/contact"
-        className="mt-6 inline-flex min-h-11 items-center rounded-full bg-white px-6 py-3 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
+        className="inline-flex min-h-11 items-center rounded-full bg-white px-6 py-3 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
       >
         Discuter de votre projet
       </Link>
