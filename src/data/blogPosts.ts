@@ -31,7 +31,7 @@ export interface BlogPost {
 }
 
 const avatarCover = "/logo_profile/Sans_titre-removebg-preview.png";
-const avatarAlt = "Photo de profil anime de Zoubeir";
+const avatarAlt = "Photo de profil animée de Zoubeir";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -40,7 +40,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "saas",
-    readingTime: "12 minutes",
+    readingTime: "2 minutes",
     date: "Octobre 2026",
     publishedIsoDate: "2026-10-19",
     excerpt:
@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "saas",
-    readingTime: "10 minutes",
+    readingTime: "2 minutes",
     date: "Octobre 2026",
     publishedIsoDate: "2026-10-19",
     excerpt:
@@ -72,7 +72,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "saas",
-    readingTime: "9 minutes",
+    readingTime: "2 minutes",
     date: "Octobre 2026",
     publishedIsoDate: "2026-10-19",
     excerpt:
@@ -88,7 +88,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "saas",
-    readingTime: "8 minutes",
+    readingTime: "2 minutes",
     date: "Octobre 2026",
     publishedIsoDate: "2026-10-19",
     excerpt:
@@ -100,81 +100,81 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "git-github-de-zero-a-heros-guide-complet",
-    title: "Git & GitHub : Guide Complet du Developpeur de Zero a Heros",
+    title: "Git & GitHub : guide complet du développeur, de zéro à héros",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "devops",
-    readingTime: "65 minutes",
+    readingTime: "10 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
-      "Cours complet Git et GitHub pour maitriser le versioning, les branches, les conflits, les workflows d'equipe, la collaboration PR et la securite SSH.",
+      "Cours complet Git et GitHub pour maîtriser le versioning, les branches, les conflits, les workflows d'équipe, la collaboration par pull request et la sécurité SSH.",
     intro:
-      "Un parcours progressif pour apprendre Git et GitHub de A a Z, du premier commit aux workflows collaboratifs modernes et aux commandes avancees.",
+      "Un parcours progressif pour apprendre Git et GitHub de A à Z, du premier commit aux workflows collaboratifs modernes et aux commandes avancées.",
     contentMarkdown: gitGithubZeroAHerosGuideMarkdown,
     sections: [],
   },
   {
     slug: "html-css-de-zero-a-heros-guide-complet",
-    title: "HTML & CSS : Guide Complet du Developpeur Web de Zero a Heros",
+    title: "HTML & CSS : guide complet du développeur web, de zéro à héros",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "frontend",
-    readingTime: "60 minutes",
+    readingTime: "16 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
-      "Cours complet HTML/CSS pour apprendre la structure web, la mise en page moderne, le responsive design, l'accessibilite et les bonnes pratiques front-end.",
+      "Cours complet HTML/CSS pour apprendre la structure web, la mise en page moderne, le responsive design, l'accessibilité et les bonnes pratiques front-end.",
     intro:
-      "Un guide progressif et pratique pour devenir autonome en HTML et CSS: des bases jusqu'aux concepts avances comme Flexbox, Grid, responsive et a11y.",
+      "Un guide progressif et pratique pour devenir autonome en HTML et CSS : des bases jusqu'aux concepts avancés comme Flexbox, Grid, responsive et accessibilité.",
     contentMarkdown: htmlCssZeroAHerosGuideMarkdown,
     sections: [],
   },
   {
     slug: "python-de-zero-a-heros-guide-complet",
-    title: "Python : Guide Complet du Developpeur de Zero a Heros",
+    title: "Python : guide complet du développeur, de zéro à héros",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "python",
-    readingTime: "55 minutes",
+    readingTime: "13 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
-      "Cours Python complet et progressif, du premier script aux concepts avances: POO, tests, APIs, concurrence, bases de donnees, packaging et bonnes pratiques.",
+      "Cours Python complet et progressif, du premier script aux concepts avancés : POO, tests, API, concurrence, bases de données, packaging et bonnes pratiques.",
     intro:
-      "Un parcours autonome et pratique pour apprendre Python de A a Z, avec explications techniques, listings de code, exercices et fiche de revision.",
+      "Un parcours autonome et pratique pour apprendre Python de A à Z, avec explications techniques, listings de code, exercices et fiche de révision.",
     contentMarkdown: pythonZeroAHerosGuideMarkdown,
     sections: [],
   },
   {
     slug: "apprendre-django-guide-complet-developpeur",
-    title: "Apprendre Django : DJANGO Guide Complet du Developpeur",
+    title: "Apprendre Django : guide complet du développeur",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "python",
-    readingTime: "45 minutes",
+    readingTime: "28 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
-      "Un guide structure de A a Z pour apprendre Django: architecture MTV, ORM, admin, templates, formulaires, authentification, DRF, deploiement, securite et performance.",
+      "Un guide structuré de A à Z pour apprendre Django : architecture MTV, ORM, admin, templates, formulaires, authentification, DRF, déploiement, sécurité et performance.",
     intro:
-      "Ce guide complet Django suit un parcours progressif et pratique: des fondations jusqu'a la production, avec les concepts essentiels, les commandes utiles et les patterns professionnels.",
+      "Ce guide complet Django suit un parcours progressif et pratique : des fondations jusqu'à la production, avec les concepts essentiels, les commandes utiles et les patterns professionnels.",
     contentMarkdown: apprendreDjangoGuideCompletMarkdown,
     sections: [],
   },
   {
     slug: "docker-compose-orchestration-conteneurs",
-    title: "Docker Compose : DOCKER COMPOSE Architecture et Concepts",
+    title: "Docker Compose : architecture, concepts et orchestration",
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "devops",
-    readingTime: "50 minutes",
+    readingTime: "22 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
-      "Guide technique complet de Docker Compose: architecture, configuration YAML, orchestration multi-services, gestion des reseaux et volumes, bonnes pratiques et deploiement production.",
+      "Guide technique complet de Docker Compose : architecture, configuration YAML, orchestration multi-services, gestion des réseaux et volumes, bonnes pratiques et déploiement en production.",
     intro:
-      "Docker Compose revolutionne la gestion d'applications multi-conteneurs. Ce guide couvre tous les aspects: du workflow de base aux cas avances, securite, monitoring et troubleshooting.",
+      "Docker Compose révolutionne la gestion d'applications multi-conteneurs. Ce guide couvre tous les aspects : du workflow de base aux cas avancés, sécurité, monitoring et dépannage.",
     contentMarkdown: dockerComposeArticleMarkdown,
     sections: [],
   },
@@ -184,7 +184,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "devops",
-    readingTime: "35 minutes",
+    readingTime: "1 minute",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
@@ -232,7 +232,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "python",
-    readingTime: "40 minutes",
+    readingTime: "1 minute",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
@@ -279,7 +279,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "ai",
-    readingTime: "30 minutes",
+    readingTime: "1 minute",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
@@ -316,7 +316,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "ai",
-    readingTime: "25 minutes",
+    readingTime: "15 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
@@ -332,7 +332,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: avatarCover,
     coverAlt: avatarAlt,
     category: "ai",
-    readingTime: "25 minutes",
+    readingTime: "5 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
     excerpt:
