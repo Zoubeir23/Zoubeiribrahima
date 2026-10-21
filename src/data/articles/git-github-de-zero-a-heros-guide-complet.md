@@ -1,6 +1,4 @@
-# GIT & GITHUB
-## Guide Complet du Developpeur
-### De Zero a Heros
+**De Zero a Heros**
 
 > Git n'est pas seulement un outil, c'est une memoire pour votre code et une aile pour votre equipe.
 > - Linus Torvalds, createur de Git

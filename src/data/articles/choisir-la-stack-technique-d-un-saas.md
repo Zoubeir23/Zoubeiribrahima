@@ -1,12 +1,8 @@
-## Choisir la stack technique d'un SaaS : critères avant technologies
-
----
-
-## Section 1 : partir des contraintes, pas des modes
+## Partir des contraintes, pas des modes
 
 Le meilleur framework est celui que tu maîtrises assez pour livrer vite et corriger sans panique. Pour un SaaS qui démarre, la vitesse d'itération compte plus que la performance théorique.
 
-## Section 2 : les cinq critères
+## Les cinq critères
 
 ### 2.1 Maîtrise de l'équipe
 
@@ -28,7 +24,7 @@ Un monolithe sur un seul serveur coûte une fraction d'une architecture de dix s
 
 Protection CSRF, gestion des sessions, validation des entrées : choisis un framework qui les fournit déjà.
 
-## Section 3 : une combinaison pragmatique
+## Une combinaison pragmatique
 
 ```
 Backend  : Django + Django REST Framework
@@ -40,7 +36,7 @@ Mobile   : Flutter ou React Native, plus tard
 
 Ce choix couvre l'administration, l'API, le web et le mobile sans multiplier les langages. Commence par un monolithe, découpe seulement quand une partie le justifie.
 
-## Section 4 : à retenir
+## À retenir
 
 - Maîtrise d'abord, nouveauté ensuite.
 - Un monolithe bien rangé suffit longtemps.

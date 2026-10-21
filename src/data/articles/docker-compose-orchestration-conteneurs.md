@@ -1,6 +1,4 @@
-# DOCKER COMPOSE
-## Architecture et Concepts
-### Guide Technique Complet
+**Guide Technique Complet**
 
 "L'orchestration de conteneurs simplifie le deploiement d'applications complexes"
 

@@ -1,6 +1,4 @@
-# HTML & CSS
-## Guide Complet du Developpeur Web
-### De Zero a Heros
+**De Zero a Heros**
 
 > Le web est fait de deux briques simples : la structure (HTML) et l'habillage (CSS). Maitrisez-les, et vous pourrez construire n'importe quelle interface.
 > - Tim Berners-Lee (inspire)

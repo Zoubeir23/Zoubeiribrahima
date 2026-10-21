@@ -1,6 +1,4 @@
-# PYTHON
-## Guide Complet du Developpeur
-### De Zero a Heros
+**De Zero a Heros**
 
 > "Le code est comme la poesie : chaque mot compte, chaque ligne raconte une histoire."
 > - Guido van Rossum, Createur de Python
