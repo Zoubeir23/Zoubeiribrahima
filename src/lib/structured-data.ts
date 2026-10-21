@@ -11,6 +11,9 @@ interface PageStructuredDataInput {
 
 const SITE_ORIGIN = `https://${SITE_DOMAIN}`;
 const PERSON_REFERENCE = { "@id": `${SITE_ORIGIN}/#person` };
+const WEBSITE_REFERENCE = { "@id": `${SITE_ORIGIN}/#website` };
+const BUSINESS_REFERENCE = { "@id": `${SITE_ORIGIN}/#business` };
+const PROFILE_URLS = ["https://www.linkedin.com/in/zoubeir-ibrahima/", "https://github.com/Zoubeir23"];
 const TITLE_SUFFIX_SEPARATOR = " | ";
 
 const removeTitleSuffix = (title: string): string => {
@@ -42,10 +45,24 @@ const buildHomeStructuredData = (): StructuredDataNode[] => [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_REFERENCE["@id"],
     name: "Portfolio Zoubeir Ibrahima",
     url: SITE_ORIGIN,
     inLanguage: "fr",
     publisher: PERSON_REFERENCE,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": BUSINESS_REFERENCE["@id"],
+    name: "Zoubeir Ibrahima, développeur freelance",
+    description: "Conception et développement de SaaS, d'applications web et mobiles, et de sites portfolio, à distance depuis Dakar.",
+    url: SITE_ORIGIN,
+    image: `${SITE_ORIGIN}/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png`,
+    founder: PERSON_REFERENCE,
+    areaServed: ["Sénégal", "Worldwide"],
+    address: { "@type": "PostalAddress", addressLocality: "Dakar", addressCountry: "SN" },
+    sameAs: PROFILE_URLS,
   },
 ];
 
@@ -58,8 +75,8 @@ const buildServiceStructuredData = ({ title, description, path }: PageStructured
       name,
       description,
       url: toAbsoluteUrl(path),
-      provider: PERSON_REFERENCE,
-      areaServed: "Worldwide",
+      provider: BUSINESS_REFERENCE,
+      areaServed: ["Sénégal", "Worldwide"],
     },
     buildBreadcrumbList([HOME_STEP, { name: "Services", path: "/services" }, { name, path }]),
   ];
@@ -113,7 +130,7 @@ const buildGenericStructuredData = ({ title, description, path }: PageStructured
       description,
       url: toAbsoluteUrl(path),
       inLanguage: "fr",
-      isPartOf: { "@type": "WebSite", url: SITE_ORIGIN },
+      isPartOf: WEBSITE_REFERENCE,
       about: PERSON_REFERENCE,
     },
     buildBreadcrumbList([HOME_STEP, { name, path }]),
