@@ -1,0 +1,38 @@
+# Zoubeir Ibrahima
+
+> Développeur freelance basé à Dakar (Sénégal), fondateur de Snapfolioo. Conception et développement de SaaS, d'applications web et mobiles, de sites portfolio, et services informatiques à distance.
+
+## Services
+
+- [Développement SaaS](https://zoubeir.me/services/saas): Conception et développement de logiciels en ligne : comptes, abonnements, tableaux de bord.
+- [Applications web](https://zoubeir.me/services/web-applications): Applications sur mesure, rapides et maintenables, adaptées à votre activité.
+- [Applications mobiles](https://zoubeir.me/services/mobile-applications): Applications mobiles pensées pour vos utilisateurs, avec une expérience fluide.
+- [Sites portfolio](https://zoubeir.me/services/portfolio-websites): Un portfolio clair et performant qui met en valeur votre travail et vous fait trouver.
+- [Services informatiques à distance](https://zoubeir.me/services/remote-it-services): Dépannage, maintenance et accompagnement technique, où que vous soyez.
+
+## Profil
+
+- [À propos](https://zoubeir.me/a-propos): parcours et approche de travail
+- [Projets](https://zoubeir.me/projects): réalisations
+- [Expérience](https://zoubeir.me/experience): expériences professionnelles
+- [Compétences](https://zoubeir.me/skills): technologies maîtrisées
+- [Certifications](https://zoubeir.me/certifications): formations et certifications
+- [FAQ](https://zoubeir.me/faq): questions fréquentes
+- [Contact](https://zoubeir.me/contact): demander un devis ou échanger sur un projet
+
+## Blog
+
+- [Valider une idée de SaaS en 30 jours avant d'écrire une ligne de code](https://zoubeir.me/blog/valider-une-idee-saas-en-30-jours): Un plan en quatre semaines pour tester le besoin, la promesse et l'engagement de vrais clients avant de choisir une stack.
+- [Choisir la stack technique d'un SaaS : critères avant technologies](https://zoubeir.me/blog/choisir-la-stack-technique-d-un-saas): Les cinq critères qui comptent vraiment pour choisir sa stack, et une combinaison pragmatique Django, React et PostgreSQL.
+- [Fixer le prix de son SaaS : abonnement, paliers et marchés locaux](https://zoubeir.me/blog/fixer-le-prix-de-son-saas): Abonnement, usage ou licence : comment choisir un modèle, adapter les moyens de paiement et tester ses prix.
+- [Lancer le MVP d'un SaaS : la checklist avant la mise en ligne](https://zoubeir.me/blog/lancer-le-mvp-d-un-saas-checklist): Le parcours minimal, le filet de sécurité et le cadre légal à prévoir avant de lancer un premier SaaS.
+- [Git & GitHub : Guide Complet du Developpeur de Zero a Heros](https://zoubeir.me/blog/git-github-de-zero-a-heros-guide-complet): Cours complet Git et GitHub pour maitriser le versioning, les branches, les conflits, les workflows d'equipe, la collaboration PR et la securite SSH.
+- [HTML & CSS : Guide Complet du Developpeur Web de Zero a Heros](https://zoubeir.me/blog/html-css-de-zero-a-heros-guide-complet): Cours complet HTML/CSS pour apprendre la structure web, la mise en page moderne, le responsive design, l'accessibilite et les bonnes pratiques front-end.
+- [Python : Guide Complet du Developpeur de Zero a Heros](https://zoubeir.me/blog/python-de-zero-a-heros-guide-complet): Cours Python complet et progressif, du premier script aux concepts avances: POO, tests, APIs, concurrence, bases de donnees, packaging et bonnes pratiques.
+- [Apprendre Django : DJANGO Guide Complet du Developpeur](https://zoubeir.me/blog/apprendre-django-guide-complet-developpeur): Un guide structure de A a Z pour apprendre Django: architecture MTV, ORM, admin, templates, formulaires, authentification, DRF, deploiement, securite et performance.
+- [Docker Compose : DOCKER COMPOSE Architecture et Concepts](https://zoubeir.me/blog/docker-compose-orchestration-conteneurs): Guide technique complet de Docker Compose: architecture, configuration YAML, orchestration multi-services, gestion des reseaux et volumes, bonnes pratiques et deploiement production.
+- [Git & GitHub en 2026 : workflow propre pour travailler seul et en équipe](https://zoubeir.me/blog/git-github-workflow-propre-2026): Guide complet pour installer Git, configurer GitHub avec SSH, comprendre les concepts de base, adopter un workflow clair même en solo, et collaborer en équipe via branches et pull requests.
+- [Python : bases solides et bonnes pratiques pour un code maintenable](https://zoubeir.me/blog/python-bonnes-pratiques-code-maintenable-2026): Guide complet pour écrire du Python propre dès le départ : venv, structure de projet, typage, tests avec pytest et outils de qualité.
+- [Tendances 2026 : Claude Code, OpenClaw et le paysage des agents IA de code](https://zoubeir.me/blog/agents-ia-claude-code-openclaw-tendances-2026): Tour d'horizon complet des agents IA de code en 2026 : fonctionnement, différences concrètes, et intégration intelligente dans ton workflow.
+- [Vibe coding et Claude Code en 2026 : ce que ça change vraiment pour les devs](https://zoubeir.me/blog/vibe-coding-et-claude-code-en-2026): Comprendre le vibe coding sans tomber dans ses pièges : ce que c'est vraiment, pourquoi c'est dangereux mal utilisé, et comment transformer cette tendance en levier de productivité sans perdre le contrôle de ton code.
+- [Installer Claude Code en 2026 : guide complet pas à pas](https://zoubeir.me/blog/installer-claude-code-guide-2026): Guide complet pour installer Claude Code via npm, choisir entre abonnement Claude.ai et clé API, lancer ta première commande et résoudre les erreurs courantes sur macOS, Linux et Windows.
