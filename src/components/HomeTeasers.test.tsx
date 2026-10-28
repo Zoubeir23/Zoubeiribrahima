@@ -6,13 +6,16 @@ import {
   CertificationsTeaser,
   ExperienceTeaser,
   FaqTeaser,
+  LatestArticlesTeaser,
   ProjectsTeaser,
   SkillsTeaser,
 } from "@/components/HomeTeasers";
+import { blogPosts } from "@/data/blogPosts";
 import { certificationIssuerCount, certifications } from "@/data/certifications";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import { experienceContent } from "@/lib/experience-content";
 import { landingContent } from "@/lib/landing-content";
+import { selectLatestBlogPosts } from "@/lib/latest-blog-posts";
 import { pageContent } from "@/lib/page-content";
 import { projectsContent } from "@/lib/projects-content";
 
@@ -36,6 +39,7 @@ describe("home teasers", () => {
     ["experience", <ExperienceTeaser key="e" />, "/experience"],
     ["certifications", <CertificationsTeaser key="c" />, "/certifications"],
     ["faq", <FaqTeaser key="f" />, "/faq"],
+    ["blog", <LatestArticlesTeaser key="b" />, "/blog"],
   ] as const)("%s teaser has a level two heading and a link to its page", (key, element, path) => {
     renderTeaser(element);
     expect(screen.getByRole("heading", { level: 2, name: teasers[key].title })).toBeInTheDocument();
@@ -75,5 +79,15 @@ describe("home teasers", () => {
       expect(within(list).getByRole("link", { name: item.question })).toHaveAttribute("href", "/faq");
     }
     expect(within(list).queryByText(landingContent.fr.faq.items[3].question)).not.toBeInTheDocument();
+  });
+
+  it("links the three latest articles straight from the home page", () => {
+    renderTeaser(<LatestArticlesTeaser />);
+    const latestPosts = selectLatestBlogPosts(blogPosts, 3);
+    const list = screen.getByRole("list");
+    expect(within(list).getAllByRole("link")).toHaveLength(3);
+    for (const post of latestPosts) {
+      expect(within(list).getByRole("link", { name: post.title })).toHaveAttribute("href", `/blog/${post.slug}`);
+    }
   });
 });

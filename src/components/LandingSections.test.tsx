@@ -55,7 +55,7 @@ describe("landing sections", () => {
   it("reveals an answer when its question is opened", () => {
     renderWithLanguage(<FaqSection />);
     const firstFaqItem = landingContent.fr.faq.items[0];
-    expect(screen.queryByText(firstFaqItem.answer)).not.toBeInTheDocument();
+    expect(screen.getByText(firstFaqItem.answer)).not.toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: firstFaqItem.question }));
     expect(screen.getByText(firstFaqItem.answer)).toBeVisible();
   });

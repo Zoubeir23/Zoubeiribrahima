@@ -7,7 +7,7 @@ const FaqPage = () => {
   const meta = useLocalizedContent(pageContent).faq;
 
   return (
-    <PageShell path="/faq" title={meta.title} description={meta.description}>
+    <PageShell path="/faq" title={meta.title} metaTitle={meta.metaTitle} description={meta.description}>
       <FaqSection headingAs="h1" />
     </PageShell>
   );

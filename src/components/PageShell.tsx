@@ -9,14 +9,16 @@ const SITE_NAME = "Zoubeir Ibrahima";
 
 interface PageShellProps {
   title: string;
+  /** Keyword-rich <title> without the brand suffix; falls back to `title`. */
+  metaTitle?: string;
   description: string;
   path: string;
   showClosingCallToAction?: boolean;
   children: ReactNode;
 }
 
-const PageShell = ({ title, description, path, showClosingCallToAction = true, children }: PageShellProps) => {
-  usePageMetadata({ title: `${title} | ${SITE_NAME}`, description, path });
+const PageShell = ({ title, metaTitle, description, path, showClosingCallToAction = true, children }: PageShellProps) => {
+  usePageMetadata({ title: `${metaTitle ?? title} | ${SITE_NAME}`, description, path });
 
   return (
     <div className="min-h-screen bg-[var(--surface-deepest)] font-body text-white antialiased">

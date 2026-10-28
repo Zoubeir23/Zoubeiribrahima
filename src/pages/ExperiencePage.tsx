@@ -7,7 +7,7 @@ const ExperiencePage = () => {
   const meta = useLocalizedContent(pageContent).experience;
 
   return (
-    <PageShell path="/experience" title={meta.title} description={meta.description}>
+    <PageShell path="/experience" title={meta.title} metaTitle={meta.metaTitle} description={meta.description}>
       <AboutSection headingAs="h1" />
     </PageShell>
   );

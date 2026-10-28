@@ -39,7 +39,7 @@ const categoryCards = [
 
 const Blog = () => {
   const blogMeta = useLocalizedContent(pageContent).blog;
-  usePageMetadata({ title: `${blogMeta.title} | Zoubeir Ibrahima`, description: blogMeta.description, path: "/blog" });
+  usePageMetadata({ title: `${blogMeta.metaTitle ?? blogMeta.title} | Zoubeir Ibrahima`, description: blogMeta.description, path: "/blog" });
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 

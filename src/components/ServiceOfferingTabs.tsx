@@ -1,4 +1,5 @@
 import * as Tabs from "@radix-ui/react-tabs";
+import { useState } from "react";
 import { CalendarDays, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import Emoji from "@/components/Emoji";
@@ -22,10 +23,11 @@ const secondaryActionClassName =
 
 const ServiceOfferingTabs = ({ slug, offerings }: ServiceOfferingTabsProps) => {
   const content = useLocalizedContent(servicesContent);
+  const [activeTab, setActiveTab] = useState("offering-0");
   const bookingChannel = contactChannels.find((channel) => channel.kind === "booking");
 
   return (
-    <Tabs.Root defaultValue="offering-0">
+    <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
       <Tabs.List
         aria-label={content.offeringsTitle}
         className="mb-6 flex gap-2 overflow-x-auto rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] p-1"
@@ -48,6 +50,8 @@ const ServiceOfferingTabs = ({ slug, offerings }: ServiceOfferingTabsProps) => {
           <Tabs.Content
             key={offering.tabLabel}
             value={`offering-${index}`}
+            forceMount
+            hidden={activeTab !== `offering-${index}`}
             className="gradient-ring relative rounded-[var(--radius-medium)] bg-[var(--surface-base)] p-6 focus-visible:outline-none sm:p-10"
           >
             <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[var(--text-muted)]">

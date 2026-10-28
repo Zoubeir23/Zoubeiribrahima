@@ -10,6 +10,8 @@ const projectRoot = process.cwd();
 const clientDirectory = path.join(projectRoot, "dist");
 const serverEntryPath = path.join(projectRoot, "dist-ssr", "entry-server.js");
 
+const findBlogPosting = (structuredData) => structuredData.find((node) => node["@type"] === "BlogPosting");
+
 const readRoutesFromSitemap = async () => {
   const sitemapXml = await readFile(path.join(projectRoot, "public", "sitemap.xml"), "utf8");
   return [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, location]) => new URL(location).pathname);
@@ -36,8 +38,12 @@ const main = async () => {
     if (metadata.noindex) {
       throw new Error(`Sitemap route ${route} rendered as noindex; it is probably not a real page`);
     }
+    const blogPosting = findBlogPosting(structuredData);
+    const pageMetadata = blogPosting
+      ? { ...metadata, articlePublishedTime: blogPosting.datePublished, articleModifiedTime: blogPosting.dateModified }
+      : metadata;
     const page = injectStructuredData(
-      applyPageMetadataToTemplate(injectRenderedBody(templateHtml, html), metadata, SITE_ORIGIN),
+      applyPageMetadataToTemplate(injectRenderedBody(templateHtml, html), pageMetadata, SITE_ORIGIN),
       structuredData,
     );
     await writePrerenderedPage(outputPathForRoute(route), page);

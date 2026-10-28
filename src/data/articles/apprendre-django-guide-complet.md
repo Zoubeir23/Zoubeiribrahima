@@ -1,6 +1,4 @@
-# DJANGO
-## Guide Complet du Developpeur
-### Framework Web Python de Nouvelle Generation
+**Framework Web Python de Nouvelle Generation**
 
 "Django makes it easier to build web pages using Python."
 - Adrian Holovaty, Co-createur de Django

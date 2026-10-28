@@ -114,11 +114,11 @@ const HeroSection = () => {
               >
                 <div className="scan-surface rounded-[inherit]">
                   <img
-                    src="/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png"
+                    src="/zoubeir-portrait-hero.webp"
                     alt="Zoubeir Ibrahima Amed"
                     className="h-72 w-full object-contain object-bottom sm:h-80 md:h-[28rem]"
-                    width={768}
-                    height={896}
+                    width={516}
+                    height={483}
                     {...{ fetchpriority: "high" }}
                   />
                 </div>

@@ -17,7 +17,7 @@ const replaceMetaContent = (html, attributeName, attributeValue, content) =>
   );
 
 export const applyPageMetadataToTemplate = (templateHtml, metadata, siteOrigin) => {
-  const canonicalUrl = metadata.path === "/" ? siteOrigin : `${siteOrigin}${metadata.path}`;
+  const canonicalUrl = `${siteOrigin}${metadata.path}`;
   let html = templateHtml;
 
   html = replaceTagContent(
@@ -26,7 +26,6 @@ export const applyPageMetadataToTemplate = (templateHtml, metadata, siteOrigin) 
     () => `<title>${escapeHtmlAttribute(metadata.title)}</title>`,
     "title",
   );
-  html = replaceMetaContent(html, "name", "title", metadata.title);
   html = replaceMetaContent(html, "name", "description", metadata.description);
   html = replaceMetaContent(html, "property", "og:title", metadata.title);
   html = replaceMetaContent(html, "property", "og:description", metadata.description);
@@ -34,15 +33,30 @@ export const applyPageMetadataToTemplate = (templateHtml, metadata, siteOrigin) 
   html = replaceMetaContent(html, "name", "twitter:title", metadata.title);
   html = replaceMetaContent(html, "name", "twitter:description", metadata.description);
   html = replaceMetaContent(html, "name", "twitter:url", canonicalUrl);
-  html = replaceTagContent(
-    html,
-    /(<link rel="canonical" href=")[^"]*(")/,
-    (_match, opening, closing) => `${opening}${escapeHtmlAttribute(canonicalUrl)}${closing}`,
-    "canonical link",
-  );
+
+  if (metadata.articlePublishedTime) {
+    html = replaceMetaContent(html, "property", "og:type", "article");
+    html = html.replace(
+      /(<meta property="og:type" content="article" \/>)/,
+      (openingTag) =>
+        [
+          openingTag,
+          `<meta property="article:published_time" content="${escapeHtmlAttribute(metadata.articlePublishedTime)}" />`,
+          `<meta property="article:modified_time" content="${escapeHtmlAttribute(metadata.articleModifiedTime ?? metadata.articlePublishedTime)}" />`,
+        ].join("\n    "),
+    );
+  }
 
   if (metadata.noindex) {
+    html = replaceTagContent(html, /\s*<link rel="canonical" href="[^"]*" \/>/, () => "", "canonical link");
     html = replaceMetaContent(html, "name", "robots", "noindex, follow");
+  } else {
+    html = replaceTagContent(
+      html,
+      /(<link rel="canonical" href=")[^"]*(")/,
+      (_match, opening, closing) => `${opening}${escapeHtmlAttribute(canonicalUrl)}${closing}`,
+      "canonical link",
+    );
   }
 
   return html;

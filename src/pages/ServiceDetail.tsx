@@ -11,7 +11,6 @@ import SiteFooter from "@/components/SiteFooter";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
-import { toMetaDescription } from "@/lib/meta-description";
 import { isServiceSlug } from "@/lib/service-meta";
 import { servicesContent } from "@/lib/services-content";
 
@@ -24,8 +23,8 @@ const ServiceDetail = () => {
   const service = isServiceSlug(slug) ? content.services[slug] : null;
 
   usePageMetadata({
-    title: `${service?.title ?? content.notFoundTitle} | ${content.pageTitleSuffix}`,
-    description: service ? toMetaDescription(service.summary) : content.notFoundBody,
+    title: service?.metaTitle ?? `${content.notFoundTitle} | ${content.pageTitleSuffix}`,
+    description: service?.metaDescription ?? content.notFoundBody,
     path: service && slug ? `/services/${slug}` : "/services",
     noindex: !service,
   });

@@ -25,6 +25,29 @@ describe("static head of index.html", () => {
   });
 
   it("points the canonical link to the official domain", () => {
-    expect(readTag(/<link rel="canonical" href="([^"]*)"/)).toBe("https://zoubeir.me");
+    expect(readTag(/<link rel="canonical" href="([^"]*)"/)).toBe("https://zoubeir.me/");
+  });
+
+  it("drops meta tags that search engines ignore", () => {
+    expect(indexHtml).not.toMatch(/<meta name="(keywords|language|revisit-after|title)"/);
+  });
+
+  describe("Person structured data", () => {
+    const personNode = JSON.parse(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(indexHtml)![1]);
+
+    it("matches the freelance positioning of the title", () => {
+      expect(personNode.jobTitle).toBe("Développeur freelance SaaS, web et mobile");
+    });
+
+    it("declares the full name as an alternate name and a description", () => {
+      expect(personNode.alternateName).toBe("Zoubeir Ibrahima Amed");
+      expect(personNode.description).toEqual(expect.any(String));
+      expect(personNode.description.length).toBeGreaterThan(50);
+    });
+
+    it("uses ISO 3166 country code for the address and states the spoken languages", () => {
+      expect(personNode.address.addressCountry).toBe("SN");
+      expect(personNode.knowsLanguage).toEqual(["fr", "en"]);
+    });
   });
 });

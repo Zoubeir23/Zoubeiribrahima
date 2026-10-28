@@ -1,5 +1,6 @@
 import { blogPosts } from "@/data/blogPosts";
 import { SITE_DOMAIN } from "@/lib/contact-config";
+import { landingContent } from "@/lib/landing-content";
 
 export type StructuredDataNode = Record<string, unknown>;
 
@@ -11,36 +12,22 @@ interface PageStructuredDataInput {
 
 const SITE_ORIGIN = `https://${SITE_DOMAIN}`;
 const PERSON_REFERENCE = { "@id": `${SITE_ORIGIN}/#person` };
+const WEBSITE_REFERENCE = { "@id": `${SITE_ORIGIN}/#website` };
+const BUSINESS_REFERENCE = { "@id": `${SITE_ORIGIN}/#business` };
+const PROFILE_URLS = ["https://www.linkedin.com/in/zoubeir-ibrahima/", "https://github.com/Zoubeir23"];
 const TITLE_SUFFIX_SEPARATOR = " | ";
-
-const FRENCH_MONTH_NUMBERS: Record<string, string> = {
-  janvier: "01",
-  février: "02",
-  mars: "03",
-  avril: "04",
-  mai: "05",
-  juin: "06",
-  juillet: "07",
-  août: "08",
-  septembre: "09",
-  octobre: "10",
-  novembre: "11",
-  décembre: "12",
-};
-
-/** Blog dates are written "Octobre 2026"; schema.org accepts the partial ISO date "2026-10". */
-export const convertFrenchMonthYearToIsoDate = (frenchDate: string): string | null => {
-  const [monthName, year] = frenchDate.trim().toLowerCase().split(/\s+/);
-  const monthNumber = FRENCH_MONTH_NUMBERS[monthName];
-  return monthNumber && /^\d{4}$/.test(year ?? "") ? `${year}-${monthNumber}` : null;
-};
 
 const removeTitleSuffix = (title: string): string => {
   const separatorIndex = title.lastIndexOf(TITLE_SUFFIX_SEPARATOR);
   return separatorIndex === -1 ? title : title.slice(0, separatorIndex);
 };
 
-const toAbsoluteUrl = (path: string): string => (path === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${path}`);
+const toAbsoluteUrl = (path: string): string => {
+  if (/^https?:\/\//.test(path)) {
+    return path;
+  }
+  return path === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${path}`;
+};
 
 const buildBreadcrumbList = (trail: ReadonlyArray<{ name: string; path: string }>): StructuredDataNode => ({
   "@context": "https://schema.org",
@@ -59,10 +46,24 @@ const buildHomeStructuredData = (): StructuredDataNode[] => [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_REFERENCE["@id"],
     name: "Portfolio Zoubeir Ibrahima",
     url: SITE_ORIGIN,
     inLanguage: "fr",
     publisher: PERSON_REFERENCE,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": BUSINESS_REFERENCE["@id"],
+    name: "Zoubeir Ibrahima, développeur freelance",
+    description: "Conception et développement de SaaS, d'applications web et mobiles, et de sites portfolio, à distance depuis Dakar.",
+    url: SITE_ORIGIN,
+    image: `${SITE_ORIGIN}/Gemini_Generated_Image_5omzhk5omzhk5omz-removebg-preview.png`,
+    founder: PERSON_REFERENCE,
+    areaServed: ["Sénégal", "Worldwide"],
+    address: { "@type": "PostalAddress", addressLocality: "Dakar", addressCountry: "SN" },
+    sameAs: PROFILE_URLS,
   },
 ];
 
@@ -75,8 +76,8 @@ const buildServiceStructuredData = ({ title, description, path }: PageStructured
       name,
       description,
       url: toAbsoluteUrl(path),
-      provider: PERSON_REFERENCE,
-      areaServed: "Worldwide",
+      provider: BUSINESS_REFERENCE,
+      areaServed: ["Sénégal", "Worldwide"],
     },
     buildBreadcrumbList([HOME_STEP, { name: "Services", path: "/services" }, { name, path }]),
   ];
@@ -84,7 +85,7 @@ const buildServiceStructuredData = ({ title, description, path }: PageStructured
 
 const buildBlogPostingStructuredData = ({ title, description, path }: PageStructuredDataInput): StructuredDataNode[] => {
   const slug = path.replace(/^\/blog\//, "");
-  const publishedDate = convertFrenchMonthYearToIsoDate(blogPosts.find((post) => post.slug === slug)?.date ?? "");
+  const post = blogPosts.find((candidate) => candidate.slug === slug);
   const headline = removeTitleSuffix(title);
   return [
     {
@@ -96,7 +97,13 @@ const buildBlogPostingStructuredData = ({ title, description, path }: PageStruct
       mainEntityOfPage: toAbsoluteUrl(path),
       author: PERSON_REFERENCE,
       publisher: PERSON_REFERENCE,
-      ...(publishedDate ? { datePublished: publishedDate, dateModified: publishedDate } : {}),
+      ...(post
+        ? {
+            image: toAbsoluteUrl(post.coverImage),
+            datePublished: post.publishedIsoDate,
+            dateModified: post.modifiedIsoDate ?? post.publishedIsoDate,
+          }
+        : {}),
     },
     buildBreadcrumbList([HOME_STEP, { name: "Blog", path: "/blog" }, { name: headline, path }]),
   ];
@@ -114,6 +121,22 @@ const buildAboutStructuredData = ({ title, description, path }: PageStructuredDa
   buildBreadcrumbList([HOME_STEP, { name: removeTitleSuffix(title), path }]),
 ];
 
+const buildFaqStructuredData = ({ title, path }: PageStructuredDataInput): StructuredDataNode[] => [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    url: toAbsoluteUrl(path),
+    inLanguage: "fr",
+    isPartOf: WEBSITE_REFERENCE,
+    mainEntity: landingContent.fr.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+  buildBreadcrumbList([HOME_STEP, { name: removeTitleSuffix(title), path }]),
+];
+
 const buildGenericStructuredData = ({ title, description, path }: PageStructuredDataInput): StructuredDataNode[] => {
   const name = removeTitleSuffix(title);
   return [
@@ -124,7 +147,7 @@ const buildGenericStructuredData = ({ title, description, path }: PageStructured
       description,
       url: toAbsoluteUrl(path),
       inLanguage: "fr",
-      isPartOf: { "@type": "WebSite", url: SITE_ORIGIN },
+      isPartOf: WEBSITE_REFERENCE,
       about: PERSON_REFERENCE,
     },
     buildBreadcrumbList([HOME_STEP, { name, path }]),
@@ -137,6 +160,9 @@ export const buildPageStructuredData = (input: PageStructuredDataInput): Structu
   }
   if (input.path === "/a-propos") {
     return buildAboutStructuredData(input);
+  }
+  if (input.path === "/faq") {
+    return buildFaqStructuredData(input);
   }
   if (input.path.startsWith("/services/")) {
     return buildServiceStructuredData(input);

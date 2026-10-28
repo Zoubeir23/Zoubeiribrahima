@@ -4,6 +4,7 @@ import {
   CertificationsTeaser,
   ExperienceTeaser,
   FaqTeaser,
+  LatestArticlesTeaser,
   ProjectsTeaser,
   SkillsTeaser,
 } from "@/components/HomeTeasers";
@@ -50,6 +51,7 @@ const Index = () => {
         <ProjectsTeaser />
         <ExperienceTeaser />
         <CertificationsTeaser />
+        <LatestArticlesTeaser />
         <FaqTeaser />
         <ClosingCallToAction />
       </main>

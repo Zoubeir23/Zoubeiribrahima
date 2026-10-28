@@ -111,7 +111,7 @@ const DefaultLogo = ({ issuer }: { issuer: string }) => {
   };
   const bg = palette[issuer] ?? "#020285";
   const initials = issuer
-    .split(/[\s\-]+/)
+    .split(/[\s-]+/)
     .slice(0, 2)
     .map((w) => w[0]?.toUpperCase() ?? "")
     .join("");

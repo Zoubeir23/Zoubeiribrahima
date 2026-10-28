@@ -48,11 +48,11 @@ const SiteFooter = () => {
           <div className="col-span-2 lg:col-span-4">
             <div className="inline-flex rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-3">
               <img
-                src="/logo-scale-avec-zoubeir-for-dark-background.png"
+                src="/logo-scale-avec-zoubeir-dark-background.webp"
                 alt="Scale avec Zoubeir"
                 className="h-20 w-auto object-contain"
-                width={652}
-                height={382}
+                width={330}
+                height={193}
                 loading="lazy"
               />
             </div>

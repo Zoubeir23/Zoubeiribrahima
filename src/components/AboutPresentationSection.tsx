@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Reveal from "@/components/Reveal";
 import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHeading";
@@ -29,6 +30,7 @@ const AboutPresentationSection = ({
   registrationNumber = identityConfig.registrationNumber,
 }: AboutPresentationSectionProps) => {
   const about = useLocalizedContent(aboutContent);
+  const [activeTab, setActiveTab] = useState("who");
   const TabHeading = getSubheadingTag(headingAs, 1);
   const hasPaymentMethods = paymentMethods.length > 0;
 
@@ -59,7 +61,7 @@ const AboutPresentationSection = ({
       />
 
       <div className="grid gap-8 lg:grid-cols-[1fr_20rem] lg:items-start">
-        <Tabs defaultValue="who">
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList aria-label={about.tabListLabel} className="mb-6 flex h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
             <TabsTrigger value="who" className={tabTriggerClassName}>
               {about.tabs.who.label}
@@ -81,7 +83,7 @@ const AboutPresentationSection = ({
           </TabsList>
 
           <Reveal className="rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-8">
-            <TabsContent value="who" className="mt-0 space-y-4">
+            <TabsContent value="who" forceMount hidden={activeTab !== "who"} className="mt-0 space-y-4">
               <TabHeading className="font-display text-2xl uppercase text-white">{about.tabs.who.title}</TabHeading>
               {about.tabs.who.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-[var(--text-secondary)]">
@@ -90,7 +92,7 @@ const AboutPresentationSection = ({
               ))}
             </TabsContent>
 
-            <TabsContent value="journey" className="mt-0 space-y-4">
+            <TabsContent value="journey" forceMount hidden={activeTab !== "journey"} className="mt-0 space-y-4">
               <TabHeading className="font-display text-2xl uppercase text-white">{about.tabs.journey.title}</TabHeading>
               {about.tabs.journey.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-[var(--text-secondary)]">
@@ -102,7 +104,7 @@ const AboutPresentationSection = ({
               </Link>
             </TabsContent>
 
-            <TabsContent value="method" className="mt-0 space-y-4">
+            <TabsContent value="method" forceMount hidden={activeTab !== "method"} className="mt-0 space-y-4">
               <TabHeading className="font-display text-2xl uppercase text-white">{about.tabs.method.title}</TabHeading>
               {about.tabs.method.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-[var(--text-secondary)]">
@@ -115,7 +117,7 @@ const AboutPresentationSection = ({
             </TabsContent>
 
             {hasPaymentMethods ? (
-              <TabsContent value="payment" className="mt-0 space-y-4">
+              <TabsContent value="payment" forceMount hidden={activeTab !== "payment"} className="mt-0 space-y-4">
                 <TabHeading className="font-display text-2xl uppercase text-white">{about.tabs.payment.title}</TabHeading>
                 {about.tabs.payment.paragraphs.map((paragraph) => (
                   <p key={paragraph} className="text-[var(--text-secondary)]">
@@ -149,7 +151,7 @@ const AboutPresentationSection = ({
               </TabsContent>
             ) : null}
 
-            <TabsContent value="contact" className="mt-0 space-y-4">
+            <TabsContent value="contact" forceMount hidden={activeTab !== "contact"} className="mt-0 space-y-4">
               <TabHeading className="font-display text-2xl uppercase text-white">{about.tabs.contact.title}</TabHeading>
               {about.tabs.contact.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-[var(--text-secondary)]">
@@ -178,11 +180,11 @@ const AboutPresentationSection = ({
         <aside className="space-y-6 lg:sticky lg:top-28">
           <div className="rounded-[var(--radius-medium)] border border-[var(--surface-border)] bg-[var(--surface-base)] p-5">
             <img
-              src="/Sans_titre-removebg-preview.png"
+              src="/zoubeir-portrait-avatar.webp"
               alt={about.portraitAlt}
               className="mx-auto h-40 w-auto object-contain"
-              width={467}
-              height={534}
+              width={300}
+              height={343}
               loading="lazy"
             />
           </div>

@@ -1,8 +1,4 @@
-## Valider une idée de SaaS en 30 jours avant d'écrire une ligne de code
-
----
-
-## Section 1 : le vrai risque n'est pas technique
+## Le vrai risque n'est pas technique
 
 La plupart des SaaS ne meurent pas d'un bug. Ils meurent parce que personne n'en avait besoin. Avant de choisir une stack, il faut donc prouver trois choses : le problème existe, il fait assez mal pour qu'on paie, et tu sais atteindre ceux qui l'ont.
 
@@ -12,7 +8,7 @@ La plupart des SaaS ne meurent pas d'un bug. Ils meurent parce que personne n'en
 - **Combien** leur coûte-t-il aujourd'hui, en temps ou en argent ?
 - **Comment** le résolvent-ils maintenant ? Un tableur et WhatsApp comptent comme des concurrents.
 
-## Section 2 : le plan sur 30 jours
+## Le plan sur 30 jours
 
 ### 2.1 Semaine 1 : dix conversations
 
@@ -30,7 +26,7 @@ Un maquettage suffit. L'objectif est de voir si l'utilisateur comprend le parcou
 
 Un acompte, une lettre d'intention ou un créneau de test hebdomadaire. Un engagement, même petit, prouve plus qu'un "c'est une super idée".
 
-## Section 3 : les signaux qui décident
+## Les signaux qui décident
 
 | Signal | Feu vert | Feu rouge |
 |---|---|---|
@@ -38,7 +34,7 @@ Un acompte, une lettre d'intention ou un créneau de test hebdomadaire. Un engag
 | Page de promesse | Inscriptions sans publicité payante | Aucun retour |
 | Engagement | Au moins 3 personnes prêtes à payer | Que des "pourquoi pas" |
 
-## Section 4 : à retenir
+## À retenir
 
 - Parler avant de coder.
 - Un concurrent informel (le tableur) prouve que le besoin existe.

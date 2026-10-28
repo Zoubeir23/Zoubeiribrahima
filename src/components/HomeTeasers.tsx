@@ -3,12 +3,14 @@ import Emoji from "@/components/Emoji";
 import HomeTeaserSection from "@/components/HomeTeaserSection";
 import Reveal from "@/components/Reveal";
 import TechnologyIcon from "@/components/TechnologyIcon";
+import { blogPosts } from "@/data/blogPosts";
 import { certificationIssuerCount, certifications, featuredCertifications } from "@/data/certifications";
 import { useLandingContent } from "@/hooks/useLandingContent";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { certificationsContent } from "@/lib/certifications-content";
 import { experienceContent } from "@/lib/experience-content";
 import { FAQ_EMOJIS } from "@/lib/icon-sets";
+import { selectLatestBlogPosts } from "@/lib/latest-blog-posts";
 import { pageContent } from "@/lib/page-content";
 import { projectsContent } from "@/lib/projects-content";
 import { skillsContent } from "@/lib/skills-content";
@@ -17,6 +19,7 @@ import { getTechnologyLogo } from "@/lib/technology-logos";
 const SKILLS_TEASER_LOGO_LIMIT = 12;
 const FAQ_TEASER_QUESTION_LIMIT = 3;
 const FEATURED_CERTIFICATIONS_LIMIT = 4;
+const LATEST_ARTICLES_LIMIT = 3;
 
 const chipClassName =
   "inline-flex items-center gap-2 rounded-full border border-[var(--surface-border)] bg-[var(--surface-base)] py-1.5 pl-2 pr-3 font-mono text-xs uppercase tracking-wider text-white";
@@ -153,6 +156,33 @@ export const FaqTeaser = () => {
               <Emoji symbol={FAQ_EMOJIS[index] ?? "❓"} className="text-xl" />
               {item.question}
             </Link>
+          </Reveal>
+        ))}
+      </ul>
+    </HomeTeaserSection>
+  );
+};
+
+export const LatestArticlesTeaser = () => {
+  const teaser = useLocalizedContent(pageContent).teasers.blog;
+  const latestPosts = selectLatestBlogPosts(blogPosts, LATEST_ARTICLES_LIMIT);
+
+  return (
+    <HomeTeaserSection emoji="📝" title={teaser.title} description={teaser.description} path="/blog" linkLabel={teaser.linkLabel}>
+      <ul className="grid gap-4 md:grid-cols-3">
+        {latestPosts.map((post, index) => (
+          <Reveal as="li" key={post.slug} delaySeconds={index * 0.1}>
+            <article className={`${cardClassName} h-full`}>
+              <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                {post.category} · {post.readingTime}
+              </p>
+              <h3 className="mt-3 font-display text-xl uppercase text-white">
+                <Link to={`/blog/${post.slug}`} className="hover:underline">
+                  {post.title}
+                </Link>
+              </h3>
+              <p className="mt-3 text-[var(--text-secondary)]">{post.excerpt}</p>
+            </article>
           </Reveal>
         ))}
       </ul>

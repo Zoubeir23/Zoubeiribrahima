@@ -1,12 +1,8 @@
-## Lancer le MVP d'un SaaS : la checklist avant la mise en ligne
-
----
-
-## Section 1 : un MVP, c'est un parcours complet et minuscule
+## Un MVP, c'est un parcours complet et minuscule
 
 Un MVP n'est pas un produit à moitié fini. C'est un seul parcours, de l'inscription à la valeur obtenue, qui fonctionne de bout en bout.
 
-## Section 2 : ce qui doit exister
+## Ce qui doit exister
 
 ### 2.1 Le cœur
 
@@ -26,18 +22,18 @@ Un MVP n'est pas un produit à moitié fini. C'est un seul parcours, de l'inscri
 - Consentement pour les mesures d'audience.
 - Un contact visible pour les demandes des utilisateurs.
 
-## Section 3 : ce qu'on repousse volontairement
+## Ce qu'on repousse volontairement
 
 Rôles complexes, tableaux de bord avancés, intégrations multiples, application mobile native. Ils viendront quand des clients les réclameront.
 
-## Section 4 : le jour J
+## Le jour J
 
 1. Déploie sur un environnement identique à la production.
 2. Fais passer le parcours complet à trois utilisateurs réels.
 3. Mets en ligne, surveille les erreurs pendant 48 heures.
 4. Écris à chaque inscrit dans la première semaine.
 
-## Section 5 : à retenir
+## À retenir
 
 - Un parcours complet vaut mieux que dix fonctions partielles.
 - Sauvegardes et alertes avant le lancement, pas après.

@@ -2,7 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import ConsentProvider from "@/components/consent/ConsentProvider";
+import { blogPosts } from "@/data/blogPosts";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import { selectLatestBlogPosts } from "@/lib/latest-blog-posts";
 import { pageContent } from "@/lib/page-content";
 import Index from "@/pages/Index";
 
@@ -44,6 +46,14 @@ describe("home page", () => {
     expect(screen.getByRole("link", { name: teasers.experience.linkLabel })).toHaveAttribute("href", "/experience");
     expect(screen.getByRole("link", { name: teasers.certifications.linkLabel })).toHaveAttribute("href", "/certifications");
     expect(screen.getByRole("link", { name: teasers.faq.linkLabel })).toHaveAttribute("href", "/faq");
+  });
+
+  it("links the latest articles and the blog from the home page so crawlers reach them in one click", () => {
+    renderHome();
+    expect(screen.getByRole("link", { name: pageContent.fr.teasers.blog.linkLabel })).toHaveAttribute("href", "/blog");
+    for (const post of selectLatestBlogPosts(blogPosts, 3)) {
+      expect(screen.getByRole("link", { name: post.title })).toHaveAttribute("href", `/blog/${post.slug}`);
+    }
   });
 
   it("keeps the services grid linking to the service pages", () => {

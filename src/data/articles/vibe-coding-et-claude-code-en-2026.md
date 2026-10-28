@@ -1,8 +1,4 @@
-## Vibe coding et Claude Code en 2026 : ce que ça change vraiment pour les devs
-
----
-
-## Section 1 : comprendre le vibe coding
+## Comprendre le vibe coding
 
 ### 1.1 D'où vient le terme ?
 
@@ -115,7 +111,7 @@ API_KEY = "sk-ant-VRAIE_CLE_SECRETE_123"
 
 ---
 
-## Section 2 : mise en pratique — le vibe coding actif
+## Mise en pratique — le vibe coding actif
 
 ### 2.1 La règle des prompts délimités
 
@@ -408,7 +404,7 @@ claude "Voici une fonction que j'ai écrite moi-même :
 
 ---
 
-## Section 3 : erreurs fréquentes et comment les éviter
+## Erreurs fréquentes et comment les éviter
 
 ### Erreur 1 : « ça compile donc c'est bon »
 
@@ -554,7 +550,7 @@ git reset --hard HEAD          # annuler TOUT depuis le dernier commit
 
 ---
 
-## Section 4 : comparaison des approches de développement
+## Comparaison des approches de développement
 
 ### 4.1 Développement sans agent vs avec agent (actif) vs avec agent (passif)
 

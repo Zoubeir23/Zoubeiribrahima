@@ -1,31 +1,35 @@
 import { describe, expect, it } from "vitest";
 import { blogPosts } from "@/data/blogPosts";
-import { buildPageStructuredData, convertFrenchMonthYearToIsoDate } from "@/lib/structured-data";
+import { landingContent } from "@/lib/landing-content";
+import { buildPageStructuredData } from "@/lib/structured-data";
 
 const baseInput = {
   title: "Titre de page | Zoubeir Ibrahima",
   description: "Description de page.",
 };
 
-describe("convertFrenchMonthYearToIsoDate", () => {
-  it.each([
-    ["Octobre 2026", "2026-10"],
-    ["Avril 2026", "2026-04"],
-    ["Février 2025", "2025-02"],
-    ["août 2024", "2024-08"],
-  ])("converts %s to %s", (frenchDate, isoDate) => {
-    expect(convertFrenchMonthYearToIsoDate(frenchDate)).toBe(isoDate);
-  });
-
-  it("returns null for an unknown format", () => {
-    expect(convertFrenchMonthYearToIsoDate("bientôt")).toBeNull();
-  });
-});
-
 describe("buildPageStructuredData", () => {
   it("describes the home page as a website owned by the person", () => {
     const [website] = buildPageStructuredData({ ...baseInput, path: "/" });
-    expect(website).toMatchObject({ "@type": "WebSite", url: "https://zoubeir.me", publisher: { "@id": "https://zoubeir.me/#person" } });
+    expect(website).toMatchObject({
+      "@type": "WebSite",
+      "@id": "https://zoubeir.me/#website",
+      url: "https://zoubeir.me",
+      publisher: { "@id": "https://zoubeir.me/#person" },
+    });
+  });
+
+  it("describes the freelance activity as a professional service founded by the person", () => {
+    const [, business] = buildPageStructuredData({ ...baseInput, path: "/" });
+    expect(business).toMatchObject({
+      "@type": "ProfessionalService",
+      "@id": "https://zoubeir.me/#business",
+      url: "https://zoubeir.me",
+      founder: { "@id": "https://zoubeir.me/#person" },
+      address: { "@type": "PostalAddress", addressLocality: "Dakar", addressCountry: "SN" },
+    });
+    expect(business).not.toHaveProperty("aggregateRating");
+    expect(business).not.toHaveProperty("review");
   });
 
   it("describes a service page as a service provided by the person, with breadcrumbs", () => {
@@ -38,7 +42,7 @@ describe("buildPageStructuredData", () => {
       "@type": "Service",
       name: "Développement SaaS",
       url: "https://zoubeir.me/services/saas",
-      provider: { "@id": "https://zoubeir.me/#person" },
+      provider: { "@id": "https://zoubeir.me/#business" },
     });
     expect(breadcrumbs).toMatchObject({
       "@type": "BreadcrumbList",
@@ -63,7 +67,11 @@ describe("buildPageStructuredData", () => {
         mainEntityOfPage: `https://zoubeir.me/blog/${post.slug}`,
         author: { "@id": "https://zoubeir.me/#person" },
       });
-      expect((posting as { datePublished: string }).datePublished).toMatch(/^\d{4}-\d{2}$/);
+      expect(posting).toMatchObject({
+        datePublished: post.publishedIsoDate,
+        dateModified: post.modifiedIsoDate ?? post.publishedIsoDate,
+      });
+      expect((posting as { image: string }).image).toMatch(/^https:\/\/zoubeir\.me\//);
       expect(breadcrumbs).toMatchObject({ "@type": "BreadcrumbList" });
     }
   });
@@ -78,9 +86,28 @@ describe("buildPageStructuredData", () => {
     expect(profile).toMatchObject({ "@type": "ProfilePage", mainEntity: { "@id": "https://zoubeir.me/#person" } });
   });
 
+  it("describes the FAQ page with every question and its answer", () => {
+    const [faqPage, breadcrumbs] = buildPageStructuredData({ ...baseInput, path: "/faq" });
+    const { items } = landingContent.fr.faq;
+    expect(faqPage).toMatchObject({ "@type": "FAQPage", url: "https://zoubeir.me/faq", inLanguage: "fr" });
+    expect((faqPage as { mainEntity: unknown[] }).mainEntity).toEqual(
+      items.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    );
+    expect(breadcrumbs).toMatchObject({ "@type": "BreadcrumbList" });
+  });
+
   it("falls back to a web page with breadcrumbs for other pages", () => {
     const [webPage, breadcrumbs] = buildPageStructuredData({ ...baseInput, path: "/skills" });
-    expect(webPage).toMatchObject({ "@type": "WebPage", url: "https://zoubeir.me/skills", name: "Titre de page" });
+    expect(webPage).toMatchObject({
+      "@type": "WebPage",
+      url: "https://zoubeir.me/skills",
+      name: "Titre de page",
+      isPartOf: { "@id": "https://zoubeir.me/#website" },
+    });
     expect(breadcrumbs).toMatchObject({
       itemListElement: [{ name: "Accueil" }, { position: 2, name: "Titre de page", item: "https://zoubeir.me/skills" }],
     });
