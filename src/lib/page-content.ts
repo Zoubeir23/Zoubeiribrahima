@@ -29,6 +29,7 @@ export interface PageContent {
     experience: TeaserContent;
     certifications: TeaserContent;
     faq: TeaserContent;
+    blog: TeaserContent;
   };
 }
 
@@ -113,6 +114,11 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
         description: "Les réponses aux questions les plus courantes.",
         linkLabel: "Voir toutes les questions",
       },
+      blog: {
+        title: "Derniers articles",
+        description: "Des guides pratiques sur le SaaS, Django, Python, Git et l'IA appliquée au code.",
+        linkLabel: "Voir tous les articles",
+      },
     },
   },
   en: {
@@ -194,6 +200,11 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
         title: "Frequently asked questions",
         description: "Answers to the most common questions.",
         linkLabel: "See all questions",
+      },
+      blog: {
+        title: "Latest articles",
+        description: "Practical guides on SaaS, Django, Python, Git and AI applied to code (in French).",
+        linkLabel: "See all articles",
       },
     },
   },
