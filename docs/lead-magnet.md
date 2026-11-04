@@ -6,6 +6,7 @@ Chaque ressource offerte dans un lead magnet LinkedIn a sa propre page : `https:
 
 - **Accessible par lien seulement** : la page n'est dans aucun menu, ni dans le sitemap, ni dans `llms.txt`.
 - **Jamais indexée** : balise `noindex` dans la page, et en-tête `X-Robots-Tag: noindex, nofollow` sur tout `/lead-magnet/` (pages et fichiers PDF ou zip).
+- **Fichiers externes non couverts** : un fichier sur Google Drive, GitHub ou ailleurs suit les règles de ce service, pas celles du site. Partage-le en « accès par lien » (jamais « public sur le web »), et n'y mets rien que tu ne veux pas voir indexé.
 - **Sans e-mail** : toute personne qui a le lien voit la ressource. N'y mets donc rien de confidentiel.
 
 ## Publier une ressource en 4 étapes
