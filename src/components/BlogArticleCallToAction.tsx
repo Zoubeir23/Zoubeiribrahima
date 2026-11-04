@@ -2,16 +2,32 @@ import { Link } from "react-router-dom";
 import type { BlogPost } from "@/data/blogPosts";
 
 interface BlogArticleCallToActionProps {
-  /** Category of the article; a SaaS article points to the SaaS offer. */
+  /** Category of the article; it decides which service offer the article points to. */
   category?: BlogPost["category"];
 }
+
+interface ServiceOfferLink {
+  path: string;
+  label: string;
+}
+
+// Each article links to the service its readers are most likely to need.
+const SERVICE_OFFER_LINK_BY_CATEGORY: Readonly<Record<string, ServiceOfferLink>> = {
+  saas: { path: "/services/saas", label: "Découvrir mon offre de développement SaaS" },
+  python: { path: "/services/web-applications", label: "Découvrir mon offre d'applications web Django" },
+  devops: { path: "/services/web-applications", label: "Découvrir mon offre d'applications web" },
+  frontend: { path: "/services/portfolio-websites", label: "Découvrir mon offre de sites portfolio" },
+};
 
 const secondaryLinkClassName =
   "inline-flex min-h-11 items-center rounded-full border border-[var(--surface-border)] px-6 py-3 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]";
 
 const BlogArticleCallToAction = ({
   category,
-}: BlogArticleCallToActionProps) => (
+}: BlogArticleCallToActionProps) => {
+  const serviceOfferLink = category ? SERVICE_OFFER_LINK_BY_CATEGORY[category] : undefined;
+
+  return (
   <aside
     aria-labelledby="blog-article-call-to-action-title"
     className="mt-12 rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-6 sm:p-8"
@@ -33,13 +49,14 @@ const BlogArticleCallToAction = ({
       >
         Discuter de votre projet
       </Link>
-      {category === "saas" ? (
-        <Link to="/services/saas" className={secondaryLinkClassName}>
-          Découvrir mon offre de développement SaaS
+      {serviceOfferLink ? (
+        <Link to={serviceOfferLink.path} className={secondaryLinkClassName}>
+          {serviceOfferLink.label}
         </Link>
       ) : null}
     </div>
   </aside>
-);
+  );
+};
 
 export default BlogArticleCallToAction;
