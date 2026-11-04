@@ -9,6 +9,10 @@ import {
   type CollectedPageMetadata,
 } from "./lib/page-metadata-collector";
 import { buildPageStructuredData, type StructuredDataNode } from "./lib/structured-data";
+import { listLeadMagnetRoutes } from "./data/leadMagnetResources";
+
+// Routes shared by link only (lead magnet resources): prerendered, but never listed in the sitemap.
+export const listUnlistedRoutes = (): string[] => listLeadMagnetRoutes();
 
 export interface PrerenderedPage {
   html: string;
