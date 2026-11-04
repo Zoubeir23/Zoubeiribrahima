@@ -27,7 +27,7 @@ const writePrerenderedPage = async (outputPath, html) => {
 
 const main = async () => {
   const templateHtml = await readFile(path.join(clientDirectory, "index.html"), "utf8");
-  const { renderRoute } = await import(pathToFileURL(serverEntryPath).href);
+  const { renderRoute, listUnlistedRoutes } = await import(pathToFileURL(serverEntryPath).href);
   const routes = await readRoutesFromSitemap();
 
   for (const route of routes) {
@@ -48,6 +48,17 @@ const main = async () => {
     );
     await writePrerenderedPage(outputPathForRoute(route), page);
     console.log(`prerendered ${route}`);
+  }
+
+  // Shared by link only: prerendered so the host serves them, but never in the sitemap and always noindex.
+  for (const route of listUnlistedRoutes()) {
+    const { html, metadata } = await renderRoute(route);
+    if (!metadata?.noindex) {
+      throw new Error(`Unlisted route ${route} must be rendered as noindex`);
+    }
+    const page = applyPageMetadataToTemplate(injectRenderedBody(templateHtml, html), metadata, SITE_ORIGIN);
+    await writePrerenderedPage(outputPathForRoute(route), page);
+    console.log(`prerendered (unlisted) ${route}`);
   }
 
   // Served by the host for every unknown URL, with a real 404 status.

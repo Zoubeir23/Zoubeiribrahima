@@ -48,6 +48,15 @@
           "value": "public, max-age=3600"
         }
       ]
+    },
+    {
+      "source": "/lead-magnet/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "trailingSlash": false

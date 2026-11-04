@@ -16,6 +16,7 @@ const CertificationsPage = lazy(() => import("./pages/CertificationsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ExperiencePage = lazy(() => import("./pages/ExperiencePage"));
 const FaqPage = lazy(() => import("./pages/FaqPage"));
+const LeadMagnetResourcePage = lazy(() => import("./pages/LeadMagnetResourcePage"));
 const LegalPage = lazy(() => import("./pages/LegalPage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
@@ -47,6 +48,7 @@ const ApplicationRoutes = () => {
             <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/privacy" element={<LegalPage kind="privacy" />} />
             <Route path="/terms" element={<LegalPage kind="terms" />} />
+            <Route path="/lead-magnet/:slug" element={<LeadMagnetResourcePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
