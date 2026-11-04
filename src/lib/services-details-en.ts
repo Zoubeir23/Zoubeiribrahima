@@ -3,6 +3,7 @@ import type { ServiceDetails } from "@/lib/services-types";
 export const serviceDetailsEnglish: ServiceDetails = {
   saas: {
     title: "SaaS development",
+    heading: "Freelance SaaS developer in Dakar",
     metaTitle: "Freelance SaaS Developer in Dakar | Zoubeir Ibrahima",
     metaDescription:
       "Freelance SaaS developer in Dakar: accounts, subscriptions, dashboards and production launch of your online software, from MVP to ongoing growth.",
@@ -44,6 +45,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
   },
   "web-applications": {
     title: "Web applications",
+    heading: "Custom web application development in Dakar",
     metaTitle: "Custom Web App Development, Senegal | Zoubeir Ibrahima",
     metaDescription:
       "Custom web application development in Senegal and remotely: fast interfaces, reliable back end and a launch that stays easy to maintain.",
@@ -85,6 +87,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
   },
   "mobile-applications": {
     title: "Mobile applications",
+    heading: "Mobile app development in Dakar",
     metaTitle: "Mobile App Developer in Dakar | Zoubeir Ibrahima",
     metaDescription:
       "Flutter mobile app development from Dakar: a smooth experience, integration with your services and publication on the app stores.",
@@ -126,6 +129,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
   },
   "portfolio-websites": {
     title: "Portfolio websites",
+    heading: "Portfolio website design in Senegal",
     metaTitle: "Portfolio Website Design in Dakar | Zoubeir Ibrahima",
     metaDescription:
       "Portfolio and showcase website design in Dakar: polished design, fast loading and SEO built in so your future clients can find you.",
@@ -167,6 +171,7 @@ export const serviceDetailsEnglish: ServiceDetails = {
   },
   "remote-it-services": {
     title: "Remote IT services",
+    heading: "Remote IT services from Dakar",
     metaTitle: "Remote IT Services from Dakar | Zoubeir Ibrahima",
     metaDescription:
       "Remote troubleshooting, maintenance and technical support from Dakar for individuals and businesses, wherever you are in the world.",
