@@ -76,7 +76,7 @@ const ServiceDetail = () => {
                   {service.badge}
                 </span>
                 <h1 className="mt-4 font-display text-[clamp(1.75rem,5vw,3.5rem)] uppercase leading-tight text-white">
-                  {service.title}
+                  {service.heading}
                 </h1>
                 <p className="mt-3 max-w-2xl text-[var(--text-secondary)]">
                   {service.summary}

@@ -28,9 +28,13 @@ describe("ServiceDetail", () => {
     document.title = "";
   });
 
-  it("shows the service title as the main heading", () => {
+  it("shows the searchable service heading as the main heading", () => {
     renderPage("/services/saas");
-    expect(screen.getByRole("heading", { level: 1, name: saas.title })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: saas.heading })).toBeInTheDocument();
+  });
+
+  it.each(Object.entries(french.services))("names the service and its location in the heading of %s", (_slug, service) => {
+    expect(service.heading).toMatch(/Dakar|Sénégal|à distance/);
   });
 
   it("updates the document title for the service", () => {
