@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { renderRoute } from "@/entry-server";
+import { removeStreamPaddingNullCharacters, renderRoute } from "@/entry-server";
 
 const NULL_CHARACTER = "\u0000";
 
@@ -7,6 +7,10 @@ const NULL_CHARACTER = "\u0000";
 const ROUTES_WITH_ACCENTS_ON_CHUNK_BOUNDARIES = ["/a-propos", "/services", "/experience"];
 
 describe("prerendered HTML encoding", () => {
+  it("removes the padding byte React leaves before a multi-byte character", () => {
+    expect(removeStreamPaddingNullCharacters("clients au Sén\u0000égal")).toBe("clients au Sénégal");
+  });
+
   it.each(ROUTES_WITH_ACCENTS_ON_CHUNK_BOUNDARIES)("contains no null character on %s", async (route) => {
     const { html } = await renderRoute(route);
     expect(html.includes(NULL_CHARACTER)).toBe(false);
