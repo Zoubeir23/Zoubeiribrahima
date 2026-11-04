@@ -34,6 +34,13 @@ describe("blog hub", () => {
     expect(label.previousElementSibling).toHaveTextContent(String(blogReadingPaths.length));
   });
 
+  it("names the blog topics in a main heading whose words stay separated", () => {
+    renderHub();
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Blog développement web Django, Python, Git et IA" }),
+    ).toBeInTheDocument();
+  });
+
   it("lists the SaaS category filter", () => {
     renderHub();
     expect(screen.getByRole("button", { name: /^SaaS/ })).toBeInTheDocument();

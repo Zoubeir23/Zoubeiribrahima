@@ -77,9 +77,9 @@ const Blog = () => {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-4xl">
               <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-8xl uppercase leading-[0.9]">
-                Des articles
-                <br />
-                <span className="text-white/35">qui se lisent comme un système</span>
+                Blog développement web
+                <br />{" "}
+                <span className="text-white/35">Django, Python, Git et IA</span>
               </h1>
               <p className="mt-6 max-w-2xl font-body text-base sm:text-lg text-white/80 leading-relaxed">
                 {totalArticles} articles organisés pour guider la lecture, faire émerger des idées et convertir les visiteurs en conversations.
