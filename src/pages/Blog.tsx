@@ -21,13 +21,13 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 const categoryCards = [
   {
-    title: "Fondations éditoriales",
-    description: "Des articles pour clarifier le message, structurer le blog et créer une lecture logique.",
+    title: "Python & Django",
+    description: "Apprendre Python et Django pas à pas, avec les bonnes pratiques d'un code maintenable.",
     icon: BookOpen,
   },
   {
-    title: "Croissance & acquisition",
-    description: "Des contenus pour attirer des visiteurs, générer des conversations et valider des offres.",
+    title: "Lancer un SaaS",
+    description: "Valider une idée, choisir sa stack, fixer son prix et sortir un premier MVP.",
     icon: Rocket,
   },
   {
@@ -82,7 +82,7 @@ const Blog = () => {
                 <span className="text-white/35">Django, Python, Git et IA</span>
               </h1>
               <p className="mt-6 max-w-2xl font-body text-base sm:text-lg text-white/80 leading-relaxed">
-                {totalArticles} articles organisés pour guider la lecture, faire émerger des idées et convertir les visiteurs en conversations.
+                {totalArticles} articles pratiques sur Django, Python, Git, Docker, Claude Code et le lancement d'un SaaS, écrits par un développeur freelance à Dakar.
               </p>
             </div>
             <Link
