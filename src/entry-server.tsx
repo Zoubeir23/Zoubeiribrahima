@@ -16,6 +16,11 @@ export interface PrerenderedPage {
   structuredData: StructuredDataNode[];
 }
 
+// React 18 flushes its whole 2048-byte stream view when a multi-byte character does not
+// fit at the end, leaving a zero padding byte in the HTML ("Sén\0égal"). HTML text never
+// legitimately contains a null character, so removing them is lossless.
+export const removeStreamPaddingNullCharacters = (html: string): string => html.replaceAll("\u0000", "");
+
 export const renderRoute = (path: string): Promise<PrerenderedPage> =>
   new Promise((resolve, reject) => {
     let metadata: CollectedPageMetadata | null = null;
@@ -34,7 +39,7 @@ export const renderRoute = (path: string): Promise<PrerenderedPage> =>
     });
     sink.on("finish", () =>
       resolve({
-        html: Buffer.concat(chunks).toString("utf8"),
+        html: removeStreamPaddingNullCharacters(Buffer.concat(chunks).toString("utf8")),
         metadata,
         structuredData: metadata ? buildPageStructuredData(metadata) : [],
       }),

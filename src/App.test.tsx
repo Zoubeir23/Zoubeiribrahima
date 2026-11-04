@@ -41,7 +41,7 @@ describe("application routes", () => {
 
   it("keeps the service detail pages", async () => {
     renderAppAt("/services/saas");
-    expect(await screen.findByRole("heading", { level: 1, name: /développement saas/i })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { level: 1, name: /développeur saas freelance à dakar/i })).toBeInTheDocument();
   });
 
   it("keeps the legal pages", async () => {
