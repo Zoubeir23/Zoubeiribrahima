@@ -21,6 +21,7 @@ export interface LandingContent {
     about: string;
     contact: string;
     blog: string;
+    resources: string;
     hire: string;
     toggleMenu: string;
     switchLanguage: string;
@@ -108,6 +109,7 @@ const frenchContent: LandingContent = {
     about: "À propos",
     contact: "Contact",
     blog: "Blog",
+    resources: "Ressources",
     hire: "Démarrer un projet",
     toggleMenu: "Ouvrir ou fermer le menu",
     switchLanguage: "Passer en anglais",
@@ -252,6 +254,7 @@ const englishContent: LandingContent = {
     about: "About",
     contact: "Contact",
     blog: "Blog",
+    resources: "Resources",
     hire: "Start a project",
     toggleMenu: "Open or close the menu",
     switchLanguage: "Switch to French",

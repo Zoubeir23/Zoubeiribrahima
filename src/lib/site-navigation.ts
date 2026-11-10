@@ -14,7 +14,8 @@ export type NavLabelKey =
   | "certifications"
   | "about"
   | "contact"
-  | "blog";
+  | "blog"
+  | "resources";
 
 export interface NavItem {
   path: string;
@@ -32,6 +33,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { path: "/a-propos", labelKey: "about", emoji: "👤" },
   { path: "/contact", labelKey: "contact", emoji: "✉️" },
   { path: "/blog", labelKey: "blog", emoji: "📖" },
+  { path: "/ressources", labelKey: "resources", emoji: "🧰" },
 ];
 
 export const isNavItemActive = (item: NavItem, pathname: string): boolean =>
