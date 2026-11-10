@@ -7,9 +7,18 @@ Ne pas confondre avec les pages `/lead-magnet/<identifiant>` (voir `lead-magnet.
 ## Comment fonctionne l'inscription
 
 1. Le navigateur vérifie le prénom et l'e-mail : format, fautes de frappe courantes (`gmial.com`), adresses temporaires (`yopmail.com`...).
-2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend, une seule fois : elle lit d'abord la liste et n'écrit que si le contact est absent.
-3. Le guide s'affiche tant que le visiteur reste sur la page. L'accès n'est jamais mémorisé : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé, et chaque guide se débloque séparément.
-4. Pour ne pas renvoyer à Resend un e-mail déjà enregistré, le navigateur retient seulement une empreinte SHA-256 (jamais l'adresse, clé `registeredResourceEmails`, 50 maximum) : si le visiteur retape le même e-mail, le guide s'ouvre sans appel au serveur.
+2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend, une seule fois (voir « Un e-mail n'est envoyé qu'une fois »).
+3. Le guide s'affiche tant que le visiteur reste sur la page. L'accès n'est jamais mémorisé : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé, et chaque guide se débloque séparément. Le navigateur n'écrit rien (les anciennes entrées `resourceLibraryAccess` et `registeredResourceEmails` sont supprimées au chargement).
+
+## Un e-mail n'est envoyé qu'une fois
+
+Une base Neon (intégration Vercel, variable `DATABASE_URL`) garde l'empreinte SHA-256 des e-mails déjà envoyés à Resend, dans la table `registered_resource_emails` (colonnes `email_fingerprint` et `registered_at`). La fonction crée la table toute seule à sa première utilisation, sur chaque base (production et branches de prévisualisation).
+
+1. L'e-mail est connu de la base : la fonction répond ok sans rien demander à Resend, depuis n'importe quel appareil.
+2. Il est inconnu : la fonction lit le contact dans Resend, le crée s'il est absent, puis retient l'empreinte.
+3. La base ne répond pas (veille, archivage, panne, délai de 4 secondes dépassé après un nouvel essai) : la fonction continue avec Resend seul. La base n'est qu'un raccourci, pas la référence : la vider ne casse rien, elle se remplit de nouveau.
+
+La base se met en veille après 5 minutes d'inactivité et se réveille d'elle-même en quelques centaines de millisecondes (doc Neon). Pour supprimer une personne : supprimer le contact dans Resend et sa ligne dans la table (`DELETE FROM registered_resource_emails WHERE email_fingerprint = '<sha256 de l\'e-mail en minuscules>'`).
 
 Limites assumées :
 
@@ -22,6 +31,7 @@ En local (`npm run dev`), toutes les ressources sont ouvertes sans formulaire, p
 ## Configuration
 
 - `RESEND_API_KEY` : dans `.env.local` en local, dans les variables d'environnement du projet Vercel en production (type Sensitive). Voir `.env.example`.
+- `DATABASE_URL` : posée par l'intégration Neon de Vercel (production, développement et chaque branche de prévisualisation). Facultative : sans elle, Resend décide seul.
 - Les inscrits se consultent dans Resend, rubrique Contacts.
 
 ## Ajouter une ressource
