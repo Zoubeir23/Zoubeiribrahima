@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { describe, expect, it, vi } from "vitest";
 import { ContactStoreError } from "./resend-contact-store";
 import { handleResourceSubscription, type SubscriptionDependencies } from "./subscribe-handler";
@@ -70,5 +71,75 @@ describe("handleResourceSubscription", () => {
     const response = await handleResourceSubscription(VALID_BODY, dependencies);
     expect(response).toEqual({ status: 502, body: { success: false, error: "L'inscription n'a pas abouti. Réessaie dans un instant." } });
     expect(dependencies.reportError).toHaveBeenCalledWith("enregistrement du contact impossible", expect.any(ContactStoreError));
+  });
+
+  describe("e-mails déjà enregistrés", () => {
+    const EXPECTED_FINGERPRINT = createHash("sha256").update("awa@gmail.com").digest("hex");
+
+    function buildStore(isRegistered: boolean) {
+      return { has: vi.fn(async () => isRegistered), add: vi.fn(async () => undefined) };
+    }
+
+    it("répond ok sans rien demander à Resend quand l'e-mail est déjà enregistré", async () => {
+      const registeredEmails = buildStore(true);
+      const { dependencies, saveContact } = buildDependencies({ registeredEmails });
+      const response = await handleResourceSubscription(VALID_BODY, dependencies);
+      expect(response).toEqual({ status: 200, body: { success: true, error: null } });
+      expect(registeredEmails.has).toHaveBeenCalledWith(EXPECTED_FINGERPRINT);
+      expect(saveContact).not.toHaveBeenCalled();
+      expect(registeredEmails.add).not.toHaveBeenCalled();
+    });
+
+    it("enregistre l'e-mail inconnu dans Resend, puis retient son empreinte", async () => {
+      const registeredEmails = buildStore(false);
+      const { dependencies, saveContact } = buildDependencies({ registeredEmails });
+      expect((await handleResourceSubscription(VALID_BODY, dependencies)).status).toBe(200);
+      expect(saveContact).toHaveBeenCalledWith({ email: "awa@gmail.com", firstName: "Awa" });
+      expect(registeredEmails.add).toHaveBeenCalledWith(EXPECTED_FINGERPRINT);
+    });
+
+    it("ne retient pas l'empreinte quand Resend refuse le contact", async () => {
+      const registeredEmails = buildStore(false);
+      const { dependencies } = buildDependencies({
+        registeredEmails,
+        contactStore: {
+          saveContact: async () => {
+            throw new ContactStoreError("refusé");
+          },
+        },
+      });
+      expect((await handleResourceSubscription(VALID_BODY, dependencies)).status).toBe(502);
+      expect(registeredEmails.add).not.toHaveBeenCalled();
+    });
+
+    it("réussit quand la base des e-mails enregistrés échoue : Resend reste la référence", async () => {
+      const registeredEmails = {
+        has: vi.fn(async () => {
+          throw new Error("base indisponible");
+        }),
+        add: vi.fn(async () => {
+          throw new Error("base indisponible");
+        }),
+      };
+      const { dependencies, saveContact } = buildDependencies({ registeredEmails });
+      expect((await handleResourceSubscription(VALID_BODY, dependencies)).status).toBe(200);
+      expect(saveContact).toHaveBeenCalledTimes(1);
+      expect(dependencies.reportError).toHaveBeenCalledTimes(2);
+    });
+
+    it("ne consulte pas la base pour une saisie invalide, un domaine sans e-mail ou un robot", async () => {
+      const registeredEmails = buildStore(false);
+      const { dependencies } = buildDependencies({ registeredEmails, checkMailDomain: async () => "no-mail" });
+      await handleResourceSubscription({ ...VALID_BODY, email: "pas-un-email" }, dependencies);
+      await handleResourceSubscription(VALID_BODY, dependencies);
+      await handleResourceSubscription({ ...VALID_BODY, website: "http://spam.example" }, dependencies);
+      expect(registeredEmails.has).not.toHaveBeenCalled();
+    });
+
+    it("fonctionne comme avant quand aucune base n'est configurée", async () => {
+      const { dependencies, saveContact } = buildDependencies();
+      expect((await handleResourceSubscription(VALID_BODY, dependencies)).status).toBe(200);
+      expect(saveContact).toHaveBeenCalledTimes(1);
+    });
   });
 });

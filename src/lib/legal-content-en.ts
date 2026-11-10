@@ -21,7 +21,7 @@ export const privacyPolicyEnglish: LegalDocument = {
         "Contact form: your name, email address and message. They are sent through the Formspree service and reach me by email.",
         "Email, WhatsApp or phone: the information you share when you write or call me.",
         "Booking: the information (name, email, time slot) you enter in Calendly.",
-        "Resources: your first name and email address when you unlock the guides on the Resources page. They are saved in my contact list at Resend. The address domain is checked (it must receive email), but no email is sent to you at that point.",
+        "Resources: your first name and email address when you unlock the guides on the Resources page. They are saved in my contact list at Resend. The address domain is checked (it must receive email), but no email is sent to you at that point. An unreadable fingerprint (SHA-256) of the address is also kept in a database at Neon, to avoid sending it to Resend a second time: the address itself is not stored there.",
       ],
     },
     {
@@ -34,7 +34,7 @@ export const privacyPolicyEnglish: LegalDocument = {
     {
       title: "What is stored in your browser",
       paragraphs: [
-        "The site stores three items locally: your chosen language, your consent choice and, if you unlocked a guide, an unreadable fingerprint (SHA-256) of the email address you left, used only to avoid sending it to Resend a second time. The address itself is not kept in your browser. They stay in your browser and are not sent to a server. They are needed for the site to work and do not require consent. Unlocking a guide is not remembered: it lasts only for your visit to the page, each guide is unlocked separately, and the form is asked again when you come back.",
+        "The site stores two items locally: your chosen language and your consent choice. They stay in your browser and are not sent to a server. They are needed for the site to work and do not require consent. Unlocking a guide on the Resources page is not remembered: it lasts only for your visit to the page, each guide is unlocked separately, and the form is asked again when you come back.",
       ],
     },
     {
@@ -52,13 +52,13 @@ export const privacyPolicyEnglish: LegalDocument = {
     {
       title: "Who it passes through",
       paragraphs: [
-        "This site relies on technical providers: Vercel (hosting and audience measurement), Formspree (contact form), Resend (list of people who unlocked the resources), Calendly (booking) and, if you write to me there, WhatsApp. These services may process data outside your country. I do not sell your data.",
+        "This site relies on technical providers: Vercel (hosting and audience measurement), Formspree (contact form), Resend (list of people who unlocked the resources), Neon (database that keeps the unreadable fingerprint of addresses already registered), Calendly (booking) and, if you write to me there, WhatsApp. These services may process data outside your country. I do not sell your data.",
       ],
     },
     {
       title: "How long I keep it",
       paragraphs: [
-        "I keep your messages for as long as needed to answer and follow up on your request or project, then delete them when they are no longer useful. The first name and email left for the resources are kept until you ask for their deletion.",
+        "I keep your messages for as long as needed to answer and follow up on your request or project, then delete them when they are no longer useful. The first name and email left for the resources, and the address fingerprint at Neon, are kept until you ask for their deletion.",
       ],
     },
     {
