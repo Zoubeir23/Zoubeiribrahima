@@ -187,6 +187,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: "15 minutes",
     date: "Avril 2026",
     publishedIsoDate: "2026-04-08",
+    modifiedIsoDate: "2026-11-10",
     excerpt:
       "Comprendre le vibe coding sans tomber dans ses pièges : ce que c'est vraiment, pourquoi c'est dangereux mal utilisé, et comment transformer cette tendance en levier de productivité sans perdre le contrôle de ton code.",
     intro:
