@@ -1,22 +1,22 @@
 import { useCallback, useEffect, useState } from "react";
-import { readResourceAccess, rememberResourceAccess } from "@/lib/resource-subscription/resource-access-storage";
+import { forgetStoredResourceAccess } from "@/lib/resource-subscription/resource-access-storage";
 
-// Whether the visitor may read the resource guides. Read after mount: the prerendered HTML always shows the form,
-// and never the guide text. In local development (npm run dev) the library is open, so the owner can proofread.
+// Whether the visitor may read a resource guide. The form is asked again each time the visitor comes back: the
+// unlock lives only in this page's memory, for the guide it was given for, and is never written to the browser.
+// The prerendered HTML always shows the form and never the guide text. In local development (npm run dev) the
+// library is open, so the owner can proofread.
 
-export type ResourceAccessState = "checking" | "locked" | "unlocked";
+export type ResourceAccessState = "locked" | "unlocked";
 
-export const useResourceAccess = (isDevelopment: boolean = import.meta.env.DEV) => {
-  const [state, setState] = useState<ResourceAccessState>("checking");
+export const useResourceAccess = (resourceSlug: string | undefined, isDevelopment: boolean = import.meta.env.DEV) => {
+  const [unlockedResourceSlug, setUnlockedResourceSlug] = useState<string | null>(null);
 
-  useEffect(() => {
-    setState(isDevelopment || readResourceAccess(window.localStorage) !== null ? "unlocked" : "locked");
-  }, [isDevelopment]);
+  useEffect(() => forgetStoredResourceAccess(window.localStorage), []);
 
-  const unlock = useCallback((firstName: string) => {
-    rememberResourceAccess(window.localStorage, { firstName, unlockedIsoDate: new Date().toISOString() });
-    setState("unlocked");
-  }, []);
+  const unlock = useCallback(() => setUnlockedResourceSlug(resourceSlug ?? null), [resourceSlug]);
+
+  const isUnlocked = isDevelopment || (resourceSlug !== undefined && unlockedResourceSlug === resourceSlug);
+  const state: ResourceAccessState = isUnlocked ? "unlocked" : "locked";
 
   return { state, unlock };
 };
