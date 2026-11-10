@@ -35,4 +35,14 @@ describe("merged blog articles", () => {
   it.each(mergedArticleTargets)("points %s to a published guide", (_mergedSlug, targetSlug) => {
     expect(publishedSlugs.has(targetSlug)).toBe(true);
   });
+
+  it.each(mergedArticleTargets)("no longer publishes %s", (mergedSlug) => {
+    expect(publishedSlugs.has(mergedSlug)).toBe(false);
+  });
+
+  it.each(mergedArticleTargets)("removes %s from the sitemap and llms.txt", (mergedSlug) => {
+    for (const publicFile of ["sitemap.xml", "llms.txt"]) {
+      expect(readFileSync(path.join(projectRoot, "public", publicFile), "utf8")).not.toContain(`/blog/${mergedSlug}`);
+    }
+  });
 });
