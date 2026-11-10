@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { blogPosts } from "@/data/blogPosts";
+import { resourceGuides } from "@/data/resourceGuides";
 import { SITE_DOMAIN } from "@/lib/contact-config";
 import { serviceSlugs } from "@/lib/service-meta";
 
@@ -21,6 +22,10 @@ describe("llms.txt", () => {
 
   it.each(blogPosts.map((post) => post.slug))("links the blog article %s", (slug) => {
     expect(llmsText).toContain(`${siteOrigin}/blog/${slug}`);
+  });
+
+  it.each(resourceGuides.map((guide) => guide.slug))("links the resource guide %s", (slug) => {
+    expect(llmsText).toContain(`${siteOrigin}/ressources/${slug}`);
   });
 
   it("links the contact page", () => {

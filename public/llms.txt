@@ -36,3 +36,17 @@
 - [Tendances 2026 : Claude Code, OpenClaw et le paysage des agents IA de code](https://zoubeir.me/blog/agents-ia-claude-code-openclaw-tendances-2026): Tour d'horizon complet des agents IA de code en 2026 : fonctionnement, différences concrètes, et intégration intelligente dans ton workflow.
 - [Vibe coding et Claude Code en 2026 : ce que ça change vraiment pour les devs](https://zoubeir.me/blog/vibe-coding-et-claude-code-en-2026): Comprendre le vibe coding sans tomber dans ses pièges : ce que c'est vraiment, pourquoi c'est dangereux mal utilisé, et comment transformer cette tendance en levier de productivité sans perdre le contrôle de ton code.
 - [Installer Claude Code en 2026 : guide complet pas à pas](https://zoubeir.me/blog/installer-claude-code-guide-2026): Guide complet pour installer Claude Code via npm, choisir entre abonnement Claude.ai et clé API, lancer ta première commande et résoudre les erreurs courantes sur macOS, Linux et Windows.
+
+## Ressources
+
+- [Ressources gratuites pour Claude Code](https://zoubeir.me/ressources): Guides pas à pas, commandes et prompts prêts à copier. Accès contre un prénom et un e-mail.
+- [Claude SEO : auditer le référencement de ton site](https://zoubeir.me/ressources/claude-seo-audit-de-site): Un plugin libre qui passe ton site au crible et te rend une liste d'actions SEO classées par priorité.
+- [Audit de sécurité : le skill de Cloudflare](https://zoubeir.me/ressources/audit-de-securite-cloudflare): Fais chercher les failles de ton application par des agents qui se contre-vérifient, avec un rapport clair.
+- [Le prompt qui accélère une application codée avec l'IA](https://zoubeir.me/ressources/prompt-performance-application-web): Une liste de contrôle de 30 points que Claude Code vérifie sur ton projet avant de corriger ce que tu valides.
+- [Sous-agents Claude Code : trois réglages pour économiser ta limite](https://zoubeir.me/ressources/sous-agents-claude-code-economiser-sa-limite): Les réglages de la documentation officielle, et un prompt qui les applique à tes sous-agents après ta validation.
+- [Limite : confier le travail facile à Haiku](https://zoubeir.me/ressources/limite-skill-haiku): Un skill qui installe deux sous-agents légers et garde ton modèle principal pour ce qui compte.
+- [Find Skills : laisse Claude trouver les bons skills](https://zoubeir.me/ressources/find-skills-trouver-des-skills): Décris ton besoin, Claude cherche dans les skills publics et t'aide à vérifier avant d'installer.
+- [Anti-vibecode : les signes d'un site fait par l'IA](https://zoubeir.me/ressources/anti-vibecode-signes-d-un-site-genere): Un skill qui repère les réflexes visuels des sites générés et t'aide à les remplacer par de vrais choix.
+- [Reconstruire un site en Next.js avec Claude Code](https://zoubeir.me/ressources/cloner-un-site-avec-claude-code): Un gabarit qui recrée un site en composants modifiables, pour migrer le tien ou comprendre une mise en page.
+- [Agent Reach : ton agent lit 14 plateformes](https://zoubeir.me/ressources/agent-reach-lecture-multi-plateformes): Une commande pour que ton agent cherche et lise GitHub, le web, Reddit, YouTube et d'autres.
+- [REA : comprendre comment une application est construite](https://zoubeir.me/ressources/rea-retro-ingenierie): Un serveur MCP de rétro-ingénierie qui apporte les preuves pour que tu codes ta propre version.
