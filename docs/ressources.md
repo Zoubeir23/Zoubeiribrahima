@@ -7,8 +7,9 @@ Ne pas confondre avec les pages `/lead-magnet/<identifiant>` (voir `lead-magnet.
 ## Comment fonctionne l'inscription
 
 1. Le navigateur vérifie le prénom et l'e-mail : format, fautes de frappe courantes (`gmial.com`), adresses temporaires (`yopmail.com`...).
-2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend.
-3. Le guide s'affiche tant que le visiteur reste sur la page. Rien n'est écrit dans le navigateur : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé. Un même e-mail peut donc être envoyé plusieurs fois à Resend, ce que la fonction traite comme un contact déjà enregistré.
+2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend, une seule fois : elle lit d'abord la liste et n'écrit que si le contact est absent.
+3. Le guide s'affiche tant que le visiteur reste sur la page. L'accès n'est jamais mémorisé : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé, et chaque guide se débloque séparément.
+4. Pour ne pas renvoyer à Resend un e-mail déjà enregistré, le navigateur retient seulement une empreinte SHA-256 (jamais l'adresse, clé `registeredResourceEmails`, 50 maximum) : si le visiteur retape le même e-mail, le guide s'ouvre sans appel au serveur.
 
 Limites assumées :
 
