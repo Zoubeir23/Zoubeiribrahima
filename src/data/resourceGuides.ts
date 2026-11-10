@@ -146,6 +146,16 @@ export const resourceGuides: readonly ResourceGuide[] = [
     sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/seo",
     updatedIsoDate: "2026-11-10",
   },
+  {
+    slug: "orchestrer-claude-code-et-antigravity",
+    title: "Orchestrer Claude Code et Antigravity",
+    summary: "Délègue la relecture, l'exécution et le travail en parallèle à Antigravity CLI quand ton quota baisse, avec un protocole de validation.",
+    category: "productivity",
+    toolAuthor: "Zoubeir Ibrahima",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/orchestrator",
+    updatedIsoDate: "2026-11-10",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
