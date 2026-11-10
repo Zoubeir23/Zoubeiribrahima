@@ -1,5 +1,22 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/blog/git-github-workflow-propre-2026",
+      "destination": "/blog/git-github-de-zero-a-heros-guide-complet",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/python-bonnes-pratiques-code-maintenable-2026",
+      "destination": "/blog/python-de-zero-a-heros-guide-complet",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/agents-ia-claude-code-openclaw-tendances-2026",
+      "destination": "/blog/vibe-coding-et-claude-code-en-2026",
+      "statusCode": 301
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
