@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -25,7 +25,10 @@ function fill(firstName: string, email: string) {
 }
 
 describe("formulaire d'accès aux ressources", () => {
-  beforeEach(() => submitResourceSubscription.mockReset());
+  beforeEach(() => {
+    submitResourceSubscription.mockReset();
+    window.localStorage.clear();
+  });
 
   it("débloque après la confirmation du serveur", async () => {
     submitResourceSubscription.mockResolvedValue({ success: true });
@@ -38,6 +41,46 @@ describe("formulaire d'accès aux ressources", () => {
       resourceSlug: "claude-seo-audit-de-site",
       website: "",
     });
+  });
+
+  it("n'envoie pas deux fois le même e-mail : le guide s'ouvre sans appeler le serveur", async () => {
+    submitResourceSubscription.mockResolvedValue({ success: true });
+    const firstVisit = renderForm();
+    fill("Awa", "awa@gmail.com");
+    await waitFor(() => expect(firstVisit).toHaveBeenCalledTimes(1));
+    cleanup();
+
+    const secondVisit = renderForm();
+    fill("Awa", "AWA@gmail.com");
+    await waitFor(() => expect(secondVisit).toHaveBeenCalledWith("Awa"));
+    expect(submitResourceSubscription).toHaveBeenCalledTimes(1);
+  });
+
+  it("envoie un e-mail encore inconnu de ce navigateur", async () => {
+    submitResourceSubscription.mockResolvedValue({ success: true });
+    const firstVisit = renderForm();
+    fill("Awa", "awa@gmail.com");
+    await waitFor(() => expect(firstVisit).toHaveBeenCalledTimes(1));
+    cleanup();
+
+    const secondVisit = renderForm();
+    fill("Moussa", "moussa@gmail.com");
+    await waitFor(() => expect(secondVisit).toHaveBeenCalledWith("Moussa"));
+    expect(submitResourceSubscription).toHaveBeenCalledTimes(2);
+  });
+
+  it("ne retient pas un e-mail refusé par le serveur", async () => {
+    submitResourceSubscription.mockResolvedValueOnce({ success: false, error: "Refusé" });
+    renderForm();
+    fill("Awa", "awa@gmail.com");
+    expect(await screen.findByRole("alert")).toHaveTextContent("Refusé");
+    cleanup();
+
+    submitResourceSubscription.mockResolvedValueOnce({ success: true });
+    const secondVisit = renderForm();
+    fill("Awa", "awa@gmail.com");
+    await waitFor(() => expect(secondVisit).toHaveBeenCalledWith("Awa"));
+    expect(submitResourceSubscription).toHaveBeenCalledTimes(2);
   });
 
   it("signale une faute de frappe sans appeler le serveur", () => {
