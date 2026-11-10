@@ -3,7 +3,7 @@
 // The text is never part of the prerendered HTML: it lives in src/data/resources/<slug>.md, loaded on demand by
 // resourceGuideText.ts. This module stays free of Vite-only APIs: the serverless function imports it too.
 
-import type { ResourceBrand } from "@/data/resourceBrandLogos";
+import type { ResourceBrand } from "./resourceBrandLogos.js";
 
 export type ResourceGuideCategory = "audit" | "productivity" | "design" | "research";
 
