@@ -90,7 +90,7 @@ const ResourceGuidePage = () => {
                 <>
                   <h2 className="font-display text-xl font-black uppercase text-white sm:text-2xl">Débloque le guide</h2>
                   <p className="mb-8 mt-3 text-sm text-[var(--text-secondary)]">
-                    Ton prénom et ton e-mail, et tu lis ce guide. Si tu quittes la page puis reviens, le formulaire te sera redemandé.
+                    Ton prénom et ton e-mail, et tu lis ce guide. Les autres guides, et celui-ci à ta prochaine visite, demandent de nouveau le formulaire.
                   </p>
                   <ResourceAccessForm resourceSlug={guide.slug} onUnlocked={unlock} />
                 </>

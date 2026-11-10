@@ -89,6 +89,11 @@ describe("page d'une ressource", () => {
     expect(screen.getAllByText(/le formulaire te sera redemandé/i).length).toBeGreaterThan(0);
   });
 
+  it("précise que chaque guide se débloque séparément", () => {
+    renderAt(`/ressources/${firstGuide.slug}`);
+    expect(screen.getAllByText(/Chaque guide se débloque séparément/).length).toBeGreaterThan(0);
+  });
+
   it("affiche le texte une fois l'accès débloqué", async () => {
     accessState.state = "unlocked";
     renderAt(`/ressources/${firstGuide.slug}`);
