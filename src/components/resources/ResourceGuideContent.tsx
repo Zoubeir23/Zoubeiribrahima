@@ -33,7 +33,7 @@ const CodeBlock = ({ children }: { children?: ReactNode }) => {
 
   return (
     <div className="relative mt-4">
-      <pre className="overflow-x-auto rounded-md border border-[var(--surface-border)] bg-black/40 p-4 pr-24 font-mono text-sm leading-relaxed text-white">
+      <pre className="overflow-x-auto rounded-md border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-4 pr-24 font-mono text-sm leading-relaxed text-white">
         <code>{code}</code>
       </pre>
       <button
