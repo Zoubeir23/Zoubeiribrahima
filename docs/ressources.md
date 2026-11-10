@@ -36,3 +36,11 @@ Les tests vérifient que chaque ressource a son texte, une source en `https`, se
 - Reformuler, jamais copier une page d'origine. Citer l'auteur, la licence et la source de chaque outil.
 - Vérifier chaque commande et chaque chiffre à la source (README du dépôt, documentation officielle) avant de publier. Retirer ce qui ne se vérifie pas.
 - Un dépôt sans licence (`Melvynx/shared-skills`) : renvoyer vers lui, ne pas reproduire son contenu.
+
+## Guides issus du kit public
+
+Quatre guides décrivent le dépôt [Zoubeir23/claude-code-kit](https://github.com/Zoubeir23/claude-code-kit) : `brancher-google-search-console-a-claude-code`, `equipe-seo-32-agents-claude-code`, `orchestrer-claude-code-et-antigravity` et `socle-claude-code-claude-md-regles-agents-de-revue`.
+
+Quand un fichier du kit change (nombre d'agents, commandes d'installation, chemins), mets le guide correspondant à jour dans le même temps. Les chiffres cités (32 agents SEO, 18 agents de revue, 11 langages, 21 outils du serveur Search Console en version 0.4.2) sont à revérifier à chaque évolution.
+
+Les agents de revue et les règles de codage viennent d'ECC (MIT, Affaan Mustafa) : l'attribution reste dans `NOTICE.md` du kit et dans le guide.
