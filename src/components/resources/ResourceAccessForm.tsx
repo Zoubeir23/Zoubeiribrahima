@@ -1,6 +1,5 @@
 import { useId, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { hashEmail, hasRememberedEmail, rememberEmail } from "@/lib/resource-subscription/registered-email-memory";
 import { submitResourceSubscription } from "@/lib/resource-subscription/submit-resource-subscription";
 import { TRAP_FIELD_NAME } from "@/lib/resource-subscription/subscribe-handler";
 import { MAXIMUM_FIRST_NAME_LENGTH, subscriberSchema } from "@/lib/resource-subscription/subscriber-validation";
@@ -36,17 +35,10 @@ const ResourceAccessForm = ({ resourceSlug, onUnlocked }: ResourceAccessFormProp
     }
     setIsSubmitting(true);
     setErrorMessage(null);
-    // An email already registered from this browser is not sent to the server again.
-    const emailHash = await hashEmail(parsed.data.email);
-    if (emailHash !== null && hasRememberedEmail(window.localStorage, emailHash)) {
-      setIsSubmitting(false);
-      onUnlocked(parsed.data.firstName);
-      return;
-    }
+    // The server knows which emails were already sent to Resend: the form simply sends what the visitor typed.
     const result = await submitResourceSubscription({ ...parsed.data, website: trapValue });
     setIsSubmitting(false);
     if (result.success) {
-      if (emailHash !== null) rememberEmail(window.localStorage, emailHash);
       onUnlocked(parsed.data.firstName);
     } else {
       setErrorMessage(result.error);

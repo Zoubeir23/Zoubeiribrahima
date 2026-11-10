@@ -1,7 +1,10 @@
 import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 import { useResourceAccess } from "@/hooks/useResourceAccess";
-import { LEGACY_RESOURCE_ACCESS_STORAGE_KEY } from "@/lib/resource-subscription/resource-access-storage";
+import {
+  LEGACY_REGISTERED_EMAIL_STORAGE_KEY,
+  LEGACY_RESOURCE_ACCESS_STORAGE_KEY,
+} from "@/lib/resource-subscription/resource-access-storage";
 
 describe("useResourceAccess", () => {
   beforeEach(() => window.localStorage.clear());
@@ -42,6 +45,12 @@ describe("useResourceAccess", () => {
     const { result } = renderHook(() => useResourceAccess("guide-a", false));
     expect(result.current.state).toBe("locked");
     expect(window.localStorage.getItem(LEGACY_RESOURCE_ACCESS_STORAGE_KEY)).toBeNull();
+  });
+
+  it("oublie les empreintes d'e-mails que le navigateur retenait avant la base Neon", () => {
+    window.localStorage.setItem(LEGACY_REGISTERED_EMAIL_STORAGE_KEY, '["abc"]');
+    renderHook(() => useResourceAccess("guide-a", false));
+    expect(window.localStorage.getItem(LEGACY_REGISTERED_EMAIL_STORAGE_KEY)).toBeNull();
   });
 
   it("ouvre tout en développement local", () => {
