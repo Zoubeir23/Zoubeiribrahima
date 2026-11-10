@@ -33,9 +33,8 @@ export const blogReadingPaths: readonly BlogReadingPath[] = [
   {
     identifier: "work-with-ai-agents",
     title: "Travailler avec des agents IA",
-    description: "Comprendre le paysage, installer Claude Code et garder la main sur le code produit.",
+    description: "Installer Claude Code, puis garder la main sur le code qu'il produit.",
     articleSlugs: [
-      "agents-ia-claude-code-openclaw-tendances-2026",
       "installer-claude-code-guide-2026",
       "vibe-coding-et-claude-code-en-2026",
     ],
