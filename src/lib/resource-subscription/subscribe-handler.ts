@@ -1,4 +1,6 @@
+import { fingerprintEmail } from "./email-fingerprint.js";
 import type { MailDomainStatus } from "./mail-domain-check.js";
+import type { RegisteredEmailStore } from "./registered-email-store.js";
 import type { ContactStore } from "./resend-contact-store.js";
 import { SUBSCRIBER_MESSAGES, readEmailDomain, subscriberSchema } from "./subscriber-validation.js";
 
@@ -14,6 +16,8 @@ export interface SubscriptionDependencies {
   knownResourceSlugs: ReadonlySet<string>;
   checkMailDomain: (domain: string) => Promise<MailDomainStatus>;
   contactStore: ContactStore;
+  /** Optional shortcut that remembers emails already sent to Resend. Without it, Resend alone decides. */
+  registeredEmails?: RegisteredEmailStore;
   reportError: (description: string, error: unknown) => void;
 }
 
@@ -27,6 +31,26 @@ function isFilledTrapField(rawBody: unknown): boolean {
   if (typeof rawBody !== "object" || rawBody === null || !(TRAP_FIELD_NAME in rawBody)) return false;
   const value = (rawBody as Record<string, unknown>)[TRAP_FIELD_NAME];
   return typeof value === "string" && value.trim() !== "";
+}
+
+// The shortcut database only saves a lookup: its failures are reported and never change the visitor's answer.
+async function isAlreadyRegistered(dependencies: SubscriptionDependencies, emailFingerprint: string | null): Promise<boolean> {
+  if (!dependencies.registeredEmails || emailFingerprint === null) return false;
+  try {
+    return await dependencies.registeredEmails.has(emailFingerprint);
+  } catch (error: unknown) {
+    dependencies.reportError("lecture des e-mails déjà enregistrés impossible", error);
+    return false;
+  }
+}
+
+async function rememberRegistered(dependencies: SubscriptionDependencies, emailFingerprint: string | null): Promise<void> {
+  if (!dependencies.registeredEmails || emailFingerprint === null) return;
+  try {
+    await dependencies.registeredEmails.add(emailFingerprint);
+  } catch (error: unknown) {
+    dependencies.reportError("écriture des e-mails déjà enregistrés impossible", error);
+  }
 }
 
 export async function handleResourceSubscription(
@@ -49,11 +73,15 @@ export async function handleResourceSubscription(
     return fail(400, SUBSCRIBER_MESSAGES.unknownEmailDomain);
   }
 
+  const emailFingerprint = dependencies.registeredEmails ? await fingerprintEmail(email) : null;
+  if (await isAlreadyRegistered(dependencies, emailFingerprint)) return succeed();
+
   try {
     await dependencies.contactStore.saveContact({ email, firstName });
-    return succeed();
   } catch (error: unknown) {
     dependencies.reportError("enregistrement du contact impossible", error);
     return fail(502, SUBSCRIBER_MESSAGES.unexpected);
   }
+  await rememberRegistered(dependencies, emailFingerprint);
+  return succeed();
 }
