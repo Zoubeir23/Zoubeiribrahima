@@ -156,6 +156,16 @@ export const resourceGuides: readonly ResourceGuide[] = [
     sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/orchestrator",
     updatedIsoDate: "2026-11-10",
   },
+  {
+    slug: "socle-claude-code-claude-md-regles-agents-de-revue",
+    title: "Le socle Claude Code : CLAUDE.md, règles et agents de revue",
+    summary: "Un modèle de CLAUDE.md, des règles pour 11 langages et 18 agents qui relisent ton code, adaptés du projet ECC.",
+    category: "productivity",
+    toolAuthor: "Zoubeir Ibrahima (adapté d'ECC, Affaan Mustafa)",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/config",
+    updatedIsoDate: "2026-11-10",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
