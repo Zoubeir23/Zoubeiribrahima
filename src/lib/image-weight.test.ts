@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
@@ -44,8 +44,16 @@ describe("critical resources of index.html", () => {
     expect(new Set(preloadedTypes)).toEqual(new Set(["font"]));
   });
 
-  it("uses the vector favicon and a compact touch icon", () => {
-    expect(indexHtml).toContain('<link rel="icon" type="image/svg+xml" href="/favicon.svg" />');
+  it("uses the profile avatar as a compact browser icon", () => {
+    const browserIcons = [...indexHtml.matchAll(/<link rel="icon"[^>]*href="([^"]+)"/g)].map(([, iconPath]) => iconPath);
+    expect(browserIcons).toEqual(["/favicon-48x48.png", "/favicon-192x192.png"]);
+    for (const iconPath of browserIcons) {
+      expect(statSync(path.join(projectRoot, "public", iconPath)).size).toBeLessThanOrEqual(MAXIMUM_DISPLAYED_IMAGE_BYTES);
+    }
+    expect(existsSync(path.join(projectRoot, "public", "favicon.svg"))).toBe(false);
+  });
+
+  it("uses a compact touch icon", () => {
     const touchIcon = /<link rel="apple-touch-icon"[^>]*href="([^"]+)"/.exec(indexHtml)?.[1];
     expect(touchIcon).toBeDefined();
     expect(statSync(path.join(projectRoot, "public", touchIcon!)).size).toBeLessThanOrEqual(MAXIMUM_DISPLAYED_IMAGE_BYTES);
