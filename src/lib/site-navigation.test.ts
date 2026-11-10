@@ -21,6 +21,7 @@ describe("NAV_ITEMS", () => {
       "/a-propos",
       "/contact",
       "/blog",
+      "/ressources",
     ]);
   });
 

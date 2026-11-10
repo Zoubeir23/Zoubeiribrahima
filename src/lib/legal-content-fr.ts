@@ -4,7 +4,7 @@ export const privacyPolicyFrench: LegalDocument = {
   title: "Politique de confidentialité",
   eyebrow: "Vos données",
   lastUpdatedLabel: "Dernière mise à jour",
-  lastUpdated: "19 octobre 2026",
+  lastUpdated: "10 novembre 2026",
   intro:
     "Cette page explique quelles données ce site (zoubeir.me) collecte, pourquoi, avec quels services tiers, et comment exercer vos droits. Elle décrit ce que le site fait réellement aujourd'hui.",
   sections: [
@@ -21,6 +21,7 @@ export const privacyPolicyFrench: LegalDocument = {
         "Formulaire de contact : votre nom, votre adresse e-mail et votre message. Ils sont transmis par le service Formspree puis m'arrivent par e-mail.",
         "E-mail, WhatsApp ou téléphone : les informations que vous partagez en m'écrivant ou en m'appelant.",
         "Prise de rendez-vous : les informations (nom, e-mail, créneau) que vous saisissez dans Calendly.",
+        "Ressources : votre prénom et votre adresse e-mail quand vous débloquez les guides de la page Ressources. Ils sont enregistrés dans ma liste de contacts chez Resend. Le domaine de l'adresse est vérifié (il doit recevoir des e-mails), mais aucun e-mail ne vous est envoyé à ce moment-là.",
       ],
     },
     {
@@ -33,7 +34,7 @@ export const privacyPolicyFrench: LegalDocument = {
     {
       title: "Ce qui est enregistré dans votre navigateur",
       paragraphs: [
-        "Le site enregistre localement deux informations : la langue choisie et votre choix de consentement. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement.",
+        "Le site enregistre localement trois informations : la langue choisie, votre choix de consentement et, si vous avez débloqué les ressources, votre prénom avec la date du déblocage. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement.",
       ],
     },
     {
@@ -45,19 +46,19 @@ export const privacyPolicyFrench: LegalDocument = {
     {
       title: "Pourquoi j'utilise ces données",
       paragraphs: [
-        "Pour répondre à vos demandes et vous proposer un devis (échanges précontractuels), pour assurer le suivi d'un projet, et, avec votre accord, pour comprendre comment le site est utilisé et l'améliorer.",
+        "Pour répondre à vos demandes et vous proposer un devis (échanges précontractuels), pour assurer le suivi d'un projet, et, avec votre accord, pour comprendre comment le site est utilisé et l'améliorer. Le prénom et l'e-mail laissés sur la page Ressources servent à vous donner accès aux guides et, éventuellement, à vous prévenir de nouvelles ressources.",
       ],
     },
     {
       title: "Avec qui elles transitent",
       paragraphs: [
-        "Ce site s'appuie sur des prestataires techniques : Vercel (hébergement et mesure d'audience), Formspree (formulaire de contact), Calendly (rendez-vous) et, si vous m'écrivez par là, WhatsApp. Ces services peuvent traiter des données en dehors de votre pays. Je ne vends pas vos données.",
+        "Ce site s'appuie sur des prestataires techniques : Vercel (hébergement et mesure d'audience), Formspree (formulaire de contact), Resend (liste des personnes qui ont débloqué les ressources), Calendly (rendez-vous) et, si vous m'écrivez par là, WhatsApp. Ces services peuvent traiter des données en dehors de votre pays. Je ne vends pas vos données.",
       ],
     },
     {
       title: "Combien de temps je les garde",
       paragraphs: [
-        "Je conserve vos messages le temps nécessaire pour répondre et assurer le suivi de votre demande ou de votre projet, puis je les supprime lorsqu'ils ne sont plus utiles.",
+        "Je conserve vos messages le temps nécessaire pour répondre et assurer le suivi de votre demande ou de votre projet, puis je les supprime lorsqu'ils ne sont plus utiles. Le prénom et l'e-mail laissés pour les ressources sont gardés jusqu'à ce que vous demandiez leur suppression.",
       ],
     },
     {

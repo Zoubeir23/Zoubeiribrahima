@@ -4,7 +4,7 @@ export const privacyPolicyEnglish: LegalDocument = {
   title: "Privacy policy",
   eyebrow: "Your data",
   lastUpdatedLabel: "Last updated",
-  lastUpdated: "October 19, 2026",
+  lastUpdated: "November 10, 2026",
   intro:
     "This page explains what data this site (zoubeir.me) collects, why, which third-party services are involved, and how to exercise your rights. It describes what the site actually does today.",
   sections: [
@@ -21,6 +21,7 @@ export const privacyPolicyEnglish: LegalDocument = {
         "Contact form: your name, email address and message. They are sent through the Formspree service and reach me by email.",
         "Email, WhatsApp or phone: the information you share when you write or call me.",
         "Booking: the information (name, email, time slot) you enter in Calendly.",
+        "Resources: your first name and email address when you unlock the guides on the Resources page. They are saved in my contact list at Resend. The address domain is checked (it must receive email), but no email is sent to you at that point.",
       ],
     },
     {
@@ -33,7 +34,7 @@ export const privacyPolicyEnglish: LegalDocument = {
     {
       title: "What is stored in your browser",
       paragraphs: [
-        "The site stores two items locally: your chosen language and your consent choice. They stay in your browser and are not sent to a server. They are needed for the site to work and do not require consent.",
+        "The site stores three items locally: your chosen language, your consent choice and, if you unlocked the resources, your first name with the unlock date. They stay in your browser and are not sent to a server. They are needed for the site to work and do not require consent.",
       ],
     },
     {
@@ -45,19 +46,19 @@ export const privacyPolicyEnglish: LegalDocument = {
     {
       title: "Why I use this data",
       paragraphs: [
-        "To answer your requests and prepare a quote (pre-contract exchanges), to follow up on a project and, with your consent, to understand how the site is used and improve it.",
+        "To answer your requests and prepare a quote (pre-contract exchanges), to follow up on a project and, with your consent, to understand how the site is used and improve it. The first name and email left on the Resources page give you access to the guides and may be used to let you know about new resources.",
       ],
     },
     {
       title: "Who it passes through",
       paragraphs: [
-        "This site relies on technical providers: Vercel (hosting and audience measurement), Formspree (contact form), Calendly (booking) and, if you write to me there, WhatsApp. These services may process data outside your country. I do not sell your data.",
+        "This site relies on technical providers: Vercel (hosting and audience measurement), Formspree (contact form), Resend (list of people who unlocked the resources), Calendly (booking) and, if you write to me there, WhatsApp. These services may process data outside your country. I do not sell your data.",
       ],
     },
     {
       title: "How long I keep it",
       paragraphs: [
-        "I keep your messages for as long as needed to answer and follow up on your request or project, then delete them when they are no longer useful.",
+        "I keep your messages for as long as needed to answer and follow up on your request or project, then delete them when they are no longer useful. The first name and email left for the resources are kept until you ask for their deletion.",
       ],
     },
     {

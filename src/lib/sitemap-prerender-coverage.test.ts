@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { blogPosts } from "@/data/blogPosts";
+import { resourceGuides } from "@/data/resourceGuides";
 import { serviceSlugs } from "@/lib/service-meta";
 
 // The build prerenders exactly the sitemap routes, and unknown URLs get a real 404,
@@ -29,6 +30,7 @@ const staticPagePaths = [
   "/blog",
   "/privacy",
   "/terms",
+  "/ressources",
 ];
 
 describe("sitemap coverage of prerendered routes", () => {
@@ -42,6 +44,10 @@ describe("sitemap coverage of prerendered routes", () => {
 
   it.each(blogPosts.map((post) => post.slug))("lists the blog article %s", (slug) => {
     expect(sitemapPaths.has(`/blog/${slug}`)).toBe(true);
+  });
+
+  it.each(resourceGuides.map((guide) => guide.slug))("lists the resource guide %s", (slug) => {
+    expect(sitemapPaths.has(`/ressources/${slug}`)).toBe(true);
   });
 });
 
