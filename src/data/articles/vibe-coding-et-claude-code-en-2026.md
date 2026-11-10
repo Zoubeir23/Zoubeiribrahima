@@ -585,6 +585,18 @@ UTILISE L'AGENT POUR :              N'UTILISE PAS L'AGENT POUR :
 
 ---
 
+### 4.3 Quel outil pour quel usage
+
+Les agents de code réduisent le cycle recherche, copie, débogage : ils proposent du code directement dans le contexte du projet. Ils ne remplacent pas ton raisonnement, et ils n'ont pas tous les mêmes points forts :
+
+- **Claude Code** est fort en compréhension du contexte du projet et en refactoring.
+- **Cursor** est excellent dans le flux quotidien d'un éditeur de code.
+- **OpenClaw** est puissant pour des workflows multi-agents plus complexes.
+
+Quel que soit l'outil, la règle d'or reste la même : lis le diff, teste, puis commite, et jamais l'inverse. Tu dois pouvoir expliquer le code généré avant de l'accepter.
+
+---
+
 ## Récapitulatif : les 5 règles du vibe coding actif
 
 ```

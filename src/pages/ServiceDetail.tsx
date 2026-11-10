@@ -7,6 +7,7 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import ServiceIllustration from "@/components/ServiceIllustration";
 import ServiceOfferingTabs from "@/components/ServiceOfferingTabs";
+import ServiceRelatedArticles from "@/components/ServiceRelatedArticles";
 import SiteFooter from "@/components/SiteFooter";
 import TechnologyIcon from "@/components/TechnologyIcon";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
@@ -161,6 +162,12 @@ const ServiceDetail = () => {
         </section>
 
         <ProcessSection />
+
+        <ServiceRelatedArticles
+          serviceSlug={slug}
+          eyebrow={content.relatedArticlesEyebrow}
+          title={content.relatedArticlesTitle}
+        />
 
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
           <div className="gradient-ring relative flex flex-col items-start justify-between gap-6 rounded-[var(--radius-medium)] bg-[var(--surface-base)] p-8 sm:flex-row sm:items-center sm:p-12">

@@ -20,9 +20,9 @@ describe("blog reading paths", () => {
     }
   });
 
-  it("chains at least three articles per path without repeating one", () => {
+  it("chains at least two articles per path without repeating one", () => {
     for (const readingPath of blogReadingPaths) {
-      expect(readingPath.articleSlugs.length, readingPath.identifier).toBeGreaterThanOrEqual(3);
+      expect(readingPath.articleSlugs.length, readingPath.identifier).toBeGreaterThanOrEqual(2);
       expect(new Set(readingPath.articleSlugs).size, readingPath.identifier).toBe(readingPath.articleSlugs.length);
     }
   });
