@@ -34,7 +34,7 @@ export const privacyPolicyEnglish: LegalDocument = {
     {
       title: "What is stored in your browser",
       paragraphs: [
-        "The site stores three items locally: your chosen language, your consent choice and, if you unlocked the resources, your first name with the unlock date. They stay in your browser and are not sent to a server. They are needed for the site to work and do not require consent.",
+        "The site stores two items locally: your chosen language and your consent choice. They stay in your browser and are not sent to a server. They are needed for the site to work and do not require consent. Unlocking a guide on the Resources page is not remembered: it lasts only for your visit to the page, and the form is asked again when you come back.",
       ],
     },
     {

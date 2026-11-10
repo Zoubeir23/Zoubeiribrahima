@@ -34,7 +34,7 @@ export const privacyPolicyFrench: LegalDocument = {
     {
       title: "Ce qui est enregistré dans votre navigateur",
       paragraphs: [
-        "Le site enregistre localement trois informations : la langue choisie, votre choix de consentement et, si vous avez débloqué les ressources, votre prénom avec la date du déblocage. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement.",
+        "Le site enregistre localement deux informations : la langue choisie et votre choix de consentement. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement. Le déblocage d'un guide de la page Ressources n'est pas mémorisé : il dure le temps de votre visite sur la page, et le formulaire vous est redemandé quand vous revenez.",
       ],
     },
     {
