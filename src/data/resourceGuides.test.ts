@@ -7,6 +7,7 @@ import {
   listResourceGuideSlugs,
   resourceGuides,
 } from "@/data/resourceGuides";
+import { resourceBrandLogos } from "@/data/resourceBrandLogos";
 import { loadResourceGuideText } from "@/data/resourceGuideText";
 
 const resourcesDirectory = path.join(process.cwd(), "src", "data", "resources");
@@ -57,5 +58,23 @@ describe("bibliothèque de ressources", () => {
 
   it("refuse de charger le texte d'une ressource inconnue", async () => {
     await expect(loadResourceGuideText("inconnue")).rejects.toThrow();
+  });
+
+  it("associe chaque ressource à une ou deux marques connues", () => {
+    resourceGuides.forEach((guide) => {
+      expect(guide.brands.length, guide.slug).toBeGreaterThanOrEqual(1);
+      expect(guide.brands.length, guide.slug).toBeLessThanOrEqual(2);
+      guide.brands.forEach((brand) => expect(resourceBrandLogos[brand], `${guide.slug}: ${brand}`).toBeDefined());
+    });
+  });
+
+  it("a un fichier de logo léger et sans script pour chaque marque", () => {
+    Object.entries(resourceBrandLogos).forEach(([brand, logo]) => {
+      const filePath = path.join(process.cwd(), "public", logo.path);
+      expect(existsSync(filePath), brand).toBe(true);
+      const svg = readFileSync(filePath, "utf8");
+      expect(svg.length, brand).toBeLessThanOrEqual(12 * 1024);
+      expect(svg, brand).not.toMatch(/<script|onload=|href="https?:/i);
+    });
   });
 });

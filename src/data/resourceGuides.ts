@@ -3,6 +3,8 @@
 // The text is never part of the prerendered HTML: it lives in src/data/resources/<slug>.md, loaded on demand by
 // resourceGuideText.ts. This module stays free of Vite-only APIs: the serverless function imports it too.
 
+import type { ResourceBrand } from "@/data/resourceBrandLogos";
+
 export type ResourceGuideCategory = "audit" | "productivity" | "design" | "research";
 
 export interface ResourceGuide {
@@ -15,6 +17,8 @@ export interface ResourceGuide {
   /** SPDX identifier of the tool's license, or null when its repository states none. */
   toolLicense: string | null;
   sourceUrl: string;
+  /** Brands whose logos illustrate the guide (one or two). */
+  brands: readonly ResourceBrand[];
   updatedIsoDate: string;
 }
 
@@ -34,6 +38,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Agrici Daniel",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/AgriciDaniel/claude-seo",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -44,6 +49,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Cloudflare",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/cloudflare/security-audit-skill",
+    brands: ["cloudflare", "claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -54,6 +60,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Zoubeir Ibrahima",
     toolLicense: null,
     sourceUrl: "https://web.dev/learn/performance",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -64,6 +71,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Anthropic (documentation)",
     toolLicense: null,
     sourceUrl: "https://code.claude.com/docs/en/sub-agents",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -74,6 +82,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Melvynx",
     toolLicense: null,
     sourceUrl: "https://github.com/Melvynx/shared-skills/tree/main/skills/limite",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -84,6 +93,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Vercel Labs",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/vercel-labs/skills",
+    brands: ["vercel", "claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -94,6 +104,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Melvynx",
     toolLicense: null,
     sourceUrl: "https://github.com/Melvynx/shared-skills/tree/main/skills/anti-vibecode",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -104,6 +115,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "JCodesMore",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/JCodesMore/ai-website-cloner-template",
+    brands: ["nextjs", "claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -114,6 +126,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Panniantong",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/Panniantong/Agent-Reach",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -124,6 +137,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "morluto",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/morluto/rea",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -134,6 +148,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Amin Foroutan (serveur) et Zoubeir Ibrahima (guide et skill)",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/AminForou/mcp-gsc",
+    brands: ["google", "claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -144,6 +159,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Zoubeir Ibrahima",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/seo",
+    brands: ["google", "claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -154,6 +170,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Zoubeir Ibrahima",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/orchestrator",
+    brands: ["claude", "antigravity"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -164,6 +181,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Zoubeir Ibrahima (adapté d'ECC, Affaan Mustafa)",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/config",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
 ];
