@@ -126,6 +126,16 @@ export const resourceGuides: readonly ResourceGuide[] = [
     sourceUrl: "https://github.com/morluto/rea",
     updatedIsoDate: "2026-11-10",
   },
+  {
+    slug: "brancher-google-search-console-a-claude-code",
+    title: "Brancher Google Search Console à Claude Code",
+    summary: "Un serveur MCP gratuit pour interroger tes clics, tes requêtes et l'indexation de tes pages en langage normal, et un skill qui l'installe pour toi.",
+    category: "audit",
+    toolAuthor: "Amin Foroutan (serveur) et Zoubeir Ibrahima (guide et skill)",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/AminForou/mcp-gsc",
+    updatedIsoDate: "2026-11-10",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {

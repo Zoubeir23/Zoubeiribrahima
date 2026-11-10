@@ -50,3 +50,4 @@
 - [Reconstruire un site en Next.js avec Claude Code](https://zoubeir.me/ressources/cloner-un-site-avec-claude-code): Un gabarit qui recrée un site en composants modifiables, pour migrer le tien ou comprendre une mise en page.
 - [Agent Reach : ton agent lit 14 plateformes](https://zoubeir.me/ressources/agent-reach-lecture-multi-plateformes): Une commande pour que ton agent cherche et lise GitHub, le web, Reddit, YouTube et d'autres.
 - [REA : comprendre comment une application est construite](https://zoubeir.me/ressources/rea-retro-ingenierie): Un serveur MCP de rétro-ingénierie qui apporte les preuves pour que tu codes ta propre version.
+- [Brancher Google Search Console à Claude Code](https://zoubeir.me/ressources/brancher-google-search-console-a-claude-code): Un serveur MCP gratuit pour interroger tes clics, tes requêtes et l'indexation de tes pages en langage normal, et un skill qui l'installe pour toi.
