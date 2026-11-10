@@ -19,6 +19,8 @@ export interface ServicesContent {
   includedItems: string[];
   technologiesEyebrow: string;
   technologiesTitle: string;
+  relatedArticlesEyebrow: string;
+  relatedArticlesTitle: string;
   requestQuoteLabel: string;
   bookCallLabel: string;
   contactLabel: string;
@@ -50,6 +52,8 @@ export const servicesContent: Record<LandingLanguage, ServicesContent> = {
     ],
     technologiesEyebrow: "Chapitre II",
     technologiesTitle: "Technologies",
+    relatedArticlesEyebrow: "Pour aller plus loin",
+    relatedArticlesTitle: "Articles liés",
     requestQuoteLabel: "Demander un devis",
     bookCallLabel: "Prendre rendez-vous",
     contactLabel: "Me contacter",
@@ -79,6 +83,8 @@ export const servicesContent: Record<LandingLanguage, ServicesContent> = {
     ],
     technologiesEyebrow: "Chapter II",
     technologiesTitle: "Technologies",
+    relatedArticlesEyebrow: "Go further",
+    relatedArticlesTitle: "Related articles",
     requestQuoteLabel: "Request a quote",
     bookCallLabel: "Book a call",
     contactLabel: "Contact me",
