@@ -136,6 +136,16 @@ export const resourceGuides: readonly ResourceGuide[] = [
     sourceUrl: "https://github.com/AminForou/mcp-gsc",
     updatedIsoDate: "2026-11-10",
   },
+  {
+    slug: "equipe-seo-32-agents-claude-code",
+    title: "Une équipe de 32 agents SEO pour Claude Code",
+    summary: "Un directeur et sept pôles d'agents qui auditent, rédigent, relient tes pages et mesurent, à partir de tes vraies données Search Console.",
+    category: "audit",
+    toolAuthor: "Zoubeir Ibrahima",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/seo",
+    updatedIsoDate: "2026-11-10",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
