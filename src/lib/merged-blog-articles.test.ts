@@ -45,4 +45,14 @@ describe("merged blog articles", () => {
       expect(readFileSync(path.join(projectRoot, "public", publicFile), "utf8")).not.toContain(`/blog/${mergedSlug}`);
     }
   });
+
+  it("garde dans le guide vibe coding la comparaison des outils de l'article fusionné", () => {
+    const guideText = readFileSync(
+      path.join(projectRoot, "src", "data", "articles", "vibe-coding-et-claude-code-en-2026.md"),
+      "utf8",
+    );
+    for (const toolName of ["Claude Code", "Cursor", "OpenClaw"]) {
+      expect(guideText).toContain(toolName);
+    }
+  });
 });
