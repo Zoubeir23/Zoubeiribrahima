@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import ResourceBrandLogos from "@/components/resources/ResourceBrandLogos";
 import SiteFooter from "@/components/SiteFooter";
 import {
   resourceGuideCategoryLabels,
@@ -49,6 +50,7 @@ const ResourcesPage = () => {
                       className="flex h-full min-h-11 flex-col justify-between gap-6 rounded-md border border-[var(--surface-border)] p-6 transition-colors duration-300 hover:border-white focus-visible:border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-violet)]"
                     >
                       <span className="flex flex-col gap-3">
+                        <ResourceBrandLogos brands={guide.brands} className="mb-1" />
                         <span className="font-display text-lg font-black uppercase text-white">{guide.title}</span>
                         <span className="text-sm text-white/80">{guide.summary}</span>
                       </span>
@@ -63,6 +65,10 @@ const ResourcesPage = () => {
             </section>
           );
         })}
+        <p className="mt-14 text-xs text-[var(--text-muted)]">
+          Les logos appartiennent à leurs propriétaires respectifs. Ils servent seulement à indiquer l'outil dont parle
+          chaque guide.
+        </p>
       </main>
       <SiteFooter />
     </div>

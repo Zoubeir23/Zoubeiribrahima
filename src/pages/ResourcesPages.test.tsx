@@ -2,6 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ConsentProvider from "@/components/consent/ConsentProvider";
+import { resourceBrandLogos } from "@/data/resourceBrandLogos";
 import { resourceGuides } from "@/data/resourceGuides";
 import { LanguageProvider } from "@/hooks/useLanguage";
 
@@ -41,6 +42,29 @@ describe("page Ressources", () => {
         `/ressources/${guide.slug}`,
       );
     });
+  });
+});
+
+describe("logos des ressources", () => {
+  it("montre sur chaque carte le logo de la marque concernée", () => {
+    renderAt("/ressources");
+    const main = screen.getByRole("main");
+    resourceGuides.forEach((guide) => {
+      const card = within(main).getByRole("link", { name: new RegExp(guide.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")) });
+      const logoSources = [...card.querySelectorAll("img")].map((image) => image.getAttribute("src"));
+      expect(logoSources, guide.slug).toEqual(guide.brands.map((brand) => resourceBrandLogos[brand].path));
+    });
+  });
+
+  it("montre les logos en tête du guide", () => {
+    renderAt(`/ressources/${firstGuide.slug}`);
+    const logoSources = [...screen.getByRole("main").querySelectorAll("img")].map((image) => image.getAttribute("src"));
+    expect(logoSources).toEqual(firstGuide.brands.map((brand) => resourceBrandLogos[brand].path));
+  });
+
+  it("précise que les logos appartiennent à leurs propriétaires", () => {
+    renderAt("/ressources");
+    expect(screen.getByText(/logos appartiennent à leurs propriétaires/i)).toBeInTheDocument();
   });
 });
 

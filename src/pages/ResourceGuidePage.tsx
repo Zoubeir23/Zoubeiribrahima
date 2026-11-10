@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
+import ResourceBrandLogos from "@/components/resources/ResourceBrandLogos";
 import ResourceAccessForm from "@/components/resources/ResourceAccessForm";
 import ResourceGuideContent from "@/components/resources/ResourceGuideContent";
 import SiteFooter from "@/components/SiteFooter";
@@ -71,7 +72,8 @@ const ResourceGuidePage = () => {
           </>
         ) : (
           <>
-            <h1 className="mt-8 font-display text-3xl font-black uppercase text-white sm:text-5xl">{guide.title}</h1>
+            <ResourceBrandLogos brands={guide.brands} className="mt-8" />
+            <h1 className="mt-6 font-display text-3xl font-black uppercase text-white sm:text-5xl">{guide.title}</h1>
             <p className="mt-4 text-base text-[var(--text-secondary)] sm:text-lg">{guide.summary}</p>
             <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
               <span>{describeTool(guide)}</span>
