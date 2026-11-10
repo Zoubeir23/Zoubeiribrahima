@@ -1,6 +1,6 @@
-import type { MailDomainStatus } from "./mail-domain-check";
-import type { ContactStore } from "./resend-contact-store";
-import { SUBSCRIBER_MESSAGES, readEmailDomain, subscriberSchema } from "./subscriber-validation";
+import type { MailDomainStatus } from "./mail-domain-check.js";
+import type { ContactStore } from "./resend-contact-store.js";
+import { SUBSCRIBER_MESSAGES, readEmailDomain, subscriberSchema } from "./subscriber-validation.js";
 
 // Handles one access request to the resource library: validates the first name and email, checks that the
 // domain receives mail, then saves the contact. The browser shows the resource only after a success.
