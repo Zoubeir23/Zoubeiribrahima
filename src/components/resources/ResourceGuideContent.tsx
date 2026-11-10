@@ -59,6 +59,19 @@ const ResourceGuideContent = ({ markdown }: { markdown: string }) => (
         ul: ({ children }) => <ul className="mt-4 list-disc space-y-2 pl-5">{children}</ul>,
         ol: ({ children }) => <ol className="mt-4 list-decimal space-y-2 pl-5">{children}</ol>,
         pre: ({ children }) => <CodeBlock>{children}</CodeBlock>,
+        table: ({ children }) => (
+          <div className="mt-4 overflow-x-auto rounded-md border border-[var(--surface-border)]">
+            <table className="w-full border-collapse text-left text-sm">{children}</table>
+          </div>
+        ),
+        th: ({ children }) => (
+          <th className="border-b border-[var(--surface-border)] bg-[var(--surface-deepest)] px-4 py-3 font-display text-xs font-black uppercase tracking-wider text-white">
+            {children}
+          </th>
+        ),
+        td: ({ children }) => (
+          <td className="border-b border-[var(--surface-border)] px-4 py-3 align-top">{children}</td>
+        ),
         code: ({ children }) => (
           <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-[0.9em] text-white">{children}</code>
         ),

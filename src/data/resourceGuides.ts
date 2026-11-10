@@ -3,6 +3,8 @@
 // The text is never part of the prerendered HTML: it lives in src/data/resources/<slug>.md, loaded on demand by
 // resourceGuideText.ts. This module stays free of Vite-only APIs: the serverless function imports it too.
 
+import type { ResourceBrand } from "@/data/resourceBrandLogos";
+
 export type ResourceGuideCategory = "audit" | "productivity" | "design" | "research";
 
 export interface ResourceGuide {
@@ -15,6 +17,8 @@ export interface ResourceGuide {
   /** SPDX identifier of the tool's license, or null when its repository states none. */
   toolLicense: string | null;
   sourceUrl: string;
+  /** Brands whose logos illustrate the guide (one or two). */
+  brands: readonly ResourceBrand[];
   updatedIsoDate: string;
 }
 
@@ -34,6 +38,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Agrici Daniel",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/AgriciDaniel/claude-seo",
+    brands: ["claude", "github"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -44,6 +49,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Cloudflare",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/cloudflare/security-audit-skill",
+    brands: ["claude", "cloudflare", "github"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -54,6 +60,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Zoubeir Ibrahima",
     toolLicense: null,
     sourceUrl: "https://web.dev/learn/performance",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -64,6 +71,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Anthropic (documentation)",
     toolLicense: null,
     sourceUrl: "https://code.claude.com/docs/en/sub-agents",
+    brands: ["claude"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -74,6 +82,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Melvynx",
     toolLicense: null,
     sourceUrl: "https://github.com/Melvynx/shared-skills/tree/main/skills/limite",
+    brands: ["claude", "github"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -84,6 +93,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Vercel Labs",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/vercel-labs/skills",
+    brands: ["claude", "vercel", "github"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -94,6 +104,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Melvynx",
     toolLicense: null,
     sourceUrl: "https://github.com/Melvynx/shared-skills/tree/main/skills/anti-vibecode",
+    brands: ["claude", "github"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -104,6 +115,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "JCodesMore",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/JCodesMore/ai-website-cloner-template",
+    brands: ["claude", "nextjs", "github"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -114,6 +126,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "Panniantong",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/Panniantong/Agent-Reach",
+    brands: ["claude", "github", "reddit", "youtube", "linkedin", "instagram", "facebook"],
     updatedIsoDate: "2026-11-10",
   },
   {
@@ -124,6 +137,51 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolAuthor: "morluto",
     toolLicense: "MIT",
     sourceUrl: "https://github.com/morluto/rea",
+    brands: ["claude", "github"],
+    updatedIsoDate: "2026-11-10",
+  },
+  {
+    slug: "brancher-google-search-console-a-claude-code",
+    title: "Brancher Google Search Console à Claude Code",
+    summary: "Un serveur MCP gratuit pour interroger tes clics, tes requêtes et l'indexation de tes pages en langage normal, et un skill qui l'installe pour toi.",
+    category: "audit",
+    toolAuthor: "Amin Foroutan (serveur) et Zoubeir Ibrahima (guide et skill)",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/AminForou/mcp-gsc",
+    brands: ["claude", "google", "github"],
+    updatedIsoDate: "2026-11-10",
+  },
+  {
+    slug: "equipe-seo-32-agents-claude-code",
+    title: "Une équipe de 32 agents SEO pour Claude Code",
+    summary: "Un directeur et sept pôles d'agents qui auditent, rédigent, relient tes pages et mesurent, à partir de tes vraies données Search Console.",
+    category: "audit",
+    toolAuthor: "Zoubeir Ibrahima",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/seo",
+    brands: ["claude", "google", "github"],
+    updatedIsoDate: "2026-11-10",
+  },
+  {
+    slug: "orchestrer-claude-code-et-antigravity",
+    title: "Orchestrer Claude Code et Antigravity",
+    summary: "Délègue la relecture, l'exécution et le travail en parallèle à Antigravity CLI quand ton quota baisse, avec un protocole de validation.",
+    category: "productivity",
+    toolAuthor: "Zoubeir Ibrahima",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/orchestrator",
+    brands: ["claude", "antigravity", "gemini", "bun", "github"],
+    updatedIsoDate: "2026-11-10",
+  },
+  {
+    slug: "socle-claude-code-claude-md-regles-agents-de-revue",
+    title: "Le socle Claude Code : CLAUDE.md, règles et agents de revue",
+    summary: "Un modèle de CLAUDE.md, des règles pour 11 langages et 18 agents qui relisent ton code, adaptés du projet ECC.",
+    category: "productivity",
+    toolAuthor: "Zoubeir Ibrahima (adapté d'ECC, Affaan Mustafa)",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/Zoubeir23/claude-code-kit/tree/main/config",
+    brands: ["claude", "python", "typescript", "github"],
     updatedIsoDate: "2026-11-10",
   },
 ];
