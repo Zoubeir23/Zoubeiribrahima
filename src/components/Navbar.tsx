@@ -91,7 +91,7 @@ const Navbar = () => {
                   isActive ? "bg-white font-semibold text-[var(--surface-deepest)]" : "text-white hover:bg-[var(--surface-raised)]"
                 }`}
               >
-                <Emoji symbol={item.emoji} className="mr-1.5 hidden 2xl:inline-block" />
+                <Emoji symbol={item.emoji} className="mr-1.5 hidden min-[1760px]:inline-block" />
                 {nav[item.labelKey]}
               </Link>
             );
