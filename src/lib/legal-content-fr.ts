@@ -21,7 +21,7 @@ export const privacyPolicyFrench: LegalDocument = {
         "Formulaire de contact : votre nom, votre adresse e-mail et votre message. Ils sont transmis par le service Formspree puis m'arrivent par e-mail.",
         "E-mail, WhatsApp ou téléphone : les informations que vous partagez en m'écrivant ou en m'appelant.",
         "Prise de rendez-vous : les informations (nom, e-mail, créneau) que vous saisissez dans Calendly.",
-        "Ressources : votre prénom et votre adresse e-mail quand vous débloquez les guides de la page Ressources. Ils sont enregistrés dans ma liste de contacts chez Resend. Le domaine de l'adresse est vérifié (il doit recevoir des e-mails), mais aucun e-mail ne vous est envoyé à ce moment-là.",
+        "Ressources : votre prénom et votre adresse e-mail quand vous débloquez les guides de la page Ressources. Ils sont enregistrés dans ma liste de contacts chez Resend. Le domaine de l'adresse est vérifié (il doit recevoir des e-mails), mais aucun e-mail ne vous est envoyé à ce moment-là. Une empreinte illisible (SHA-256) de l'adresse est aussi gardée dans une base de données chez Neon, pour ne pas l'envoyer une seconde fois à Resend : l'adresse elle-même n'y est pas.",
       ],
     },
     {
@@ -34,7 +34,7 @@ export const privacyPolicyFrench: LegalDocument = {
     {
       title: "Ce qui est enregistré dans votre navigateur",
       paragraphs: [
-        "Le site enregistre localement trois informations : la langue choisie, votre choix de consentement et, si vous avez débloqué un guide, une empreinte illisible (SHA-256) de l'adresse e-mail laissée, qui sert uniquement à ne pas l'envoyer une seconde fois à Resend. L'adresse elle-même n'est pas conservée dans votre navigateur. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement. Le déblocage d'un guide n'est pas mémorisé : il dure le temps de votre visite sur la page, chaque guide se débloque séparément, et le formulaire vous est redemandé quand vous revenez.",
+        "Le site enregistre localement deux informations : la langue choisie et votre choix de consentement. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement. Le déblocage d'un guide de la page Ressources n'est pas mémorisé : il dure le temps de votre visite sur la page, chaque guide se débloque séparément, et le formulaire vous est redemandé quand vous revenez.",
       ],
     },
     {
@@ -52,13 +52,13 @@ export const privacyPolicyFrench: LegalDocument = {
     {
       title: "Avec qui elles transitent",
       paragraphs: [
-        "Ce site s'appuie sur des prestataires techniques : Vercel (hébergement et mesure d'audience), Formspree (formulaire de contact), Resend (liste des personnes qui ont débloqué les ressources), Calendly (rendez-vous) et, si vous m'écrivez par là, WhatsApp. Ces services peuvent traiter des données en dehors de votre pays. Je ne vends pas vos données.",
+        "Ce site s'appuie sur des prestataires techniques : Vercel (hébergement et mesure d'audience), Formspree (formulaire de contact), Resend (liste des personnes qui ont débloqué les ressources), Neon (base de données qui retient l'empreinte illisible des adresses déjà enregistrées), Calendly (rendez-vous) et, si vous m'écrivez par là, WhatsApp. Ces services peuvent traiter des données en dehors de votre pays. Je ne vends pas vos données.",
       ],
     },
     {
       title: "Combien de temps je les garde",
       paragraphs: [
-        "Je conserve vos messages le temps nécessaire pour répondre et assurer le suivi de votre demande ou de votre projet, puis je les supprime lorsqu'ils ne sont plus utiles. Le prénom et l'e-mail laissés pour les ressources sont gardés jusqu'à ce que vous demandiez leur suppression.",
+        "Je conserve vos messages le temps nécessaire pour répondre et assurer le suivi de votre demande ou de votre projet, puis je les supprime lorsqu'ils ne sont plus utiles. Le prénom et l'e-mail laissés pour les ressources, ainsi que l'empreinte de l'adresse chez Neon, sont gardés jusqu'à ce que vous demandiez leur suppression.",
       ],
     },
     {
