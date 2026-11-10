@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import ConsentProvider from "@/components/consent/ConsentProvider";
 import { blogReadingPaths } from "@/data/blogReadingPaths";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import { serviceSlugs } from "@/lib/service-meta";
 import Blog from "@/pages/Blog";
 
 const renderHub = () =>
@@ -44,5 +45,13 @@ describe("blog hub", () => {
   it("lists the SaaS category filter", () => {
     renderHub();
     expect(screen.getByRole("button", { name: /^SaaS/ })).toBeInTheDocument();
+  });
+
+  it("links every service page from the site footer", () => {
+    renderHub();
+    const footer = screen.getByRole("contentinfo");
+    for (const slug of serviceSlugs) {
+      expect(within(footer).getAllByRole("link").some((link) => link.getAttribute("href") === `/services/${slug}`)).toBe(true);
+    }
   });
 });
