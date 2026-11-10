@@ -1,0 +1,58 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { describe, expect, it } from "vitest";
+import { blogPosts } from "@/data/blogPosts";
+
+// Thin duplicates merged into their complete guide: the old URL must send a permanent
+// redirect to the guide, and the old article must be gone from the site.
+const mergedArticleTargets = [
+  ["git-github-workflow-propre-2026", "git-github-de-zero-a-heros-guide-complet"],
+  ["python-bonnes-pratiques-code-maintenable-2026", "python-de-zero-a-heros-guide-complet"],
+  ["agents-ia-claude-code-openclaw-tendances-2026", "vibe-coding-et-claude-code-en-2026"],
+] as const;
+
+interface VercelRedirect {
+  source: string;
+  destination: string;
+  statusCode?: number;
+}
+
+const projectRoot = process.cwd();
+const vercelConfiguration = JSON.parse(readFileSync(path.join(projectRoot, "vercel.json"), "utf8")) as {
+  redirects?: VercelRedirect[];
+};
+const publishedSlugs = new Set(blogPosts.map((post) => post.slug));
+
+describe("merged blog articles", () => {
+  it.each(mergedArticleTargets)("redirects %s permanently to %s", (mergedSlug, targetSlug) => {
+    expect(vercelConfiguration.redirects).toContainEqual({
+      source: `/blog/${mergedSlug}`,
+      destination: `/blog/${targetSlug}`,
+      statusCode: 301,
+    });
+  });
+
+  it.each(mergedArticleTargets)("points %s to a published guide", (_mergedSlug, targetSlug) => {
+    expect(publishedSlugs.has(targetSlug)).toBe(true);
+  });
+
+  it.each(mergedArticleTargets)("no longer publishes %s", (mergedSlug) => {
+    expect(publishedSlugs.has(mergedSlug)).toBe(false);
+  });
+
+  it.each(mergedArticleTargets)("removes %s from the sitemap and llms.txt", (mergedSlug) => {
+    for (const publicFile of ["sitemap.xml", "llms.txt"]) {
+      expect(readFileSync(path.join(projectRoot, "public", publicFile), "utf8")).not.toContain(`/blog/${mergedSlug}`);
+    }
+  });
+
+  it("garde dans le guide vibe coding la comparaison des outils de l'article fusionné", () => {
+    const guideText = readFileSync(
+      path.join(projectRoot, "src", "data", "articles", "vibe-coding-et-claude-code-en-2026.md"),
+      "utf8",
+    );
+    for (const toolName of ["Claude Code", "Cursor", "OpenClaw"]) {
+      expect(guideText).toContain(toolName);
+    }
+  });
+});

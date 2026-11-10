@@ -3,6 +3,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ConsentProvider from "@/components/consent/ConsentProvider";
 import { LanguageProvider } from "@/hooks/useLanguage";
+import { serviceSlugs } from "@/lib/service-meta";
 import BlogArticle from "@/pages/BlogArticle";
 
 const articlePath = "/blog/fixer-le-prix-de-son-saas";
@@ -70,5 +71,14 @@ describe("blog article structure", () => {
 
     const callToAction = screen.getByRole("link", { name: /discuter de votre projet/i });
     expect(callToAction).toHaveAttribute("href", "/contact");
+  });
+
+  it("links every service page from the site footer", () => {
+    renderArticle();
+
+    const footer = screen.getByRole("contentinfo");
+    for (const slug of serviceSlugs) {
+      expect(within(footer).getAllByRole("link").some((link) => link.getAttribute("href") === `/services/${slug}`)).toBe(true);
+    }
   });
 });

@@ -100,4 +100,17 @@ describe("ServiceDetail internal links", () => {
     const homeAnchors = screen.getAllByRole("link").filter((link) => /^\/#/.test(link.getAttribute("href") ?? ""));
     expect(homeAnchors).toHaveLength(0);
   });
+
+  it("links the SaaS service to its related blog articles", () => {
+    renderPage("/services/saas");
+    const relatedArticles = screen.getByRole("region", { name: servicesContent.fr.relatedArticlesTitle });
+    const articleLinks = within(relatedArticles).getAllByRole("link");
+    expect(articleLinks.length).toBeGreaterThan(0);
+    expect(articleLinks.every((link) => link.getAttribute("href")?.startsWith("/blog/"))).toBe(true);
+  });
+
+  it("shows no related articles section for a service without a matching topic", () => {
+    renderPage("/services/mobile-applications");
+    expect(screen.queryByRole("region", { name: servicesContent.fr.relatedArticlesTitle })).toBeNull();
+  });
 });
