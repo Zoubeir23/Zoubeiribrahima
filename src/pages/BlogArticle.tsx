@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import BlogArticleCallToAction from "@/components/BlogArticleCallToAction";
 import BlogBreadcrumb from "@/components/BlogBreadcrumb";
+import SiteFooter from "@/components/SiteFooter";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 import { toMetaDescription } from "@/lib/meta-description";
 import { pageContent } from "@/lib/page-content";
@@ -258,76 +259,289 @@ const BlogArticle = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--surface-base)] text-white">
-      {/* Reading progress bar — above navbar */}
-      <div className="fixed top-0 left-0 right-0 z-[9999] h-[4px] bg-[var(--surface-deepest)]">
-        <div
-          className="h-full bg-white transition-[width] duration-150"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
+    <>
+      <main className="min-h-screen bg-[var(--surface-base)] text-white">
+        {/* Reading progress bar — above navbar */}
+        <div className="fixed top-0 left-0 right-0 z-[9999] h-[4px] bg-[var(--surface-deepest)]">
+          <div
+            className="h-full bg-white transition-[width] duration-150"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
 
-      <Navbar />
+        <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-20">
-        <BlogBreadcrumb articleTitle={post.title} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-28 sm:pt-32 pb-20">
+          <BlogBreadcrumb articleTitle={post.title} />
 
-        <div className="mt-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12 xl:grid-cols-[1fr_330px] xl:gap-16 items-start">
-          {/* Main article */}
-          <article ref={articleRef}>
-            {/* Cover + header */}
-            <div className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] overflow-hidden rounded-md">
-              <div className="aspect-[16/9] border-b border-[var(--surface-border)]">
-                <img
-                  src={post.coverImage}
-                  alt={post.coverAlt}
-                  className="w-full h-full object-contain bg-[var(--surface-base)]"
-                />
+          <div className="mt-6 lg:grid lg:grid-cols-[1fr_300px] lg:gap-12 xl:grid-cols-[1fr_330px] xl:gap-16 items-start">
+            {/* Main article */}
+            <article ref={articleRef}>
+              {/* Cover + header */}
+              <div className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] overflow-hidden rounded-md">
+                <div className="aspect-[16/9] border-b border-[var(--surface-border)]">
+                  <img
+                    src={post.coverImage}
+                    alt={post.coverAlt}
+                    className="w-full h-full object-contain bg-[var(--surface-base)]"
+                  />
+                </div>
+                <div className="p-6 sm:p-8 md:p-10">
+                  <p className="font-body text-xs uppercase tracking-[0.2em] text-white/72">
+                    {post.category} · {post.readingTime} · {post.date}
+                  </p>
+                  <h1 className="mt-3 font-display font-black text-3xl sm:text-5xl uppercase leading-tight">
+                    {post.title}
+                  </h1>
+                  <p className="mt-6 font-body text-base sm:text-lg text-white/88 leading-relaxed border-l border-[var(--surface-border)] pl-5">
+                    {post.intro}
+                  </p>
+                </div>
               </div>
-              <div className="p-6 sm:p-8 md:p-10">
-                <p className="font-body text-xs uppercase tracking-[0.2em] text-white/72">
-                  {post.category} · {post.readingTime} · {post.date}
-                </p>
-                <h1 className="mt-3 font-display font-black text-3xl sm:text-5xl uppercase leading-tight">
-                  {post.title}
-                </h1>
-                <p className="mt-6 font-body text-base sm:text-lg text-white/88 leading-relaxed border-l border-[var(--surface-border)] pl-5">
-                  {post.intro}
-                </p>
-              </div>
-            </div>
 
-            {/* Mobile TOC — collapsible Card */}
+              {/* Mobile TOC — collapsible Card */}
+              {toc.length > 0 && (
+                <Card className="lg:hidden mt-8 border border-[var(--surface-border)] bg-[var(--surface-deepest)] overflow-hidden shadow-lg rounded-md">
+                  <button
+                    onClick={() => setTocOpen(!tocOpen)}
+                    className="w-full flex items-center justify-between gap-3 p-5 font-display font-black text-sm uppercase tracking-[0.15em] hover:bg-[var(--surface-raised)] transition-colors duration-150 border-b border-[var(--surface-border)]"
+                    aria-expanded={tocOpen}
+                  >
+                    <span className="flex items-center gap-3">
+                      <div className="p-1.5 bg-white rounded">
+                        <List className="w-4 h-4 text-[var(--surface-deepest)]" />
+                      </div>
+                      <div className="text-left">
+                        <span className="block text-white">Table des matières</span>
+                        <span className="block text-[9px] font-body font-normal text-white/60 mt-0.5">
+                          {toc.length} sections
+                        </span>
+                      </div>
+                    </span>
+                    <span className="text-[var(--accent-orange)] text-2xl leading-none font-black">
+                      {tocOpen ? "−" : "+"}
+                    </span>
+                  </button>
+                  {tocOpen && (
+                    <nav className="border-t border-[var(--surface-border)] p-5 space-y-2 bg-gradient-to-b from-[var(--surface-deepest)] to-[var(--surface-deepest)] max-h-[55vh] overflow-y-auto">
+                      {toc.map((item) => (
+                        <a
+                          key={item.id}
+                          href={`#${item.id}`}
+                          onClick={() => setTocOpen(false)}
+                          className={`group flex items-start gap-2.5 font-body text-sm font-semibold leading-snug py-2.5 px-3 border-l rounded transition-all duration-150 ${
+                            activeTocId === item.id
+                              ? "text-white border-[var(--surface-border)] bg-[var(--surface-base)]"
+                              : "text-white/82 border-[var(--surface-border)] hover:border-[var(--accent-violet)] hover:bg-[var(--surface-raised)] hover:text-white"
+                          }`}
+                          title={item.heading}
+                        >
+                          <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full transition-transform ${activeTocId === item.id ? "bg-white scale-125" : "bg-white group-hover:scale-125"}`} />
+                          <span>{item.heading}</span>
+                        </a>
+                      ))}
+                      
+                      {/* Mobile progress info */}
+                      <div className="border-t border-[var(--surface-border)] mt-4 pt-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-white/80">
+                            Progression
+                          </p>
+                          <p className="font-display font-black text-sm text-[var(--accent-orange)]">
+                            {Math.round(progress)}%
+                          </p>
+                        </div>
+                        <div className="h-1.5 bg-[var(--surface-base)] w-full border border-[var(--surface-border)] rounded overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)] transition-[width] duration-300"
+                            style={{ width: `${progress}%` }}
+                          />
+                        </div>
+                      </div>
+                    </nav>
+                  )}
+                </Card>
+              )}
+
+              {/* Content sections */}
+              <div className="mt-8 space-y-8">
+                {post.contentMarkdown && (
+                  <section className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-6 sm:p-8 rounded-md">
+                    <div className="font-body text-sm sm:text-base text-white/88 leading-relaxed">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          h2: ({ children }) => {
+                            const headingText = nodeToText(children).trim();
+                            const headingSlug = slugifyHeading(headingText);
+                            const shouldSkipTocId = headingSlug === "table-des-matieres" || headingSlug === "sommaire";
+                            const baseId = `md-${headingSlug || "section"}`;
+                            const count = renderedHeadingIdCounts.get(baseId) ?? 0;
+                            renderedHeadingIdCounts.set(baseId, count + 1);
+                            const currentId = shouldSkipTocId
+                              ? `${baseId}-internal-${count + 1}`
+                              : count === 0
+                                ? baseId
+                                : `${baseId}-${count + 1}`;
+                            return (
+                              <h2 
+                                id={currentId}
+                                className="mt-8 first:mt-0 font-display font-black text-xl sm:text-2xl uppercase text-white scroll-mt-28"
+                              >
+                                {children}
+                              </h2>
+                            );
+                          },
+                          h3: ({ children }) => (
+                            <h3 className="mt-6 font-display font-black text-lg sm:text-xl uppercase text-white">
+                              {children}
+                            </h3>
+                          ),
+                          p: ({ children }) => <p className="mt-4">{children}</p>,
+                          ul: ({ children }) => <ul className="mt-4 space-y-2 list-disc pl-5">{children}</ul>,
+                          ol: ({ children }) => <ol className="mt-4 space-y-2 list-decimal pl-5">{children}</ol>,
+                          hr: () => <hr className="my-8 border-[var(--surface-border)]" />,
+                          table: ({ children }) => (
+                            <div className="mt-5 overflow-x-auto">
+                              <table className="w-full border-collapse border border-[var(--surface-border)]">{children}</table>
+                            </div>
+                          ),
+                          th: ({ children }) => <th className="border border-[var(--surface-border)] p-2 text-left">{children}</th>,
+                          td: ({ children }) => <td className="border border-[var(--surface-border)] p-2">{children}</td>,
+                          code: ({ className, children }) => {
+                            const isBlock = className?.includes("language-");
+                            if (isBlock) {
+                              return (
+                                <code className="block whitespace-pre overflow-x-auto border border-[var(--surface-border)] bg-[var(--surface-base)] p-4 font-mono text-xs sm:text-sm text-white/90 leading-relaxed rounded-md">
+                                  {children}
+                                </code>
+                              );
+                            }
+                            return <code className="bg-[var(--surface-base)] px-1.5 py-0.5 text-[var(--accent-orange)] font-mono text-[0.85em]">{children}</code>;
+                          },
+                          pre: ({ children }) => <div className="mt-4 relative">{children}</div>,
+                        }}
+                      >
+                        {post.contentMarkdown}
+                      </ReactMarkdown>
+                    </div>
+                  </section>
+                )}
+
+                {post.sections.map((section, sectionIndex) => (
+                  <section
+                    key={`section-${sectionIndex}`}
+                    id={`manual-section-${sectionIndex}`}
+                    className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-6 sm:p-8 scroll-mt-28 rounded-md"
+                  >
+                    <h2 className="font-display font-black text-xl sm:text-2xl uppercase">{section.heading}</h2>
+                    <div className="mt-4 space-y-4">
+                      {section.paragraphs.map((paragraph, pIdx) => (
+                        <p
+                          key={`p-${sectionIndex}-${pIdx}`}
+                          className="font-body text-sm sm:text-base text-white/86 leading-relaxed"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                      {section.bullets && section.bullets.length > 0 && (
+                        <ul className="space-y-3 pl-5 font-body text-sm sm:text-base text-white/86 list-none">
+                          {section.bullets.map((bullet, bIdx) => (
+                            <li key={`b-${sectionIndex}-${bIdx}`} className="flex gap-3 leading-relaxed">
+                              <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 bg-white" />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {section.codeBlocks && section.codeBlocks.length > 0 && (
+                        <div className="space-y-4">
+                          {section.codeBlocks.map((codeBlock, cbIdx) => (
+                            <div key={`cb-${sectionIndex}-${cbIdx}`} className="relative">
+                              <CopyButton code={codeBlock} />
+                              <pre className="overflow-x-auto border border-[var(--surface-border)] bg-[var(--surface-base)] p-4 pt-10 font-mono text-xs sm:text-sm text-white/90 leading-relaxed rounded-md">
+                                <code>{codeBlock}</code>
+                              </pre>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </section>
+                ))}
+              </div>
+
+              <BlogArticleCallToAction category={post.category} />
+
+              {/* Related articles */}
+              {relatedArticles.length > 0 && (
+                <div className="mt-16 pt-10 border-t border-[var(--surface-border)]">
+                  <h2 className="font-display font-black text-2xl sm:text-3xl uppercase mb-6">
+                    Articles <span className="text-white/35">à lire ensuite</span>
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {relatedArticles.map((rel) => (
+                      <Link
+                        key={rel.slug}
+                        to={`/blog/${rel.slug}`}
+                        className="group block border border-[var(--surface-border)] bg-[var(--surface-base)] overflow-hidden hover:-translate-y-1 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-violet)] rounded-md"
+                      >
+                        <div className="relative aspect-[16/9] border-b border-[var(--surface-border)]">
+                          <img
+                            src={rel.coverImage}
+                            alt={rel.coverAlt}
+                            className="w-full h-full object-contain bg-[var(--surface-base)]"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface-deepest)]/85 via-transparent to-transparent" />
+                          <span className="absolute left-3 bottom-3 font-display font-black text-[9px] uppercase tracking-[0.2em] text-white bg-[var(--surface-base)]/90 border border-[var(--surface-border)] px-2 py-1 rounded-md">
+                            {rel.category}
+                          </span>
+                        </div>
+                        <div className="p-4">
+                          <h3 className="font-display font-black text-base uppercase leading-tight text-white">
+                            {rel.title}
+                          </h3>
+                          <p className="mt-2 font-body text-xs text-white/65 line-clamp-2 leading-relaxed">
+                            {rel.excerpt}
+                          </p>
+                          <p className="mt-3 font-display font-black text-[9px] uppercase tracking-[0.2em] text-[var(--accent-orange)]">
+                            Lire {"->"}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </article>
+
+            {/* Sticky TOC sidebar — desktop only */}
             {toc.length > 0 && (
-              <Card className="lg:hidden mt-8 border border-[var(--surface-border)] bg-[var(--surface-deepest)] overflow-hidden shadow-lg rounded-md">
-                <button
-                  onClick={() => setTocOpen(!tocOpen)}
-                  className="w-full flex items-center justify-between gap-3 p-5 font-display font-black text-sm uppercase tracking-[0.15em] hover:bg-[var(--surface-raised)] transition-colors duration-150 border-b border-[var(--surface-border)]"
-                  aria-expanded={tocOpen}
-                >
-                  <span className="flex items-center gap-3">
+              <aside className="hidden lg:block">
+                <Card className="sticky top-28 border border-[var(--surface-border)] bg-[var(--surface-deepest)] overflow-hidden shadow-lg rounded-md">
+                  {/* Header with icon */}
+                  <div className="border-b border-[var(--surface-border)] px-5 py-4 flex items-center gap-3 bg-gradient-to-r from-[var(--surface-deepest)] to-[var(--surface-deepest)]">
                     <div className="p-1.5 bg-white rounded">
                       <List className="w-4 h-4 text-[var(--surface-deepest)]" />
                     </div>
-                    <div className="text-left">
-                      <span className="block text-white">Table des matières</span>
-                      <span className="block text-[9px] font-body font-normal text-white/60 mt-0.5">
+                    <div>
+                      <p className="font-display font-black text-[10px] uppercase tracking-[0.25em] text-white">
+                        Table des matières
+                      </p>
+                      <p className="font-body text-[9px] text-white/60 mt-0.5">
                         {toc.length} sections
-                      </span>
+                      </p>
                     </div>
-                  </span>
-                  <span className="text-[var(--accent-orange)] text-2xl leading-none font-black">
-                    {tocOpen ? "−" : "+"}
-                  </span>
-                </button>
-                {tocOpen && (
-                  <nav className="border-t border-[var(--surface-border)] p-5 space-y-2 bg-gradient-to-b from-[var(--surface-deepest)] to-[var(--surface-deepest)] max-h-[55vh] overflow-y-auto">
+                  </div>
+
+                  {/* TOC Navigation */}
+                  <nav className="p-5 space-y-2 max-h-[62vh] overflow-y-auto">
                     {toc.map((item) => (
                       <a
                         key={item.id}
                         href={`#${item.id}`}
-                        onClick={() => setTocOpen(false)}
-                        className={`group flex items-start gap-2.5 font-body text-sm font-semibold leading-snug py-2.5 px-3 border-l rounded transition-all duration-150 ${
+                        className={`group flex items-start gap-2.5 font-body text-sm font-semibold leading-snug py-2 px-3 border-l rounded transition-all duration-150 ${
                           activeTocId === item.id
                             ? "text-white border-[var(--surface-border)] bg-[var(--surface-base)]"
                             : "text-white/82 border-[var(--surface-border)] hover:border-[var(--accent-violet)] hover:bg-[var(--surface-raised)] hover:text-white"
@@ -338,260 +552,50 @@ const BlogArticle = () => {
                         <span>{item.heading}</span>
                       </a>
                     ))}
-                    
-                    {/* Mobile progress info */}
-                    <div className="border-t border-[var(--surface-border)] mt-4 pt-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-white/80">
-                          Progression
-                        </p>
-                        <p className="font-display font-black text-sm text-[var(--accent-orange)]">
-                          {Math.round(progress)}%
-                        </p>
-                      </div>
-                      <div className="h-1.5 bg-[var(--surface-base)] w-full border border-[var(--surface-border)] rounded overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)] transition-[width] duration-300"
-                          style={{ width: `${progress}%` }}
-                        />
-                      </div>
-                    </div>
                   </nav>
-                )}
-              </Card>
-            )}
 
-            {/* Content sections */}
-            <div className="mt-8 space-y-8">
-              {post.contentMarkdown && (
-                <section className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-6 sm:p-8 rounded-md">
-                  <div className="font-body text-sm sm:text-base text-white/88 leading-relaxed">
-                    <ReactMarkdown
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                        h2: ({ children }) => {
-                          const headingText = nodeToText(children).trim();
-                          const headingSlug = slugifyHeading(headingText);
-                          const shouldSkipTocId = headingSlug === "table-des-matieres" || headingSlug === "sommaire";
-                          const baseId = `md-${headingSlug || "section"}`;
-                          const count = renderedHeadingIdCounts.get(baseId) ?? 0;
-                          renderedHeadingIdCounts.set(baseId, count + 1);
-                          const currentId = shouldSkipTocId
-                            ? `${baseId}-internal-${count + 1}`
-                            : count === 0
-                              ? baseId
-                              : `${baseId}-${count + 1}`;
-                          return (
-                            <h2 
-                              id={currentId}
-                              className="mt-8 first:mt-0 font-display font-black text-xl sm:text-2xl uppercase text-white scroll-mt-28"
-                            >
-                              {children}
-                            </h2>
-                          );
-                        },
-                        h3: ({ children }) => (
-                          <h3 className="mt-6 font-display font-black text-lg sm:text-xl uppercase text-white">
-                            {children}
-                          </h3>
-                        ),
-                        p: ({ children }) => <p className="mt-4">{children}</p>,
-                        ul: ({ children }) => <ul className="mt-4 space-y-2 list-disc pl-5">{children}</ul>,
-                        ol: ({ children }) => <ol className="mt-4 space-y-2 list-decimal pl-5">{children}</ol>,
-                        hr: () => <hr className="my-8 border-[var(--surface-border)]" />,
-                        table: ({ children }) => (
-                          <div className="mt-5 overflow-x-auto">
-                            <table className="w-full border-collapse border border-[var(--surface-border)]">{children}</table>
-                          </div>
-                        ),
-                        th: ({ children }) => <th className="border border-[var(--surface-border)] p-2 text-left">{children}</th>,
-                        td: ({ children }) => <td className="border border-[var(--surface-border)] p-2">{children}</td>,
-                        code: ({ className, children }) => {
-                          const isBlock = className?.includes("language-");
-                          if (isBlock) {
-                            return (
-                              <code className="block whitespace-pre overflow-x-auto border border-[var(--surface-border)] bg-[var(--surface-base)] p-4 font-mono text-xs sm:text-sm text-white/90 leading-relaxed rounded-md">
-                                {children}
-                              </code>
-                            );
-                          }
-                          return <code className="bg-[var(--surface-base)] px-1.5 py-0.5 text-[var(--accent-orange)] font-mono text-[0.85em]">{children}</code>;
-                        },
-                        pre: ({ children }) => <div className="mt-4 relative">{children}</div>,
-                      }}
-                    >
-                      {post.contentMarkdown}
-                    </ReactMarkdown>
-                  </div>
-                </section>
-              )}
-
-              {post.sections.map((section, sectionIndex) => (
-                <section
-                  key={`section-${sectionIndex}`}
-                  id={`manual-section-${sectionIndex}`}
-                  className="border border-[var(--surface-border)] bg-[var(--surface-deepest)] p-6 sm:p-8 scroll-mt-28 rounded-md"
-                >
-                  <h2 className="font-display font-black text-xl sm:text-2xl uppercase">{section.heading}</h2>
-                  <div className="mt-4 space-y-4">
-                    {section.paragraphs.map((paragraph, pIdx) => (
-                      <p
-                        key={`p-${sectionIndex}-${pIdx}`}
-                        className="font-body text-sm sm:text-base text-white/86 leading-relaxed"
-                      >
-                        {paragraph}
+                  {/* Progress indicator */}
+                  <div className="border-t border-[var(--surface-border)] px-5 py-4 bg-gradient-to-r from-[var(--surface-deepest)] to-[var(--surface-deepest)]">
+                    <div className="flex items-center justify-between mb-3">
+                      <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-white/80">
+                        Progression de lecture
                       </p>
-                    ))}
-                    {section.bullets && section.bullets.length > 0 && (
-                      <ul className="space-y-3 pl-5 font-body text-sm sm:text-base text-white/86 list-none">
-                        {section.bullets.map((bullet, bIdx) => (
-                          <li key={`b-${sectionIndex}-${bIdx}`} className="flex gap-3 leading-relaxed">
-                            <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 bg-white" />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {section.codeBlocks && section.codeBlocks.length > 0 && (
-                      <div className="space-y-4">
-                        {section.codeBlocks.map((codeBlock, cbIdx) => (
-                          <div key={`cb-${sectionIndex}-${cbIdx}`} className="relative">
-                            <CopyButton code={codeBlock} />
-                            <pre className="overflow-x-auto border border-[var(--surface-border)] bg-[var(--surface-base)] p-4 pt-10 font-mono text-xs sm:text-sm text-white/90 leading-relaxed rounded-md">
-                              <code>{codeBlock}</code>
-                            </pre>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                      <p className="font-display font-black text-sm text-[var(--accent-orange)] bg-[var(--surface-base)] px-2 py-1 rounded">
+                        {Math.round(progress)}%
+                      </p>
+                    </div>
+                    <div className="h-2 bg-[var(--surface-base)] w-full border border-[var(--surface-border)] rounded overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)] transition-[width] duration-300 rounded"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                    <p className="mt-2 font-body text-[9px] text-white/60 text-center">
+                      {progress < 25 && "Ça commence bien !"}
+                      {progress >= 25 && progress < 50 && "Vous êtes à mi-chemin !"}
+                      {progress >= 50 && progress < 75 && "Continuez, vous y êtes presque !"}
+                      {progress >= 75 && "Fantastique, presque fini !"}
+                    </p>
                   </div>
-                </section>
-              ))}
-            </div>
-
-            <BlogArticleCallToAction category={post.category} />
-
-            {/* Related articles */}
-            {relatedArticles.length > 0 && (
-              <div className="mt-16 pt-10 border-t border-[var(--surface-border)]">
-                <h2 className="font-display font-black text-2xl sm:text-3xl uppercase mb-6">
-                  Articles <span className="text-white/35">à lire ensuite</span>
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {relatedArticles.map((rel) => (
-                    <Link
-                      key={rel.slug}
-                      to={`/blog/${rel.slug}`}
-                      className="group block border border-[var(--surface-border)] bg-[var(--surface-base)] overflow-hidden hover:-translate-y-1 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-violet)] rounded-md"
-                    >
-                      <div className="relative aspect-[16/9] border-b border-[var(--surface-border)]">
-                        <img
-                          src={rel.coverImage}
-                          alt={rel.coverAlt}
-                          className="w-full h-full object-contain bg-[var(--surface-base)]"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[var(--surface-deepest)]/85 via-transparent to-transparent" />
-                        <span className="absolute left-3 bottom-3 font-display font-black text-[9px] uppercase tracking-[0.2em] text-white bg-[var(--surface-base)]/90 border border-[var(--surface-border)] px-2 py-1 rounded-md">
-                          {rel.category}
-                        </span>
-                      </div>
-                      <div className="p-4">
-                        <h3 className="font-display font-black text-base uppercase leading-tight text-white">
-                          {rel.title}
-                        </h3>
-                        <p className="mt-2 font-body text-xs text-white/65 line-clamp-2 leading-relaxed">
-                          {rel.excerpt}
-                        </p>
-                        <p className="mt-3 font-display font-black text-[9px] uppercase tracking-[0.2em] text-[var(--accent-orange)]">
-                          Lire {"->"}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                </Card>
+              </aside>
             )}
-          </article>
-
-          {/* Sticky TOC sidebar — desktop only */}
-          {toc.length > 0 && (
-            <aside className="hidden lg:block">
-              <Card className="sticky top-28 border border-[var(--surface-border)] bg-[var(--surface-deepest)] overflow-hidden shadow-lg rounded-md">
-                {/* Header with icon */}
-                <div className="border-b border-[var(--surface-border)] px-5 py-4 flex items-center gap-3 bg-gradient-to-r from-[var(--surface-deepest)] to-[var(--surface-deepest)]">
-                  <div className="p-1.5 bg-white rounded">
-                    <List className="w-4 h-4 text-[var(--surface-deepest)]" />
-                  </div>
-                  <div>
-                    <p className="font-display font-black text-[10px] uppercase tracking-[0.25em] text-white">
-                      Table des matières
-                    </p>
-                    <p className="font-body text-[9px] text-white/60 mt-0.5">
-                      {toc.length} sections
-                    </p>
-                  </div>
-                </div>
-
-                {/* TOC Navigation */}
-                <nav className="p-5 space-y-2 max-h-[62vh] overflow-y-auto">
-                  {toc.map((item) => (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      className={`group flex items-start gap-2.5 font-body text-sm font-semibold leading-snug py-2 px-3 border-l rounded transition-all duration-150 ${
-                        activeTocId === item.id
-                          ? "text-white border-[var(--surface-border)] bg-[var(--surface-base)]"
-                          : "text-white/82 border-[var(--surface-border)] hover:border-[var(--accent-violet)] hover:bg-[var(--surface-raised)] hover:text-white"
-                      }`}
-                      title={item.heading}
-                    >
-                      <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full transition-transform ${activeTocId === item.id ? "bg-white scale-125" : "bg-white group-hover:scale-125"}`} />
-                      <span>{item.heading}</span>
-                    </a>
-                  ))}
-                </nav>
-
-                {/* Progress indicator */}
-                <div className="border-t border-[var(--surface-border)] px-5 py-4 bg-gradient-to-r from-[var(--surface-deepest)] to-[var(--surface-deepest)]">
-                  <div className="flex items-center justify-between mb-3">
-                    <p className="font-display font-black text-[9px] uppercase tracking-[0.2em] text-white/80">
-                      Progression de lecture
-                    </p>
-                    <p className="font-display font-black text-sm text-[var(--accent-orange)] bg-[var(--surface-base)] px-2 py-1 rounded">
-                      {Math.round(progress)}%
-                    </p>
-                  </div>
-                  <div className="h-2 bg-[var(--surface-base)] w-full border border-[var(--surface-border)] rounded overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-[var(--accent-violet)] to-[var(--accent-orange)] transition-[width] duration-300 rounded"
-                      style={{ width: `${progress}%` }}
-                    />
-                  </div>
-                  <p className="mt-2 font-body text-[9px] text-white/60 text-center">
-                    {progress < 25 && "Ça commence bien !"}
-                    {progress >= 25 && progress < 50 && "Vous êtes à mi-chemin !"}
-                    {progress >= 50 && progress < 75 && "Continuez, vous y êtes presque !"}
-                    {progress >= 75 && "Fantastique, presque fini !"}
-                  </p>
-                </div>
-              </Card>
-            </aside>
-          )}
+          </div>
         </div>
-      </div>
 
-      {/* Back to top button */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 bg-white text-[var(--surface-deepest)] border border-[var(--surface-border)] p-3 hover:bg-[var(--surface-raised)] hover:text-[var(--accent-orange)] transition-all duration-150 rounded-md"
-          aria-label="Retour en haut de page"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-      )}
-    </main>
+        {/* Back to top button */}
+        {showBackToTop && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 z-50 bg-white text-[var(--surface-deepest)] border border-[var(--surface-border)] p-3 hover:bg-[var(--surface-raised)] hover:text-[var(--accent-orange)] transition-all duration-150 rounded-md"
+            aria-label="Retour en haut de page"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </button>
+        )}
+      </main>
+      <SiteFooter />
+    </>
   );
 };
 
