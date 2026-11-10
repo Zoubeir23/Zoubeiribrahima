@@ -21,4 +21,13 @@ describe("texte d'une ressource", () => {
     render(<ResourceGuideContent markdown={MARKDOWN} />);
     expect(screen.getByText("npm").closest("pre")).toBeNull();
   });
+
+  it("affiche un tableau avec ses en-têtes, dans un conteneur qui défile sur mobile", () => {
+    render(<ResourceGuideContent markdown={"| Outil | Rôle |\n|---|---|\n| `gsc` | Lire Search Console |\n"} />);
+
+    const table = screen.getByRole("table");
+    expect(screen.getByRole("columnheader", { name: "Outil" })).toBeInTheDocument();
+    expect(screen.getByRole("cell", { name: "Lire Search Console" })).toBeInTheDocument();
+    expect(table.parentElement).toHaveClass("overflow-x-auto");
+  });
 });
