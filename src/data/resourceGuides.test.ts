@@ -60,12 +60,22 @@ describe("bibliothèque de ressources", () => {
     await expect(loadResourceGuideText("inconnue")).rejects.toThrow();
   });
 
-  it("associe chaque ressource à une ou deux marques connues", () => {
+  it("associe chaque ressource à une à sept marques connues, sans doublon", () => {
     resourceGuides.forEach((guide) => {
       expect(guide.brands.length, guide.slug).toBeGreaterThanOrEqual(1);
-      expect(guide.brands.length, guide.slug).toBeLessThanOrEqual(2);
+      expect(guide.brands.length, guide.slug).toBeLessThanOrEqual(7);
+      expect(new Set(guide.brands).size, guide.slug).toBe(guide.brands.length);
       guide.brands.forEach((brand) => expect(resourceBrandLogos[brand], `${guide.slug}: ${brand}`).toBeDefined());
     });
+  });
+
+  it("montre le logo GitHub sur chaque ressource qui cite GitHub", async () => {
+    for (const guide of resourceGuides) {
+      const text = await loadResourceGuideText(guide.slug);
+      if (/github/i.test(text)) {
+        expect(guide.brands, guide.slug).toContain("github");
+      }
+    }
   });
 
   it("a un fichier de logo léger et sans script pour chaque marque", () => {
