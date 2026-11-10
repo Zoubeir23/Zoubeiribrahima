@@ -103,11 +103,12 @@ const ResourceAccessForm = ({ resourceSlug, onUnlocked }: ResourceAccessFormProp
         disabled={isSubmitting}
         className="min-h-11 w-full rounded-full bg-white py-4 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)] disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {isSubmitting ? "Vérification..." : "Débloquer les ressources"}
+        {isSubmitting ? "Vérification..." : "Débloquer ce guide"}
       </button>
       <p className="text-xs leading-relaxed text-[var(--text-muted)]">
-        Une seule fois : ton accès vaut pour toutes les ressources, sur ce navigateur. Ton prénom et ton e-mail
-        servent à te tenir au courant des nouvelles ressources ; tu peux demander leur suppression à tout moment.
+        Ton accès dure le temps de ta visite sur ce guide : si tu quittes la page puis reviens, le formulaire te sera
+        redemandé. Ton prénom et ton e-mail servent à te tenir au courant des nouvelles ressources ; tu peux demander
+        leur suppression à tout moment.
         Détails dans la{" "}
         <Link to="/privacy" className="underline underline-offset-4 hover:text-white">
           politique de confidentialité

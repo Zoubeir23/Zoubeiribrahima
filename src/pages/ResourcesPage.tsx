@@ -30,7 +30,7 @@ const ResourcesPage = () => {
         <h1 className="font-display text-4xl font-black uppercase text-white sm:text-6xl">Ressources</h1>
         <p className="mt-6 max-w-2xl text-base text-[var(--text-secondary)] sm:text-lg">
           Des guides courts pour tirer plus de Claude Code : les outils que j'utilise, vérifiés à leur source, avec
-          les commandes et les prompts prêts à copier. Laisse ton prénom et ton e-mail une fois pour tout débloquer.
+          les commandes et les prompts prêts à copier. Pour lire un guide, laisse ton prénom et ton e-mail : le formulaire est redemandé à chaque visite.
         </p>
 
         {CATEGORY_ORDER.map((category) => {

@@ -21,7 +21,7 @@ function renderForm(onUnlocked = vi.fn()) {
 function fill(firstName: string, email: string) {
   fireEvent.change(screen.getByLabelText("Prénom"), { target: { value: firstName } });
   fireEvent.change(screen.getByLabelText("E-mail"), { target: { value: email } });
-  fireEvent.click(screen.getByRole("button", { name: "Débloquer les ressources" }));
+  fireEvent.click(screen.getByRole("button", { name: "Débloquer ce guide" }));
 }
 
 describe("formulaire d'accès aux ressources", () => {
