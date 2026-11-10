@@ -4,9 +4,10 @@ import { describe, expect, it } from "vitest";
 import {
   findResourceGuide,
   listResourceGuideRoutes,
-  loadResourceGuideText,
+  listResourceGuideSlugs,
   resourceGuides,
 } from "@/data/resourceGuides";
+import { loadResourceGuideText } from "@/data/resourceGuideText";
 
 const resourcesDirectory = path.join(process.cwd(), "src", "data", "resources");
 
@@ -48,6 +49,10 @@ describe("bibliothèque de ressources", () => {
 
   it("liste une adresse par ressource sous /ressources", () => {
     expect(listResourceGuideRoutes()).toEqual(resourceGuides.map((guide) => `/ressources/${guide.slug}`));
+  });
+
+  it("donne l'ensemble des identifiants connus, pour la fonction serveur", () => {
+    expect([...listResourceGuideSlugs()]).toEqual(resourceGuides.map((guide) => guide.slug));
   });
 
   it("refuse de charger le texte d'une ressource inconnue", async () => {

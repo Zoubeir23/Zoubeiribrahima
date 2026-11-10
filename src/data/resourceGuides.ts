@@ -1,6 +1,7 @@
 // Public resource library at /ressources. Titles and summaries are public and indexable; the guide text
 // itself is loaded only once a visitor has left a first name and an email (see ResourceGuidePage).
-// The text is never part of the prerendered HTML: it lives in src/data/resources/<slug>.md, loaded on demand.
+// The text is never part of the prerendered HTML: it lives in src/data/resources/<slug>.md, loaded on demand by
+// resourceGuideText.ts. This module stays free of Vite-only APIs: the serverless function imports it too.
 
 export type ResourceGuideCategory = "audit" | "productivity" | "design" | "research";
 
@@ -127,8 +128,6 @@ export const resourceGuides: readonly ResourceGuide[] = [
   },
 ];
 
-const resourceGuideTextLoaders = import.meta.glob<string>("./resources/*.md", { query: "?raw", import: "default" });
-
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
   return resourceGuides.find((guide) => guide.slug === slug);
 }
@@ -137,10 +136,6 @@ export function listResourceGuideRoutes(): string[] {
   return resourceGuides.map((guide) => `/ressources/${guide.slug}`);
 }
 
-export async function loadResourceGuideText(slug: string): Promise<string> {
-  const loadText = resourceGuideTextLoaders[`./resources/${slug}.md`];
-  if (!loadText) {
-    throw new Error(`No text file for the resource guide "${slug}"`);
-  }
-  return loadText();
+export function listResourceGuideSlugs(): ReadonlySet<string> {
+  return new Set(resourceGuides.map((guide) => guide.slug));
 }
