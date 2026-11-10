@@ -1,34 +1,13 @@
-// Remembers in the browser that the visitor already left a first name and an email: one form unlocks the whole
-// library, once per browser. Storage can be missing or blocked (private window): the form is then shown again.
+// An earlier version of the site remembered in the browser that a visitor had unlocked the library. The access is
+// no longer kept: the form is asked again each time a visitor comes back to a guide. This only removes the old
+// entry, so people who unlocked before are asked again too. Blocked storage (private window) is ignored.
 
-export const RESOURCE_ACCESS_STORAGE_KEY = "resourceLibraryAccess";
+export const LEGACY_RESOURCE_ACCESS_STORAGE_KEY = "resourceLibraryAccess";
 
-export interface ResourceAccess {
-  firstName: string;
-  unlockedIsoDate: string;
-}
-
-const isResourceAccess = (value: unknown): value is ResourceAccess =>
-  typeof value === "object" &&
-  value !== null &&
-  typeof (value as ResourceAccess).firstName === "string" &&
-  typeof (value as ResourceAccess).unlockedIsoDate === "string";
-
-export const readResourceAccess = (storage: Pick<Storage, "getItem">): ResourceAccess | null => {
+export const forgetStoredResourceAccess = (storage: Pick<Storage, "removeItem">): void => {
   try {
-    const storedValue = storage.getItem(RESOURCE_ACCESS_STORAGE_KEY);
-    if (storedValue === null) return null;
-    const parsedValue: unknown = JSON.parse(storedValue);
-    return isResourceAccess(parsedValue) ? { firstName: parsedValue.firstName, unlockedIsoDate: parsedValue.unlockedIsoDate } : null;
+    storage.removeItem(LEGACY_RESOURCE_ACCESS_STORAGE_KEY);
   } catch {
-    return null;
-  }
-};
-
-export const rememberResourceAccess = (storage: Pick<Storage, "setItem">, access: ResourceAccess): void => {
-  try {
-    storage.setItem(RESOURCE_ACCESS_STORAGE_KEY, JSON.stringify(access));
-  } catch {
-    // Blocked storage only means the form will be asked again next visit.
+    // Nothing to forget when the storage cannot be reached.
   }
 };

@@ -47,7 +47,7 @@ const describeTool = (guide: ResourceGuide): string =>
 const ResourceGuidePage = () => {
   const { slug } = useParams();
   const guide = findResourceGuide(slug);
-  const { state, unlock } = useResourceAccess();
+  const { state, unlock } = useResourceAccess(slug);
 
   usePageMetadata({
     title: guide ? `${guide.title} | ${SITE_TITLE_SUFFIX}` : `Ressource introuvable | ${SITE_TITLE_SUFFIX}`,
@@ -90,12 +90,11 @@ const ResourceGuidePage = () => {
                 <>
                   <h2 className="font-display text-xl font-black uppercase text-white sm:text-2xl">Débloque le guide</h2>
                   <p className="mb-8 mt-3 text-sm text-[var(--text-secondary)]">
-                    Ton prénom et ton e-mail, et tu as accès à ce guide et à toutes les autres ressources.
+                    Ton prénom et ton e-mail, et tu lis ce guide. Les autres guides, et celui-ci à ta prochaine visite, demandent de nouveau le formulaire.
                   </p>
                   <ResourceAccessForm resourceSlug={guide.slug} onUnlocked={unlock} />
                 </>
               )}
-              {state === "checking" && <p className="text-sm text-[var(--text-secondary)]">Vérification de ton accès...</p>}
             </section>
           </>
         )}

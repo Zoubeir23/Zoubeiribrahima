@@ -1,5 +1,6 @@
-// Saves a subscriber as a contact in Resend (https://resend.com/docs/api-reference/contacts/create-contact).
-// No email is sent: Resend only keeps the list. The API key stays on the server.
+// Saves a subscriber as a contact in Resend (https://resend.com/docs/api-reference/contacts/create-contact), once:
+// an email already on the list is not written again. No email is sent: Resend only keeps the list. The API key
+// stays on the server.
 
 const RESEND_API_ORIGIN = "https://api.resend.com";
 const REQUEST_TIMEOUT_IN_MILLISECONDS = 5000;
@@ -38,16 +39,16 @@ export function createResendContactStore(apiKey: string, fetchImplementation: ty
 
   return {
     async saveContact({ email, firstName }) {
+      // A contact already on the list is left untouched: nothing is written again. A lookup refused for any other
+      // reason (for example a key that cannot read contacts) falls through to the creation.
+      const existing = await request(`/contacts/${encodeURIComponent(email)}`, { method: "GET" });
+      if (existing.ok) return;
+
       const created = await request("/contacts", {
         method: "POST",
         body: JSON.stringify({ email, first_name: firstName, unsubscribed: false }),
       });
       if (created.ok) return;
-
-      // The documentation does not describe the answer for an existing contact: a contact that can be read
-      // back is already on the list, which is the goal. Any other failure is reported.
-      const existing = await request(`/contacts/${encodeURIComponent(email)}`, { method: "GET" });
-      if (existing.ok) return;
 
       throw new ContactStoreError(`Resend refused the contact (status ${created.status})`);
     },

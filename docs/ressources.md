@@ -1,14 +1,15 @@
 # Ressources (page /ressources)
 
-Bibliothèque publique de guides pour Claude Code. Les titres et résumés sont visibles et indexés ; le texte d'un guide s'affiche après un prénom et un e-mail. Une seule inscription débloque toutes les ressources, sur ce navigateur.
+Bibliothèque publique de guides pour Claude Code. Les titres et résumés sont visibles et indexés ; le texte d'un guide s'affiche après un prénom et un e-mail. Le formulaire est redemandé à chaque visite : l'accès n'est pas mémorisé.
 
 Ne pas confondre avec les pages `/lead-magnet/<identifiant>` (voir `lead-magnet.md`), partagées par lien seulement, sans inscription et jamais indexées.
 
 ## Comment fonctionne l'inscription
 
 1. Le navigateur vérifie le prénom et l'e-mail : format, fautes de frappe courantes (`gmial.com`), adresses temporaires (`yopmail.com`...).
-2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend.
-3. Le navigateur mémorise le déblocage (`localStorage`) et affiche le guide.
+2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend, une seule fois : elle lit d'abord la liste et n'écrit que si le contact est absent.
+3. Le guide s'affiche tant que le visiteur reste sur la page. L'accès n'est jamais mémorisé : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé, et chaque guide se débloque séparément.
+4. Pour ne pas renvoyer à Resend un e-mail déjà enregistré, le navigateur retient seulement une empreinte SHA-256 (jamais l'adresse, clé `registeredResourceEmails`, 50 maximum) : si le visiteur retape le même e-mail, le guide s'ouvre sans appel au serveur.
 
 Limites assumées :
 

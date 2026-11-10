@@ -34,7 +34,7 @@ export const privacyPolicyFrench: LegalDocument = {
     {
       title: "Ce qui est enregistré dans votre navigateur",
       paragraphs: [
-        "Le site enregistre localement trois informations : la langue choisie, votre choix de consentement et, si vous avez débloqué les ressources, votre prénom avec la date du déblocage. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement.",
+        "Le site enregistre localement trois informations : la langue choisie, votre choix de consentement et, si vous avez débloqué un guide, une empreinte illisible (SHA-256) de l'adresse e-mail laissée, qui sert uniquement à ne pas l'envoyer une seconde fois à Resend. L'adresse elle-même n'est pas conservée dans votre navigateur. Elles restent dans votre navigateur et ne sont pas envoyées à un serveur. Elles sont nécessaires au fonctionnement du site et ne demandent pas de consentement. Le déblocage d'un guide n'est pas mémorisé : il dure le temps de votre visite sur la page, chaque guide se débloque séparément, et le formulaire vous est redemandé quand vous revenez.",
       ],
     },
     {

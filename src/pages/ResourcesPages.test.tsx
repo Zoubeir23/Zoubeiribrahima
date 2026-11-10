@@ -6,7 +6,7 @@ import { resourceBrandLogos } from "@/data/resourceBrandLogos";
 import { resourceGuides } from "@/data/resourceGuides";
 import { LanguageProvider } from "@/hooks/useLanguage";
 
-const accessState = { state: "locked" as "checking" | "locked" | "unlocked", unlock: vi.fn() };
+const accessState = { state: "locked" as "locked" | "unlocked", unlock: vi.fn() };
 vi.mock("@/hooks/useResourceAccess", () => ({ useResourceAccess: () => accessState }));
 vi.mock("@/data/resourceGuideText", () => ({
   loadResourceGuideText: async () => "## Installer\n\n```bash\nnpx exemple\n```\n",
@@ -82,6 +82,16 @@ describe("page d'une ressource", () => {
     expect(screen.getByRole("link", { name: /Source/ })).toHaveAttribute("href", firstGuide.sourceUrl);
     expect(screen.getByLabelText("Prénom")).toBeInTheDocument();
     expect(screen.queryByText("npx exemple")).not.toBeInTheDocument();
+  });
+
+  it("prévient que le formulaire sera redemandé si le visiteur quitte la page puis revient", () => {
+    renderAt(`/ressources/${firstGuide.slug}`);
+    expect(screen.getAllByText(/le formulaire te sera redemandé/i).length).toBeGreaterThan(0);
+  });
+
+  it("précise que chaque guide se débloque séparément", () => {
+    renderAt(`/ressources/${firstGuide.slug}`);
+    expect(screen.getAllByText(/Chaque guide se débloque séparément/).length).toBeGreaterThan(0);
   });
 
   it("affiche le texte une fois l'accès débloqué", async () => {
