@@ -238,6 +238,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "python", "github"],
     updatedIsoDate: "2026-11-13",
   },
+  {
+    slug: "voicestudio-cloner-doubler-des-voix-en-local",
+    title: "VoiceStudio : cloner, créer et doubler des voix sur ton ordinateur",
+    summary: "Un studio vocal libre qui tourne chez toi : clonage de voix, doublage de vidéos, dictée et transcription en 646 langues, avec un serveur MCP pour Claude.",
+    category: "productivity",
+    toolAuthor: "debpalash",
+    toolLicense: "AGPL-3.0",
+    sourceUrl: "https://github.com/debpalash/VoiceStudio",
+    brands: ["claude", "python", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
