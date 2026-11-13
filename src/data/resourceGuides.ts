@@ -260,6 +260,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "github"],
     updatedIsoDate: "2026-11-13",
   },
+  {
+    slug: "agent-desktop-piloter-les-applications-du-bureau",
+    title: "agent-desktop : laisse ton agent IA utiliser les applications de ton ordinateur",
+    summary: "Un outil de Vercel Labs qui lit l'arbre d'accessibilité des applications, sans captures d'écran, pour que ton agent clique et tape sur Mac, Windows et Linux.",
+    category: "productivity",
+    toolAuthor: "Vercel Labs",
+    toolLicense: "Apache-2.0",
+    sourceUrl: "https://github.com/vercel-labs/agent-desktop",
+    brands: ["claude", "vercel", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
