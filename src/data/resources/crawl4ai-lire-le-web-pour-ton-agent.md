@@ -59,7 +59,7 @@ asyncio.run(main())
 
 ## 3. Parcourir un site, avec une limite
 
-Cette commande suit les liens en largeur et s'arrête à 10 pages :
+Cette commande suit les liens en largeur et vise 10 pages. Le compteur ne monte que pour les pages lues avec succès : si une page échoue, Crawl4AI peut en demander d'autres, donc 10 est un objectif, pas un plafond strict :
 
 ```bash
 crwl https://docs.crawl4ai.com --deep-crawl bfs --max-pages 10
