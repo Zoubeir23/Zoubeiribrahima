@@ -69,10 +69,10 @@ Fixe toujours un maximum. Sans limite, tu peux télécharger des milliers de pag
 
 ## 4. Brancher Crawl4AI à Claude Code
 
-Avec le serveur MCP du cloud, Claude Code lit le web lui-même, sans que tu lances quoi que ce soit. Crée une clé gratuite sur le site de Crawl4AI, garde-la dans la variable d'environnement `CRAWL4AI_KEY`, puis :
+Avec le serveur MCP du cloud, Claude Code lit le web lui-même, sans que tu lances quoi que ce soit. Crée une clé gratuite sur le site de Crawl4AI, garde-la dans la variable d'environnement `CRAWL4AI_KEY`, puis lance la commande ci-dessous. L'option `--scope user` rend le serveur disponible dans tous tes projets : sans elle, il ne le serait que dans le dossier où tu la lances.
 
 ```bash
-claude mcp add --transport http crawl4ai https://api.crawl4ai.com/mcp \
+claude mcp add --scope user --transport http crawl4ai https://api.crawl4ai.com/mcp \
   --header "Authorization: Bearer $CRAWL4AI_KEY"
 ```
 
