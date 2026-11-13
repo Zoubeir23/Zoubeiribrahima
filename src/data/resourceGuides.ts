@@ -185,6 +185,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     updatedIsoDate: "2026-11-10",
   },
   {
+    slug: "crawl4ai-lire-le-web-pour-ton-agent",
+    title: "Crawl4AI : transforme n'importe quelle page web en texte propre pour ton IA",
+    summary: "Une bibliothèque libre qui lit les sites, même ceux en JavaScript, et rend du Markdown propre ou des données structurées. À brancher à Claude Code.",
+    category: "research",
+    toolAuthor: "UncleCode",
+    toolLicense: "Apache-2.0",
+    sourceUrl: "https://github.com/unclecode/crawl4ai",
+    brands: ["claude", "python", "github"],
+    updatedIsoDate: "2026-11-12",
+  },
+  {
     slug: "react-bits-composants-animes-react",
     title: "React Bits : plus de 215 composants animés prêts à copier",
     summary: "Une bibliothèque gratuite d'effets de texte, de fonds animés et de cartes pour React, qu'on installe en une commande ou qu'on demande à Claude Code.",
