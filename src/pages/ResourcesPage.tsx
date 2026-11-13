@@ -68,7 +68,7 @@ const ResourcesPage = () => {
             </section>
           );
         })}
-        <p className="mt-14 text-xs text-[var(--text-muted)]">
+        <p className="mt-14 text-base font-bold text-[var(--text-secondary)] sm:text-lg">
           Les logos appartiennent à leurs propriétaires respectifs. Ils servent seulement à indiquer l'outil dont parle
           chaque guide.
         </p>
