@@ -184,6 +184,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "python", "typescript", "github"],
     updatedIsoDate: "2026-11-10",
   },
+  {
+    slug: "opengym-suivi-musculation-auto-heberge-claude",
+    title: "openGym : un suivi de musculation à toi, que Claude peut interroger",
+    summary: "Une application libre et sans abonnement, à héberger chez toi, avec un serveur MCP pour poser des questions à Claude sur tes séances et les lui dicter.",
+    category: "productivity",
+    toolAuthor: "Duarte Santos",
+    toolLicense: "AGPL-3.0",
+    sourceUrl: "https://github.com/DuarteSantos8/openGym",
+    brands: ["claude", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
