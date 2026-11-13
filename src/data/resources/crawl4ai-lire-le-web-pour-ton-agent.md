@@ -89,11 +89,11 @@ titres H1 et H2 et dis-moi quels sujets je ne couvre pas encore.
 
 ## 5. Faire tourner ton propre serveur (facultatif)
 
-Si tu veux garder les données chez toi, lance le serveur Docker. Il exige un jeton : sans lui, il répond seulement depuis l'intérieur de son conteneur.
+Si tu veux garder les données chez toi, lance le serveur Docker. Il exige un jeton : sans lui, il répond seulement depuis l'intérieur de son conteneur. Le préfixe `127.0.0.1:` devant le port garde le serveur joignable depuis ta machine uniquement, pas depuis le reste de ton réseau.
 
 ```bash
 export CRAWL4AI_API_TOKEN="$(openssl rand -hex 32)"
-docker run -d -p 11235:11235 --name crawl4ai --shm-size=1g \
+docker run -d -p 127.0.0.1:11235:11235 --name crawl4ai --shm-size=1g \
   -e CRAWL4AI_API_TOKEN="$CRAWL4AI_API_TOKEN" \
   unclecode/crawl4ai:latest
 ```
