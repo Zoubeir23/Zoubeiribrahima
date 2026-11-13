@@ -195,6 +195,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "python", "github"],
     updatedIsoDate: "2026-11-12",
   },
+  {
+    slug: "react-bits-composants-animes-react",
+    title: "React Bits : plus de 215 composants animés prêts à copier",
+    summary: "Une bibliothèque gratuite d'effets de texte, de fonds animés et de cartes pour React, qu'on installe en une commande ou qu'on demande à Claude Code.",
+    category: "design",
+    toolAuthor: "David Haz",
+    toolLicense: "MIT + Commons Clause",
+    sourceUrl: "https://github.com/DavidHDev/react-bits",
+    brands: ["claude", "typescript", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
