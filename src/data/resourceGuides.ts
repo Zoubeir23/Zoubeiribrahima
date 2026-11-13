@@ -227,6 +227,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "python", "github"],
     updatedIsoDate: "2026-11-13",
   },
+  {
+    slug: "openmontage-studio-de-production-video-agentique",
+    title: "OpenMontage : transforme ton assistant IA en studio de production vidéo",
+    summary: "Décris la vidéo voulue : ton agent fait la recherche, le script, les images, la voix, le montage et le rendu, avec ton accord à chaque étape créative.",
+    category: "design",
+    toolAuthor: "OpenMontage",
+    toolLicense: "AGPL-3.0",
+    sourceUrl: "https://github.com/OpenMontageInc/OpenMontage",
+    brands: ["claude", "python", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
