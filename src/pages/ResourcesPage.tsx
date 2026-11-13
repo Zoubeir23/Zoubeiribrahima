@@ -39,10 +39,13 @@ const ResourcesPage = () => {
           const headingIdentifier = `ressources-${category}`;
           return (
             <section key={category} aria-labelledby={headingIdentifier} className="mt-14">
-              <h2 id={headingIdentifier} className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+              <h2
+                id={headingIdentifier}
+                className="border-l-4 border-[var(--accent-orange)] pl-4 font-display text-3xl font-black uppercase tracking-wide text-white sm:text-5xl"
+              >
                 {resourceGuideCategoryLabels[category]}
               </h2>
-              <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+              <ul className="mt-6 grid gap-4 sm:grid-cols-2">
                 {guides.map((guide) => (
                   <li key={guide.slug}>
                     <Link
@@ -65,7 +68,7 @@ const ResourcesPage = () => {
             </section>
           );
         })}
-        <p className="mt-14 text-xs text-[var(--text-muted)]">
+        <p className="mt-14 text-base font-bold text-[var(--text-secondary)] sm:text-lg">
           Les logos appartiennent à leurs propriétaires respectifs. Ils servent seulement à indiquer l'outil dont parle
           chaque guide.
         </p>
