@@ -249,6 +249,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "python", "github"],
     updatedIsoDate: "2026-11-13",
   },
+  {
+    slug: "skills-developpement-de-jeux-pour-agents-ia",
+    title: "79 skills pour faire des jeux vidéo avec ton agent IA",
+    summary: "Un routeur et 79 compétences pour Godot, Unity, Unreal, Roblox, three.js et 7 autres moteurs : tu décris ton jeu, l'agent charge les bonnes avant de coder.",
+    category: "productivity",
+    toolAuthor: "Abhishek Barali",
+    toolLicense: "Apache-2.0",
+    sourceUrl: "https://github.com/gamedev-skills/awesome-gamedev-agent-skills",
+    brands: ["claude", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
