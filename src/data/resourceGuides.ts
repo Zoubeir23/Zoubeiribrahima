@@ -216,6 +216,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "github"],
     updatedIsoDate: "2026-11-13",
   },
+  {
+    slug: "moneyprinterturbo-generer-des-videos-courtes-ia",
+    title: "MoneyPrinterTurbo : générer une vidéo courte à partir d'un sujet",
+    summary: "Donne un sujet, l'outil écrit le script, choisit les images, ajoute voix, sous-titres et musique, puis exporte la vidéo. Libre et gratuit à installer.",
+    category: "productivity",
+    toolAuthor: "harry0703",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/harry0703/MoneyPrinterTurbo",
+    brands: ["claude", "python", "github"],
+    updatedIsoDate: "2026-11-13",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
