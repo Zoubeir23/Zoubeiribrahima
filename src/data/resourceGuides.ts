@@ -204,6 +204,16 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolLicense: "MIT + Commons Clause",
     sourceUrl: "https://github.com/DavidHDev/react-bits",
     brands: ["claude", "typescript", "github"],
+  },
+  {
+    slug: "opengym-suivi-musculation-auto-heberge-claude",
+    title: "openGym : un suivi de musculation à toi, que Claude peut interroger",
+    summary: "Une application libre et sans abonnement, à héberger chez toi, avec un serveur MCP pour poser des questions à Claude sur tes séances et les lui dicter.",
+    category: "productivity",
+    toolAuthor: "Duarte Santos",
+    toolLicense: "AGPL-3.0",
+    sourceUrl: "https://github.com/DuarteSantos8/openGym",
+    brands: ["claude", "github"],
     updatedIsoDate: "2026-11-13",
   },
 ];
