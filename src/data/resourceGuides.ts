@@ -184,6 +184,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "python", "typescript", "github"],
     updatedIsoDate: "2026-11-10",
   },
+  {
+    slug: "crawl4ai-lire-le-web-pour-ton-agent",
+    title: "Crawl4AI : transforme n'importe quelle page web en texte propre pour ton IA",
+    summary: "Une bibliothèque libre qui lit les sites, même ceux en JavaScript, et rend du Markdown propre ou des données structurées. À brancher à Claude Code.",
+    category: "research",
+    toolAuthor: "UncleCode",
+    toolLicense: "Apache-2.0",
+    sourceUrl: "https://github.com/unclecode/crawl4ai",
+    brands: ["claude", "python", "github"],
+    updatedIsoDate: "2026-11-12",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
