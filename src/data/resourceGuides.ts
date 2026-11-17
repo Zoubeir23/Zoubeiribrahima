@@ -204,6 +204,7 @@ export const resourceGuides: readonly ResourceGuide[] = [
     toolLicense: "MIT + Commons Clause",
     sourceUrl: "https://github.com/DavidHDev/react-bits",
     brands: ["claude", "typescript", "github"],
+    updatedIsoDate: "2026-11-13",
   },
   {
     slug: "opengym-suivi-musculation-auto-heberge-claude",
