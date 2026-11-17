@@ -30,6 +30,13 @@ describe("bibliothèque de ressources", () => {
     readdirSync(resourcesDirectory).forEach((fileName) => expect(slugs.has(fileName.replace(/\.md$/, ""))).toBe(true));
   });
 
+  it("donne à chaque ressource une date de mise à jour valide", () => {
+    resourceGuides.forEach((guide) => {
+      expect(guide.updatedIsoDate, guide.slug).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(Number.isNaN(Date.parse(guide.updatedIsoDate)), guide.slug).toBe(false);
+    });
+  });
+
   it("cite une source en https pour chaque ressource", () => {
     resourceGuides.forEach((guide) => expect(guide.sourceUrl).toMatch(/^https:\/\//));
   });
