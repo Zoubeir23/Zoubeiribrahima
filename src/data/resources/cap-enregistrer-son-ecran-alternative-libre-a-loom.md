@@ -33,11 +33,27 @@ Les vidéos peuvent être partagées en public ou en privé, avec un mot de pass
 
 ## 3. L'héberger chez toi
 
-Il te faut Docker avec Compose. Dans ton terminal :
+Il te faut Docker avec Compose. Récupère d'abord le code :
 
 ```bash
 git clone https://github.com/CapSoftware/Cap.git
 cd Cap
+```
+
+**Change les secrets avant le premier lancement.** Par défaut, le fichier Compose utilise des identifiants connus de tous (base de données, stockage MinIO, signature des sessions). Il publie aussi l'application sur le port 3000, MinIO sur le port 9000 et sa console d'administration sur le port 9001, sur toutes les interfaces réseau. Sur un serveur accessible depuis Internet, quelqu'un pourrait donc entrer avant que tu aies tout configuré. Crée un fichier `.env` à la racine du projet avec tes propres valeurs, et ne le publie jamais :
+
+```bash
+MYSQL_PASSWORD=un-mot-de-passe-long
+MYSQL_ROOT_PASSWORD=un-autre-mot-de-passe-long
+MINIO_ROOT_USER=un-identifiant-a-toi
+MINIO_ROOT_PASSWORD=encore-un-mot-de-passe-long
+NEXTAUTH_SECRET=une-valeur-aleatoire
+MEDIA_SERVER_WEBHOOK_SECRET=une-autre-valeur-aleatoire
+```
+
+Pour les valeurs aléatoires, `openssl rand -hex 32` en génère une. Sur un ordinateur personnel pour un simple essai, évite de lancer le service sur un réseau public (Wi-Fi d'un café, par exemple). Puis lance :
+
+```bash
 docker compose up -d
 ```
 
@@ -49,7 +65,7 @@ docker compose logs cap-web
 
 Pour brancher l'application de bureau sur ton serveur, indique son adresse dans **Settings, Cap Server URL**. Le dépôt propose aussi un déploiement sur Railway en un clic, et un fichier pour Coolify.
 
-**Avant d'ouvrir le serveur sur Internet**, le dépôt demande de configurer les adresses publiques et de remplacer les secrets par défaut :
+**Pour la production**, le dépôt demande en plus de configurer les adresses publiques, avant d'ouvrir le serveur sur Internet :
 
 ```bash
 CAP_URL=https://cap.tondomaine.com
