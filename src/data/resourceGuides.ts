@@ -304,6 +304,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "github"],
     updatedIsoDate: "2026-11-17",
   },
+  {
+    slug: "cap-enregistrer-son-ecran-alternative-libre-a-loom",
+    title: "Cap : enregistrer ton écran et partager un lien, l'alternative libre à Loom",
+    summary: "Une application libre d'enregistrement d'écran pour Mac, Windows et Linux : lien de partage immédiat, montage, commentaires, transcriptions, et possibilité de tout héberger chez toi.",
+    category: "productivity",
+    toolAuthor: "Cap Software",
+    toolLicense: "AGPL-3.0 (en partie MIT)",
+    sourceUrl: "https://github.com/CapSoftware/Cap",
+    brands: ["github"],
+    updatedIsoDate: "2026-11-17",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
