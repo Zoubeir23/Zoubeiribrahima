@@ -7,7 +7,8 @@ import SectionHeading, { type SectionHeadingLevel } from "@/components/SectionHe
 import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 import { projectsContent } from "@/lib/projects-content";
 
-const FEATURED_PROJECT_URL = "https://snapfolioo.com";
+// The featured project is open source: its card links to the repository, not to the former website.
+const FEATURED_PROJECT_REPOSITORY_URL = "https://github.com/Zoubeir23/SnapFolioo";
 const GITHUB_PROFILE_URL = "https://github.com/Zoubeir23";
 
 const tagClassName =
@@ -59,21 +60,13 @@ const ProjectsBentoSection = ({ headingAs }: { headingAs?: SectionHeadingLevel }
             </div>
             <div className="flex flex-wrap gap-3">
               <a
-                href={FEATURED_PROJECT_URL}
+                href={FEATURED_PROJECT_REPOSITORY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-body text-sm font-semibold text-[var(--surface-deepest)] transition-colors duration-300 hover:bg-[var(--text-secondary)]"
               >
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 {projects.featured.linkLabel}
-              </a>
-              <a
-                href={GITHUB_PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--surface-border)] px-6 py-3 font-body text-sm font-semibold text-white transition-colors duration-300 hover:border-white"
-              >
-                GitHub →
               </a>
             </div>
           </div>

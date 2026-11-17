@@ -47,7 +47,7 @@ export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
       description:
         "Plateforme SaaS no-code permettant aux professionnels de créer des portfolios, CV et bannières LinkedIn en quelques minutes. Éditeur visuel en temps réel, +18 templates, sauvegarde cloud Supabase et publication instantanée.",
       tags: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Vercel", "Playwright"],
-      linkLabel: "Explorer le projet",
+      linkLabel: "Voir le code sur GitHub",
     },
     others: [
       {
@@ -89,7 +89,7 @@ export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
       description:
         "No-code SaaS platform that lets professionals create portfolios, resumes and LinkedIn banners in minutes. Real-time visual editor, 18+ templates, Supabase cloud saving and instant publishing.",
       tags: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "Vercel", "Playwright"],
-      linkLabel: "Explore the project",
+      linkLabel: "View the code on GitHub",
     },
     others: [
       {
