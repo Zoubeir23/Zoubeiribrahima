@@ -282,6 +282,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["github"],
     updatedIsoDate: "2026-11-17",
   },
+  {
+    slug: "logo-design-skill-concevoir-un-logo-avec-ton-agent-ia",
+    title: "Logo Design Skill : fais concevoir un logo par ton agent IA, du brief au SVG",
+    summary: "Un skill qui suit le travail d'un designer : brief, concepts, tests de lisibilité, puis fichiers SVG, favicon et charte, avec une bibliothèque de 1 400 logos pour s'inspirer.",
+    category: "design",
+    toolAuthor: "kaankiziltug",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/kaankiziltug/logo-design-skill",
+    brands: ["claude", "github"],
+    updatedIsoDate: "2026-11-17",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
