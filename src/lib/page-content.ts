@@ -44,7 +44,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Services",
       metaTitle: "Services de développement SaaS, web et mobile",
       description:
-        "Développement SaaS, applications web et mobiles, sites portfolio et services informatiques à distance : découvrez mes cinq offres et leur déroulement.",
+        "Développement SaaS, applications web et mobiles et sites portfolio : découvrez mes quatre offres et leur déroulement.",
     },
     skills: {
       title: "Compétences",
@@ -131,7 +131,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Services",
       metaTitle: "SaaS, web and mobile development services",
       description:
-        "SaaS development, web and mobile applications, portfolio websites and remote IT services: discover my five offers and how a project unfolds.",
+        "SaaS development, web and mobile applications and portfolio websites: discover my four offers and how a project unfolds.",
     },
     skills: {
       title: "Skills",

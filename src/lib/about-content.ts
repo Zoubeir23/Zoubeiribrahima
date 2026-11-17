@@ -34,7 +34,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
     meta: {
       title: "À propos",
       description:
-        "Zoubeir Ibrahima, développeur freelance à Dakar : SaaS, applications web et mobiles, sites portfolio, services à distance. Qui je suis, comment je travaille.",
+        "Zoubeir Ibrahima, développeur freelance à Dakar : SaaS, applications web et mobiles, sites portfolio. Qui je suis, comment je travaille.",
     },
     eyebrow: "À propos",
     titleLead: "Un développeur,",
@@ -109,7 +109,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
     meta: {
       title: "About",
       description:
-        "Zoubeir Ibrahima, freelance developer in Dakar: SaaS, web and mobile applications, portfolio sites and remote IT services. Who I am and how I work.",
+        "Zoubeir Ibrahima, freelance developer in Dakar: SaaS, web and mobile applications and portfolio sites. Who I am and how I work.",
     },
     eyebrow: "About",
     titleLead: "One developer,",
