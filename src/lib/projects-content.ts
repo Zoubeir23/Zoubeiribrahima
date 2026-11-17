@@ -39,7 +39,8 @@ export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
         description:
           "Système de gestion RH intelligent avec IA intégrée : recrutement automatisé, gestion des congés, paie et analytics avancés.",
         tags: ["Django", "React", "TypeScript", "PostgreSQL", "Docker"],
-        linkLabel: "Voir le profil",
+        linkLabel: "Voir le code sur GitHub",
+        repositoryUrl: "https://github.com/Zoubeir23/Smart-HR",
       },
       {
         title: "Tchokos SARL — B2B",
@@ -72,7 +73,8 @@ export const projectsContent: Record<LandingLanguage, ProjectsContent> = {
         description:
           "Intelligent HR management system with built-in AI: automated recruitment, leave management, payroll and advanced analytics.",
         tags: ["Django", "React", "TypeScript", "PostgreSQL", "Docker"],
-        linkLabel: "View profile",
+        linkLabel: "View the code on GitHub",
+        repositoryUrl: "https://github.com/Zoubeir23/Smart-HR",
       },
       {
         title: "Tchokos SARL — B2B",
