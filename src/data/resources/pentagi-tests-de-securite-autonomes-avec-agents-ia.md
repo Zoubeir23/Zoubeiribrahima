@@ -32,11 +32,16 @@ Télécharge l'installateur uniquement depuis les liens officiels du dépôt, et
 
 L'installateur a besoin d'accéder à l'API Docker. Le projet recommande de le lancer en root pour la production. Ajouter ton utilisateur au groupe `docker` revient à lui donner des droits équivalents à root : à réserver aux environnements de développement contrôlés.
 
-**Installation manuelle.** Récupère le fichier d'exemple de configuration et le fichier Compose, mets au moins une clé de fournisseur dans `.env`, puis lance la pile :
+**Installation manuelle.** Récupère le fichier d'exemple de configuration et le fichier Compose :
 
 ```bash
 curl -o .env https://raw.githubusercontent.com/vxcontrol/pentagi/master/.env.example
 curl -O https://raw.githubusercontent.com/vxcontrol/pentagi/master/docker-compose.yml
+```
+
+Mets ensuite dans `.env` au moins une clé de fournisseur de modèle. **Ce n'est pas suffisant seul.** PentAGI utilise aussi des *embeddings* (des représentations numériques du texte) pour sa mémoire et sa recherche, et ils se règlent à part. Le fournisseur par défaut est OpenAI : si tu n'utilises pas OpenAI, ajoute aussi `EMBEDDING_PROVIDER` (au choix : `openai`, `ollama`, `mistral`, `jina`, `huggingface`, `googleai` ou `voyageai`), `EMBEDDING_MODEL`, et si besoin `EMBEDDING_URL` et `EMBEDDING_KEY`. Puis lance la pile :
+
+```bash
 docker compose up -d
 ```
 
@@ -74,7 +79,7 @@ Pendant l'exécution, tu suis les messages, les tâches et la sortie du terminal
 
 - **Un agent autonome se trompe.** Il peut rater une faille, en signaler une qui n'existe pas, ou enchaîner des actions inutiles. Vérifie chaque faille à la main avant de l'inscrire dans un rapport.
 - **Ne le lance pas sur la production sans prévenir.** Des scans et des tentatives d'exploitation peuvent ralentir ou casser un service. Préfère un environnement de test identique à la production.
-- **Tes données passent par le modèle.** Avec un modèle en ligne, ce que l'agent lit et produit est traité par le fournisseur. Pour des cibles sensibles, un modèle local (Ollama, vLLM) garde tout chez toi.
+- **Tes données peuvent quitter ta machine.** Avec un modèle en ligne, ce que l'agent lit et produit est traité par le fournisseur. Choisir un modèle local (Ollama, vLLM) pour la conversation ne suffit pas à tout garder chez toi : les embeddings utilisent OpenAI par défaut, et les moteurs de recherche activés reçoivent des requêtes depuis Internet. Pour une cible sensible, configure aussi des embeddings locaux (par exemple avec Ollama), n'active que les moteurs de recherche dont tu as besoin, et restreins la sortie réseau des conteneurs, comme le recommande le projet.
 - **Ce n'est pas un simulateur d'attaques scriptées.** Le projet précise lui-même que PentAGI n'est pas une plateforme de simulation d'adversaire avec des campagnes prédéfinies.
 - **Une offre payante existe.** PentAGI Enterprise ajoute des profils d'agents, des plugins, des rapports pour clients et une vue de la chaîne d'attaque. La version libre décrite ici reste gratuite.
 
