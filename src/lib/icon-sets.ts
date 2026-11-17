@@ -28,11 +28,12 @@ export const OFFERING_CHIP_EMOJIS: Record<ServiceSlug, readonly (readonly string
     ["🛍️", "📞", "📲", "⚡"],
     ["🏷️", "⚡", "♿", "🧱"],
   ],
-  "remote-it-services": [
-    ["🩺", "🔧", "🌐", "💡"],
-    ["⬆️", "✔️", "📈", "💾"],
-    ["💬", "🧰", "🎓", "📈"],
-  ],
+  // Service paused: remote IT services are not offered for now.
+  // "remote-it-services": [
+  //   ["🩺", "🔧", "🌐", "💡"],
+  //   ["⬆️", "✔️", "📈", "💾"],
+  //   ["💬", "🧰", "🎓", "📈"],
+  // ],
 };
 
 export const TECHNOLOGY_FALLBACK_EMOJI = "🧩";
