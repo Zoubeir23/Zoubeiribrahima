@@ -51,10 +51,12 @@ describe("home teasers", () => {
     expect(container.querySelectorAll('img[src^="/logos/technologies/"]').length).toBeGreaterThanOrEqual(8);
   });
 
-  it("highlights the featured project", () => {
+  it("lists every project the same way, without a featured one", () => {
     renderTeaser(<ProjectsTeaser />);
-    expect(screen.getByRole("heading", { level: 3, name: projectsContent.fr.featured.title })).toBeInTheDocument();
-    expect(screen.getByText(projectsContent.fr.featured.description)).toBeInTheDocument();
+    for (const project of projectsContent.fr.projects) {
+      expect(screen.getByRole("heading", { level: 3, name: project.title })).toBeInTheDocument();
+      expect(screen.getByText(project.description)).toBeInTheDocument();
+    }
   });
 
   it("lists each professional experience with its role", () => {

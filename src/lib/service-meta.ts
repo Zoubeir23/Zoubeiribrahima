@@ -3,7 +3,8 @@ export const serviceSlugs = [
   "web-applications",
   "mobile-applications",
   "portfolio-websites",
-  "remote-it-services",
+  // Service paused: remote IT services are not offered for now.
+  // "remote-it-services",
 ] as const;
 
 export type ServiceSlug = (typeof serviceSlugs)[number];
@@ -18,7 +19,7 @@ export const serviceMeta: Record<ServiceSlug, ServiceMeta> = {
   "web-applications": { emoji: "🌐", illustrationPath: "/services/web-applications.webp" },
   "mobile-applications": { emoji: "📱", illustrationPath: "/services/mobile-applications.webp" },
   "portfolio-websites": { emoji: "🎨", illustrationPath: "/services/portfolio-websites.webp" },
-  "remote-it-services": { emoji: "🛠️", illustrationPath: "/services/remote-it-services.webp" },
+  // "remote-it-services": { emoji: "🛠️", illustrationPath: "/services/remote-it-services.webp" },
 };
 
 export const isServiceSlug = (candidate: string | undefined): candidate is ServiceSlug =>

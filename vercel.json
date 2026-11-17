@@ -15,6 +15,11 @@
       "source": "/blog/agents-ia-claude-code-openclaw-tendances-2026",
       "destination": "/blog/vibe-coding-et-claude-code-en-2026",
       "statusCode": 301
+    },
+    {
+      "source": "/services/remote-it-services",
+      "destination": "/services",
+      "statusCode": 301
     }
   ],
   "headers": [

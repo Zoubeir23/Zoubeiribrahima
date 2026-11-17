@@ -60,7 +60,7 @@ describe("getTechnologyEmoji", () => {
         servicesContent[language].services[slug].technologies.forEach((name) => names.add(name));
       }
       const projects = projectsContent[language];
-      [projects.featured, ...projects.others].forEach((project) => project.tags.forEach((name) => names.add(name)));
+      projects.projects.forEach((project) => project.tags.forEach((name) => names.add(name)));
       experienceContent[language].experiences.forEach((item) => item.tags.forEach((name) => names.add(name)));
     }
     const missing = [...names].filter((name) => getTechnologyEmoji(name) === TECHNOLOGY_FALLBACK_EMOJI);

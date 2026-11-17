@@ -94,7 +94,7 @@ export const termsOfUseFrench: LegalDocument = {
     {
       title: "Objet du site",
       paragraphs: [
-        "Ce site présente mon activité de développeur freelance : développement SaaS, applications web et mobiles, sites portfolio et services informatiques à distance, ainsi que mes projets, certifications et articles.",
+        "Ce site présente mon activité de développeur freelance : développement SaaS, applications web et mobiles et sites portfolio, ainsi que mes projets, certifications et articles.",
       ],
     },
     {

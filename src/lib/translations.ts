@@ -37,8 +37,6 @@ export const translations = {
       mainStack: "Main Stack",
       certifications: "Certifications",
       featuredProject: "Featured Project",
-      snapfoliooFounder: "Snapfolioo Founder",
-      snapfoliooDesc: "The SaaS platform for portfolio creators.",
       location: "Grand-Dakar",
       workMode: "Remote / Hybrid",
       fullName: "Zoubeir IBRAHIMA AMED",
@@ -67,14 +65,6 @@ export const translations = {
       intro:
         "Crafting high-performance SaaS platforms and digital experiences with React, Node.js, and Python. Based in Dakar, Senegal.",
       featuredProject: "Featured Project",
-      snapfoliooDesc:
-        "A modern SaaS platform for creating portfolios, CVs, and LinkedIn banners with a real-time visual editor, auto-save, and one-click publishing.",
-      snapfolioProblem:
-        "Problem: Freelancers and professionals struggle to create attractive portfolios quickly",
-      snapfolioSolution:
-        "Solution: React + TypeScript + Supabase platform with pre-designed templates, real-time editing, and instant deployment",
-      snapfolioResult: "Result: 100+ active users, 500+ portfolios generated in 3 months",
-      snapfolioRole: "Role: Founder & Fullstack Developer (React, TypeScript, Supabase, Tailwind, Vercel)",
       liveDemo: "Live Demo",
       github: "GitHub",
       techArsenal: "Tech Arsenal",
@@ -109,11 +99,6 @@ export const translations = {
       samaWebDesc:
         "Co-founded a digital agency focused on web/mobile apps for African enterprises. Managing client projects and dev teams.",
       samaWebDate: "June 2025 - Present",
-      snapfolioRole: "Founder & Lead Dev",
-      snapfolioCompany: "Snapfolioo",
-      snapfolioDesc:
-        "Architected a scalable SaaS with React 18 + TypeScript + Vite. Implemented Supabase Auth, PostgreSQL, and auto-save with deployment on Vercel.",
-      snapfolioDate: "Jan 2026 - Present",
     },
     // Certifications
     certifications: {
@@ -189,8 +174,6 @@ export const translations = {
       mainStack: "Stack Principale",
       certifications: "Certifications",
       featuredProject: "Projet Phare",
-      snapfoliooFounder: "Fondateur de Snapfolioo",
-      snapfoliooDesc: "La plateforme SaaS pour créateurs de portfolios.",
       location: "Grand-Dakar",
       workMode: "Télétravail / Hybride",
       fullName: "Zoubeir IBRAHIMA AMED",
@@ -219,14 +202,6 @@ export const translations = {
       intro:
         "Création de plateformes SaaS performantes et d'expériences digitales avec React, Node.js et Python. Basé à Dakar, Sénégal.",
       featuredProject: "Projet Vedette",
-      snapfoliooDesc:
-        "Une plateforme SaaS moderne pour créer des portfolios, CV et bannières LinkedIn avec éditeur visuel en temps réel, sauvegarde automatique et publication instantanée.",
-      snapfolioProblem:
-        "Problème : Les freelances et professionnels peinent à créer rapidement des portfolios attractifs",
-      snapfolioSolution:
-        "Solution : Plateforme React + TypeScript + Supabase avec templates pré-conçus, édition en temps réel et déploiement instantané",
-      snapfolioResult: "Résultat : 100+ utilisateurs actifs, 500+ portfolios générés en 3 mois",
-      snapfolioRole: "Rôle : Fondateur & Développeur Fullstack (React, TypeScript, Supabase, Tailwind, Vercel)",
       liveDemo: "Démo en Direct",
       github: "GitHub",
       techArsenal: "Arsenal Technique",
@@ -261,11 +236,6 @@ export const translations = {
       samaWebDesc:
         "Co-fondation d'une agence digitale spécialisée dans les applications web/mobile pour les entreprises africaines. Gestion de projets clients et d'équipes de développement.",
       samaWebDate: "Juin 2025 - Aujourd'hui",
-      snapfolioRole: "Fondateur & Lead Dev",
-      snapfolioCompany: "Snapfolioo",
-      snapfolioDesc:
-        "Architecture d'une plateforme SaaS scalable avec React 18 + TypeScript + Vite. Implémentation de Supabase Auth, PostgreSQL, sauvegarde automatique et déploiement sur Vercel.",
-      snapfolioDate: "Jan 2026 - Aujourd'hui",
     },
     // Certifications
     certifications: {

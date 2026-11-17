@@ -1,6 +1,6 @@
 # Zoubeir Ibrahima
 
-> Développeur freelance basé à Dakar (Sénégal), fondateur de Snapfolioo. Conception et développement de SaaS, d'applications web et mobiles, de sites portfolio, et services informatiques à distance.
+> Développeur freelance basé à Dakar (Sénégal). Conception et développement de SaaS, d'applications web et mobiles et de sites portfolio.
 
 ## Services
 
@@ -8,7 +8,6 @@
 - [Applications web](https://zoubeir.me/services/web-applications): Applications sur mesure, rapides et maintenables, adaptées à votre activité.
 - [Applications mobiles](https://zoubeir.me/services/mobile-applications): Applications mobiles pensées pour vos utilisateurs, avec une expérience fluide.
 - [Sites portfolio](https://zoubeir.me/services/portfolio-websites): Un portfolio clair et performant qui met en valeur votre travail et vous fait trouver.
-- [Services informatiques à distance](https://zoubeir.me/services/remote-it-services): Dépannage, maintenance et accompagnement technique, où que vous soyez.
 
 ## Profil
 

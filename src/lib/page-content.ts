@@ -38,13 +38,13 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
     home: {
       title: "Zoubeir Ibrahima | Développeur freelance SaaS, web et mobile | Dakar",
       description:
-        "Développeur freelance basé à Dakar : SaaS, applications web et mobiles, sites portfolio et services informatiques à distance. Fondateur de Snapfolioo.",
+        "Développeur freelance basé à Dakar : SaaS, applications web et mobiles et sites portfolio.",
     },
     services: {
       title: "Services",
       metaTitle: "Services de développement SaaS, web et mobile",
       description:
-        "Développement SaaS, applications web et mobiles, sites portfolio et services informatiques à distance : découvrez mes cinq offres et leur déroulement.",
+        "Développement SaaS, applications web et mobiles et sites portfolio : découvrez mes quatre offres et leur déroulement.",
     },
     skills: {
       title: "Compétences",
@@ -56,7 +56,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Projets",
       metaTitle: "Projets SaaS, web et mobile réalisés",
       description:
-        "Snapfolioo, Smart-HR, Tchokos SARL : les projets sur lesquels je travaille, avec leur stack technique, leur statut et leurs liens.",
+        "Snapfolioo, Smart-HR, Tchokos SARL : mes projets, avec leur stack technique, leur statut et leurs liens.",
     },
     experience: {
       title: "Parcours",
@@ -125,13 +125,13 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
     home: {
       title: "Zoubeir Ibrahima | Freelance SaaS, web and mobile developer | Dakar",
       description:
-        "Freelance developer based in Dakar: SaaS, web and mobile applications, portfolio websites and remote IT services. Founder of Snapfolioo, Harvard CS50 certified.",
+        "Freelance developer based in Dakar: SaaS, web and mobile applications and portfolio websites. Harvard CS50 certified.",
     },
     services: {
       title: "Services",
       metaTitle: "SaaS, web and mobile development services",
       description:
-        "SaaS development, web and mobile applications, portfolio websites and remote IT services: discover my five offers and how a project unfolds.",
+        "SaaS development, web and mobile applications and portfolio websites: discover my four offers and how a project unfolds.",
     },
     skills: {
       title: "Skills",
@@ -143,7 +143,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Projects",
       metaTitle: "SaaS, web and mobile projects built",
       description:
-        "Snapfolioo, Smart-HR, Tchokos SARL: the projects I am working on, with their tech stack, status and links.",
+        "Snapfolioo, Smart-HR, Tchokos SARL: my projects, with their tech stack, status and links.",
     },
     experience: {
       title: "Experience",

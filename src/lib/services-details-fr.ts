@@ -169,6 +169,10 @@ export const serviceDetailsFrench: ServiceDetails = {
     ],
     technologies: ["React", "Vite", "Tailwind CSS", "Vercel", "SEO"],
   },
+  // Service paused: remote IT services are not offered for now. To bring it back, uncomment this block,
+  // then restore "remote-it-services" in service-meta.ts, icon-sets.ts, serviceRelatedArticles.ts,
+  // public/sitemap.xml and public/llms.txt.
+  /*
   "remote-it-services": {
     title: "Services informatiques à distance",
     heading: "Services informatiques à distance depuis Dakar",
@@ -211,4 +215,5 @@ export const serviceDetailsFrench: ServiceDetails = {
     ],
     technologies: ["Diagnostic", "Maintenance", "Sécurité", "Sauvegardes"],
   },
+  */
 };
