@@ -10,7 +10,8 @@ const RELATED_ARTICLE_CATEGORIES_BY_SERVICE: Readonly<Record<ServiceSlug, readon
   "web-applications": ["python", "devops"],
   "mobile-applications": [],
   "portfolio-websites": ["frontend"],
-  "remote-it-services": ["devops"],
+  // Service paused: remote IT services are not offered for now.
+  // "remote-it-services": ["devops"],
 };
 
 export const selectServiceRelatedArticles = (serviceSlug: ServiceSlug, posts: readonly BlogPost[]): BlogPost[] =>

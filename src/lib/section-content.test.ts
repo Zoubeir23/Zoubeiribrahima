@@ -105,10 +105,15 @@ describe("experience content follows the CV", () => {
   const findExperience = (language: "fr" | "en", company: string) =>
     experienceContent[language].experiences.find((item) => item.company === company);
 
-  it("marks the HooYia internship as finished and Snapfolioo as ongoing", () => {
+  it("marks the HooYia internship as finished", () => {
     for (const language of ["fr", "en"] as const) {
       expect(findExperience(language, "HooYia")?.isCurrent, `${language} HooYia`).toBe(false);
-      expect(findExperience(language, "Snapfolioo")?.isCurrent, `${language} Snapfolioo`).toBe(true);
+    }
+  });
+
+  it("does not list Snapfolioo as a job: it is an open source project", () => {
+    for (const language of ["fr", "en"] as const) {
+      expect(findExperience(language, "Snapfolioo"), `${language} Snapfolioo`).toBeUndefined();
     }
   });
 
@@ -131,11 +136,12 @@ describe("experience content follows the CV", () => {
     }
   });
 
-  it("mentions the authentication and export details of Snapfolioo", () => {
+  it("describes Snapfolioo as an open source project with its authentication and storage", () => {
     for (const language of ["fr", "en"] as const) {
-      const description = findExperience(language, "Snapfolioo")?.description ?? "";
-      expect(description).toContain("Google OAuth");
-      expect(description).toContain("PDF");
+      const snapfolioo = projectsContent[language].projects.find((project) => project.title === "Snapfolioo");
+      expect(snapfolioo?.status, `${language} status`).toBe("Open source");
+      expect(snapfolioo?.description, `${language} description`).toContain("Google");
+      expect(snapfolioo?.description, `${language} description`).toContain("Supabase");
     }
   });
 });

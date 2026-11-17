@@ -94,7 +94,7 @@ export const termsOfUseEnglish: LegalDocument = {
     {
       title: "Purpose of the site",
       paragraphs: [
-        "This site presents my freelance activity: SaaS development, web and mobile applications, portfolio websites and remote IT services, along with my projects, certifications and articles.",
+        "This site presents my freelance activity: SaaS development, web and mobile applications and portfolio websites, along with my projects, certifications and articles.",
       ],
     },
     {

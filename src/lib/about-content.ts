@@ -34,7 +34,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
     meta: {
       title: "À propos",
       description:
-        "Zoubeir Ibrahima, développeur freelance à Dakar : SaaS, applications web et mobiles, sites portfolio, services à distance. Qui je suis, comment je travaille.",
+        "Zoubeir Ibrahima, développeur freelance à Dakar : SaaS, applications web et mobiles, sites portfolio. Qui je suis, comment je travaille.",
     },
     eyebrow: "À propos",
     titleLead: "Un développeur,",
@@ -64,7 +64,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
         title: "Qui je suis",
         paragraphs: [
           "Je m'appelle Zoubeir Ibrahima, développeur freelance basé à Dakar. Je travaille depuis plus de deux ans sur des produits web et mobiles, avec Django, Laravel, React et Flutter.",
-          "Je suis le fondateur de Snapfolioo et je travaille sur d'autres produits SaaS. Cette expérience de produit me sert chez mes clients : je pense usage, maintenance et évolution, pas seulement livraison.",
+          "Je travaille aussi sur mes propres produits SaaS. Cette expérience de produit me sert chez mes clients : je pense usage, maintenance et évolution, pas seulement livraison.",
           "Mon objectif est simple : vous donner un seul interlocuteur, de l'idée à la mise en ligne, avec des échanges clairs et un code que vous pourrez faire évoluer.",
         ],
       },
@@ -109,7 +109,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
     meta: {
       title: "About",
       description:
-        "Zoubeir Ibrahima, freelance developer in Dakar: SaaS, web and mobile applications, portfolio sites and remote IT services. Who I am and how I work.",
+        "Zoubeir Ibrahima, freelance developer in Dakar: SaaS, web and mobile applications and portfolio sites. Who I am and how I work.",
     },
     eyebrow: "About",
     titleLead: "One developer,",
@@ -139,7 +139,7 @@ export const aboutContent: Record<LandingLanguage, AboutContent> = {
         title: "Who I am",
         paragraphs: [
           "I am Zoubeir Ibrahima, a freelance developer based in Dakar. I have spent more than two years building web and mobile products with Django, Laravel, React and Flutter.",
-          "I am the founder of Snapfolioo and I work on other SaaS products. That product experience benefits my clients: I think about usage, maintenance and evolution, not only delivery.",
+          "I also work on my own SaaS products. That product experience benefits my clients: I think about usage, maintenance and evolution, not only delivery.",
           "My goal is simple: give you a single point of contact, from the idea to going live, with clear communication and code you can keep evolving.",
         ],
       },
