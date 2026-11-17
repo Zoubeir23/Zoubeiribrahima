@@ -32,6 +32,7 @@ Ce point d'arrêt est volontaire : le kit représente l'essentiel du travail et 
 
 ```bash
 git clone https://github.com/kaankiziltug/logo-design-skill.git
+mkdir -p ~/.claude/skills
 cp -r logo-design-skill/skills/logo-design ~/.claude/skills/logo-design
 ```
 
