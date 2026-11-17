@@ -56,7 +56,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Projets",
       metaTitle: "Projets SaaS, web et mobile réalisés",
       description:
-        "Snapfolioo, Smart-HR, Tchokos SARL : les projets sur lesquels je travaille, avec leur stack technique, leur statut et leurs liens.",
+        "Snapfolioo, Smart-HR, Tchokos SARL : mes projets, avec leur stack technique, leur statut et leurs liens.",
     },
     experience: {
       title: "Parcours",
@@ -143,7 +143,7 @@ export const pageContent: Record<LandingLanguage, PageContent> = {
       title: "Projects",
       metaTitle: "SaaS, web and mobile projects built",
       description:
-        "Snapfolioo, Smart-HR, Tchokos SARL: the projects I am working on, with their tech stack, status and links.",
+        "Snapfolioo, Smart-HR, Tchokos SARL: my projects, with their tech stack, status and links.",
     },
     experience: {
       title: "Experience",

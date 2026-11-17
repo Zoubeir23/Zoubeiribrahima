@@ -52,29 +52,33 @@ export const SkillsTeaser = () => {
 
 export const ProjectsTeaser = () => {
   const teaser = useLocalizedContent(pageContent).teasers.projects;
-  const { featured } = useLocalizedContent(projectsContent);
+  const { projects } = useLocalizedContent(projectsContent);
 
   return (
     <HomeTeaserSection emoji="🚀" title={teaser.title} description={teaser.description} path="/projects" linkLabel={teaser.linkLabel}>
-      <Reveal>
-        <article className={cardClassName}>
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h3 className="font-display text-2xl uppercase text-white sm:text-3xl">{featured.title}</h3>
-            <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-widest text-white">
-              {featured.status}
-            </span>
-          </div>
-          <p className="mb-5 max-w-3xl text-[var(--text-secondary)]">{featured.description}</p>
-          <ul className="flex flex-wrap gap-2">
-            {featured.tags.map((tag) => (
-              <li key={tag} className={chipClassName}>
-                <TechnologyIcon name={tag} />
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </article>
-      </Reveal>
+      <ul className="grid gap-4 md:grid-cols-3">
+        {projects.map((project, index) => (
+          <Reveal as="li" key={project.title} delaySeconds={index * 0.1}>
+            <article className={`${cardClassName} h-full`}>
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                <h3 className="font-display text-xl uppercase text-white sm:text-2xl">{project.title}</h3>
+                <span className="rounded-full border border-[var(--surface-border)] px-3 py-1 font-mono text-xs uppercase tracking-widest text-white">
+                  {project.status}
+                </span>
+              </div>
+              <p className="mb-5 text-sm text-[var(--text-secondary)]">{project.description}</p>
+              <ul className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <li key={tag} className={chipClassName}>
+                    <TechnologyIcon name={tag} />
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </Reveal>
+        ))}
+      </ul>
     </HomeTeaserSection>
   );
 };
