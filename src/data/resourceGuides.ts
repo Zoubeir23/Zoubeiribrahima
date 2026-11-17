@@ -271,6 +271,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "vercel", "github"],
     updatedIsoDate: "2026-11-13",
   },
+  {
+    slug: "pentagi-tests-de-securite-autonomes-avec-agents-ia",
+    title: "PentAGI : des agents IA qui testent la sécurité de tes applications",
+    summary: "Une plateforme libre à héberger chez toi : des agents lancent nmap, sqlmap et d'autres outils dans un bac à sable Docker, puis rédigent un rapport. Pour des tests autorisés uniquement.",
+    category: "audit",
+    toolAuthor: "VXControl",
+    toolLicense: "MIT",
+    sourceUrl: "https://github.com/vxcontrol/pentagi",
+    brands: ["github"],
+    updatedIsoDate: "2026-11-17",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
