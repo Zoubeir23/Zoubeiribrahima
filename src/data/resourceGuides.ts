@@ -293,6 +293,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["claude", "github"],
     updatedIsoDate: "2026-11-17",
   },
+  {
+    slug: "academic-research-skills-ecrire-un-article-scientifique-avec-claude-code",
+    title: "Academic Research Skills : de la recherche à l'article, avec toi aux commandes",
+    summary: "Cinq skills pour Claude Code qui accompagnent une recherche, la rédaction, la relecture par pairs et la vérification des citations, en s'arrêtant à chaque étape pour que tu valides.",
+    category: "research",
+    toolAuthor: "Cheng-I Wu",
+    toolLicense: "CC BY-NC 4.0",
+    sourceUrl: "https://github.com/Imbad0202/academic-research-skills",
+    brands: ["claude", "github"],
+    updatedIsoDate: "2026-11-17",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
