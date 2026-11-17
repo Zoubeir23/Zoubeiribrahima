@@ -315,6 +315,17 @@ export const resourceGuides: readonly ResourceGuide[] = [
     brands: ["github"],
     updatedIsoDate: "2026-11-17",
   },
+  {
+    slug: "firecrawl-donner-le-web-a-ton-agent-ia",
+    title: "Firecrawl : donne le web à ton agent IA, pour chercher, lire et interagir",
+    summary: "Une API libre (et un service hébergé) qui cherche sur le web, transforme n'importe quelle page en texte propre et peut même cliquer dans une page. Avec un skill et un serveur MCP.",
+    category: "research",
+    toolAuthor: "Firecrawl",
+    toolLicense: "AGPL-3.0 (SDK en MIT)",
+    sourceUrl: "https://github.com/firecrawl/firecrawl",
+    brands: ["claude", "python", "github"],
+    updatedIsoDate: "2026-11-17",
+  },
 ];
 
 export function findResourceGuide(slug: string | undefined): ResourceGuide | undefined {
