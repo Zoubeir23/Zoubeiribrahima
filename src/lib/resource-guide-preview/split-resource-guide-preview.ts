@@ -1,10 +1,13 @@
 // Splits the text of a resource guide into a public preview, readable by everyone and by search engines, and the
 // rest, shown once the visitor gives a first name and an e-mail. The preview is the first section, followed by the
-// next ones while it stays shorter than MINIMUM_PREVIEW_WORD_COUNT, and never more than half of the sections, so the
-// form still unlocks most of the guide. Sections start at level-two headings ("## "), outside code blocks.
+// next ones while it stays shorter than MINIMUM_PREVIEW_WORD_COUNT. A section that would push the preview past
+// MAXIMUM_PREVIEW_WORD_COUNT stays locked (often the core of the guide, such as a full prompt), and the preview never
+// holds more than half of the sections, so the form still unlocks most of the guide. Sections start at level-two
+// headings ("## "), outside code blocks.
 // This file is also used by the Vite plugin (vite.config.ts): keep it free of browser and Vite APIs.
 
 export const MINIMUM_PREVIEW_WORD_COUNT = 150;
+export const MAXIMUM_PREVIEW_WORD_COUNT = 300;
 
 export interface ResourceGuidePreview {
   previewMarkdown: string;
@@ -48,7 +51,9 @@ function countPreviewSections(sections: GuideSection[]): number {
   let previewWordCount = countWords(sections[0].lines);
 
   while (previewWordCount < MINIMUM_PREVIEW_WORD_COUNT && previewSectionCount < maximumPreviewSectionCount) {
-    previewWordCount += countWords(sections[previewSectionCount].lines);
+    const nextSectionWordCount = countWords(sections[previewSectionCount].lines);
+    if (previewWordCount + nextSectionWordCount > MAXIMUM_PREVIEW_WORD_COUNT) break;
+    previewWordCount += nextSectionWordCount;
     previewSectionCount += 1;
   }
   return previewSectionCount;

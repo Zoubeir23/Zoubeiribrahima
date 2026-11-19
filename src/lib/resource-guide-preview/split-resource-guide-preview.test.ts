@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MINIMUM_PREVIEW_WORD_COUNT, splitResourceGuidePreview } from "./split-resource-guide-preview";
+import { MAXIMUM_PREVIEW_WORD_COUNT, MINIMUM_PREVIEW_WORD_COUNT, splitResourceGuidePreview } from "./split-resource-guide-preview";
 
 const words = (count: number): string => Array.from({ length: count }, (_, index) => `mot${index}`).join(" ");
 
@@ -20,6 +20,13 @@ describe("splitResourceGuidePreview", () => {
 
     expect(preview.previewMarkdown).toContain("## Section 2");
     expect(preview.lockedSectionTitles).toEqual(["Section 3", "Section 4"]);
+  });
+
+  it("n'ajoute pas une section qui rendrait l'extrait trop long", () => {
+    const preview = splitResourceGuidePreview(guideWithSections([20, MAXIMUM_PREVIEW_WORD_COUNT, 50, 50]));
+
+    expect(preview.previewMarkdown).not.toContain("## Section 2");
+    expect(preview.lockedSectionTitles).toEqual(["Section 2", "Section 3", "Section 4"]);
   });
 
   it("ne rend jamais publique plus de la moitié des sections", () => {
