@@ -58,11 +58,11 @@ const LockedSectionOutline = ({ sectionTitles }: { sectionTitles: string[] }) =>
     <p id={outlineListIdentifier} className="font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
       Dans la suite du guide
     </p>
-    <ol aria-labelledby={outlineListIdentifier} className="mt-4 list-decimal space-y-2 pl-5 text-sm text-white/88 sm:text-base">
+    <ul aria-labelledby={outlineListIdentifier} className="mt-4 list-disc space-y-2 pl-5 text-sm text-white/88 sm:text-base">
       {sectionTitles.map((sectionTitle) => (
         <li key={sectionTitle}>{sectionTitle}</li>
       ))}
-    </ol>
+    </ul>
   </div>
 );
 
