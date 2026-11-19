@@ -1,14 +1,24 @@
 # Ressources (page /ressources)
 
-Bibliothèque publique de guides pour Claude Code. Les titres et résumés sont visibles et indexés ; le texte d'un guide s'affiche après un prénom et un e-mail. Le formulaire est redemandé à chaque visite : l'accès n'est pas mémorisé.
+Bibliothèque publique de guides pour Claude Code. Les titres, les résumés et le début de chaque guide (l'extrait public) sont visibles et indexés ; la suite s'affiche après un prénom et un e-mail. Le formulaire est redemandé à chaque visite : l'accès n'est pas mémorisé.
 
 Ne pas confondre avec les pages `/lead-magnet/<identifiant>` (voir `lead-magnet.md`), partagées par lien seulement, sans inscription et jamais indexées.
+
+## Extrait public
+
+Sans extrait, la page d'un guide ne contenait pour Google qu'un titre, une phrase et le formulaire : trop peu pour être indexée. Chaque guide montre donc son début à tout le monde, dans le HTML pré-rendu :
+
+- l'extrait est la première section (`## `) ; s'il fait moins de 150 mots, les sections suivantes s'ajoutent, sans dépasser 300 mots ni la moitié des sections. Une section qui ferait dépasser 300 mots (par exemple un prompt complet) reste verrouillée ;
+- sous l'extrait, la liste « Dans la suite du guide » donne les titres des sections verrouillées, puis vient le formulaire ;
+- une fois le guide débloqué, seule la suite s'affiche sous l'extrait, sans le répéter.
+
+Le découpage est dans `src/lib/resource-guide-preview/split-resource-guide-preview.ts`. Le plugin Vite `resource-guide-preview` (branché dans `vite.config.ts` et `vitest.config.ts`) le fait à la compilation : importer un guide avec `?resource-guide-preview` ne livre que l'extrait et les titres des sections verrouillées, jamais le texte verrouillé. Pour changer ce qui est public, déplace un titre `## ` dans le fichier du guide : le découpage suit.
 
 ## Comment fonctionne l'inscription
 
 1. Le navigateur vérifie le prénom et l'e-mail : format, fautes de frappe courantes (`gmial.com`), adresses temporaires (`yopmail.com`...).
 2. La fonction `api/resources/subscribe.ts` (Vercel) refait ces contrôles, vérifie que le domaine de l'adresse reçoit des e-mails (enregistrements MX), puis enregistre le contact dans Resend, une seule fois (voir « Un e-mail n'est envoyé qu'une fois »).
-3. Le guide s'affiche tant que le visiteur reste sur la page. L'accès n'est jamais mémorisé : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé, et chaque guide se débloque séparément. Le navigateur n'écrit rien (les anciennes entrées `resourceLibraryAccess` et `registeredResourceEmails` sont supprimées au chargement).
+3. La suite du guide s'affiche tant que le visiteur reste sur la page. L'accès n'est jamais mémorisé : s'il quitte la page puis revient, ou recharge, le formulaire est redemandé, et chaque guide se débloque séparément. Le navigateur n'écrit rien (les anciennes entrées `resourceLibraryAccess` et `registeredResourceEmails` sont supprimées au chargement).
 
 ## Un e-mail n'est envoyé qu'une fois
 
@@ -23,7 +33,7 @@ La base se met en veille après 5 minutes d'inactivité et se réveille d'elle-m
 Limites assumées :
 
 - Le contrôle prouve que l'adresse peut exister, pas qu'elle appartient à la personne : aucun e-mail de confirmation n'est envoyé (choix du propriétaire).
-- Le texte des guides est dans le code JavaScript du site : quelqu'un de technique peut le lire sans s'inscrire. Il n'est pas dans le HTML pré-rendu.
+- Le texte des guides est dans le code JavaScript du site : quelqu'un de technique peut le lire sans s'inscrire. Seul l'extrait public est dans le HTML pré-rendu.
 - Si le DNS ne répond pas, l'inscription est acceptée plutôt que de bloquer un vrai visiteur.
 
 En local (`npm run dev`), toutes les ressources sont ouvertes sans formulaire, pour les relire. La fonction serveur ne tourne pas avec `npm run dev`.
