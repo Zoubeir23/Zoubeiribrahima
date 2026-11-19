@@ -21,17 +21,40 @@ interface GuideSection {
 }
 
 const SECTION_HEADING_PATTERN = /^## +(.+?)\s*$/;
-const CODE_FENCE_PATTERN = /^\s*(```|~~~)/;
+const CODE_FENCE_PATTERN = /^ {0,3}(`{3,}|~{3,})(.*)$/;
+
+// A code block opened by a fence closes only on the same character, repeated at least as many times, with nothing
+// after it (CommonMark). A "~~~" line inside a "```" block is code, not the end of the block.
+function readCodeFence(line: string): { fence: string; info: string } | undefined {
+  const fenceMatch = CODE_FENCE_PATTERN.exec(line);
+  return fenceMatch ? { fence: fenceMatch[1], info: fenceMatch[2].trim() } : undefined;
+}
+
+function closesCodeBlock(line: string, openingFence: string): boolean {
+  const codeFence = readCodeFence(line);
+  return (
+    codeFence !== undefined &&
+    codeFence.info === "" &&
+    codeFence.fence[0] === openingFence[0] &&
+    codeFence.fence.length >= openingFence.length
+  );
+}
 
 // Text written before the first heading belongs to the first section.
 function splitIntoSections(markdown: string): GuideSection[] {
   const completedSections: GuideSection[] = [];
   let currentSection: GuideSection = { title: "", lines: [] };
-  let isInsideCodeBlock = false;
+  let openingFence: string | undefined;
 
   for (const line of markdown.split("\n")) {
-    if (CODE_FENCE_PATTERN.test(line)) isInsideCodeBlock = !isInsideCodeBlock;
-    const headingTitle = isInsideCodeBlock ? undefined : SECTION_HEADING_PATTERN.exec(line)?.[1];
+    const wasInsideCodeBlock = openingFence !== undefined;
+    if (openingFence === undefined) {
+      openingFence = readCodeFence(line)?.fence;
+    } else if (closesCodeBlock(line, openingFence)) {
+      openingFence = undefined;
+    }
+    const isCodeLine = wasInsideCodeBlock || openingFence !== undefined;
+    const headingTitle = isCodeLine ? undefined : SECTION_HEADING_PATTERN.exec(line)?.[1];
 
     if (headingTitle !== undefined && currentSection.title !== "") {
       completedSections.push(currentSection);

@@ -56,6 +56,18 @@ describe("splitResourceGuidePreview", () => {
     expect(preview.lockedSectionTitles).toEqual(["Utiliser"]);
   });
 
+  it("ne ferme un bloc de code qu'avec le même type de clôture, au moins aussi longue", () => {
+    const tildeInsideBacktickBlock = `## Début\n\n\`\`\`text\n~~~\n\`\`\`\n\n## Suite\n\nCONTENU_VERROUILLE\n`;
+    const shorterFenceInsideLongerBlock = `## Début\n\n\`\`\`\`text\n\`\`\`\n## pas un titre\n\`\`\`\`\n\n## Suite\n\nCONTENU_VERROUILLE\n`;
+
+    [tildeInsideBacktickBlock, shorterFenceInsideLongerBlock].forEach((markdown) => {
+      const preview = splitResourceGuidePreview(markdown);
+
+      expect(preview.previewMarkdown).not.toContain("CONTENU_VERROUILLE");
+      expect(preview.lockedSectionTitles).toEqual(["Suite"]);
+    });
+  });
+
   it("rattache le texte placé avant le premier titre à la première section", () => {
     const preview = splitResourceGuidePreview(`Introduction libre.\n\n## Début\n\n${words(10)}\n\n## Suite\n\n${words(10)}\n`);
 
