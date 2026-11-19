@@ -1,9 +1,10 @@
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import { resourceGuidePreviewPlugin } from "./src/lib/resource-guide-preview/resource-guide-preview-vite-plugin";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), resourceGuidePreviewPlugin()],
   test: {
     environment: "jsdom",
     globals: true,

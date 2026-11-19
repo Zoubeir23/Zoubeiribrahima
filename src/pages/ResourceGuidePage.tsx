@@ -6,12 +6,15 @@ import ResourceBrandLogos from "@/components/resources/ResourceBrandLogos";
 import ResourceAccessForm from "@/components/resources/ResourceAccessForm";
 import ResourceGuideContent from "@/components/resources/ResourceGuideContent";
 import SiteFooter from "@/components/SiteFooter";
+import { findResourceGuidePreview } from "@/data/resourceGuidePreview";
 import { loadResourceGuideText } from "@/data/resourceGuideText";
 import { findResourceGuide, type ResourceGuide } from "@/data/resourceGuides";
 import { usePageMetadata } from "@/hooks/usePageMetadata";
 import { useResourceAccess } from "@/hooks/useResourceAccess";
+import { splitResourceGuidePreview } from "@/lib/resource-guide-preview/split-resource-guide-preview";
 
-// One resource guide. The title and summary are public; the text loads only once the library is unlocked.
+// One resource guide. The title, the summary and the first sections (the public preview, also in the prerendered
+// HTML) are readable by everyone; the rest of the guide loads only once the visitor has unlocked it.
 
 const SITE_TITLE_SUFFIX = "Zoubeir Ibrahima";
 const panelClassName = "mt-10 rounded-md border border-[var(--surface-border)] bg-[var(--surface-base)] p-6 sm:p-8";
@@ -20,7 +23,15 @@ const backLinkClassName =
 
 type TextState = { kind: "loading" } | { kind: "ready"; markdown: string } | { kind: "failed" };
 
-const GuideText = ({ slug }: { slug: string }) => {
+const outlineListIdentifier = "resource-guide-locked-outline";
+
+interface LockedGuideRestProperties {
+  slug: string;
+  hasPublicPreview: boolean;
+}
+
+// Shows what the public preview left out; without a preview, the whole guide.
+const LockedGuideRest = ({ slug, hasPublicPreview }: LockedGuideRestProperties) => {
   const [textState, setTextState] = useState<TextState>({ kind: "loading" });
 
   useEffect(() => {
@@ -38,8 +49,22 @@ const GuideText = ({ slug }: { slug: string }) => {
   if (textState.kind === "failed") {
     return <p role="alert">Le guide n'a pas pu se charger. Recharge la page pour réessayer.</p>;
   }
-  return <ResourceGuideContent markdown={textState.markdown} />;
+  const markdown = hasPublicPreview ? splitResourceGuidePreview(textState.markdown).lockedMarkdown : textState.markdown;
+  return <ResourceGuideContent markdown={markdown} />;
 };
+
+const LockedSectionOutline = ({ sectionTitles }: { sectionTitles: string[] }) => (
+  <div className="mt-10 border-t border-[var(--surface-border)] pt-8">
+    <p id={outlineListIdentifier} className="font-mono text-xs uppercase tracking-widest text-[var(--text-secondary)]">
+      Dans la suite du guide
+    </p>
+    <ul aria-labelledby={outlineListIdentifier} className="mt-4 list-disc space-y-2 pl-5 text-sm text-white/88 sm:text-base">
+      {sectionTitles.map((sectionTitle) => (
+        <li key={sectionTitle}>{sectionTitle}</li>
+      ))}
+    </ul>
+  </div>
+);
 
 const describeTool = (guide: ResourceGuide): string =>
   guide.toolLicense ? `Par ${guide.toolAuthor}, licence ${guide.toolLicense}` : `Par ${guide.toolAuthor}`;
@@ -47,6 +72,7 @@ const describeTool = (guide: ResourceGuide): string =>
 const ResourceGuidePage = () => {
   const { slug } = useParams();
   const guide = findResourceGuide(slug);
+  const preview = guide ? findResourceGuidePreview(guide.slug) : undefined;
   const { state, unlock } = useResourceAccess(slug);
 
   usePageMetadata({
@@ -84,18 +110,25 @@ const ResourceGuidePage = () => {
               </a>
             </p>
 
-            <section className={panelClassName} aria-label={state === "unlocked" ? "Guide" : "Débloquer le guide"}>
-              {state === "unlocked" && <GuideText slug={guide.slug} />}
-              {state === "locked" && (
-                <>
-                  <h2 className="font-display text-xl font-black uppercase text-white sm:text-2xl">Débloque le guide</h2>
-                  <p className="mb-8 mt-3 text-sm text-[var(--text-secondary)]">
-                    Ton prénom et ton e-mail, et tu lis ce guide. Les autres guides, et celui-ci à ta prochaine visite, demandent de nouveau le formulaire.
-                  </p>
-                  <ResourceAccessForm resourceSlug={guide.slug} onUnlocked={unlock} />
-                </>
+            <section className={panelClassName} aria-label="Guide">
+              {preview && <ResourceGuideContent markdown={preview.previewMarkdown} />}
+              {state === "unlocked" && (
+                <div className={preview ? "mt-10" : undefined}>
+                  <LockedGuideRest slug={guide.slug} hasPublicPreview={preview !== undefined} />
+                </div>
               )}
+              {state === "locked" && preview && <LockedSectionOutline sectionTitles={preview.lockedSectionTitles} />}
             </section>
+
+            {state === "locked" && (
+              <section className={panelClassName} aria-label="Débloquer la suite du guide">
+                <h2 className="font-display text-xl font-black uppercase text-white sm:text-2xl">Débloque la suite du guide</h2>
+                <p className="mb-8 mt-3 text-sm text-[var(--text-secondary)]">
+                  Ton prénom et ton e-mail, et tu lis la suite de ce guide. Les autres guides, et celui-ci à ta prochaine visite, demandent de nouveau le formulaire.
+                </p>
+                <ResourceAccessForm resourceSlug={guide.slug} onUnlocked={unlock} />
+              </section>
+            )}
           </>
         )}
       </main>
