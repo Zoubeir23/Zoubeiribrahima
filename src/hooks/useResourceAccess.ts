@@ -3,8 +3,8 @@ import { forgetStoredResourceAccess } from "@/lib/resource-subscription/resource
 
 // Whether the visitor may read a resource guide. The form is asked again each time the visitor comes back: the
 // unlock lives only in this page's memory, for the guide it was given for, and is never written to the browser.
-// The prerendered HTML always shows the form and never the guide text. In local development (npm run dev) the
-// library is open, so the owner can proofread.
+// The prerendered HTML always shows the public preview and the form, never the locked rest of the guide. In local
+// development (npm run dev) the library is open, so the owner can proofread.
 
 export type ResourceAccessState = "locked" | "unlocked";
 
