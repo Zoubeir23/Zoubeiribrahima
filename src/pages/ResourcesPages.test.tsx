@@ -3,13 +3,14 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import ConsentProvider from "@/components/consent/ConsentProvider";
 import { resourceBrandLogos } from "@/data/resourceBrandLogos";
+import { findResourceGuidePreview } from "@/data/resourceGuidePreview";
 import { resourceGuides } from "@/data/resourceGuides";
 import { LanguageProvider } from "@/hooks/useLanguage";
 
 const accessState = { state: "locked" as "locked" | "unlocked", unlock: vi.fn() };
 vi.mock("@/hooks/useResourceAccess", () => ({ useResourceAccess: () => accessState }));
 vi.mock("@/data/resourceGuideText", () => ({
-  loadResourceGuideText: async () => "## Installer\n\n```bash\nnpx exemple\n```\n",
+  loadResourceGuideText: async () => "## Présentation\n\nTexte de présentation.\n\n## Installer\n\n```bash\nnpx exemple\n```\n",
 }));
 
 const { default: ResourcesPage } = await import("@/pages/ResourcesPage");
@@ -84,6 +85,16 @@ describe("page d'une ressource", () => {
     expect(screen.queryByText("npx exemple")).not.toBeInTheDocument();
   });
 
+  it("montre l'extrait public et le plan de la suite avant le formulaire", () => {
+    const preview = findResourceGuidePreview(firstGuide.slug)!;
+    renderAt(`/ressources/${firstGuide.slug}`);
+    const firstPreviewHeading = preview.previewMarkdown.match(/^## +(.+)$/m)![1];
+    expect(screen.getByRole("heading", { level: 2, name: firstPreviewHeading })).toBeInTheDocument();
+    const outline = screen.getByRole("list", { name: "Dans la suite du guide" });
+    expect(within(outline).getAllByRole("listitem").map((item) => item.textContent)).toEqual(preview.lockedSectionTitles);
+    expect(screen.getByRole("heading", { level: 2, name: "Débloque la suite du guide" })).toBeInTheDocument();
+  });
+
   it("prévient que le formulaire sera redemandé si le visiteur quitte la page puis revient", () => {
     renderAt(`/ressources/${firstGuide.slug}`);
     expect(screen.getAllByText(/le formulaire te sera redemandé/i).length).toBeGreaterThan(0);
@@ -94,10 +105,12 @@ describe("page d'une ressource", () => {
     expect(screen.getAllByText(/Chaque guide se débloque séparément/).length).toBeGreaterThan(0);
   });
 
-  it("affiche le texte une fois l'accès débloqué", async () => {
+  it("affiche la suite du guide, sans répéter l'extrait, une fois l'accès débloqué", async () => {
     accessState.state = "unlocked";
     renderAt(`/ressources/${firstGuide.slug}`);
     expect(await screen.findByText("npx exemple")).toBeInTheDocument();
+    expect(screen.queryByText("Texte de présentation.")).not.toBeInTheDocument();
+    expect(screen.queryByRole("list", { name: "Dans la suite du guide" })).not.toBeInTheDocument();
     expect(screen.queryByLabelText("Prénom")).not.toBeInTheDocument();
   });
 
